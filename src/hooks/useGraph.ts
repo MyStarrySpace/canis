@@ -94,7 +94,7 @@ export function useGraph({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const worker = new Worker(new URL('../worker.js', import.meta.url), {
+    const worker = new Worker(new URL('./worker.js', import.meta.url), {
       type: 'module',
     });
 

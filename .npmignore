@@ -1,0 +1,16 @@
+node_modules/
+target/
+crates/
+src/
+scripts/
+*.tsbuildinfo
+.env
+.env.*
+.DS_Store
+nul
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+.gitignore
+.gitattributes
+*.tgz
