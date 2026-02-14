@@ -1,0 +1,10 @@
+node_modules/
+dist/
+pkg/
+target/
+*.wasm
+.DS_Store
+*.tsbuildinfo
+.env
+.env.*
+nul
