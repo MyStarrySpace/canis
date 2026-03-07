@@ -1,5 +1,5 @@
-// @untangling/mechanistic-graph
-// Rust/WASM-powered graph analysis engine for mechanistic networks
+// @untangling/canis — Causal Analysis Network for Interactive Systems
+// Rust/WASM-powered graph analysis engine
 
 // Types
 export type {
@@ -33,6 +33,14 @@ export type {
   RemovalImpact,
   ModuleConnectivity,
 
+  // Renderer config types
+  NodeTheme,
+  DetailLevel,
+  BackgroundVariant,
+  NodeDisplayOptions,
+  CanisGraphConfig,
+  PresentationStep,
+
   // Worker protocol
   WorkerRequest,
   WorkerResponse,
@@ -42,8 +50,10 @@ export type {
 export { convertToGraphData, toWasmJson } from './convert';
 export type { MechanisticNode, MechanisticEdge, MechanisticModule } from './convert';
 
-// React hook
-export { useGraph } from './hooks/useGraph';
-
 // Non-React engine wrapper
 export { GraphEngine } from './lib/engine';
+
+// Data format adapters
+export { fromSimpleJson, type SimpleJsonData, type SimpleNode, type SimpleEdge, type SimpleModule } from './adapters/simple-json';
+export { fromGraphML } from './adapters/graphml';
+export { extractSvgPositions, type SvgNodePosition } from './adapters/svg-positions';

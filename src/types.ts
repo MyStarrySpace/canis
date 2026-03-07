@@ -1,5 +1,5 @@
 /**
- * Shared TypeScript types for @untangling/mechanistic-graph.
+ * Shared TypeScript types for @untangling/canis.
  *
  * These mirror the Rust types and bridge the existing MechanisticNode/Edge
  * types from alz-market-viz.
@@ -87,6 +87,8 @@ export interface LayoutOptions {
   direction?: Direction;
   maxIterations?: number;
   moduleGrouping?: boolean;
+  /** Reorder children by edge weight (strongest first). Default: true */
+  strengthOrdering?: boolean;
 }
 
 export interface NodePosition {
@@ -186,6 +188,42 @@ export interface ModuleConnectivity {
   matrix: number[][];
   avgConfidence: string[][];
   modules: string[];
+}
+
+// ── Renderer config types ─────────────────────────────────────────────────
+
+export type DetailLevel = 'presentation' | 'interactive';
+
+export type BackgroundVariant = 'dots' | 'grid' | 'gradient' | 'none';
+
+export type NodeTheme = 'light' | 'dark';
+
+export interface NodeDisplayOptions {
+  showDescription?: boolean;
+  showMechanism?: boolean;
+  showModule?: boolean;
+  showConfidence?: boolean;
+  showPmid?: boolean;
+  theme?: NodeTheme;
+  direction?: Direction;
+}
+
+export interface CanisGraphConfig {
+  detailLevel?: DetailLevel;
+  background?: BackgroundVariant;
+  nodeDisplay?: NodeDisplayOptions;
+  animationDuration?: number;
+  fitOnInit?: boolean;
+}
+
+export interface PresentationStep {
+  id: string;
+  label: string;
+  description: string;
+  focusNodeIds: string[];
+  focusEdgeIds?: string[];
+  fitView?: boolean;
+  viewBox?: { x: number; y: number; width: number; height: number };
 }
 
 // ── Worker message types ──────────────────────────────────────────────────

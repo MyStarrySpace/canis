@@ -13,7 +13,7 @@ let wasmModule: any = null;
 async function initWasm() {
   if (wasmModule) return;
   // Dynamic import of wasm-pack output
-  const wasm = await import('../pkg/graph_engine.js');
+  const wasm = await import('../pkg/canis.js');
   await wasm.default();
   wasmModule = wasm;
 }

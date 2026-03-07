@@ -1,0 +1,35 @@
+name: Headless Branch
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  headless:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Strip renderer files
+        run: node scripts/strip-renderer.mjs
+
+      - name: Build TypeScript (headless)
+        run: npx tsup
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Force-push to headless branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Auto-generate headless build from ${{ github.sha }}"
+          git push --force origin HEAD:headless

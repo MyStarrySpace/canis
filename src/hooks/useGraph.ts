@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   CentralityResult,
   CommunityResult,
@@ -19,6 +19,8 @@ interface UseGraphOptions {
   graphData: GraphData;
   autoLayout?: boolean;
   layoutOptions?: LayoutOptions;
+  /** Override the worker URL (for dev servers where the default relative path doesn't resolve) */
+  workerUrl?: URL;
 }
 
 interface UseGraphReturn {
@@ -70,6 +72,7 @@ export function useGraph({
   graphData,
   autoLayout = false,
   layoutOptions,
+  workerUrl,
 }: UseGraphOptions): UseGraphReturn {
   const workerRef = useRef<Worker | null>(null);
   const pendingRef = useRef<Map<string, PendingRequest>>(new Map());
@@ -77,6 +80,13 @@ export function useGraph({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [layout, setLayout] = useState<LayoutResult | null>(null);
+
+  // Serialize layoutOptions for stable dependency comparison
+  const layoutOptsJson = useMemo(
+    () => JSON.stringify(layoutOptions ?? {}),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(layoutOptions ?? {})],
+  );
 
   // Send a message to the worker and return a promise for the response
   const send = useCallback(
@@ -94,7 +104,8 @@ export function useGraph({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const worker = new Worker(new URL('./worker.js', import.meta.url), {
+    const url = workerUrl ?? new URL('./worker.js', import.meta.url);
+    const worker = new Worker(url, {
       type: 'module',
     });
 
@@ -122,7 +133,7 @@ export function useGraph({
       worker.terminate();
       workerRef.current = null;
     };
-  }, []);
+  }, [workerUrl]);
 
   // Init engine when graphData changes
   useEffect(() => {
@@ -139,8 +150,7 @@ export function useGraph({
         setLoading(false);
 
         if (autoLayout) {
-          const opts = JSON.stringify(layoutOptions ?? {});
-          send({ type: 'layout', payload: opts }).then((r: string) => {
+          send({ type: 'layout', payload: layoutOptsJson }).then((r: string) => {
             setLayout(JSON.parse(r));
           });
         }
@@ -149,7 +159,7 @@ export function useGraph({
         setError(String(e));
         setLoading(false);
       });
-  }, [graphData, send, autoLayout, layoutOptions]);
+  }, [graphData, send, autoLayout, layoutOptsJson]);
 
   // API methods
   const computeLayout = useCallback(

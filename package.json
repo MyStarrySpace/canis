@@ -1,5 +1,5 @@
 {
-  "name": "@untangling/mechanistic-graph",
+  "name": "@untangling/canis",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,6 +9,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "default": "./dist/react.js"
     },
     "./worker": {
       "types": "./dist/worker.d.ts",
@@ -21,12 +26,13 @@
     "pkg"
   ],
   "scripts": {
-    "build:wasm": "wasm-pack build crates/graph-engine --target web --out-dir ../../pkg",
+    "build:wasm": "wasm-pack build crates/canis --target web --out-dir ../../pkg",
     "build:ts": "tsup",
-    "build:copy-wasm": "node -e \"require('fs').copyFileSync('pkg/graph_engine_bg.wasm','dist/graph_engine_bg.wasm')\"",
+    "build:copy-wasm": "node -e \"require('fs').copyFileSync('pkg/canis_bg.wasm','dist/canis_bg.wasm')\"",
     "build": "npm run build:wasm && npm run build:ts && npm run build:copy-wasm",
+    "dev": "vite",
     "test": "vitest run",
-    "test:wasm": "wasm-pack test --node crates/graph-engine"
+    "test:wasm": "wasm-pack test --node crates/canis"
   },
   "peerDependencies": {
     "@xyflow/react": "^12",
@@ -36,16 +42,26 @@
   "peerDependenciesMeta": {
     "@xyflow/react": {
       "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
     "@xyflow/react": "^12",
+    "framer-motion": "^12.35.0",
+    "lucide-react": "^0.577.0",
     "react": "^19",
     "react-dom": "^19",
     "tsup": "^8",
     "typescript": "^5",
+    "vite": "^6.4.1",
     "vitest": "^3"
   }
 }
