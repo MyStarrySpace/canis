@@ -3,6 +3,7 @@ import {
   ReactFlow,
   Background,
   Controls,
+  MiniMap,
   Panel,
   useReactFlow,
   useNodesState,
@@ -10,11 +11,12 @@ import {
   type Node,
   type NodeTypes,
 } from '@xyflow/react';
+import type { CanisNodeData } from '../../../src/lib/convert-to-xyflow';
 import type { LayoutResult } from '../../../src/types';
 import type { MechanisticNode, MechanisticEdge } from '../../../src/index';
 import { DefaultNode } from '../../../src/components/nodes/DefaultNode';
 import { buildFlowData, type FlowBuildOptions } from './flow-builder';
-import { postProcessLayout } from './layout-postprocess';
+// postProcessLayout disabled — pre-filtering keeps layers small enough
 import { modules } from '../data/constants';
 
 const nodeTypes: NodeTypes = { default: DefaultNode as unknown as NodeTypes['default'] };
@@ -38,11 +40,9 @@ export function GraphInner({
 }: GraphInnerProps) {
   const { fitView } = useReactFlow();
 
-  const processed = useMemo(() => postProcessLayout(layout), [layout]);
-
   const { flowNodes, flowEdges } = useMemo(
-    () => buildFlowData(processed, rawNodes, rawEdges, flowOptions),
-    [processed, rawNodes, rawEdges, flowOptions],
+    () => buildFlowData(layout, rawNodes, rawEdges, flowOptions),
+    [layout, rawNodes, rawEdges, flowOptions],
   );
 
   const [rfNodes, setRfNodes, onNodesChange] = useNodesState(flowNodes);
@@ -88,6 +88,16 @@ export function GraphInner({
     >
       <Background color="#e5e2dd" gap={20} size={1} />
       <Controls showInteractive={false} style={{ bottom: 8, left: 8 }} />
+      <MiniMap
+        nodeStrokeWidth={1}
+        nodeColor={(node) => {
+          const data = node.data as CanisNodeData;
+          return data?.moduleColor ?? '#787473';
+        }}
+        style={{ bottom: 8, right: 8, width: 100, height: 70 }}
+        pannable
+        zoomable
+      />
 
       <Panel position="top-left">
         <div style={legendStyle}>
@@ -105,7 +115,7 @@ export function GraphInner({
         </div>
       </Panel>
 
-      <Panel position="bottom-right">
+      <Panel position="bottom-left" style={{ marginBottom: 48, marginLeft: 4 }}>
         <div style={{
           background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)',
           border: '1px solid #e5e2dd', borderRadius: 4, padding: '4px 8px',

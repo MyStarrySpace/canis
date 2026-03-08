@@ -6282,6 +6282,706 @@
       "evidence": {
         "pmid": "33431651"
       }
+    },
+    {
+      "id": "E03.008",
+      "source": "ox_mtDNA_cytosolic",
+      "target": "NLRP3_active",
+      "relation": "directlyIncreases",
+      "moduleId": "M03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Oxidized mtDNA (8-oxo-dG containing) specifically binds NLRP3 LRR domain and triggers inflammasome assembly. Non-oxidized mtDNA does NOT activate NLRP3",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "35835107",
+        "firstAuthor": "Xian",
+        "year": 2022,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E03.009",
+      "source": "mtDNA_cytosolic",
+      "target": "cGAS_active",
+      "relation": "directlyIncreases",
+      "moduleId": "M03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Cytosolic dsDNA (including non-oxidized mtDNA) is sensed by cGAS → 2\\",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "37532932",
+        "firstAuthor": "Gulen",
+        "year": 2023,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E03.010",
+      "source": "pink1_parkin",
+      "target": "mtDNA_cytosolic",
+      "relation": "decreases",
+      "moduleId": "M03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Functional PINK1/Parkin mitophagy clears damaged mitochondria BEFORE mtDNA can escape → prevents mtDNA release",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "33029617",
+        "firstAuthor": "Borsche",
+        "year": 2020,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E04.010",
+      "source": "tau_aggregated",
+      "target": "NLRP3_active",
+      "relation": "increases",
+      "moduleId": "M04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Tau aggregates also activate NLRP3 (creates feedforward loop)",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "31748742",
+        "firstAuthor": "Ising",
+        "year": 2019,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E04.011",
+      "source": "caspase1_active",
+      "target": "IL18",
+      "relation": "directlyIncreases",
+      "moduleId": "M04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Caspase-1 cleaves pro-IL-18 to mature IL-18; IL-18 promotes IFN-γ and enhances neuroinflammation",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "19703986",
+        "firstAuthor": "Dinarello",
+        "year": 2009,
+        "methodType": "meta_analysis"
+      }
+    },
+    {
+      "id": "E04.012",
+      "source": "IL18",
+      "target": "neuroinflammation",
+      "relation": "increases",
+      "moduleId": "M04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "IL-18 induces IFN-γ production and amplifies inflammatory cascades; elevated in AD brain and CSF",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "19121329",
+        "firstAuthor": "Ojala",
+        "year": 2009,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E04.013",
+      "source": "neuroinflammation",
+      "target": "ISG_expression",
+      "relation": "increases",
+      "moduleId": "M04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Type I interferon signaling (from STING, mtDNA) induces interferon-stimulated genes; ISG signature elevated in AD microglia",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "32589960",
+        "firstAuthor": "Roy",
+        "year": 2020,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E04.014",
+      "source": "ISG_expression",
+      "target": "microglia_activated",
+      "relation": "increases",
+      "moduleId": "M04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "ISGs drive microglial activation and proinflammatory phenotype; IRM (interferon-responsive microglia) are distinct subtype",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "31118249",
+        "firstAuthor": "Sala Frigerio",
+        "year": 2019,
+        "methodType": "transcriptomics"
+      }
+    },
+    {
+      "id": "E05.014",
+      "source": "c1q",
+      "target": "A1_astrocytes",
+      "relation": "increases",
+      "moduleId": "M05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "C1q required for A1 astrocyte induction (with IL-1α + TNF)",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28099414",
+        "firstAuthor": "Liddelow",
+        "year": 2017,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E06.012",
+      "source": "TREM2_surface",
+      "target": "plaque_compaction",
+      "relation": "increases",
+      "moduleId": "M06",
+      "causalConfidence": "L4",
+      "mechanismDescription": "TREM2-positive microglia compact plaques into dense cores, reducing toxicity by sequestering oligomers",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "27613435",
+        "firstAuthor": "Yuan",
+        "year": 2016,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E06.016",
+      "source": "Abeta_oligomers",
+      "target": "synapses",
+      "relation": "decreases",
+      "moduleId": "M06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Aβ oligomers activate classical complement cascade → C1q/C3 tag synapses → microglia CR3-mediated pruning. Synapse loss occurs BEFORE plaques form.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "27033548",
+        "firstAuthor": "Hong",
+        "year": 2016,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E07.011",
+      "source": "Abeta_oligomers",
+      "target": "PP2A_inhibited",
+      "relation": "increases",
+      "moduleId": "M07",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Aβ oligomers inhibit PP2A via SET/I2PP2A upregulation; PP2A is the major tau phosphatase (>70%)",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "14986299",
+        "firstAuthor": "Sontag",
+        "year": 2004,
+        "methodType": "intervention_cells"
+      }
+    },
+    {
+      "id": "E07.016",
+      "source": "tau_aggregated",
+      "target": "tau_exosomal_release",
+      "relation": "increases",
+      "moduleId": "M07",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Tau is released via exosomes; exosomal tau is more aggregation-prone and seeds misfolding in recipient cells",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28800352",
+        "firstAuthor": "Wang",
+        "year": 2017,
+        "methodType": "intervention_cells"
+      }
+    },
+    {
+      "id": "E07.018",
+      "source": "homocysteine",
+      "target": "CBS_enzyme",
+      "relation": "substrateof",
+      "moduleId": "M07",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Homocysteine is substrate for CBS (cystathionine β-synthase); elevated homocysteine is AD risk factor",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "11844848",
+        "firstAuthor": "Seshadri",
+        "year": 2002,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E07.020",
+      "source": "cystathionine",
+      "target": "CSE_enzyme",
+      "relation": "substrateof",
+      "moduleId": "M07",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Cystathionine is substrate for CSE (cystathionine γ-lyase)",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "firstAuthor": "Various",
+        "year": 2020,
+        "methodType": "biochemistry"
+      }
+    },
+    {
+      "id": "E07.022",
+      "source": "cysteine",
+      "target": "glutathione_GSH",
+      "relation": "increases",
+      "moduleId": "M07",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Cysteine is rate-limiting substrate for glutathione (GSH) synthesis",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "firstAuthor": "Various",
+        "year": 2020,
+        "methodType": "biochemistry"
+      }
+    },
+    {
+      "id": "E07.025",
+      "source": "GSK3beta_sulfhydrated",
+      "target": "GSK3B_active",
+      "relation": "decreases",
+      "moduleId": "M07",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Sulfhydrated GSK3β is inactive → reduced tau phosphorylation at Ser396, Ser404",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "22729161",
+        "firstAuthor": "Sen",
+        "year": 2012,
+        "methodType": "biochemistry"
+      }
+    },
+    {
+      "id": "E08.001",
+      "source": "aging",
+      "target": "c1q",
+      "relation": "increases",
+      "moduleId": "M08",
+      "causalConfidence": "L6",
+      "mechanismDescription": "C1q increases ~300-fold in aged brain (primarily from microglia). MECHANISM UNKNOWN per Stephan 2013. Likely intermediates: microglial senescence, oxidative stress, or myelin debris accumulation. Reactivation of developmental pruning pathway.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "23946404",
+        "firstAuthor": "Stephan",
+        "year": 2013,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E08.006",
+      "source": "synapses",
+      "target": "cognitive_score",
+      "relation": "increases",
+      "moduleId": "M08",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synapse density is STRONGEST anatomical correlate of cognitive function - better than plaques or tangles",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "23946404",
+        "firstAuthor": "Stephan",
+        "year": 2013,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E09.014",
+      "source": "functional_iron_deficiency",
+      "target": "ferroptosis",
+      "relation": "decreases",
+      "moduleId": "M09",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Counterintuitively, functional iron deficiency (low labile Fe²⁺) may initially PROTECT from ferroptosis, but impairs mitochondrial function",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "30177779",
+        "firstAuthor": "Lane",
+        "year": 2018,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E10.004",
+      "source": "aging",
+      "target": "REST_nuclear",
+      "relation": "decreases",
+      "moduleId": "M10",
+      "causalConfidence": "L6",
+      "mechanismDescription": "REST nuclear localization declines with age in vulnerable neurons",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "25599404",
+        "firstAuthor": "Lu",
+        "year": 2014,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E10.010",
+      "source": "astrocyte_lipid_droplets",
+      "target": "neuroinflammation",
+      "relation": "increases",
+      "moduleId": "M10",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Lipid-laden astrocytes contribute to neuroinflammation via altered lipid signaling",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "35236985",
+        "firstAuthor": "Tcw",
+        "year": 2022,
+        "methodType": "intervention_cells"
+      }
+    },
+    {
+      "id": "E11.001",
+      "source": "TREM2_surface",
+      "target": "DAM_stage1",
+      "relation": "increases",
+      "moduleId": "M11",
+      "causalConfidence": "L3",
+      "mechanismDescription": "TREM2 signaling required for transition from homeostatic to DAM phenotype",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28602351",
+        "firstAuthor": "Keren-Shaul",
+        "year": 2017,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E11.002",
+      "source": "DAM_stage1",
+      "target": "DAM_stage2",
+      "relation": "increases",
+      "moduleId": "M11",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Stage 1 DAM → Stage 2 DAM requires TREM2 signaling",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28602351",
+        "firstAuthor": "Keren-Shaul",
+        "year": 2017,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E11.004",
+      "source": "trem2_variant",
+      "target": "TREM2_surface",
+      "relation": "decreases",
+      "moduleId": "M11",
+      "causalConfidence": "L4",
+      "mechanismDescription": "R47H and other AD-risk variants reduce TREM2 surface expression/signaling",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "23150934",
+        "firstAuthor": "Jonsson",
+        "year": 2013,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E11.005",
+      "source": "TREM2_surface",
+      "target": "sTREM2",
+      "relation": "increases",
+      "moduleId": "M11",
+      "causalConfidence": "L5",
+      "mechanismDescription": "ADAM10/17 cleave TREM2 ectodomain → soluble TREM2 (sTREM2) in CSF",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28885578",
+        "firstAuthor": "Schlepckow",
+        "year": 2017,
+        "methodType": "in_vitro"
+      }
+    },
+    {
+      "id": "E11.008",
+      "source": "aging",
+      "target": "senescent_microglia_TREM2",
+      "relation": "increases",
+      "moduleId": "M11",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Aging promotes senescent TREM2+ microglia with SASP-like phenotype; these may be harmful",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "34433656",
+        "firstAuthor": "Hu",
+        "year": 2021,
+        "methodType": "transcriptomics"
+      }
+    },
+    {
+      "id": "E11.009",
+      "source": "senescent_microglia_TREM2",
+      "target": "neuroinflammation",
+      "relation": "increases",
+      "moduleId": "M11",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Senescent TREM2+ microglia secrete inflammatory factors and fail to maintain tissue homeostasis",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "34433656",
+        "firstAuthor": "Hu",
+        "year": 2021,
+        "methodType": "transcriptomics"
+      }
+    },
+    {
+      "id": "E11.010",
+      "source": "DAM_stage2",
+      "target": "phagocytosis_impaired",
+      "relation": "decreases",
+      "moduleId": "M11",
+      "causalConfidence": "L3",
+      "mechanismDescription": "DAM Stage 2 microglia have enhanced phagocytic capacity (TREM2-dependent). DAM upregulate lipid metabolism genes (APOE, LIPA, LPL) and phagocytic receptors to clear debris.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28602351",
+        "firstAuthor": "Keren-Shaul",
+        "year": 2017,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E12.031",
+      "source": "tau_aggregated",
+      "target": "plasma_pTau217",
+      "relation": "directlyIncreases",
+      "moduleId": "M12",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Hyperphosphorylated tau at T217 is actively secreted from neurons and released upon neuronal damage. pTau217 in plasma closely tracks tau PET signal and predicts progression.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "32333900",
+        "firstAuthor": "Palmqvist",
+        "year": 2020,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E13.010",
+      "source": "OPCs",
+      "target": "mature_oligodendrocytes",
+      "relation": "increases",
+      "moduleId": "M13",
+      "causalConfidence": "L4",
+      "mechanismDescription": "OPCs differentiate into mature myelinating oligodendrocytes. Process requires: (1) exit from cell cycle, (2) expression of MBP/MOG/PLP1, (3) cholesterol availability for myelin synthesis. Declines with age due to OPC senescence, LINGO1↑, Nogo receptor activation.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "31497960",
+        "firstAuthor": "Neumann",
+        "year": 2019,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E13.018",
+      "source": "A1_astrocytes",
+      "target": "mature_oligodendrocytes",
+      "relation": "decreases",
+      "moduleId": "M13",
+      "causalConfidence": "L4",
+      "mechanismDescription": "A1 reactive astrocytes secrete saturated lipids that are toxic to oligodendrocytes. This is one mechanism of white matter pathology in AD. A1 astrocytes are induced by C1q + IL-1α + TNF-α from activated microglia.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "28099414",
+        "firstAuthor": "Liddelow",
+        "year": 2017,
+        "methodType": "in_vitro"
+      }
+    },
+    {
+      "id": "E13.019",
+      "source": "aging",
+      "target": "OPCs",
+      "relation": "decreases",
+      "moduleId": "M13",
+      "causalConfidence": "L5",
+      "mechanismDescription": "OPCs become exhausted and senescent with age. Mechanisms include: (1) replicative senescence, (2) epigenetic changes reducing differentiation capacity, (3) accumulation of myelin debris inhibiting OPC function. Results in declining remyelination capacity.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "31497960",
+        "firstAuthor": "Neumann",
+        "year": 2019,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E02.021",
+      "source": "IL1B",
+      "target": "lysosomal_dysfunction",
+      "relation": "increases",
+      "moduleId": "M02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Pro-inflammatory cytokines including IL-1β increase cellular stress on lysosomes. NF-κB activation downstream of IL-1R impairs TFEB nuclear translocation, reducing lysosomal biogenesis. Chronic inflammation creates a vicious cycle of lysosomal dysfunction.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "27723745",
+        "firstAuthor": "Martina",
+        "year": 2016,
+        "methodType": "in_vitro"
+      }
+    },
+    {
+      "id": "E03.011",
+      "source": "type_I_IFN",
+      "target": "damaged_mito_pool",
+      "relation": "increases",
+      "moduleId": "M03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Type I IFN signaling impairs mitochondrial quality control. ISG expression alters cellular metabolism and reduces PINK1/Parkin-mediated mitophagy efficiency. This completes the mtDNA-STING inflammation loop.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "38280852",
+        "firstAuthor": "Jimenez-Loygorri",
+        "year": 2024,
+        "methodType": "intervention_cells"
+      }
+    },
+    {
+      "id": "E05.016",
+      "source": "synapses",
+      "target": "microglia_activated",
+      "relation": "decreases",
+      "moduleId": "M05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synapse loss releases tonic microglial inhibition. Neurons express CX3CL1 (fractalkine) which binds microglial CX3CR1 to maintain quiescence. Synapse loss reduces this inhibitory signal, promoting microglial activation.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "16675393",
+        "firstAuthor": "Cardona",
+        "year": 2006,
+        "methodType": "knockout"
+      }
+    },
+    {
+      "id": "E13.024",
+      "source": "BBB_integrity",
+      "target": "OPCs",
+      "relation": "increases",
+      "moduleId": "M13",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Intact BBB protects OPCs from peripheral insults. BBB breakdown exposes OPCs to serum factors (fibrinogen, albumin, IgG) that inhibit OPC differentiation and survival.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "18923512",
+        "firstAuthor": "Ryu",
+        "year": 2015,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E13.040",
+      "source": "brain_iron_accumulation",
+      "target": "OL_iron_content",
+      "relation": "increases",
+      "moduleId": "M13",
+      "causalConfidence": "L5",
+      "mechanismDescription": "OLs preferentially accumulate iron due to high metabolic demand for myelination. Iron required for cholesterol synthesis, cytochrome oxidase, and fatty acid desaturation.",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "23463366",
+        "firstAuthor": "Todorich",
+        "year": 2009,
+        "methodType": "review"
+      }
+    },
+    {
+      "id": "E16.001",
+      "source": "sex",
+      "target": "estrogen_level",
+      "relation": "regulates",
+      "moduleId": "M16",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Biological sex determines baseline estrogen levels; menopause causes precipitous decline in women",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "firstAuthor": "Various",
+        "year": 2020,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E16.002",
+      "source": "estrogen_level",
+      "target": "neuroinflammation",
+      "relation": "decreases",
+      "moduleId": "M16",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Estrogen provides neuroprotection via anti-inflammatory, antioxidant, neurotrophic effects; loss increases vulnerability",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "firstAuthor": "Various",
+        "year": 2020,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E16.005",
+      "source": "sex",
+      "target": "testosterone_level",
+      "relation": "regulates",
+      "moduleId": "M16",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Biological sex determines testosterone levels; higher in males; testosterone may have neuroprotective effects",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "15117386",
+        "firstAuthor": "Moffat",
+        "year": 2004,
+        "methodType": "cohort"
+      }
+    },
+    {
+      "id": "E16.006",
+      "source": "testosterone_level",
+      "target": "neuroinflammation",
+      "relation": "decreases",
+      "moduleId": "M16",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Testosterone reduces neuroinflammation and Aβ accumulation; low testosterone associated with AD risk in men",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "21982726",
+        "firstAuthor": "Rosario",
+        "year": 2011,
+        "methodType": "intervention_animal"
+      }
+    },
+    {
+      "id": "E16.009",
+      "source": "estrogen_level",
+      "target": "visceral_adipose_tissue",
+      "relation": "decreases",
+      "moduleId": "M16",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Estrogen loss in menopause → increased visceral adipose tissue (VAT); VAT produces inflammatory cytokines",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "16893461",
+        "firstAuthor": "Salpeter",
+        "year": 2006,
+        "methodType": "meta_analysis"
+      }
+    },
+    {
+      "id": "E16.010",
+      "source": "visceral_adipose_tissue",
+      "target": "neuroinflammation",
+      "relation": "increases",
+      "moduleId": "M16",
+      "causalConfidence": "L4",
+      "mechanismDescription": "VAT secretes IL-6, TNF-α, leptin → systemic and neuroinflammation; links metabolic syndrome to AD risk",
+      "notes": "Restored from pre-Excel edges.ts",
+      "evidence": {
+        "pmid": "24524930",
+        "firstAuthor": "Letra",
+        "year": 2014,
+        "methodType": "cohort"
+      }
     }
   ],
   "modules": [

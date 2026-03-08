@@ -27,8 +27,8 @@ import frameworkData from './data/ad-framework-data.json';
 const workerUrl = new URL('../../src/worker.ts', import.meta.url);
 
 const layoutOptions = {
-  layerSpacing: 260,
-  nodeSpacing: 40,
+  layerSpacing: 200,
+  nodeSpacing: 200,
   direction: 'LeftToRight' as const,
   maxIterations: 24,
 };
@@ -38,9 +38,8 @@ const layoutOptions = {
 const rawNodes = frameworkData.nodes as MechanisticNode[];
 const rawEdges = frameworkData.edges as MechanisticEdge[];
 const rawModules = frameworkData.modules as MechanisticModule[];
-const graphData = convertToGraphData(rawNodes, rawEdges, rawModules);
 
-// ── Initial filter state: M01 on, rest off ───────────────────────────────────
+// ── Initial filter state ─────────────────────────────────────────────────────
 
 function buildInitialFilters(): Record<string, ModuleFilterState> {
   const filters: Record<string, ModuleFilterState> = {};
@@ -68,6 +67,25 @@ export function App() {
   const [activeDrug, setActiveDrug] = useState<TreatmentLibraryEntry | null>(null);
   const [activePathway, setActivePathway] = useState<PathwayResult | null>(null);
   const [pathwayFocusMode, setPathwayFocusMode] = useState(false);
+
+  // Pre-filter nodes/edges BEFORE sending to WASM layout engine
+  // Only 'on' and 'partial' nodes go into the layout; 'off' nodes are excluded entirely
+  const { filteredNodes, filteredEdges } = useMemo(() => {
+    const enabledModules = new Set(
+      Object.entries(moduleFilters)
+        .filter(([, state]) => state === 'on' || state === 'partial')
+        .map(([id]) => id)
+    );
+    const fNodes = rawNodes.filter((n) => enabledModules.has(n.moduleId));
+    const nodeIdSet = new Set(fNodes.map((n) => n.id));
+    const fEdges = rawEdges.filter((e) => nodeIdSet.has(e.source) && nodeIdSet.has(e.target));
+    return { filteredNodes: fNodes, filteredEdges: fEdges };
+  }, [moduleFilters]);
+
+  const graphData = useMemo(
+    () => convertToGraphData(filteredNodes, filteredEdges, rawModules),
+    [filteredNodes, filteredEdges],
+  );
 
   // Graph hook
   const { ready, loading, error, layout, exportGraphml, exportGexf, exportNetworkxJson, exportCsv } = useGraph({
@@ -227,7 +245,10 @@ export function App() {
         const { edgesCsv } = await exportCsv();
         return downloadFile(edgesCsv, 'edges.tsv', 'text/tab-separated-values');
       }
-      case 'json': return downloadFile(JSON.stringify(graphData, null, 2), 'network.json', 'application/json');
+      case 'json': {
+        const fullData = convertToGraphData(rawNodes, rawEdges, rawModules);
+        return downloadFile(JSON.stringify(fullData, null, 2), 'network.json', 'application/json');
+      }
     }
   }, [downloadFile, exportGraphml, exportGexf, exportNetworkxJson, exportCsv]);
 
@@ -287,8 +308,8 @@ export function App() {
         <ReactFlowProvider>
           <GraphInner
             layout={layout}
-            rawNodes={rawNodes}
-            rawEdges={rawEdges}
+            rawNodes={filteredNodes}
+            rawEdges={filteredEdges}
             flowOptions={flowOptions}
             onNodeClick={handleNodeClick}
             zoomToNodeId={zoomToNodeId}

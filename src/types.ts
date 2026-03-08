@@ -27,7 +27,9 @@ export type EdgeRelation =
   | 'protects'
   | 'disrupts'
   | 'requires'
-  | 'amplifies';
+  | 'amplifies'
+  | 'substrateof'
+  | 'inhibits';
 
 export type CausalConfidence = 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6' | 'L7';
 

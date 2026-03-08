@@ -35,6 +35,8 @@ pub enum EdgeRelation {
     Disrupts,
     Requires,
     Amplifies,
+    Substrateof,
+    Inhibits,
 }
 
 impl EdgeRelation {
@@ -47,6 +49,7 @@ impl EdgeRelation {
                 | EdgeRelation::Degrades
                 | EdgeRelation::Traps
                 | EdgeRelation::Disrupts
+                | EdgeRelation::Inhibits
         )
     }
 }

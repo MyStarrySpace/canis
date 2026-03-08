@@ -1,0 +1,16 @@
+/* Reset ReactFlow's default node styles so our DefaultNode controls all styling */
+.react-flow__node-default {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+  font-size: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
