@@ -19,10 +19,16 @@
  *   node scripts/verify-sources.cjs --verify --limit=50      # first 50 PMIDs
  *   node scripts/verify-sources.cjs --claims                 # verify claims vs abstracts
  *   node scripts/verify-sources.cjs --claims --limit=20      # first 20 edges
+ *   node scripts/verify-sources.cjs --metrics                # fetch citation metrics via iCite
+ *   node scripts/verify-sources.cjs --metrics --enrich       # + write metrics to data file
  *
  * The --claims flag fetches PubMed abstracts and uses Claude to check whether
  * each edge's mechanismDescription / keyInsight is actually supported by the
  * cited paper. Requires ANTHROPIC_API_KEY.
+ *
+ * The --metrics flag fetches citation metrics from NIH iCite for all cited PMIDs:
+ *   citation_count, relative_citation_ratio, nih_percentile, citations_per_year,
+ *   is_clinical, apt (approximate potential to translate), etc.
  */
 
 require('dotenv').config({ path: require('path').resolve(__dirname, '..', '..', 'alz-market-viz', '.env') });
@@ -37,6 +43,8 @@ const PUBMED_DELAY_MS = 340;   // 3 req/sec without API key
 const CROSSREF_DELAY_MS = 100; // polite pool: ~10 req/sec with mailto
 const PUBMED_BATCH_SIZE = 50;
 const IDCONV_BATCH_SIZE = 50;
+const ICITE_BATCH_SIZE = 200;  // iCite supports up to 1000, but smaller batches are safer
+const ICITE_DELAY_MS = 200;
 const CROSSREF_MAILTO = 'verify@untangling-alzheimers.org';
 
 // ── Helpers ─────────────────────────────────────────────────────────
@@ -184,6 +192,59 @@ async function fetchCrossref(doi) {
     : work['container-title'] || '';
 
   return { doi, title, firstAuthor: firstFamily, journal, year, type: work.type };
+}
+
+// ── NIH iCite (citation metrics) ────────────────────────────────────
+
+/**
+ * Batch fetch citation metrics from NIH iCite.
+ * Returns { [pmid]: { citation_count, rcr, nih_percentile, ... } }
+ *
+ * iCite fields we keep:
+ *   citation_count          - total citations
+ *   relative_citation_ratio - RCR (1.0 = field average)
+ *   nih_percentile          - percentile among NIH papers (0-100)
+ *   citations_per_year      - annual citation rate
+ *   expected_citations_per_year
+ *   field_citation_rate     - average citation rate in this field
+ *   is_clinical             - clinical study flag
+ *   is_research_article     - research article flag
+ *   apt                     - approximate potential to translate (0-1)
+ *   animal                  - animal study score (0-1)
+ *   human                   - human study score (0-1)
+ *   journal                 - journal name
+ *   year                    - publication year
+ *   title                   - article title
+ *   doi                     - DOI
+ */
+async function fetchIciteBatch(pmids) {
+  const url = `https://icite.od.nih.gov/api/pubs?pmids=${pmids.join(',')}&format=json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`iCite HTTP ${res.status}`);
+  const data = await res.json();
+
+  const results = {};
+  for (const pub of data.data || []) {
+    const pmid = String(pub.pmid);
+    results[pmid] = {
+      citation_count: pub.citation_count ?? 0,
+      rcr: pub.relative_citation_ratio ?? null,
+      nih_percentile: pub.nih_percentile ?? null,
+      citations_per_year: pub.citations_per_year ?? null,
+      expected_citations_per_year: pub.expected_citations_per_year ?? null,
+      field_citation_rate: pub.field_citation_rate ?? null,
+      is_clinical: pub.is_clinical ?? false,
+      is_research_article: pub.is_research_article ?? true,
+      apt: pub.apt ?? null,
+      animal: pub.animal ?? null,
+      human: pub.human ?? null,
+      journal: pub.journal ?? '',
+      year: pub.year ?? null,
+      title: pub.title ?? '',
+      doi: pub.doi ?? null,
+    };
+  }
+  return results;
 }
 
 // ── PubMed Abstract Fetching (efetch) ───────────────────────────────
@@ -443,6 +504,7 @@ async function main() {
   const doCrossref = args.includes('--crossref');
   const doEnrich = args.includes('--enrich');
   const doClaims = args.includes('--claims');
+  const doMetrics = args.includes('--metrics');
   const outputArg = args.find((a) => a.startsWith('--output='));
   const outputPath = outputArg ? outputArg.split('=')[1] : null;
   const limitArg = args.find((a) => a.startsWith('--limit='));
@@ -487,16 +549,17 @@ async function main() {
   }
   console.log();
 
-  if (!doVerify && !doClaims) {
+  if (!doVerify && !doClaims && !doMetrics) {
     console.log('Run with --verify for PubMed validation.');
     console.log('Run with --verify --crossref for PubMed + Crossref cross-referencing.');
     console.log('Run with --verify --enrich to auto-fill missing firstAuthor/year.');
-    console.log('Run with --claims for claim-vs-abstract verification.\n');
+    console.log('Run with --claims for claim-vs-abstract verification.');
+    console.log('Run with --metrics for citation metrics via iCite.\n');
     return;
   }
 
   // If only --claims (no --verify), skip PubMed metadata and jump to claims
-  if (doClaims && !doVerify) {
+  if (doClaims && !doVerify && !doMetrics) {
     const claimResults = await runClaimVerification(edges, limit);
     console.log('\n=== SUMMARY ===\n');
     if (claimResults) {
@@ -508,6 +571,16 @@ async function main() {
     if (claimResults?.unsupported > 0) {
       console.log('\nEXIT 1: Unsupported claims found.');
       process.exit(1);
+    }
+    return;
+  }
+
+  // If only --metrics (no --verify), skip PubMed/Crossref and jump to metrics
+  if (doMetrics && !doVerify) {
+    const metricsResults = await runMetricsFetch(data, edges, doEnrich, limit, outputPath);
+    // Also run claims if requested
+    if (doClaims) {
+      await runClaimVerification(edges, limit);
     }
     return;
   }
@@ -827,7 +900,14 @@ async function main() {
     console.log(`\nJSON report → ${outputPath}`);
   }
 
-  // ── 8. Claim verification (optional) ─────────────────────
+  // ── 8. Citation metrics (optional) ──────────────────────
+
+  let metricsResults = null;
+  if (doMetrics) {
+    metricsResults = await runMetricsFetch(data, edges, doEnrich, limit, outputPath);
+  }
+
+  // ── 9. Claim verification (optional) ─────────────────────
 
   let claimResults = null;
   if (doClaims) {
@@ -867,6 +947,216 @@ async function main() {
   } else {
     console.log('\nAll sources verified.');
   }
+}
+
+// ── Citation Metrics Runner (iCite) ─────────────────────────────────
+
+async function runMetricsFetch(data, edges, doEnrich, limit, outputPath) {
+  console.log('\n=== CITATION METRICS (iCite) ===\n');
+
+  // Collect unique PMIDs from edges
+  const pmidSet = new Set();
+  for (const e of edges) {
+    const pmid = String(e.pmid || e.evidence?.pmid || '').trim();
+    if (pmid && pmid !== 'undefined' && pmid !== 'null') pmidSet.add(pmid);
+  }
+  let uniquePmids = [...pmidSet];
+  if (limit < uniquePmids.length) {
+    uniquePmids = uniquePmids.slice(0, limit);
+    console.log(`(Limited to first ${limit} PMIDs)\n`);
+  }
+  console.log(`Unique PMIDs: ${uniquePmids.length}\n`);
+
+  // Batch fetch from iCite
+  console.log('Fetching iCite metrics...');
+  const iciteData = {};
+  let fetchErrors = 0;
+
+  for (let i = 0; i < uniquePmids.length; i += ICITE_BATCH_SIZE) {
+    const batch = uniquePmids.slice(i, i + ICITE_BATCH_SIZE);
+    const end = Math.min(i + ICITE_BATCH_SIZE, uniquePmids.length);
+    process.stdout.write(`  ${i + 1}–${end} of ${uniquePmids.length}...\r`);
+
+    try {
+      const results = await fetchIciteBatch(batch);
+      Object.assign(iciteData, results);
+    } catch (err) {
+      console.log(`\n  iCite batch error: ${err.message}`);
+      fetchErrors++;
+    }
+
+    if (i + ICITE_BATCH_SIZE < uniquePmids.length) await sleep(ICITE_DELAY_MS);
+  }
+
+  const resolved = Object.keys(iciteData).length;
+  const missing = uniquePmids.filter((p) => !iciteData[p]);
+  console.log(`\niCite: ${resolved} resolved, ${missing.length} not found, ${fetchErrors} errors\n`);
+
+  if (missing.length > 0 && missing.length <= 20) {
+    console.log('PMIDs not in iCite:');
+    for (const p of missing) console.log(`  ${p}`);
+    console.log();
+  }
+
+  // ── Aggregate stats ──────────────────────────────────────────
+
+  const metrics = Object.values(iciteData);
+  const withCitations = metrics.filter((m) => m.citation_count > 0);
+  const withRcr = metrics.filter((m) => m.rcr != null);
+
+  const citeCounts = withCitations.map((m) => m.citation_count).sort((a, b) => a - b);
+  const rcrValues = withRcr.map((m) => m.rcr).sort((a, b) => a - b);
+
+  const median = (arr) => {
+    if (arr.length === 0) return 0;
+    const mid = Math.floor(arr.length / 2);
+    return arr.length % 2 !== 0 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2;
+  };
+  const sum = (arr) => arr.reduce((a, b) => a + b, 0);
+
+  console.log('Citation Metrics Summary:');
+  console.log(`  Papers with citations: ${withCitations.length}/${resolved}`);
+  if (citeCounts.length > 0) {
+    console.log(`  Citation count:`);
+    console.log(`    Median:  ${median(citeCounts)}`);
+    console.log(`    Mean:    ${(sum(citeCounts) / citeCounts.length).toFixed(1)}`);
+    console.log(`    Min:     ${citeCounts[0]}`);
+    console.log(`    Max:     ${citeCounts[citeCounts.length - 1]}`);
+    console.log(`    P25:     ${citeCounts[Math.floor(citeCounts.length * 0.25)]}`);
+    console.log(`    P75:     ${citeCounts[Math.floor(citeCounts.length * 0.75)]}`);
+  }
+
+  if (rcrValues.length > 0) {
+    console.log(`  Relative Citation Ratio (1.0 = field avg):`);
+    console.log(`    Median:  ${median(rcrValues).toFixed(2)}`);
+    console.log(`    Mean:    ${(sum(rcrValues) / rcrValues.length).toFixed(2)}`);
+    console.log(`    P25:     ${rcrValues[Math.floor(rcrValues.length * 0.25)].toFixed(2)}`);
+    console.log(`    P75:     ${rcrValues[Math.floor(rcrValues.length * 0.75)].toFixed(2)}`);
+  }
+
+  // ── Citation quality tiers ───────────────────────────────────
+
+  const tiers = {
+    landmark: [],    // RCR ≥ 10 or citations ≥ 500
+    highImpact: [],  // RCR ≥ 3 or citations ≥ 100
+    solid: [],       // RCR ≥ 1 or citations ≥ 20
+    lowImpact: [],   // RCR < 1 and citations < 20
+    uncited: [],     // 0 citations
+  };
+
+  for (const [pmid, m] of Object.entries(iciteData)) {
+    const rcr = m.rcr ?? 0;
+    const cc = m.citation_count ?? 0;
+    if (rcr >= 10 || cc >= 500) tiers.landmark.push(pmid);
+    else if (rcr >= 3 || cc >= 100) tiers.highImpact.push(pmid);
+    else if (rcr >= 1 || cc >= 20) tiers.solid.push(pmid);
+    else if (cc > 0) tiers.lowImpact.push(pmid);
+    else tiers.uncited.push(pmid);
+  }
+
+  console.log(`\nCitation Quality Tiers:`);
+  console.log(`  Landmark (RCR≥10 or ≥500 cites):  ${tiers.landmark.length}`);
+  console.log(`  High-impact (RCR≥3 or ≥100):      ${tiers.highImpact.length}`);
+  console.log(`  Solid (RCR≥1 or ≥20):             ${tiers.solid.length}`);
+  console.log(`  Low-impact (RCR<1 and <20):        ${tiers.lowImpact.length}`);
+  console.log(`  Uncited:                           ${tiers.uncited.length}`);
+
+  // ── Top cited papers ─────────────────────────────────────────
+
+  const topByRcr = Object.entries(iciteData)
+    .filter(([, m]) => m.rcr != null)
+    .sort(([, a], [, b]) => b.rcr - a.rcr)
+    .slice(0, 10);
+
+  const topByCites = Object.entries(iciteData)
+    .sort(([, a], [, b]) => b.citation_count - a.citation_count)
+    .slice(0, 10);
+
+  console.log(`\n--- TOP 10 BY RELATIVE CITATION RATIO ---\n`);
+  for (const [pmid, m] of topByRcr) {
+    const title = (m.title || '').slice(0, 70);
+    console.log(`  PMID:${pmid}  RCR:${m.rcr.toFixed(1)}  cites:${m.citation_count}  ${title}${m.title?.length > 70 ? '...' : ''}`);
+  }
+
+  console.log(`\n--- TOP 10 BY CITATION COUNT ---\n`);
+  for (const [pmid, m] of topByCites) {
+    const title = (m.title || '').slice(0, 70);
+    console.log(`  PMID:${pmid}  cites:${m.citation_count}  RCR:${(m.rcr ?? 0).toFixed(1)}  ${title}${m.title?.length > 70 ? '...' : ''}`);
+  }
+
+  // ── Study type breakdown ─────────────────────────────────────
+
+  const clinical = metrics.filter((m) => m.is_clinical).length;
+  const research = metrics.filter((m) => m.is_research_article).length;
+  const animalStudies = metrics.filter((m) => m.animal >= 0.5).length;
+  const humanStudies = metrics.filter((m) => m.human >= 0.5).length;
+  const translational = metrics.filter((m) => m.apt >= 0.75).length;
+
+  console.log(`\nStudy Type Breakdown:`);
+  console.log(`  Clinical:         ${clinical}`);
+  console.log(`  Research article: ${research}`);
+  console.log(`  Animal (≥0.5):    ${animalStudies}`);
+  console.log(`  Human (≥0.5):     ${humanStudies}`);
+  console.log(`  High APT (≥0.75): ${translational}`);
+
+  // ── Enrich edges with metrics ─────────────────────────────────
+
+  if (doEnrich) {
+    console.log(`\n=== ENRICHING EDGES WITH METRICS ===\n`);
+
+    let enriched = 0;
+    for (const e of edges) {
+      const pmid = String(e.pmid || e.evidence?.pmid || '').trim();
+      if (!pmid || !iciteData[pmid]) continue;
+
+      const m = iciteData[pmid];
+      e.citationMetrics = {
+        citationCount: m.citation_count,
+        rcr: m.rcr != null ? Math.round(m.rcr * 100) / 100 : null,
+        nihPercentile: m.nih_percentile != null ? Math.round(m.nih_percentile) : null,
+        citationsPerYear: m.citations_per_year != null ? Math.round(m.citations_per_year * 10) / 10 : null,
+        isClinical: m.is_clinical,
+        apt: m.apt != null ? Math.round(m.apt * 100) / 100 : null,
+        tier: m.rcr >= 10 || m.citation_count >= 500 ? 'landmark'
+            : m.rcr >= 3 || m.citation_count >= 100 ? 'high-impact'
+            : m.rcr >= 1 || m.citation_count >= 20 ? 'solid'
+            : m.citation_count > 0 ? 'low-impact'
+            : 'uncited',
+      };
+      enriched++;
+    }
+
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n');
+    console.log(`Wrote citationMetrics to ${enriched} edges → ${DATA_PATH}`);
+  }
+
+  // ── JSON output ──────────────────────────────────────────────
+
+  const metricsReport = {
+    resolved,
+    missing: missing.length,
+    tiers,
+    stats: {
+      medianCites: citeCounts.length > 0 ? median(citeCounts) : null,
+      medianRcr: rcrValues.length > 0 ? median(rcrValues) : null,
+      meanCites: citeCounts.length > 0 ? sum(citeCounts) / citeCounts.length : null,
+      meanRcr: rcrValues.length > 0 ? sum(rcrValues) / rcrValues.length : null,
+    },
+    studyTypes: { clinical, research, animalStudies, humanStudies, translational },
+  };
+
+  if (outputPath) {
+    let report = {};
+    if (fs.existsSync(outputPath)) {
+      try { report = JSON.parse(fs.readFileSync(outputPath, 'utf8')); } catch {}
+    }
+    report.metrics = metricsReport;
+    report.iciteData = iciteData;
+    fs.writeFileSync(outputPath, JSON.stringify(report, null, 2) + '\n');
+    console.log(`\nMetrics report → ${outputPath}`);
+  }
+
+  return metricsReport;
 }
 
 // ── Claim Verification Runner ───────────────────────────────────────
