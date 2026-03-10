@@ -143,6 +143,12 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
         break;
       }
 
+      case 'transitiveRedundancies': {
+        if (!engine) throw new Error('Engine not initialized');
+        respond(requestId, engine.transitiveRedundancies(msg.payload.maxDepth));
+        break;
+      }
+
       case 'exportNetworkxJson': {
         if (!engine) throw new Error('Engine not initialized');
         respond(requestId, engine.exportNetworkxJson());

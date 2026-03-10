@@ -54,6 +54,9 @@ interface UseGraphReturn {
   // Robustness
   rankedRemovalImpact(): Promise<RemovalImpact[]>;
 
+  // Transitive redundancy
+  transitiveRedundancies(maxDepth?: number): Promise<string[]>;
+
   // Export
   exportNetworkxJson(): Promise<string>;
   exportGraphml(): Promise<string>;
@@ -276,6 +279,12 @@ export function useGraph({
 
     rankedRemovalImpact: useCallback(
       async () => JSON.parse(await send({ type: 'rankedRemovalImpact' })),
+      [send],
+    ),
+
+    transitiveRedundancies: useCallback(
+      async (maxDepth = 4) =>
+        JSON.parse(await send({ type: 'transitiveRedundancies', payload: { maxDepth } })),
       [send],
     ),
 

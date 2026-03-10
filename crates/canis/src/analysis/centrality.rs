@@ -70,7 +70,7 @@ pub fn betweenness_centrality(graph: &AdGraph, weighted: bool) -> Vec<Centrality
                 for succ in graph.successors(&node) {
                     let edge = graph.edge_between(&node, &succ);
                     let edge_weight = edge
-                        .map(|e| e.causal_confidence.distance_weight())
+                        .map(|e| e.causal_confidence.distance_weight_with(&graph.confidence_weights))
                         .unwrap_or(5.0);
 
                     let new_dist = dist[&node] + edge_weight;

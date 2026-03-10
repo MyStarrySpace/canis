@@ -5,7 +5,7 @@
  * The WASM engine expects a flat JSON structure.
  */
 
-import type { GraphData, SbsfEdge, SbsfNode, ModuleDef } from './types';
+import type { GraphData, SbsfEdge, SbsfNode, ModuleDef, ConfidenceScheme } from './types';
 
 /**
  * Input types matching alz-market-viz/src/data/mechanisticFramework/types.ts
@@ -38,6 +38,10 @@ export interface MechanisticEdge {
   causalConfidence?: string;
   mechanismDescription?: string;
   keyInsight?: string;
+  /** Top-level method type (preferred) */
+  methodType?: string;
+  /** Top-level PMID (preferred) */
+  pmid?: string;
   evidence?: {
     pmid?: string;
     firstAuthor?: string;
@@ -89,10 +93,10 @@ function convertEdge(edge: MechanisticEdge): SbsfEdge {
     causalConfidence: (edge.causalConfidence ?? 'L7') as SbsfEdge['causalConfidence'],
     mechanismDescription: edge.mechanismDescription,
     keyInsight: edge.keyInsight,
-    pmid: edge.evidence?.pmid,
+    pmid: edge.pmid ?? edge.evidence?.pmid,
     firstAuthor: edge.evidence?.firstAuthor,
     year: edge.evidence?.year,
-    methodType: edge.evidence?.methodType,
+    methodType: edge.methodType ?? edge.evidence?.methodType,
     notes: edge.notes,
     weight: 1.0, // Will be computed by Rust from causalConfidence
   };
@@ -118,11 +122,17 @@ export function convertToGraphData(
   nodes: MechanisticNode[],
   edges: MechanisticEdge[],
   modules: MechanisticModule[],
+  options?: {
+    confidenceScheme?: ConfidenceScheme;
+    confidenceWeights?: Record<string, number>;
+  },
 ): GraphData {
   return {
     nodes: nodes.map(convertNode),
     edges: edges.map(convertEdge),
     modules: modules.map(convertModule),
+    ...(options?.confidenceScheme && { confidenceScheme: options.confidenceScheme }),
+    ...(options?.confidenceWeights && { confidenceWeights: options.confidenceWeights }),
   };
 }
 
@@ -133,6 +143,10 @@ export function toWasmJson(
   nodes: MechanisticNode[],
   edges: MechanisticEdge[],
   modules: MechanisticModule[],
+  options?: {
+    confidenceScheme?: ConfidenceScheme;
+    confidenceWeights?: Record<string, number>;
+  },
 ): string {
-  return JSON.stringify(convertToGraphData(nodes, edges, modules));
+  return JSON.stringify(convertToGraphData(nodes, edges, modules, options));
 }

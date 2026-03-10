@@ -140,7 +140,7 @@ pub fn module_connectivity(graph: &AdGraph) -> ModuleConnectivity {
         if let (Some(sm), Some(tm)) = (src_mod, tgt_mod) {
             if let (Some(&si), Some(&ti)) = (mod_idx.get(sm.as_str()), mod_idx.get(tm.as_str())) {
                 matrix[si][ti] += 1;
-                conf_sums[si][ti] += edge.causal_confidence.strength_weight();
+                conf_sums[si][ti] += edge.causal_confidence.strength_weight_with(&graph.confidence_weights);
                 conf_counts[si][ti] += 1;
             }
         }

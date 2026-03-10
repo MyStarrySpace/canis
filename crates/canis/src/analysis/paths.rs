@@ -55,7 +55,7 @@ pub fn shortest_path_dijkstra(graph: &AdGraph, from: &str, to: &str) -> Option<P
         for succ in graph.successors(&node) {
             let edge = graph.edge_between(&node, &succ);
             let w = edge
-                .map(|e| e.causal_confidence.distance_weight())
+                .map(|e| e.causal_confidence.distance_weight_with(&graph.confidence_weights))
                 .unwrap_or(5.0);
             let new_dist = cost + w;
             if new_dist < *dist.get(&succ).unwrap_or(&f64::INFINITY) {
@@ -101,7 +101,7 @@ pub fn strongest_path(graph: &AdGraph, from: &str, to: &str) -> Option<PathResul
         for succ in graph.successors(&node) {
             let edge = graph.edge_between(&node, &succ);
             let w = edge
-                .map(|e| e.causal_confidence.strength_weight())
+                .map(|e| e.causal_confidence.strength_weight_with(&graph.confidence_weights))
                 .unwrap_or(0.1);
             let new_min = min_strength.min(w);
             if new_min > *best.get(&succ).unwrap_or(&0.0) {
@@ -332,6 +332,108 @@ pub fn drug_pathway(
     }
 }
 
+/// Identify transitive-redundant edges.
+///
+/// An edge A→B is "transitive redundant" if there exists an alternative path
+/// A→...→B (length >= 2) where the minimum confidence along that path is at
+/// least as strong as (<=) the direct edge's confidence.
+///
+/// Returns edge IDs that are redundant.
+pub fn transitive_redundancies(graph: &AdGraph, max_depth: usize) -> Vec<String> {
+    let mut redundant = Vec::new();
+
+    for edge in graph.edges() {
+        let direct_conf = &edge.causal_confidence;
+
+        // Temporarily conceptually "remove" the direct edge by finding paths
+        // that don't use it. We do a bounded DFS from source to target,
+        // skipping the direct edge, tracking the weakest confidence seen.
+        let found = has_stronger_alternate_path(
+            graph,
+            &edge.source,
+            &edge.target,
+            &edge.id,
+            direct_conf,
+            max_depth,
+        );
+
+        if found {
+            redundant.push(edge.id.clone());
+        }
+    }
+
+    redundant
+}
+
+/// Check if there's an alternate path from `from` to `to` (not using `skip_edge_id`)
+/// where the minimum confidence along the path is at least as strong as `threshold`.
+fn has_stronger_alternate_path(
+    graph: &AdGraph,
+    from: &str,
+    to: &str,
+    skip_edge_id: &str,
+    threshold: &CausalConfidence,
+    max_depth: usize,
+) -> bool {
+    // DFS with pruning: track best (strongest) min-confidence to each node
+    let mut best_to_node: HashMap<String, CausalConfidence> = HashMap::new();
+    // Stack: (node, depth, min_confidence_so_far)
+    let mut stack: Vec<(String, usize, CausalConfidence)> = Vec::new();
+
+    // Start with L1 (strongest possible) as the "min so far" since no edges traversed yet
+    stack.push((from.to_string(), 0, CausalConfidence::L1));
+    best_to_node.insert(from.to_string(), CausalConfidence::L1);
+
+    while let Some((node, depth, min_conf)) = stack.pop() {
+        if node == to && depth > 0 {
+            // Found a path — check if min confidence is at least as strong as threshold
+            if min_conf <= *threshold {
+                return true;
+            }
+            continue;
+        }
+
+        if depth >= max_depth {
+            continue;
+        }
+
+        for succ in graph.successors(&node) {
+            if let Some(e) = graph.edge_between(&node, &succ) {
+                // Skip the direct edge we're testing
+                if e.id == skip_edge_id {
+                    continue;
+                }
+
+                let path_min = if min_conf > e.causal_confidence {
+                    e.causal_confidence.clone()
+                } else {
+                    min_conf.clone()
+                };
+
+                // Prune: if this path's min confidence is weaker than threshold,
+                // no point continuing (can't get better downstream)
+                if path_min > *threshold {
+                    continue;
+                }
+
+                // Only visit if we arrive with a better (stronger) min confidence
+                // than any previous visit
+                let dominated = best_to_node
+                    .get(&succ)
+                    .map(|prev| path_min >= *prev)
+                    .unwrap_or(false);
+
+                if !dominated {
+                    best_to_node.insert(succ.clone(), path_min.clone());
+                    stack.push((succ, depth + 1, path_min));
+                }
+            }
+        }
+    }
+
+    false
+}
+
 /// Return node IDs that belong to the specified modules.
 pub fn filter_by_modules(graph: &AdGraph, module_ids: &[String]) -> Vec<String> {
     let module_set: HashSet<&str> = module_ids.iter().map(|s| s.as_str()).collect();
@@ -406,8 +508,8 @@ fn build_path_result(graph: &AdGraph, path: &[String]) -> PathResult {
     for i in 0..path.len() - 1 {
         if let Some(edge) = graph.edge_between(&path[i], &path[i + 1]) {
             edges.push(edge.id.clone());
-            let w = edge.causal_confidence.strength_weight();
-            total_weight += edge.causal_confidence.distance_weight();
+            let w = edge.causal_confidence.strength_weight_with(&graph.confidence_weights);
+            total_weight += edge.causal_confidence.distance_weight_with(&graph.confidence_weights);
             match &weakest {
                 None => weakest = Some((edge.id.clone(), w)),
                 Some((_, best_w)) if w < *best_w => weakest = Some((edge.id.clone(), w)),
@@ -435,7 +537,7 @@ fn build_path_result_with_weight(
     for i in 0..path.len() - 1 {
         if let Some(edge) = graph.edge_between(&path[i], &path[i + 1]) {
             edges.push(edge.id.clone());
-            let w = edge.causal_confidence.strength_weight();
+            let w = edge.causal_confidence.strength_weight_with(&graph.confidence_weights);
             match &weakest {
                 None => weakest = Some((edge.id.clone(), w)),
                 Some((_, best_w)) if w < *best_w => weakest = Some((edge.id.clone(), w)),
@@ -541,6 +643,28 @@ mod tests {
         // a->c->d (2 hops) is shorter than a->b->c->d (3 hops)
         assert_eq!(result.path.len(), 3);
         assert_eq!(result.path, vec!["a", "c", "d"]);
+    }
+
+    // ── Transitive redundancy tests ──────────────────────────────────────
+
+    #[test]
+    fn test_transitive_redundancy_basic() {
+        let g = sample_graph();
+        // a→c (L6) should be redundant because a→b→c exists with min confidence L4 (stronger than L6)
+        let redundant = transitive_redundancies(&g, 4);
+        assert!(redundant.contains(&"e3".to_string()), "e3 (a→c, L6) should be redundant");
+        // e1 (a→b, L2), e2 (b→c, L4), e4 (c→d, L3) should NOT be redundant
+        assert!(!redundant.contains(&"e1".to_string()));
+        assert!(!redundant.contains(&"e2".to_string()));
+        assert!(!redundant.contains(&"e4".to_string()));
+    }
+
+    #[test]
+    fn test_transitive_redundancy_depth_limit() {
+        let g = sample_graph();
+        // With max_depth=1, can't find alternate paths (need at least 2 hops)
+        let redundant = transitive_redundancies(&g, 1);
+        assert!(redundant.is_empty(), "No edges should be redundant at depth 1");
     }
 
     #[test]

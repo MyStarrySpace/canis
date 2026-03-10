@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactFlowProvider } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,40 +20,135 @@ import { DrugPathwayPanel } from './sidebar/DrugPathwayPanel';
 import { calculateDrugPathway, type PathwayResult } from './data/pathway-calculation';
 import type { TreatmentLibraryEntry } from './data/drug-library';
 import type { ModuleFilterState } from './graph/flow-builder';
+import { AdvancedSettings, DEFAULT_WEIGHTS, defaultScheme } from './sidebar/AdvancedSettings';
+import type { ConfidenceScheme } from '../../src/types';
 import frameworkData from './data/ad-framework-data.json';
+import { generateTestGraph } from './data/generate-test-graph';
 
 // ── Worker + layout config ───────────────────────────────────────────────────
 
 const workerUrl = new URL('../../src/worker.ts', import.meta.url);
 
-const layoutOptions = {
-  layerSpacing: 200,
-  nodeSpacing: 200,
-  direction: 'LeftToRight' as const,
-  maxIterations: 24,
+const EVIDENCE_CUTOFFS: Record<string, string[]> = {
+  strong: ['L1', 'L2', 'L3'],
+  moderate: ['L1', 'L2', 'L3', 'L4', 'L5'],
+  all: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7'],
 };
 
-// ── Raw data ─────────────────────────────────────────────────────────────────
+// ── Data sources ─────────────────────────────────────────────────────────────
 
-const rawNodes = frameworkData.nodes as MechanisticNode[];
-const rawEdges = frameworkData.edges as MechanisticEdge[];
-const rawModules = frameworkData.modules as MechanisticModule[];
+type DataSourceId = 'alz' | 'test';
+
+interface DataSource {
+  nodes: MechanisticNode[];
+  edges: MechanisticEdge[];
+  modules: MechanisticModule[];
+}
+
+function stripOrphans(allNodes: MechanisticNode[], allEdges: MechanisticEdge[]): MechanisticNode[] {
+  const connectedIds = new Set<string>();
+  for (const e of allEdges) { connectedIds.add(e.source); connectedIds.add(e.target); }
+  return allNodes.filter((n) => connectedIds.has(n.id));
+}
+
+function loadAlzData(): DataSource {
+  const allNodes = frameworkData.nodes as MechanisticNode[];
+  const allEdges = frameworkData.edges as MechanisticEdge[];
+  const allModules = frameworkData.modules as MechanisticModule[];
+  return { nodes: stripOrphans(allNodes, allEdges), edges: allEdges, modules: allModules };
+}
+
+const alzData = loadAlzData();
 
 // ── Initial filter state ─────────────────────────────────────────────────────
 
-function buildInitialFilters(): Record<string, ModuleFilterState> {
+function buildInitialFilters(mods: MechanisticModule[]): Record<string, ModuleFilterState> {
   const filters: Record<string, ModuleFilterState> = {};
-  rawModules.forEach((m) => { filters[m.id] = 'on'; });
+  mods.forEach((m) => { filters[m.id] = 'on'; });
   return filters;
 }
 
 // ── App ──────────────────────────────────────────────────────────────────────
 
 export function App() {
+  const [dataSourceId, setDataSourceId] = useState<DataSourceId>('alz');
+  const [testGraphData, setTestGraphData] = useState<DataSource | null>(null);
+  const [testNodeCount, setTestNodeCount] = useState('200');
+
+  const activeData: DataSource = dataSourceId === 'test' && testGraphData ? testGraphData : alzData;
+  const { nodes: rawNodes, edges: rawEdges, modules: rawModules } = activeData;
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [moduleFilters, setModuleFilters] = useState<Record<string, ModuleFilterState>>(buildInitialFilters);
+  const [moduleFilters, setModuleFilters] = useState<Record<string, ModuleFilterState>>(() => buildInitialFilters(rawModules));
   const [zoomToNodeId, setZoomToNodeId] = useState<string | null>(null);
+  const [evidenceFilter, setEvidenceFilter] = useState<'strong' | 'moderate' | 'all'>('moderate');
+  const [direction, setDirection] = useState<'LeftToRight' | 'TopToBottom'>('LeftToRight');
+  const [layoutMode, setLayoutMode] = useState<'Flat' | 'Hierarchical'>('Flat');
+  const [clusterMode, setClusterMode] = useState<'Auto' | 'ModuleCount'>('Auto');
+  const [showBackEdges, setShowBackEdges] = useState(true);
+
+  // Advanced settings: confidence scheme + weights
+  const [confidenceScheme, setConfidenceScheme] = useState<ConfidenceScheme>(() =>
+    (frameworkData as { confidenceScheme?: ConfidenceScheme }).confidenceScheme ?? defaultScheme()
+  );
+  const [confidenceWeights, setConfidenceWeights] = useState<Record<string, number>>(() => ({ ...DEFAULT_WEIGHTS }));
+
+  // Transitive redundancy: hide edges reachable via stronger paths
+  const [hideRedundantEdges, setHideRedundantEdges] = useState(false);
+  const [redundantEdgeIds, setRedundantEdgeIds] = useState<Set<string>>(new Set());
+
+  const layoutOptions = useMemo(() => ({
+    layerSpacing: 250,
+    nodeSpacing: 100,
+    direction,
+    maxIterations: 50,
+    strengthOrdering: false,
+    moduleGrouping: true,
+    layoutMode,
+    ...(layoutMode === 'Hierarchical' ? {
+      clusterOptions: {
+        countMode: clusterMode,
+        hybridModules: clusterMode === 'ModuleCount',
+        clusterPadding: 50,
+        minClusterSize: 3,
+      },
+    } : {}),
+  }), [direction, layoutMode, clusterMode]);
+
+  // Generate a test graph and switch to it
+  const generateAndSwitch = useCallback((count: number) => {
+    const t0 = performance.now();
+    const { nodes, edges, modules } = generateTestGraph(count);
+    const connected = stripOrphans(nodes, edges);
+    const data: DataSource = { nodes: connected, edges, modules };
+    console.log(`Generated test graph: ${connected.length} nodes, ${edges.length} edges in ${(performance.now() - t0).toFixed(0)}ms`);
+    setTestGraphData(data);
+    setDataSourceId('test');
+    setModuleFilters(buildInitialFilters(data.modules));
+    setSelectedNode(null);
+    setHighlightedNodes(new Set());
+    setActiveDrug(null);
+    setActivePathway(null);
+    setPathwayFocusMode(false);
+    setActivePresetId(null);
+  }, []);
+
+  // Reset filters when data source changes
+  const switchDataSource = useCallback((id: DataSourceId) => {
+    if (id === 'test') {
+      generateAndSwitch(parseInt(testNodeCount) || 200);
+      return;
+    }
+    setDataSourceId(id);
+    setModuleFilters(buildInitialFilters(alzData.modules));
+    setSelectedNode(null);
+    setHighlightedNodes(new Set());
+    setActiveDrug(null);
+    setActivePathway(null);
+    setPathwayFocusMode(false);
+    setActivePresetId(null);
+  }, [testNodeCount, generateAndSwitch]);
 
   // Focus mode state (saved filters to restore)
   const [focusSavedFilters, setFocusSavedFilters] = useState<Record<string, ModuleFilterState> | null>(null);
@@ -78,22 +173,42 @@ export function App() {
     );
     const fNodes = rawNodes.filter((n) => enabledModules.has(n.moduleId));
     const nodeIdSet = new Set(fNodes.map((n) => n.id));
-    const fEdges = rawEdges.filter((e) => nodeIdSet.has(e.source) && nodeIdSet.has(e.target));
+    const allowedEvidence = new Set(EVIDENCE_CUTOFFS[evidenceFilter]);
+    const fEdges = rawEdges.filter((e) =>
+      nodeIdSet.has(e.source) && nodeIdSet.has(e.target) &&
+      (!e.causalConfidence || allowedEvidence.has(e.causalConfidence))
+    );
     return { filteredNodes: fNodes, filteredEdges: fEdges };
-  }, [moduleFilters]);
+  }, [moduleFilters, evidenceFilter]);
 
   const graphData = useMemo(
-    () => convertToGraphData(filteredNodes, filteredEdges, rawModules),
-    [filteredNodes, filteredEdges],
+    () => convertToGraphData(filteredNodes, filteredEdges, rawModules, {
+      confidenceScheme,
+      confidenceWeights,
+    }),
+    [filteredNodes, filteredEdges, confidenceScheme, confidenceWeights],
   );
 
   // Graph hook
-  const { ready, loading, error, layout, exportGraphml, exportGexf, exportNetworkxJson, exportCsv } = useGraph({
+  const { ready, loading, error, layout, transitiveRedundancies: computeRedundancies, exportGraphml, exportGexf, exportNetworkxJson, exportCsv } = useGraph({
     graphData,
     autoLayout: true,
     workerUrl,
     layoutOptions,
   });
+
+  // Compute transitive redundancies when toggle is on
+  useEffect(() => {
+    if (!hideRedundantEdges || !ready) {
+      setRedundantEdgeIds(new Set());
+      return;
+    }
+    computeRedundancies(4).then((ids) => {
+      setRedundantEdgeIds(new Set(ids));
+    }).catch(() => {
+      setRedundantEdgeIds(new Set());
+    });
+  }, [hideRedundantEdges, ready, computeRedundancies]);
 
   // ── Filter handlers ──────────────────────────────────────────────────────
 
@@ -246,11 +361,40 @@ export function App() {
         return downloadFile(edgesCsv, 'edges.tsv', 'text/tab-separated-values');
       }
       case 'json': {
-        const fullData = convertToGraphData(rawNodes, rawEdges, rawModules);
+        const fullData = convertToGraphData(rawNodes, rawEdges, rawModules, {
+          confidenceScheme,
+          confidenceWeights,
+        });
         return downloadFile(JSON.stringify(fullData, null, 2), 'network.json', 'application/json');
       }
     }
   }, [downloadFile, exportGraphml, exportGexf, exportNetworkxJson, exportCsv]);
+
+  // ── Pane click (deselect) ────────────────────────────────────────────────
+
+  const handlePaneClick = useCallback(() => {
+    setSelectedNode(null);
+    if (!activePresetId && !activeDrug) {
+      setHighlightedNodes(new Set());
+    }
+  }, [activePresetId, activeDrug]);
+
+  // ── Escape key hierarchy ───────────────────────────────────────────────
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        // Layered dismiss — first match wins
+        if (pathwayFocusMode) { setPathwayFocusMode(false); return; }
+        if (activeDrug) { handleCloseDrug(); return; }
+        if (focusSavedFilters) { exitFocusMode(); return; }
+        if (activePresetId) { handleClearPreset(); return; }
+        if (selectedNode) { setSelectedNode(null); return; }
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [pathwayFocusMode, activeDrug, focusSavedFilters, activePresetId, selectedNode, handleCloseDrug, exitFocusMode, handleClearPreset]);
 
   // ── Build flow options ───────────────────────────────────────────────────
 
@@ -262,27 +406,60 @@ export function App() {
     pathwayDownstream: activePathway?.downstreamNodes,
     pathwayEdges: activePathway?.pathwayEdges,
     focusMode: pathwayFocusMode,
-  }), [moduleFilters, highlightedNodes, activePathway, pathwayFocusMode]);
+    showBackEdges,
+    hiddenEdgeIds: hideRedundantEdges ? redundantEdgeIds : undefined,
+  }), [moduleFilters, highlightedNodes, activePathway, pathwayFocusMode, showBackEdges, hideRedundantEdges, redundantEdgeIds]);
 
   // ── Render ───────────────────────────────────────────────────────────────
 
-  if (error) {
+  // Graph area content — loading/error states are shown INSIDE the graph
+  // container so the sidebar never unmounts (which caused jarring re-animations).
+  const graphAreaContent = (() => {
+    if (error) {
+      return (
+        <div style={{ ...styles.center, height: '100%' }}>
+          <p style={{ color: '#c75146', fontWeight: 500 }}>Failed to load graph engine</p>
+          <p style={{ color: '#7a7a7a', fontSize: 12, marginTop: 8 }}>{error}</p>
+        </div>
+      );
+    }
+    if (loading || !ready || !layout) {
+      return (
+        <div style={{ ...styles.center, height: '100%' }}>
+          <div style={styles.spinner} />
+          <p style={{ color: '#7a7a7a', fontSize: 13, marginTop: 12 }}>Calculating layout...</p>
+        </div>
+      );
+    }
     return (
-      <div style={{ ...styles.center, background: '#faf9f7' }}>
-        <p style={{ color: '#c75146', fontWeight: 500 }}>Failed to load graph engine</p>
-        <p style={{ color: '#7a7a7a', fontSize: 12, marginTop: 8 }}>{error}</p>
-      </div>
+      <ReactFlowProvider>
+        <GraphInner
+          layout={layout}
+          rawNodes={filteredNodes}
+          rawEdges={filteredEdges}
+          flowOptions={flowOptions}
+          onNodeClick={handleNodeClick}
+          onPaneClick={handlePaneClick}
+          zoomToNodeId={zoomToNodeId}
+          evidenceFilter={evidenceFilter}
+          onEvidenceFilterChange={setEvidenceFilter}
+          direction={direction}
+          onDirectionChange={setDirection}
+          layoutMode={layoutMode}
+          onLayoutModeChange={setLayoutMode}
+          clusterMode={clusterMode}
+          onClusterModeChange={setClusterMode}
+          showBackEdges={showBackEdges}
+          onShowBackEdgesChange={setShowBackEdges}
+          hideRedundantEdges={hideRedundantEdges}
+          onHideRedundantEdgesChange={setHideRedundantEdges}
+          redundantEdgeCount={redundantEdgeIds.size}
+          focusLabel={focusLabel}
+          onExitFocus={focusSavedFilters ? exitFocusMode : undefined}
+        />
+      </ReactFlowProvider>
     );
-  }
-
-  if (loading || !ready || !layout) {
-    return (
-      <div style={{ ...styles.center, background: '#faf9f7' }}>
-        <div style={styles.spinner} />
-        <p style={{ color: '#7a7a7a', fontSize: 13, marginTop: 12 }}>Loading WASM graph engine...</p>
-      </div>
-    );
-  }
+  })();
 
   return (
     <div style={styles.root}>
@@ -305,16 +482,7 @@ export function App() {
 
       {/* Graph area */}
       <div style={styles.graphContainer}>
-        <ReactFlowProvider>
-          <GraphInner
-            layout={layout}
-            rawNodes={filteredNodes}
-            rawEdges={filteredEdges}
-            flowOptions={flowOptions}
-            onNodeClick={handleNodeClick}
-            zoomToNodeId={zoomToNodeId}
-          />
-        </ReactFlowProvider>
+        {graphAreaContent}
       </div>
 
       {/* Sidebar */}
@@ -331,6 +499,59 @@ export function App() {
               <SidebarHeader onCollapse={() => setSidebarOpen(false)} onExport={handleExport} />
 
               <div style={styles.sidebarBody}>
+                {/* Data source switcher */}
+                <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+                  <button
+                    onClick={() => switchDataSource('alz')}
+                    style={{
+                      flex: 1, padding: '4px 8px', fontSize: 10, fontWeight: 500,
+                      border: '1px solid #e5e2dd', borderRadius: 2, cursor: 'pointer',
+                      background: dataSourceId === 'alz' ? '#e36216' : '#fff',
+                      color: dataSourceId === 'alz' ? '#fff' : '#4a4a4a',
+                    }}
+                  >
+                    AD Framework
+                  </button>
+                  <button
+                    onClick={() => switchDataSource('test')}
+                    style={{
+                      flex: 1, padding: '4px 8px', fontSize: 10, fontWeight: 500,
+                      border: '1px solid #e5e2dd', borderRadius: 2, cursor: 'pointer',
+                      background: dataSourceId === 'test' ? '#e36216' : '#fff',
+                      color: dataSourceId === 'test' ? '#fff' : '#4a4a4a',
+                    }}
+                  >
+                    Test Graph
+                  </button>
+                </div>
+                {/* Test graph node count control */}
+                <div style={{ display: 'flex', gap: 4, marginBottom: 12, alignItems: 'center' }}>
+                  <label style={{ fontSize: 10, color: '#7a7a7a', whiteSpace: 'nowrap' }}>Nodes:</label>
+                  <input
+                    type="number"
+                    min={10}
+                    max={500000}
+                    step={100}
+                    value={testNodeCount}
+                    onChange={(e) => setTestNodeCount(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') generateAndSwitch(parseInt(testNodeCount) || 200); }}
+                    style={{
+                      flex: 1, padding: '3px 6px', fontSize: 11, border: '1px solid #e5e2dd',
+                      borderRadius: 2, outline: 'none', fontFamily: 'monospace',
+                    }}
+                  />
+                  <button
+                    onClick={() => generateAndSwitch(parseInt(testNodeCount) || 200)}
+                    style={{
+                      padding: '3px 8px', fontSize: 10, fontWeight: 500,
+                      border: '1px solid #007385', borderRadius: 2, cursor: 'pointer',
+                      background: '#007385', color: '#fff',
+                    }}
+                  >
+                    Generate
+                  </button>
+                </div>
+
                 {/* Find Node */}
                 <FindSearch
                   rawNodes={rawNodes}
@@ -369,6 +590,16 @@ export function App() {
                   filters={moduleFilters}
                   onToggle={handleToggleModule}
                   onSetAll={handleSetAllModules}
+                />
+
+                <div style={styles.divider} />
+
+                {/* Advanced Settings */}
+                <AdvancedSettings
+                  scheme={confidenceScheme}
+                  weights={confidenceWeights}
+                  onSchemeChange={setConfidenceScheme}
+                  onWeightsChange={setConfidenceWeights}
                 />
 
                 <div style={styles.divider} />

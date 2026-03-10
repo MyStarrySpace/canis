@@ -73,15 +73,73 @@ export interface ModuleDef {
   color: string;
 }
 
+/** A single rule in a confidence classification scheme. */
+export interface ConfidenceRule {
+  /** Method types that trigger this rule (case-insensitive, OR within list). */
+  methodTypes?: string[];
+  /** If true, edge must have a PMID to match. */
+  requiresPmid?: boolean;
+  /** Edge's existing confidence must be at or above this level. */
+  minExistingConfidence?: CausalConfidence;
+  /** The confidence level to assign when this rule matches. */
+  confidence: CausalConfidence;
+}
+
+/**
+ * A confidence classification scheme.
+ * Rules are evaluated in order — first match wins.
+ * When provided on GraphData, edges are reclassified based on their methodType
+ * and other metadata.
+ */
+export interface ConfidenceScheme {
+  name: string;
+  description?: string;
+  /** Ordered rules. First matching rule determines the confidence level. */
+  rules: ConfidenceRule[];
+  /** Default confidence when no rule matches. Defaults to "L7". */
+  defaultConfidence?: CausalConfidence;
+}
+
 export interface GraphData {
   nodes: SbsfNode[];
   edges: SbsfEdge[];
   modules: ModuleDef[];
+  /**
+   * Custom confidence → strength weight mapping.
+   * Keys are confidence levels (e.g. "L1", "L2", ..., "L7").
+   * Values are numeric weights (higher = stronger evidence).
+   * When provided, overrides the built-in defaults for all weight computations.
+   *
+   * Built-in defaults: L1=1.0, L2=0.85, L3=0.7, L4=0.55, L5=0.4, L6=0.3, L7=0.2
+   */
+  confidenceWeights?: Record<string, number>;
+  /**
+   * Confidence classification scheme. When provided, edges are reclassified
+   * based on their methodType and other metadata using these rules.
+   * If not provided, each edge's existing causalConfidence is used as-is.
+   */
+  confidenceScheme?: ConfidenceScheme;
 }
 
 // ── Layout types ──────────────────────────────────────────────────────────
 
 export type Direction = 'TopToBottom' | 'LeftToRight';
+
+export type LayoutMode = 'Flat' | 'Hierarchical';
+
+export type ClusterCountMode = 'Auto' | 'Fixed' | 'ModuleCount';
+
+export interface ClusterOptions {
+  countMode?: ClusterCountMode;
+  /** Number of clusters when countMode = 'Fixed' */
+  clusterCount?: number;
+  /** Use modules as base clusters instead of spectral analysis */
+  hybridModules?: boolean;
+  /** Padding between cluster bounding boxes (px). Default: 100 */
+  clusterPadding?: number;
+  /** Minimum nodes per cluster; smaller clusters get merged. Default: 3 */
+  minClusterSize?: number;
+}
 
 export interface LayoutOptions {
   layerSpacing?: number;
@@ -91,6 +149,10 @@ export interface LayoutOptions {
   moduleGrouping?: boolean;
   /** Reorder children by edge weight (strongest first). Default: true */
   strengthOrdering?: boolean;
+  /** Flat (default) or Hierarchical (spectral clustering + two-level Sugiyama) */
+  layoutMode?: LayoutMode;
+  /** Clustering options for hierarchical layout mode */
+  clusterOptions?: ClusterOptions;
 }
 
 export interface NodePosition {
@@ -128,12 +190,22 @@ export interface LayoutStats {
   ghostCount: number;
 }
 
+export interface ClusterInfo {
+  id: number;
+  nodeIds: string[];
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export interface LayoutResult {
   nodes: NodePosition[];
   ghostNodes: GhostNode[];
   edges: EdgeRoute[];
   bounds: Bounds;
   stats: LayoutStats;
+  clusters?: ClusterInfo[];
 }
 
 // ── Analysis types ────────────────────────────────────────────────────────
@@ -247,6 +319,7 @@ export type WorkerRequest =
   | { type: 'detectCommunities'; payload: { maxIter: number }; requestId: string }
   | { type: 'moduleConnectivity'; requestId: string }
   | { type: 'rankedRemovalImpact'; requestId: string }
+  | { type: 'transitiveRedundancies'; payload: { maxDepth: number }; requestId: string }
   | { type: 'exportNetworkxJson'; requestId: string }
   | { type: 'exportGraphml'; requestId: string }
   | { type: 'exportGexf'; requestId: string }

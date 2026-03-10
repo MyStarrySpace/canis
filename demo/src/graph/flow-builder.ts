@@ -19,6 +19,8 @@ export interface FlowBuildOptions {
   pathwayDownstream?: Set<string>;
   pathwayEdges?: Set<string>;
   focusMode?: boolean;
+  showBackEdges?: boolean;
+  hiddenEdgeIds?: Set<string>;
 }
 
 const INHIBITORY_RELATIONS = new Set([
@@ -57,6 +59,8 @@ export function buildFlowData(
     pathwayDownstream,
     pathwayEdges,
     focusMode,
+    showBackEdges = true,
+    hiddenEdgeIds,
   } = options;
 
   const nodeMap = new Map(rawNodes.map((n) => [n.id, n]));
@@ -131,6 +135,12 @@ export function buildFlowData(
   // Build flow edges
   const visibleFlowNodeIds = new Set(flowNodes.map((n) => n.id));
 
+  // Build layer map for back-edge detection
+  const layerMap = new Map<string, number>();
+  for (const pos of layout.nodes) {
+    layerMap.set(pos.id, pos.layer);
+  }
+
   // Group edge routes by original edge ID
   const edgeRoutesByOriginal = new Map<string, typeof layout.edges>();
   for (const route of layout.edges) {
@@ -149,6 +159,16 @@ export function buildFlowData(
 
     // Skip edges where either endpoint is hidden
     if (!visibleFlowNodeIds.has(src) || !visibleFlowNodeIds.has(tgt)) continue;
+
+    // Skip back-edges (source layer >= target layer) when toggle is off
+    if (!showBackEdges) {
+      const srcLayer = layerMap.get(src);
+      const tgtLayer = layerMap.get(tgt);
+      if (srcLayer != null && tgtLayer != null && srcLayer >= tgtLayer) continue;
+    }
+
+    // Skip transitive-redundant edges when hidden
+    if (hiddenEdgeIds?.has(edgeId)) continue;
 
     const isInhibitory = INHIBITORY_RELATIONS.has(sourceEdge?.relation ?? '');
     const isInPw = pathwayEdges?.has(edgeId) ?? false;

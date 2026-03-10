@@ -113,6 +113,12 @@ export class GraphEngine {
     return JSON.parse(this.engine.rankedRemovalImpact());
   }
 
+  // ── Transitive redundancy ──────────────────────────────────────────────
+
+  transitiveRedundancies(maxDepth = 4): string[] {
+    return JSON.parse(this.engine.transitiveRedundancies(maxDepth));
+  }
+
   // ── Export ──────────────────────────────────────────────────────────────
 
   exportNetworkxJson(): string {

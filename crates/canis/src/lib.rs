@@ -9,7 +9,7 @@ use wasm_bindgen::prelude::*;
 use crate::analysis::centrality::{betweenness_centrality, closeness_centrality, degree_centrality, pagerank};
 use crate::analysis::communities::{label_propagation, module_connectivity};
 use crate::analysis::loops::detect_feedback_loops;
-use crate::analysis::paths::{all_simple_paths, drug_pathway, filter_by_modules, filter_edges_by_confidence, modules_for_nodes, neighborhood, shortest_path_bfs, shortest_path_dijkstra, strongest_path};
+use crate::analysis::paths::{all_simple_paths, drug_pathway, filter_by_modules, filter_edges_by_confidence, modules_for_nodes, neighborhood, shortest_path_bfs, shortest_path_dijkstra, strongest_path, transitive_redundancies};
 use crate::types::CausalConfidence;
 use crate::analysis::robustness::ranked_removal_impact;
 use crate::export::csv::to_csv;
@@ -242,6 +242,16 @@ impl GraphEngine {
     #[wasm_bindgen(js_name = "rankedRemovalImpact")]
     pub fn ranked_removal_impact_wasm(&self) -> String {
         let results = ranked_removal_impact(&self.graph);
+        serde_json::to_string(&results).unwrap_or_default()
+    }
+
+    // ── Analysis: Transitive redundancy ─────────────────────────────────
+
+    /// Find edges that are transitively redundant (reachable via stronger paths).
+    /// Returns a JSON array of edge IDs.
+    #[wasm_bindgen(js_name = "transitiveRedundancies")]
+    pub fn transitive_redundancies_wasm(&self, max_depth: usize) -> String {
+        let results = transitive_redundancies(&self.graph, max_depth);
         serde_json::to_string(&results).unwrap_or_default()
     }
 

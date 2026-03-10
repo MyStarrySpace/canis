@@ -9,6 +9,9 @@ pub struct AdGraph {
     pub graph: DiGraph<SbsfNode, SbsfEdge>,
     pub id_to_index: HashMap<String, NodeIndex>,
     pub index_to_id: HashMap<NodeIndex, String>,
+    /// Custom confidence → strength weight mapping.
+    /// When present, all weight lookups use this instead of built-in defaults.
+    pub confidence_weights: Option<HashMap<String, f64>>,
 }
 
 impl AdGraph {
@@ -24,6 +27,8 @@ impl AdGraph {
         let mut graph = DiGraph::new();
         let mut id_to_index = HashMap::new();
         let mut index_to_id = HashMap::new();
+        let custom_weights = data.confidence_weights.clone();
+        let scheme = data.confidence_scheme.as_ref();
 
         // Add all nodes
         for node in &data.nodes {
@@ -33,6 +38,7 @@ impl AdGraph {
         }
 
         // Add all edges, computing weight from causal_confidence
+        // (reclassifies via scheme if provided, then uses custom weights)
         for mut edge in data.edges {
             let source_idx = id_to_index
                 .get(&edge.source)
@@ -41,7 +47,11 @@ impl AdGraph {
                 .get(&edge.target)
                 .ok_or_else(|| format!("Edge {} references unknown target: {}", edge.id, edge.target))?;
 
-            edge.weight = edge.causal_confidence.strength_weight();
+            // Reclassify confidence if a scheme is provided
+            if let Some(s) = scheme {
+                edge.causal_confidence = s.classify(&edge);
+            }
+            edge.weight = edge.causal_confidence.strength_weight_with(&custom_weights);
             graph.add_edge(*source_idx, *target_idx, edge);
         }
 
@@ -49,6 +59,7 @@ impl AdGraph {
             graph,
             id_to_index,
             index_to_id,
+            confidence_weights: custom_weights,
         })
     }
 
@@ -141,6 +152,8 @@ impl AdGraph {
             nodes,
             edges,
             modules: vec![],
+            confidence_weights: self.confidence_weights.clone(),
+            confidence_scheme: None, // already classified, don't re-apply
         })
     }
 }

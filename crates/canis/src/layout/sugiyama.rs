@@ -2,16 +2,26 @@ use std::collections::HashMap;
 
 use crate::graph::AdGraph;
 use crate::types::{
-    Bounds, EdgeRoute, GhostNode, LayoutOptions, LayoutResult, LayoutStats, NodePosition,
+    Bounds, EdgeRoute, GhostNode, LayoutMode, LayoutOptions, LayoutResult, LayoutStats,
+    NodePosition,
 };
 
 use super::crossing::{count_all_crossings, minimize_crossings, strength_reorder};
 use super::ghost::insert_ghost_nodes;
+use super::hierarchical::hierarchical_layout;
 use super::layering::assign_layers;
 use super::positioning::{assign_coordinates, compute_bounds};
 
-/// Run the full Sugiyama layout algorithm on the graph.
+/// Run layout on the graph, dispatching to flat or hierarchical based on options.
 pub fn layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
+    match opts.layout_mode {
+        LayoutMode::Hierarchical => hierarchical_layout(graph, opts),
+        LayoutMode::Flat => flat_layout(graph, opts),
+    }
+}
+
+/// Standard flat Sugiyama layout (no clustering).
+pub fn flat_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
     // Step 1: Assign layers (longest-path, handles cycles)
     let layers = assign_layers(graph);
 
@@ -33,15 +43,29 @@ pub fn layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
         .collect();
 
     // Step 5: Minimize crossings via barycentric ordering
-    let mut layer_order = minimize_crossings(&augmented_layers, &all_segments, opts.max_iterations);
+    // Build node_id → module_id map so crossing minimization can cluster by module
+    let module_map: HashMap<String, String> = graph
+        .node_ids()
+        .into_iter()
+        .filter_map(|id| {
+            let module_id = graph.node(&id)?.module_id.clone();
+            Some((id, module_id))
+        })
+        .collect();
+    let mut layer_order = minimize_crossings(
+        &augmented_layers,
+        &all_segments,
+        opts.max_iterations,
+        if opts.module_grouping { Some(&module_map) } else { None },
+    );
 
     // Step 5.5: Strength-based ordering (stronger edges → earlier position)
     if opts.strength_ordering {
         strength_reorder(&mut layer_order, graph);
     }
 
-    // Step 6: Assign coordinates
-    let coord_list = assign_coordinates(&layer_order, opts);
+    // Step 6: Assign coordinates (neighbor-aware, expanding from largest layer)
+    let coord_list = assign_coordinates(&layer_order, &all_segments, opts);
     let coord_map: HashMap<String, (f64, f64)> = coord_list
         .iter()
         .map(|(id, x, y)| (id.clone(), (*x, *y)))
@@ -123,6 +147,7 @@ pub fn layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
             layer_count: layer_order.len(),
             ghost_count: ghost_nodes.len(),
         },
+        clusters: vec![],
     }
 }
 

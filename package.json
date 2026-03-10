@@ -32,7 +32,9 @@
     "build": "npm run build:wasm && npm run build:ts && npm run build:copy-wasm",
     "dev": "vite",
     "test": "vitest run",
-    "test:wasm": "wasm-pack test --node crates/canis"
+    "test:wasm": "wasm-pack test --node crates/canis",
+    "verify-edges": "node scripts/verify-edges.cjs",
+    "verify-edges:api": "node scripts/verify-edges.cjs --verify"
   },
   "peerDependencies": {
     "@xyflow/react": "^12",
@@ -63,5 +65,10 @@
     "typescript": "^5",
     "vite": "^6.4.1",
     "vitest": "^3"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "dotenv": "^17.3.1",
+    "exceljs": "^4.4.0"
   }
 }

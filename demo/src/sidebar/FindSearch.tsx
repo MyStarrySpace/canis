@@ -19,16 +19,12 @@ export function FindSearch({ rawNodes, moduleFilters, onNavigate }: FindSearchPr
     if (open) inputRef.current?.focus();
   }, [open]);
 
-  // Keyboard shortcut: Ctrl+F
+  // Keyboard shortcut: Ctrl+F to open, Escape to close search
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setOpen(true);
-      }
-      if (e.key === 'Escape') {
-        setOpen(false);
-        setQuery('');
       }
     }
     document.addEventListener('keydown', handleKey);

@@ -1,96 +1,130 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 use crate::graph::AdGraph;
 
-/// Barycentric crossing minimization.
+/// Barycenter crossing minimization, ported from the original alz-market-viz
+/// TypeScript implementation (layout-network.ts).
 ///
-/// Given nodes organized into layers, reorder nodes within each layer
-/// to minimize edge crossings. Uses alternating up/down sweeps.
+/// Performs alternating forward and backward sweeps: each layer is sorted by
+/// the average position of its connected neighbors in the adjacent (already-
+/// fixed) layer. This is the standard Sugiyama barycenter heuristic.
+///
+/// No local-swap refinement phase — the original TS never had one, and the
+/// swap loop was the cause of WASM hangs on larger graphs.
 pub fn minimize_crossings(
     layers: &HashMap<String, usize>,
-    edges: &[(String, String)], // all edges including ghost segments
+    edges: &[(String, String)],
     max_iterations: u32,
+    module_map: Option<&HashMap<String, String>>,
 ) -> Vec<Vec<String>> {
     let num_layers = layers.values().copied().max().unwrap_or(0) + 1;
 
-    // Build initial ordering: group nodes by layer
+    // Build initial ordering: group nodes by layer, sorted by (moduleId, nodeId)
+    // so that nodes from the same module cluster together.
     let mut layer_order: Vec<Vec<String>> = vec![Vec::new(); num_layers];
     for (id, &layer) in layers {
         layer_order[layer].push(id.clone());
     }
-    // Sort within each layer for deterministic initial order
+    let empty = String::new();
     for layer in &mut layer_order {
-        layer.sort();
+        layer.sort_by(|a, b| {
+            let ma = module_map.and_then(|m| m.get(a)).unwrap_or(&empty);
+            let mb = module_map.and_then(|m| m.get(b)).unwrap_or(&empty);
+            ma.cmp(mb).then_with(|| a.cmp(b))
+        });
     }
 
-    // Build adjacency maps
-    let mut upper_neighbors: HashMap<String, Vec<String>> = HashMap::new(); // neighbors in layer-1
-    let mut lower_neighbors: HashMap<String, Vec<String>> = HashMap::new(); // neighbors in layer+1
+    // Position of each node within its layer
+    let mut positions: HashMap<String, usize> = HashMap::new();
+    for layer in &layer_order {
+        for (idx, id) in layer.iter().enumerate() {
+            positions.insert(id.clone(), idx);
+        }
+    }
+
+    // Pre-build adjacency: for each node, which edges connect to the previous
+    // or next layer? We only care about edges between adjacent layers.
+    let mut preds_in_prev: HashMap<String, Vec<String>> = HashMap::new();
+    let mut succs_in_next: HashMap<String, Vec<String>> = HashMap::new();
 
     for (src, tgt) in edges {
         let src_layer = layers.get(src).copied().unwrap_or(0);
         let tgt_layer = layers.get(tgt).copied().unwrap_or(0);
 
         if src_layer + 1 == tgt_layer {
-            // src is upper, tgt is lower
-            lower_neighbors
-                .entry(src.clone())
-                .or_default()
-                .push(tgt.clone());
-            upper_neighbors
-                .entry(tgt.clone())
-                .or_default()
-                .push(src.clone());
+            // src is in layer L, tgt is in layer L+1
+            succs_in_next.entry(src.clone()).or_default().push(tgt.clone());
+            preds_in_prev.entry(tgt.clone()).or_default().push(src.clone());
         } else if tgt_layer + 1 == src_layer {
-            // tgt is upper, src is lower
-            lower_neighbors
-                .entry(tgt.clone())
-                .or_default()
-                .push(src.clone());
-            upper_neighbors
-                .entry(src.clone())
-                .or_default()
-                .push(tgt.clone());
+            // tgt is in layer L, src is in layer L+1  (reversed edge)
+            succs_in_next.entry(tgt.clone()).or_default().push(src.clone());
+            preds_in_prev.entry(src.clone()).or_default().push(tgt.clone());
         }
     }
+
+    let sorted_layer_indices: Vec<usize> = (0..num_layers).collect();
 
     let mut best_order = layer_order.clone();
     let mut best_crossings = count_all_crossings(&best_order, edges, layers);
 
-    let half = max_iterations / 2;
+    for _iter in 0..max_iterations {
+        // Forward pass: for layers 1..n, sort by avg position of predecessors
+        for &li in sorted_layer_indices.iter().skip(1) {
+            let node_ids = &layer_order[li];
+            let mut barycenters: Vec<(String, f64)> = Vec::with_capacity(node_ids.len());
 
-    for iter in 0..max_iterations {
-        if iter < half {
-            // Down sweep: fix layer i, reorder layer i+1
-            for i in 0..num_layers.saturating_sub(1) {
-                let fixed = &layer_order[i];
-                let pos: HashMap<String, usize> = fixed
-                    .iter()
-                    .enumerate()
-                    .map(|(pos, id)| (id.clone(), pos))
-                    .collect();
-
-                layer_order[i + 1].sort_by(|a, b| {
-                    let bc_a = barycenter(a, &upper_neighbors, &pos);
-                    let bc_b = barycenter(b, &upper_neighbors, &pos);
-                    bc_a.partial_cmp(&bc_b).unwrap_or(std::cmp::Ordering::Equal)
-                });
+            for id in node_ids {
+                if let Some(preds) = preds_in_prev.get(id) {
+                    let pred_positions: Vec<f64> = preds
+                        .iter()
+                        .filter_map(|p| positions.get(p).map(|&pos| pos as f64))
+                        .collect();
+                    if !pred_positions.is_empty() {
+                        let avg = pred_positions.iter().sum::<f64>() / pred_positions.len() as f64;
+                        barycenters.push((id.clone(), avg));
+                    } else {
+                        barycenters.push((id.clone(), positions.get(id).copied().unwrap_or(0) as f64));
+                    }
+                } else {
+                    barycenters.push((id.clone(), positions.get(id).copied().unwrap_or(0) as f64));
+                }
             }
-        } else {
-            // Up sweep: fix layer i, reorder layer i-1
-            for i in (1..num_layers).rev() {
-                let fixed = &layer_order[i];
-                let pos: HashMap<String, usize> = fixed
-                    .iter()
-                    .enumerate()
-                    .map(|(pos, id)| (id.clone(), pos))
-                    .collect();
 
-                layer_order[i - 1].sort_by(|a, b| {
-                    let bc_a = barycenter(a, &lower_neighbors, &pos);
-                    let bc_b = barycenter(b, &lower_neighbors, &pos);
-                    bc_a.partial_cmp(&bc_b).unwrap_or(std::cmp::Ordering::Equal)
-                });
+            barycenters.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap_or(std::cmp::Ordering::Equal));
+
+            layer_order[li] = barycenters.iter().map(|(id, _)| id.clone()).collect();
+            for (idx, id) in layer_order[li].iter().enumerate() {
+                positions.insert(id.clone(), idx);
+            }
+        }
+
+        // Backward pass: for layers n-2..0, sort by avg position of successors
+        for &li in sorted_layer_indices.iter().rev().skip(1) {
+            let node_ids = &layer_order[li];
+            let mut barycenters: Vec<(String, f64)> = Vec::with_capacity(node_ids.len());
+
+            for id in node_ids {
+                if let Some(succs) = succs_in_next.get(id) {
+                    let succ_positions: Vec<f64> = succs
+                        .iter()
+                        .filter_map(|s| positions.get(s).map(|&pos| pos as f64))
+                        .collect();
+                    if !succ_positions.is_empty() {
+                        let avg = succ_positions.iter().sum::<f64>() / succ_positions.len() as f64;
+                        barycenters.push((id.clone(), avg));
+                    } else {
+                        barycenters.push((id.clone(), positions.get(id).copied().unwrap_or(0) as f64));
+                    }
+                } else {
+                    barycenters.push((id.clone(), positions.get(id).copied().unwrap_or(0) as f64));
+                }
+            }
+
+            barycenters.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap_or(std::cmp::Ordering::Equal));
+
+            layer_order[li] = barycenters.iter().map(|(id, _)| id.clone()).collect();
+            for (idx, id) in layer_order[li].iter().enumerate() {
+                positions.insert(id.clone(), idx);
             }
         }
 
@@ -99,62 +133,35 @@ pub fn minimize_crossings(
             best_crossings = crossings;
             best_order = layer_order.clone();
         }
+
+        if best_crossings == 0 {
+            break;
+        }
     }
 
     best_order
 }
 
-/// Compute barycenter: average position of neighbors in adjacent layer
-fn barycenter(
-    node: &str,
-    neighbors: &HashMap<String, Vec<String>>,
-    positions: &HashMap<String, usize>,
-) -> f64 {
-    let nbrs = match neighbors.get(node) {
-        Some(n) => n,
-        None => return f64::MAX, // no neighbors, put at end
-    };
-
-    let mut sum: f64 = 0.0;
-    let mut count: usize = 0;
-
-    for nbr in nbrs {
-        if let Some(&pos) = positions.get(nbr) {
-            sum += pos as f64;
-            count += 1;
-        }
-    }
-
-    if count == 0 {
-        f64::MAX
-    } else {
-        sum / count as f64
-    }
-}
-
-/// Count total edge crossings across all adjacent layer pairs
+/// Count total edge crossings across all adjacent layer pairs.
 pub fn count_all_crossings(
     layer_order: &[Vec<String>],
     edges: &[(String, String)],
     layers: &HashMap<String, usize>,
 ) -> usize {
     let mut total = 0;
-
     for i in 0..layer_order.len().saturating_sub(1) {
         total += count_crossings_between(&layer_order[i], &layer_order[i + 1], edges, layers);
     }
-
     total
 }
 
-/// Count crossings between two adjacent layers
+/// Count crossings between two adjacent layers.
 fn count_crossings_between(
     upper: &[String],
     lower: &[String],
     edges: &[(String, String)],
     layers: &HashMap<String, usize>,
 ) -> usize {
-    // Position maps
     let upper_pos: HashMap<&str, usize> = upper
         .iter()
         .enumerate()
@@ -166,7 +173,6 @@ fn count_crossings_between(
         .map(|(i, id)| (id.as_str(), i))
         .collect();
 
-    // Collect edges between these two layers as (upper_pos, lower_pos) pairs
     let mut edge_pairs: Vec<(usize, usize)> = Vec::new();
 
     for (src, tgt) in edges {
@@ -182,7 +188,6 @@ fn count_crossings_between(
         }
     }
 
-    // Count inversions (crossings) using simple O(n^2) for correctness
     let mut crossings = 0;
     for i in 0..edge_pairs.len() {
         for j in (i + 1)..edge_pairs.len() {
@@ -198,17 +203,11 @@ fn count_crossings_between(
 }
 
 /// Reorder nodes within each layer so that children connected by stronger
-/// edges appear earlier (closer to position 0). Works per-parent to preserve
-/// the overall graph structure from crossing minimization.
-///
-/// For each parent in layer i, its children in layer i+1 are collected and
-/// sorted by descending edge weight. The children are then placed at the same
-/// set of positions they originally occupied, but in strength order.
-/// Children shared by multiple parents are assigned to the parent with the
-/// strongest connection to them; subsequent parents skip already-placed children.
+/// edges appear earlier (closer to position 0).
 pub fn strength_reorder(layer_order: &mut [Vec<String>], graph: &AdGraph) {
+    use std::collections::HashSet;
+
     for layer_idx in 0..layer_order.len().saturating_sub(1) {
-        // Build position index for the next layer
         let next_layer = &layer_order[layer_idx + 1];
         let pos_index: HashMap<&str, usize> = next_layer
             .iter()
@@ -216,9 +215,8 @@ pub fn strength_reorder(layer_order: &mut [Vec<String>], graph: &AdGraph) {
             .map(|(i, id)| (id.as_str(), i))
             .collect();
 
-        // For each parent, collect children in next layer with edge weights
         struct ParentChildren {
-            children: Vec<(String, f64)>, // (child_id, edge_weight)
+            children: Vec<(String, f64)>,
         }
 
         let mut parent_groups: Vec<ParentChildren> = Vec::new();
@@ -231,7 +229,6 @@ pub fn strength_reorder(layer_order: &mut [Vec<String>], graph: &AdGraph) {
                 }
             }
             if children.len() > 1 {
-                // Sort by weight descending (strongest first)
                 children.sort_by(|a, b| {
                     b.1.partial_cmp(&a.1)
                         .unwrap_or(std::cmp::Ordering::Equal)
@@ -240,14 +237,10 @@ pub fn strength_reorder(layer_order: &mut [Vec<String>], graph: &AdGraph) {
             }
         }
 
-        // Apply reordering: process parents left-to-right.
-        // Each parent swaps its children's positions so strongest is first.
-        // Already-claimed children are skipped to avoid conflicts.
         let mut claimed: HashSet<String> = HashSet::new();
         let mut new_next_layer = layer_order[layer_idx + 1].clone();
 
         for group in &parent_groups {
-            // Filter to unclaimed children only
             let unclaimed: Vec<&(String, f64)> = group
                 .children
                 .iter()
@@ -255,21 +248,18 @@ pub fn strength_reorder(layer_order: &mut [Vec<String>], graph: &AdGraph) {
                 .collect();
 
             if unclaimed.len() < 2 {
-                // Mark any single child as claimed too
                 for (id, _) in &unclaimed {
                     claimed.insert(id.clone());
                 }
                 continue;
             }
 
-            // Get current positions of these unclaimed children (sorted ascending)
             let mut current_positions: Vec<usize> = unclaimed
                 .iter()
                 .filter_map(|(id, _)| pos_index.get(id.as_str()).copied())
                 .collect();
             current_positions.sort();
 
-            // Place the strength-sorted children at these positions
             for (i, (child_id, _)) in unclaimed.iter().enumerate() {
                 if i < current_positions.len() {
                     new_next_layer[current_positions[i]] = child_id.clone();
@@ -299,7 +289,7 @@ mod tests {
             ("b".into(), "d".into()),
         ];
 
-        let order = minimize_crossings(&layers, &edges, 24);
+        let order = minimize_crossings(&layers, &edges, 24, None);
         let crossings = count_all_crossings(&order, &edges, &layers);
         assert_eq!(crossings, 0);
     }
@@ -318,8 +308,8 @@ mod tests {
             ("b".into(), "c".into()),
         ];
 
-        let order = minimize_crossings(&layers, &edges, 24);
+        let order = minimize_crossings(&layers, &edges, 24, None);
         let crossings = count_all_crossings(&order, &edges, &layers);
-        assert_eq!(crossings, 0); // Should be resolved
+        assert_eq!(crossings, 0);
     }
 }

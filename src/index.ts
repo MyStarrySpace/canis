@@ -11,6 +11,8 @@ export type {
   SbsfEdge,
   ModuleDef,
   GraphData,
+  ConfidenceRule,
+  ConfidenceScheme,
 
   // Layout types
   Direction,

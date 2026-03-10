@@ -2,10 +2,11 @@ use crate::types::{Direction, LayoutOptions};
 
 /// Assign x,y coordinates to nodes based on their layer and position within layer.
 ///
-/// Uses simple sequential placement. Each layer is a row (top-to-bottom) or
-/// column (left-to-right). Nodes within a layer are evenly spaced.
+/// Simple centered grid: each layer is evenly spaced, centered on the widest layer.
+/// The crossing minimization step has already determined the optimal ordering.
 pub fn assign_coordinates(
     layer_order: &[Vec<String>],
+    _edges: &[(String, String)],
     opts: &LayoutOptions,
 ) -> Vec<(String, f64, f64)> {
     let mut positions: Vec<(String, f64, f64)> = Vec::new();
@@ -71,15 +72,18 @@ mod tests {
             vec!["a".to_string(), "b".to_string()],
             vec!["c".to_string()],
         ];
+        let edges = vec![
+            ("a".to_string(), "c".to_string()),
+        ];
         let opts = LayoutOptions::default();
-        let positions = assign_coordinates(&layers, &opts);
+        let positions = assign_coordinates(&layers, &edges, &opts);
 
         assert_eq!(positions.len(), 3);
         // Layer 0: a and b should be at y=0
         let a = positions.iter().find(|(id, _, _)| id == "a").unwrap();
         assert_eq!(a.2, 0.0);
-        // Layer 1: c should be at y=250
+        // Layer 1: c should be at y=layer_spacing
         let c = positions.iter().find(|(id, _, _)| id == "c").unwrap();
-        assert_eq!(c.2, 250.0);
+        assert_eq!(c.2, opts.layer_spacing);
     }
 }

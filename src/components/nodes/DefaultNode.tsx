@@ -1,10 +1,11 @@
 'use client';
 
+import { memo } from 'react';
 import type { CanisNodeProps } from './types';
 import { NodeHandle } from './shared/NodeHandle';
 import { getTheme } from './shared/theme';
 
-export function DefaultNode({ data, selected }: CanisNodeProps) {
+export const DefaultNode = memo(function DefaultNode({ data, selected }: CanisNodeProps) {
   const { sbsfNode, moduleColor, displayOptions, highlighted, dimmed, drugRole } = data;
   const t = getTheme(displayOptions.theme);
   const isLight = displayOptions.theme === 'light';
@@ -88,4 +89,4 @@ export function DefaultNode({ data, selected }: CanisNodeProps) {
       <NodeHandle type="source" color={moduleColor} direction={displayOptions.direction} visible={false} />
     </div>
   );
-}
+});

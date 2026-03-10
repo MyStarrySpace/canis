@@ -1,6 +1,7 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use crate::graph::AdGraph;
+use crate::types::NodeCategory;
 
 /// Assign layers using longest-path algorithm.
 /// Sources (no incoming edges) go to layer 0.
@@ -81,7 +82,90 @@ pub fn assign_layers(graph: &AdGraph) -> HashMap<String, usize> {
         layers.entry(id.clone()).or_insert(0);
     }
 
+    // Collect BOUNDARY source node IDs — these should stay at layer 0
+    // (inputs to the system) and not get compacted forward.
+    let boundary_sources: HashSet<String> = node_ids
+        .iter()
+        .filter(|id| {
+            graph
+                .node(id)
+                .map(|n| n.category == NodeCategory::Boundary)
+                .unwrap_or(false)
+                && *in_degree.get(*id).unwrap_or(&0) == 0
+        })
+        .cloned()
+        .collect();
+
+    // Compact sources forward: pull each node as close as possible to its
+    // earliest successor. Without this, all 196 source nodes pile up in
+    // layer 0 creating a massive first column. After compaction a source
+    // that only feeds layer 5 sits at layer 4 instead of layer 0.
+    compact_layers(&mut layers, &outgoing, &boundary_sources);
+
+    // Pin BOUNDARY sink nodes (no outgoing edges) to the maximum layer
+    let max_layer = layers.values().copied().max().unwrap_or(0);
+    for id in &node_ids {
+        let is_boundary_sink = graph
+            .node(id)
+            .map(|n| n.category == NodeCategory::Boundary)
+            .unwrap_or(false)
+            && outgoing.get(id).map(|s| s.is_empty()).unwrap_or(true);
+        if is_boundary_sink {
+            layers.insert(id.clone(), max_layer);
+        }
+    }
+
     layers
+}
+
+/// Pull each node as late as possible without violating the constraint that
+/// every node must be in a layer strictly before all of its successors.
+///
+/// We iterate in reverse topological order (highest layer first). For each
+/// node, its compacted layer = min(successor layers) - 1. Nodes with no
+/// successors keep their original layer (they're sinks).
+fn compact_layers(
+    layers: &mut HashMap<String, usize>,
+    outgoing: &HashMap<String, Vec<String>>,
+    pin_at_zero: &HashSet<String>,
+) {
+    // Sort nodes by layer descending so we process sinks first
+    let mut nodes_by_layer: Vec<(String, usize)> = layers
+        .iter()
+        .map(|(id, &layer)| (id.clone(), layer))
+        .collect();
+    nodes_by_layer.sort_by(|a, b| b.1.cmp(&a.1));
+
+    for (id, _original_layer) in &nodes_by_layer {
+        // BOUNDARY source nodes stay pinned at their original layer
+        if pin_at_zero.contains(id) {
+            continue;
+        }
+
+        let succs = match outgoing.get(id) {
+            Some(s) => s,
+            None => continue,
+        };
+
+        if succs.is_empty() {
+            continue; // Sink node, keep as-is
+        }
+
+        let min_succ_layer = succs
+            .iter()
+            .filter_map(|s| layers.get(s).copied())
+            .min()
+            .unwrap_or(0);
+
+        if min_succ_layer > 0 {
+            let compacted = min_succ_layer - 1;
+            let current = *layers.get(id).unwrap_or(&0);
+            // Only pull forward (increase layer), never push back
+            if compacted > current {
+                layers.insert(id.clone(), compacted);
+            }
+        }
+    }
 }
 
 /// Detect back-edges using DFS to identify cycles
