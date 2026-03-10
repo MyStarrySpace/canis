@@ -41,5 +41,9 @@ export { GradientBackground } from './components/backgrounds/GradientBackground'
 // Data conversion
 export { convertToXyflow, type CanisNodeData, type CanisEdgeData, type DrugRole, type ConvertOptions, type ConvertResult } from './lib/convert-to-xyflow';
 
-// React hook
+// React hooks
 export { useGraph } from './hooks/useGraph';
+export { useViewportCulling, type ViewportCullingOptions } from './hooks/useViewportCulling';
+
+// Spatial indexing
+export { QuadTree, type QTPoint, type QTRect } from './lib/quadtree';

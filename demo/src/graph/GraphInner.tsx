@@ -18,7 +18,7 @@ import type { MechanisticNode, MechanisticEdge } from '../../../src/index';
 import { DefaultNode } from '../../../src/components/nodes/DefaultNode';
 import { TooltipEdge } from './TooltipEdge';
 import { buildFlowData, type FlowBuildOptions } from './flow-builder';
-// postProcessLayout disabled — pre-filtering keeps layers small enough
+import { useViewportCulling } from '../../../src/hooks/useViewportCulling';
 import { modules } from '../data/constants';
 
 const nodeTypes: NodeTypes = { default: DefaultNode as unknown as NodeTypes['default'] };
@@ -51,10 +51,25 @@ export function GraphInner({
 }: GraphInnerProps) {
   const { fitView } = useReactFlow();
 
-  const { flowNodes, flowEdges } = useMemo(
+  // Build full set of flow nodes/edges from layout
+  const allFlow = useMemo(
     () => buildFlowData(layout, rawNodes, rawEdges, flowOptions),
     [layout, rawNodes, rawEdges, flowOptions],
   );
+
+  // Quadtree frustum culling — returns null for small graphs (no culling)
+  const visibleIds = useViewportCulling(layout, { margin: 500, threshold: 200 });
+
+  // Filter to only viewport-visible nodes/edges
+  const { flowNodes, flowEdges } = useMemo(() => {
+    if (!visibleIds) return allFlow;
+    const culledNodes = allFlow.flowNodes.filter((n) => visibleIds.has(n.id));
+    const nodeSet = new Set(culledNodes.map((n) => n.id));
+    const culledEdges = allFlow.flowEdges.filter(
+      (e) => nodeSet.has(e.source) && nodeSet.has(e.target),
+    );
+    return { flowNodes: culledNodes, flowEdges: culledEdges };
+  }, [allFlow, visibleIds]);
 
   const [rfNodes, setRfNodes, onNodesChange] = useNodesState(flowNodes);
   const [rfEdges, setRfEdges, onEdgesChange] = useEdgesState(flowEdges);
@@ -62,12 +77,16 @@ export function GraphInner({
   useEffect(() => {
     setRfNodes(flowNodes);
     setRfEdges(flowEdges);
-    // Re-fit the view after layout data changes (direction, mode, filter, etc.)
+  }, [flowNodes, flowEdges, setRfNodes, setRfEdges]);
+
+  // Re-fit view when the full layout changes (direction, mode, filter, etc.)
+  // but NOT on culling updates
+  useEffect(() => {
     const timer = setTimeout(() => {
       fitView({ padding: 0.2, duration: 300 });
     }, 50);
     return () => clearTimeout(timer);
-  }, [flowNodes, flowEdges, setRfNodes, setRfEdges, fitView]);
+  }, [allFlow, fitView]);
 
   // Zoom to node when requested
   useEffect(() => {
