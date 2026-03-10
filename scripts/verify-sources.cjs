@@ -56,11 +56,13 @@ function sleep(ms) {
 /** Normalize an author string to a lowercase family name for comparison. */
 function normalizeAuthor(name) {
   if (!name) return '';
-  const parts = name.replace(/\.$/, '').trim().split(/[\s,]+/);
+  // Strip accents: Jiménez → Jimenez, Lörinc → Lorinc
+  const stripped = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const parts = stripped.replace(/\.$/, '').trim().split(/[\s,]+/);
   // Filter out initials (1-2 uppercase chars like "JA" or "J")
   const nonInitials = parts.filter((p) => {
-    const stripped = p.replace(/[.\-]/g, '');
-    return stripped.length > 2 || stripped !== stripped.toUpperCase();
+    const clean = p.replace(/[.\-]/g, '');
+    return clean.length > 2 || clean !== clean.toUpperCase();
   });
   return (nonInitials[0] || parts[0] || '').toLowerCase();
 }
@@ -130,6 +132,41 @@ async function fetchPubMedBatch(pmids) {
     };
   }
   return results;
+}
+
+// ── PubMed Search (esearch + esummary) ──────────────────────────────
+
+/**
+ * Search PubMed for papers matching a query string.
+ * Returns top N results as { pmid, title, firstAuthor, year, journal }.
+ */
+async function searchPubMed(query, maxResults = 5) {
+  // Step 1: esearch to get PMIDs
+  const searchUrl =
+    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi` +
+    `?db=pubmed&term=${encodeURIComponent(query)}&retmax=${maxResults}&retmode=json` +
+    `&tool=canis-verify&email=${CROSSREF_MAILTO}`;
+  const searchRes = await fetch(searchUrl);
+  if (!searchRes.ok) throw new Error(`esearch HTTP ${searchRes.status}`);
+  const searchData = await searchRes.json();
+  const pmids = searchData?.esearchresult?.idlist || [];
+  if (pmids.length === 0) return [];
+
+  // Step 2: esummary to get metadata
+  await sleep(PUBMED_DELAY_MS);
+  const summaries = await fetchPubMedBatch(pmids);
+
+  return pmids.map((pmid) => {
+    const s = summaries[pmid];
+    if (!s || s.error) return { pmid, error: s?.error || 'Not found' };
+    return {
+      pmid,
+      title: s.title,
+      firstAuthor: s.firstAuthor,
+      year: s.year,
+      journal: s.journal,
+    };
+  });
 }
 
 // ── NCBI ID Converter (PMID → DOI) ─────────────────────────────────
@@ -505,6 +542,8 @@ async function main() {
   const doEnrich = args.includes('--enrich');
   const doClaims = args.includes('--claims');
   const doMetrics = args.includes('--metrics');
+  const doFixPmids = args.includes('--fix-pmids');
+  const doApply = args.includes('--apply'); // auto-apply high-confidence fixes
   const outputArg = args.find((a) => a.startsWith('--output='));
   const outputPath = outputArg ? outputArg.split('=')[1] : null;
   const limitArg = args.find((a) => a.startsWith('--limit='));
@@ -549,12 +588,20 @@ async function main() {
   }
   console.log();
 
-  if (!doVerify && !doClaims && !doMetrics) {
+  if (!doVerify && !doClaims && !doMetrics && !doFixPmids) {
     console.log('Run with --verify for PubMed validation.');
     console.log('Run with --verify --crossref for PubMed + Crossref cross-referencing.');
     console.log('Run with --verify --enrich to auto-fill missing firstAuthor/year.');
     console.log('Run with --claims for claim-vs-abstract verification.');
-    console.log('Run with --metrics for citation metrics via iCite.\n');
+    console.log('Run with --metrics for citation metrics via iCite.');
+    console.log('Run with --fix-pmids to search for correct PMIDs on mismatched edges.');
+    console.log('Run with --fix-pmids --apply to auto-apply high-confidence fixes.\n');
+    return;
+  }
+
+  // Standalone --fix-pmids
+  if (doFixPmids && !doVerify) {
+    await runFixPmids(data, edges, doApply, limit);
     return;
   }
 
@@ -947,6 +994,272 @@ async function main() {
   } else {
     console.log('\nAll sources verified.');
   }
+}
+
+// ── Fix PMIDs Runner ────────────────────────────────────────────────
+
+async function runFixPmids(data, edges, doApply, limit) {
+  console.log('\n=== FIX MISMATCHED PMIDs ===\n');
+
+  // Step 1: Identify mismatched edges by fetching PubMed metadata
+  const pmidToEdges = new Map();
+  for (const e of edges) {
+    const pmid = String(e.pmid || (e.evidence ? e.evidence.pmid : '') || '').trim();
+    if (pmid && pmid !== 'undefined' && pmid !== 'null' && e.firstAuthor) {
+      if (pmidToEdges.has(pmid)) pmidToEdges.get(pmid).push(e);
+      else pmidToEdges.set(pmid, [e]);
+    }
+  }
+
+  let uniquePmids = [...pmidToEdges.keys()];
+  console.log(`Edges with PMID + firstAuthor: ${[...pmidToEdges.values()].flat().length}`);
+  console.log(`Unique PMIDs to check: ${uniquePmids.length}\n`);
+
+  // Fetch PubMed metadata
+  console.log('Fetching PubMed metadata...');
+  const pubmedData = {};
+  for (let i = 0; i < uniquePmids.length; i += PUBMED_BATCH_SIZE) {
+    const batch = uniquePmids.slice(i, i + PUBMED_BATCH_SIZE);
+    process.stdout.write(`  ${i + 1}–${Math.min(i + PUBMED_BATCH_SIZE, uniquePmids.length)} of ${uniquePmids.length}...\r`);
+    try {
+      Object.assign(pubmedData, await fetchPubMedBatch(batch));
+    } catch (err) {
+      console.log(`\n  error: ${err.message}`);
+    }
+    if (i + PUBMED_BATCH_SIZE < uniquePmids.length) await sleep(PUBMED_DELAY_MS);
+  }
+  console.log();
+
+  // Find mismatches
+  const mismatches = []; // { pmid, edgeAuthor, pubmedAuthor, edges[] }
+  const pmidsSeen = new Set();
+  for (const [pmid, edgeList] of pmidToEdges) {
+    const pm = pubmedData[pmid];
+    if (!pm || pm.error) continue;
+    const edgeAuth = normalizeAuthor(edgeList[0].firstAuthor);
+    const pmAuth = normalizeAuthor(pm.firstAuthor);
+    if (edgeAuth && pmAuth && edgeAuth !== pmAuth) {
+      if (pmidsSeen.has(pmid)) continue;
+      pmidsSeen.add(pmid);
+      mismatches.push({
+        pmid,
+        edgeAuthor: edgeList[0].firstAuthor,
+        pubmedAuthor: pm.firstAuthor,
+        pubmedTitle: pm.title,
+        edges: edgeList,
+      });
+    }
+  }
+
+  let toFix = mismatches;
+  if (limit < toFix.length) {
+    toFix = toFix.slice(0, limit);
+    console.log(`(Limited to first ${limit} mismatches)\n`);
+  }
+
+  console.log(`Mismatched PMIDs: ${mismatches.length}`);
+  console.log(`Searching for corrections: ${toFix.length}\n`);
+
+  // Step 2: For each mismatch, search PubMed for the correct paper
+  const fixes = []; // { pmid (old), edges, suggestion: { pmid, title, author, year, confidence } }
+  const noMatch = [];
+
+  for (let i = 0; i < toFix.length; i++) {
+    const mm = toFix[i];
+    const edge = mm.edges[0];
+    process.stdout.write(`  [${i + 1}/${toFix.length}] PMID:${mm.pmid} (${mm.edgeAuthor})...\r`);
+
+    // Build search queries — try multiple strategies
+    const mechText = [edge.mechanismDescription, edge.keyInsight].filter(Boolean).join('. ');
+    const mechWords = extractKeywords(mechText);
+    const insightWords = extractKeywords(edge.keyInsight || '');
+    const queries = [];
+
+    // Strategy 1: Author + top mechanism keywords (narrow)
+    if (mechWords.length >= 3) {
+      queries.push(`${mm.edgeAuthor}[au] AND (${mechWords.slice(0, 4).join(' AND ')})`);
+    }
+    // Strategy 2: Author + fewer keywords (broader)
+    if (mechWords.length >= 2) {
+      queries.push(`${mm.edgeAuthor}[au] AND (${mechWords.slice(0, 2).join(' AND ')})`);
+    }
+    // Strategy 3: Author + insight keywords
+    if (insightWords.length >= 2) {
+      queries.push(`${mm.edgeAuthor}[au] AND (${insightWords.slice(0, 3).join(' AND ')})`);
+    }
+    // Strategy 4: Author + source/target node names
+    const srcName = edge.source.replace(/_/g, ' ');
+    const tgtName = edge.target.replace(/_/g, ' ');
+    queries.push(`${mm.edgeAuthor}[au] AND (${srcName} OR ${tgtName})`);
+    // Strategy 5: Author + year + keywords
+    if (edge.year) {
+      queries.push(`${mm.edgeAuthor}[au] AND ${edge.year}[dp]${mechWords.length > 0 ? ' AND (' + mechWords[0] + ')' : ''}`);
+    }
+    // Strategy 6: Author-only as last resort (catches well-known single-topic authors)
+    if (mechWords.length >= 1) {
+      queries.push(`${mm.edgeAuthor}[au] AND ${mechWords[0]}`);
+    }
+
+    let bestMatch = null;
+    let bestScore = 0;
+
+    for (const query of queries) {
+      try {
+        const results = await searchPubMed(query, 5);
+        for (const r of results) {
+          if (r.error) continue;
+          // Score: title similarity to mechanism description + year match + author match
+          const titleSim = titleSimilarity(
+            r.title,
+            [edge.mechanismDescription, edge.keyInsight].filter(Boolean).join(' '),
+          );
+          const yearBonus = (edge.year && r.year === edge.year) ? 0.2 : 0;
+          const authorMatch = normalizeAuthor(r.firstAuthor) === normalizeAuthor(mm.edgeAuthor) ? 0.3 : 0;
+          const score = titleSim + yearBonus + authorMatch;
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = { ...r, score, query };
+          }
+        }
+      } catch (err) {
+        // Search failed — skip this query
+      }
+      await sleep(PUBMED_DELAY_MS);
+    }
+
+    if (bestMatch && bestScore >= 0.3) {
+      const confidence = bestScore >= 1.0 ? 'HIGH' : bestScore >= 0.6 ? 'MEDIUM' : 'LOW';
+      fixes.push({
+        oldPmid: mm.pmid,
+        edgeIds: mm.edges.map((e) => e.id),
+        edgeAuthor: mm.edgeAuthor,
+        pubmedAuthor: mm.pubmedAuthor,
+        suggestion: {
+          pmid: bestMatch.pmid,
+          title: bestMatch.title,
+          firstAuthor: bestMatch.firstAuthor,
+          year: bestMatch.year,
+          score: Math.round(bestScore * 100) / 100,
+          confidence,
+        },
+      });
+    } else {
+      noMatch.push({
+        oldPmid: mm.pmid,
+        edgeIds: mm.edges.map((e) => e.id),
+        edgeAuthor: mm.edgeAuthor,
+        mechanism: (edge.mechanismDescription || '').slice(0, 100),
+      });
+    }
+  }
+
+  // Step 3: Report
+  const highConf = fixes.filter((f) => f.suggestion.confidence === 'HIGH');
+  const medConf = fixes.filter((f) => f.suggestion.confidence === 'MEDIUM');
+  const lowConf = fixes.filter((f) => f.suggestion.confidence === 'LOW');
+
+  console.log(`\n\nResults:`);
+  console.log(`  HIGH confidence:   ${highConf.length} (auto-applicable)`);
+  console.log(`  MEDIUM confidence: ${medConf.length} (review recommended)`);
+  console.log(`  LOW confidence:    ${lowConf.length} (manual review needed)`);
+  console.log(`  No match found:    ${noMatch.length}\n`);
+
+  if (highConf.length > 0) {
+    console.log('--- HIGH CONFIDENCE FIXES ---\n');
+    for (const f of highConf) {
+      console.log(`  ${f.edgeIds.join(', ')}  old:${f.oldPmid} → new:${f.suggestion.pmid}`);
+      console.log(`    Author: ${f.edgeAuthor}  Score: ${f.suggestion.score}`);
+      console.log(`    "${f.suggestion.title.slice(0, 100)}"`);
+      console.log(`    ${f.suggestion.firstAuthor}, ${f.suggestion.year}`);
+      console.log();
+    }
+  }
+
+  if (medConf.length > 0) {
+    console.log('--- MEDIUM CONFIDENCE FIXES ---\n');
+    for (const f of medConf) {
+      console.log(`  ${f.edgeIds.join(', ')}  old:${f.oldPmid} → new:${f.suggestion.pmid}`);
+      console.log(`    Claimed: ${f.edgeAuthor}  →  Found: ${f.suggestion.firstAuthor}, ${f.suggestion.year}`);
+      console.log(`    "${f.suggestion.title.slice(0, 100)}"`);
+      console.log(`    Score: ${f.suggestion.score}`);
+      console.log();
+    }
+  }
+
+  if (lowConf.length > 0) {
+    console.log('--- LOW CONFIDENCE (manual review) ---\n');
+    for (const f of lowConf) {
+      console.log(`  ${f.edgeIds.join(', ')}  old:${f.oldPmid} → new:${f.suggestion.pmid}  score:${f.suggestion.score}`);
+      console.log(`    "${f.suggestion.title.slice(0, 80)}"`);
+    }
+    console.log();
+  }
+
+  if (noMatch.length > 0) {
+    console.log('--- NO MATCH FOUND (claim may be hallucinated) ---\n');
+    for (const nm of noMatch) {
+      console.log(`  ${nm.edgeIds.join(', ')}  PMID:${nm.oldPmid}  author="${nm.edgeAuthor}"`);
+      if (nm.mechanism) console.log(`    "${nm.mechanism}..."`);
+    }
+    console.log();
+  }
+
+  // Step 4: Apply high-confidence fixes
+  if (doApply && highConf.length > 0) {
+    console.log('=== APPLYING HIGH-CONFIDENCE FIXES ===\n');
+    const edgeMap = new Map(edges.map((e) => [e.id, e]));
+    let applied = 0;
+
+    for (const f of highConf) {
+      for (const edgeId of f.edgeIds) {
+        const edge = edgeMap.get(edgeId);
+        if (edge) {
+          edge.pmid = f.suggestion.pmid;
+          edge.firstAuthor = f.suggestion.firstAuthor;
+          edge.year = f.suggestion.year;
+          applied++;
+        }
+      }
+    }
+
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n');
+    console.log(`Applied ${applied} edge fixes (${highConf.length} PMIDs) → ${DATA_PATH}\n`);
+  }
+
+  // Save full results to output
+  const outDir = path.join(__dirname, '..', 'output');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  const fixReport = { timestamp: new Date().toISOString(), fixes, noMatch };
+  fs.writeFileSync(
+    path.join(outDir, 'pmid-fix-suggestions.json'),
+    JSON.stringify(fixReport, null, 2) + '\n',
+  );
+  console.log(`Full report → output/pmid-fix-suggestions.json`);
+}
+
+/**
+ * Extract distinctive keywords from a mechanism description for PubMed search.
+ * Filters out common bio-filler words.
+ */
+function extractKeywords(text) {
+  if (!text) return [];
+  const stopwords = new Set([
+    'the', 'a', 'an', 'in', 'of', 'and', 'or', 'to', 'for', 'is', 'are',
+    'was', 'were', 'be', 'been', 'by', 'at', 'on', 'with', 'from', 'as',
+    'that', 'this', 'it', 'its', 'has', 'have', 'had', 'not', 'but', 'more',
+    'less', 'can', 'may', 'also', 'than', 'both', 'which', 'these', 'those',
+    'via', 'through', 'into', 'between', 'during', 'leading', 'leads',
+    'causing', 'causes', 'results', 'resulting', 'including', 'increased',
+    'decreased', 'reduced', 'elevated', 'promotes', 'inhibits', 'activates',
+  ]);
+  return text
+    .replace(/[()[\]{}"',;:!?.]/g, '')
+    .replace(/[-–—]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length >= 3 && !stopwords.has(w.toLowerCase()))
+    .map((w) => w.replace(/s$/, '')) // basic stemming
+    .slice(0, 8);
 }
 
 // ── Citation Metrics Runner (iCite) ─────────────────────────────────
