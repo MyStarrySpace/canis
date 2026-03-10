@@ -11,3 +11,4 @@ nul
 demo-dist/
 .claude/
 *.tgz
+output/

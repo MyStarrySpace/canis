@@ -17,12 +17,20 @@
  *   node scripts/verify-sources.cjs --verify --enrich        # auto-fill missing data
  *   node scripts/verify-sources.cjs --verify --crossref --enrich --output report.json
  *   node scripts/verify-sources.cjs --verify --limit=50      # first 50 PMIDs
+ *   node scripts/verify-sources.cjs --claims                 # verify claims vs abstracts
+ *   node scripts/verify-sources.cjs --claims --limit=20      # first 20 edges
+ *
+ * The --claims flag fetches PubMed abstracts and uses Claude to check whether
+ * each edge's mechanismDescription / keyInsight is actually supported by the
+ * cited paper. Requires ANTHROPIC_API_KEY.
  */
 
+require('dotenv').config({ path: require('path').resolve(__dirname, '..', '..', 'alz-market-viz', '.env') });
 const fs = require('fs');
 const path = require('path');
 
 const DATA_PATH = path.join(__dirname, '..', 'demo', 'src', 'data', 'ad-framework-data.json');
+const CLAIMS_PROGRESS_PATH = path.join(__dirname, '..', 'output', 'claims-progress.json');
 
 // ── Rate limits ─────────────────────────────────────────────────────
 const PUBMED_DELAY_MS = 340;   // 3 req/sec without API key
@@ -178,6 +186,160 @@ async function fetchCrossref(doi) {
   return { doi, title, firstAuthor: firstFamily, journal, year, type: work.type };
 }
 
+// ── PubMed Abstract Fetching (efetch) ───────────────────────────────
+
+/**
+ * Batch fetch PubMed abstracts via efetch XML endpoint.
+ * Returns { [pmid]: abstract_text | null }
+ */
+async function fetchAbstractsBatch(pmids) {
+  const url =
+    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi` +
+    `?db=pubmed&id=${pmids.join(',')}&rettype=abstract&retmode=xml` +
+    `&tool=canis-verify&email=${CROSSREF_MAILTO}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`PubMed efetch HTTP ${res.status}`);
+  const xml = await res.text();
+
+  const results = {};
+  // Parse each <PubmedArticle> block
+  const articleBlocks = xml.split('<PubmedArticle>').slice(1);
+  for (const block of articleBlocks) {
+    const pmidMatch = block.match(/<PMID[^>]*>(\d+)<\/PMID>/);
+    if (!pmidMatch) continue;
+    const pmid = pmidMatch[1];
+
+    // Extract all <AbstractText> elements and concatenate
+    const abstractParts = [];
+    const re = /<AbstractText[^>]*>([\s\S]*?)<\/AbstractText>/g;
+    let m;
+    while ((m = re.exec(block)) !== null) {
+      // Strip inline XML tags
+      const text = m[1].replace(/<[^>]+>/g, '').trim();
+      if (text) abstractParts.push(text);
+    }
+    results[pmid] = abstractParts.length > 0 ? abstractParts.join(' ') : null;
+  }
+
+  // Fill in any requested PMIDs that weren't in the response
+  for (const pmid of pmids) {
+    if (!(pmid in results)) results[pmid] = null;
+  }
+  return results;
+}
+
+// ── Claim Verification via Claude ───────────────────────────────────
+
+const CLAIM_VERIFY_BATCH = 3;       // concurrent Claude calls
+const CLAIM_BATCH_DELAY_MS = 2000;  // delay between batches
+const CLAIM_MAX_RETRIES = 2;
+
+/**
+ * Build the strict claim verification prompt.
+ */
+function buildClaimPrompt(title, abstract, claims, sourceLabel, targetLabel) {
+  const claimBlock = claims
+    .map((c, i) => `${i + 1}. [${c.field}] "${c.text}"`)
+    .join('\n');
+
+  return `You are a strict scientific claim verifier. Your job is to determine whether claims made about a paper are actually supported by its abstract.
+
+## Paper
+Title: ${title}
+Abstract: ${abstract}
+
+## Edge context
+This edge connects "${sourceLabel}" → "${targetLabel}" in a causal mechanistic network.
+
+## Claims to verify
+${claimBlock}
+
+## Verification rules (FOLLOW EXACTLY)
+- The claim can paraphrase or simplify the abstract, but must not ADD meaning, conclusions, or scope beyond what the abstract states.
+- UNSUPPORTED if the claim makes factual assertions (numbers, mechanisms, outcomes) not present in the abstract.
+- UNSUPPORTED if the claim generalizes a specific finding. Example: if the abstract says "necessary for glymphatic clearance effects" but the claim says "necessary mediator" (implying necessary for everything), that is unsupported.
+- UNSUPPORTED if the claim draws an interpretive conclusion (e.g., "establishing X as Y") that the abstract does not itself state.
+- UNSUPPORTED if the claim describes a different mechanism or process than what the abstract describes.
+- UNSUPPORTED if the abstract does not mention or clearly imply the relationship described in the claim.
+- SUPPORTED only if every factual assertion in the claim can be traced to a specific statement in the abstract.
+
+## Response format
+Return a JSON array with one object per claim:
+[
+  {"index": 1, "verdict": "SUPPORTED"|"UNSUPPORTED", "reason": "1-2 sentence explanation citing the relevant abstract text or explaining what is missing"}
+]
+
+Return ONLY the JSON array. No other text.`;
+}
+
+/**
+ * Call Claude to verify claims. Returns parsed JSON array of verdicts.
+ */
+async function callClaudeForClaims(client, prompt) {
+  for (let attempt = 0; attempt <= CLAIM_MAX_RETRIES; attempt++) {
+    try {
+      const response = await client.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 2048,
+        messages: [{ role: 'user', content: prompt }],
+      });
+      const text = response.content[0]?.text || '';
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) throw new Error('No JSON array in response');
+      return JSON.parse(jsonMatch[0]);
+    } catch (err) {
+      if (attempt < CLAIM_MAX_RETRIES) {
+        await sleep((attempt + 1) * 2000);
+      } else {
+        throw err;
+      }
+    }
+  }
+}
+
+// Common words to skip when generating text fragments
+const SKIP_WORDS = new Set([
+  'the', 'a', 'an', 'in', 'of', 'and', 'or', 'to', 'for', 'is', 'are',
+  'was', 'were', 'be', 'been', 'by', 'at', 'on', 'with', 'from', 'as',
+  'that', 'this', 'it', 'its', 'has', 'have', 'had', 'not', 'but', 'our',
+  'their', 'we', 'these', 'those', 'can', 'may', 'also', 'than', 'both',
+]);
+
+/**
+ * Generate a #:~:text= URL fragment to highlight specific text on a page.
+ * Selects 5-7 distinctive words from the text, stripping special chars
+ * that cause problems in URL fragments.
+ */
+function generateTextFragment(text) {
+  if (!text) return '';
+  const words = text
+    .replace(/[()[\]{}"'`,;:!?]/g, '')  // strip problematic chars
+    .replace(/[-–—−]/g, ' ')            // dashes to spaces
+    .split(/\s+/)
+    .filter((w) => w.length > 0);
+
+  // Skip leading common words, take 5-7 distinctive words
+  const distinctive = [];
+  for (const w of words) {
+    if (distinctive.length === 0 && SKIP_WORDS.has(w.toLowerCase())) continue;
+    distinctive.push(w);
+    if (distinctive.length >= 6) break;
+  }
+  if (distinctive.length < 2) return '';
+  const fragment = distinctive.join(' ');
+  return `#:~:text=${encodeURIComponent(fragment)}`;
+}
+
+/**
+ * Build a PubMed link, optionally with a text highlight fragment.
+ */
+function pubmedLink(pmid, highlightText) {
+  const base = `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`;
+  if (!highlightText) return base;
+  const frag = generateTextFragment(highlightText);
+  return frag ? `${base}${frag}` : base;
+}
+
 // ── Source Comparison ───────────────────────────────────────────────
 
 /**
@@ -280,6 +442,7 @@ async function main() {
   const doVerify = args.includes('--verify');
   const doCrossref = args.includes('--crossref');
   const doEnrich = args.includes('--enrich');
+  const doClaims = args.includes('--claims');
   const outputArg = args.find((a) => a.startsWith('--output='));
   const outputPath = outputArg ? outputArg.split('=')[1] : null;
   const limitArg = args.find((a) => a.startsWith('--limit='));
@@ -324,10 +487,28 @@ async function main() {
   }
   console.log();
 
-  if (!doVerify) {
+  if (!doVerify && !doClaims) {
     console.log('Run with --verify for PubMed validation.');
     console.log('Run with --verify --crossref for PubMed + Crossref cross-referencing.');
-    console.log('Run with --verify --enrich to auto-fill missing firstAuthor/year.\n');
+    console.log('Run with --verify --enrich to auto-fill missing firstAuthor/year.');
+    console.log('Run with --claims for claim-vs-abstract verification.\n');
+    return;
+  }
+
+  // If only --claims (no --verify), skip PubMed metadata and jump to claims
+  if (doClaims && !doVerify) {
+    const claimResults = await runClaimVerification(edges, limit);
+    console.log('\n=== SUMMARY ===\n');
+    if (claimResults) {
+      console.log(`  Claims checked:     ${claimResults.total}`);
+      console.log(`  Claims supported:   ${claimResults.supported}`);
+      console.log(`  Claims unsupported: ${claimResults.unsupported}`);
+      console.log(`  Claims errors:      ${claimResults.errors}`);
+    }
+    if (claimResults?.unsupported > 0) {
+      console.log('\nEXIT 1: Unsupported claims found.');
+      process.exit(1);
+    }
     return;
   }
 
@@ -646,6 +827,13 @@ async function main() {
     console.log(`\nJSON report → ${outputPath}`);
   }
 
+  // ── 8. Claim verification (optional) ─────────────────────
+
+  let claimResults = null;
+  if (doClaims) {
+    claimResults = await runClaimVerification(edges, limit);
+  }
+
   // ── Exit code ─────────────────────────────────────────────
 
   console.log('\n=== SUMMARY ===\n');
@@ -655,8 +843,22 @@ async function main() {
   console.log(`  Warnings:      ${warningCount}`);
   console.log(`  Invalid PMIDs: ${invalidPmids.length}`);
   console.log(`  Enrichable:    ${allEnrichments.length}`);
+  if (claimResults) {
+    console.log(`  Claims checked:     ${claimResults.total}`);
+    console.log(`  Claims supported:   ${claimResults.supported}`);
+    console.log(`  Claims unsupported: ${claimResults.unsupported}`);
+    console.log(`  Claims errors:      ${claimResults.errors}`);
+  }
 
-  if (errorCount > 0 || invalidPmids.length > 0) {
+  // Include claim results in JSON report
+  if (outputPath && claimResults) {
+    const existing = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+    existing.claims = claimResults;
+    fs.writeFileSync(outputPath, JSON.stringify(existing, null, 2) + '\n');
+  }
+
+  const totalErrors = errorCount + invalidPmids.length + (claimResults?.unsupported || 0);
+  if (totalErrors > 0) {
     console.log('\nEXIT 1: Errors found.');
     process.exit(1);
   }
@@ -665,6 +867,210 @@ async function main() {
   } else {
     console.log('\nAll sources verified.');
   }
+}
+
+// ── Claim Verification Runner ───────────────────────────────────────
+
+async function runClaimVerification(edges, limit) {
+  console.log('\n=== CLAIM VERIFICATION ===\n');
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.log('ERROR: ANTHROPIC_API_KEY required for --claims mode.');
+    console.log('Set it in your environment or in alz-market-viz/.env');
+    process.exit(1);
+  }
+
+  const Anthropic = require('@anthropic-ai/sdk').default;
+  const client = new Anthropic();
+
+  // Find edges with a PMID AND at least one claim (mechanismDescription or keyInsight)
+  const claimEdges = edges.filter((e) => {
+    const pmid = e.pmid || e.evidence?.pmid;
+    if (!pmid) return false;
+    return e.mechanismDescription || e.keyInsight;
+  });
+
+  let toCheck = claimEdges;
+  if (limit < toCheck.length) {
+    toCheck = toCheck.slice(0, limit);
+    console.log(`(Limited to first ${limit} edges with claims)\n`);
+  }
+
+  console.log(`Edges with PMID + claims: ${claimEdges.length}`);
+  console.log(`Checking: ${toCheck.length}\n`);
+
+  // Load claim cache
+  const crypto = require('crypto');
+  let claimCache = {};
+  const CLAIM_CACHE_PATH = path.join(__dirname, '..', 'output', '.claim-cache.json');
+  if (fs.existsSync(CLAIM_CACHE_PATH)) {
+    try { claimCache = JSON.parse(fs.readFileSync(CLAIM_CACHE_PATH, 'utf8')); } catch {}
+  }
+
+  // Step 1: Fetch abstracts AND metadata for all needed PMIDs
+  const neededPmids = [...new Set(toCheck.map((e) => String(e.pmid || e.evidence?.pmid)))];
+  console.log(`Fetching ${neededPmids.length} abstracts + metadata from PubMed...\n`);
+
+  const abstracts = {};
+  const pubmedMeta = {};  // { [pmid]: { title, ... } }
+  for (let i = 0; i < neededPmids.length; i += PUBMED_BATCH_SIZE) {
+    const batch = neededPmids.slice(i, i + PUBMED_BATCH_SIZE);
+    const end = Math.min(i + PUBMED_BATCH_SIZE, neededPmids.length);
+    process.stdout.write(`  ${i + 1}–${end} of ${neededPmids.length}...\r`);
+    try {
+      const [absResults, metaResults] = await Promise.all([
+        fetchAbstractsBatch(batch),
+        fetchPubMedBatch(batch),
+      ]);
+      Object.assign(abstracts, absResults);
+      Object.assign(pubmedMeta, metaResults);
+    } catch (err) {
+      console.log(`\n  PubMed fetch error: ${err.message}`);
+    }
+    if (i + PUBMED_BATCH_SIZE < neededPmids.length) await sleep(PUBMED_DELAY_MS);
+  }
+
+  const withAbstract = neededPmids.filter((p) => abstracts[p]);
+  const noAbstract = neededPmids.filter((p) => !abstracts[p]);
+  console.log(`\nAbstracts: ${withAbstract.length} found, ${noAbstract.length} unavailable\n`);
+
+  // Step 2: Build claims and verify via Claude
+  let supported = 0;
+  let unsupported = 0;
+  let errorCount = 0;
+  let cacheHits = 0;
+  const unsupportedDetails = [];
+
+  // Build node label lookup for edge context
+  const nodeMap = new Map();
+  const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+  for (const n of data.nodes) nodeMap.set(n.id, n.label || n.id);
+
+  for (let i = 0; i < toCheck.length; i++) {
+    const edge = toCheck[i];
+    const pmid = String(edge.pmid || edge.evidence?.pmid);
+    const abstract = abstracts[pmid];
+    const title = pubmedMeta[pmid]?.title || '';
+    const sourceLabel = nodeMap.get(edge.source) || edge.source;
+    const targetLabel = nodeMap.get(edge.target) || edge.target;
+
+    if (!abstract) {
+      // Can't verify without abstract
+      continue;
+    }
+
+    // Build claim list
+    const claims = [];
+    if (edge.mechanismDescription) {
+      claims.push({ field: 'mechanismDescription', text: edge.mechanismDescription });
+    }
+    if (edge.keyInsight) {
+      claims.push({ field: 'keyInsight', text: edge.keyInsight });
+    }
+    if (claims.length === 0) continue;
+
+    // Check cache
+    const cacheKey = crypto
+      .createHash('sha256')
+      .update(claims.map((c) => c.text).join('\n---\n') + '\n===\n' + abstract)
+      .digest('hex');
+
+    if (claimCache[cacheKey]) {
+      const cached = claimCache[cacheKey];
+      for (const v of cached.verdicts) {
+        if (v.verdict === 'SUPPORTED') supported++;
+        else unsupported++;
+      }
+      cacheHits++;
+      continue;
+    }
+
+    // Call Claude
+    process.stdout.write(`  [${i + 1}/${toCheck.length}] ${edge.id}...\r`);
+
+    try {
+      const prompt = buildClaimPrompt(title, abstract, claims, sourceLabel, targetLabel);
+      const verdicts = await callClaudeForClaims(client, prompt);
+
+      // Process verdicts
+      const processed = [];
+      for (let j = 0; j < claims.length; j++) {
+        const v = verdicts[j] || { verdict: 'ERROR', reason: 'No verdict returned' };
+        processed.push(v);
+
+        if (v.verdict === 'SUPPORTED') {
+          supported++;
+        } else {
+          unsupported++;
+          // Find the most relevant abstract sentence for the link
+          const claimWords = claims[j].text.toLowerCase().split(/\s+/).filter((w) => w.length > 4);
+          let bestSentence = '';
+          let bestScore = 0;
+          for (const sentence of abstract.split(/\.\s+/)) {
+            const sLower = sentence.toLowerCase();
+            const score = claimWords.filter((w) => sLower.includes(w)).length;
+            if (score > bestScore) {
+              bestScore = score;
+              bestSentence = sentence;
+            }
+          }
+          const link = pubmedLink(pmid, bestSentence || null);
+
+          unsupportedDetails.push({
+            edgeId: edge.id,
+            pmid,
+            link,
+            field: claims[j].field,
+            claim: claims[j].text,
+            verdict: v.verdict,
+            reason: v.reason,
+          });
+        }
+      }
+
+      // Cache result
+      claimCache[cacheKey] = { verdicts: processed, timestamp: Date.now() };
+    } catch (err) {
+      errorCount++;
+      console.log(`\n  ERROR ${edge.id}: ${err.message}`);
+    }
+
+    // Rate limit between Claude calls
+    if (i + 1 < toCheck.length) await sleep(500);
+  }
+
+  // Save cache
+  const outDir = path.join(__dirname, '..', 'output');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(CLAIM_CACHE_PATH, JSON.stringify(claimCache, null, 2));
+
+  // Report
+  console.log(`\nClaim Verification Results:`);
+  console.log(`  Total claims:   ${supported + unsupported}`);
+  console.log(`  Supported:      ${supported}`);
+  console.log(`  Unsupported:    ${unsupported}`);
+  console.log(`  API errors:     ${errorCount}`);
+  console.log(`  Cache hits:     ${cacheHits}`);
+
+  if (unsupportedDetails.length > 0) {
+    console.log(`\n--- UNSUPPORTED CLAIMS (${unsupportedDetails.length}) ---\n`);
+    for (const d of unsupportedDetails) {
+      console.log(`${d.edgeId}  PMID:${d.pmid}  [${d.field}]`);
+      console.log(`  Claim:  "${d.claim.slice(0, 120)}${d.claim.length > 120 ? '...' : ''}"`);
+      console.log(`  Reason: ${d.reason}`);
+      console.log(`  Link:   ${d.link}`);
+      console.log();
+    }
+  }
+
+  return {
+    total: supported + unsupported,
+    supported,
+    unsupported,
+    errors: errorCount,
+    cacheHits,
+    unsupportedDetails,
+  };
 }
 
 main().catch((e) => {
