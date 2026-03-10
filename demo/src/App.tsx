@@ -11,6 +11,7 @@ import {
 } from '../../src/index';
 import { useGraph } from '../../src/react';
 import { GraphInner } from './graph/GraphInner';
+import { GraphToolbar } from './graph/GraphToolbar';
 import { SidebarHeader } from './sidebar/SidebarHeader';
 import { NodeInspector } from './sidebar/NodeInspector';
 import { ModuleFilters } from './sidebar/ModuleFilters';
@@ -82,7 +83,7 @@ export function App() {
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [moduleFilters, setModuleFilters] = useState<Record<string, ModuleFilterState>>(() => buildInitialFilters(rawModules));
   const [zoomToNodeId, setZoomToNodeId] = useState<string | null>(null);
-  const [evidenceFilter, setEvidenceFilter] = useState<'strong' | 'moderate' | 'all'>('moderate');
+  const [evidenceFilter, setEvidenceFilter] = useState<'strong' | 'moderate' | 'all'>('strong');
   const [direction, setDirection] = useState<'LeftToRight' | 'TopToBottom'>('LeftToRight');
   const [layoutMode, setLayoutMode] = useState<'Flat' | 'Hierarchical'>('Flat');
   const [clusterMode, setClusterMode] = useState<'Auto' | 'ModuleCount'>('Auto');
@@ -98,6 +99,9 @@ export function App() {
   const [hideRedundantEdges, setHideRedundantEdges] = useState(false);
   const [redundantEdgeIds, setRedundantEdgeIds] = useState<Set<string>>(new Set());
 
+  // Hide orphan nodes (nodes with no edges after filters)
+  const [hideOrphans, setHideOrphans] = useState(true);
+
   const layoutOptions = useMemo(() => ({
     layerSpacing: 250,
     nodeSpacing: 100,
@@ -112,6 +116,7 @@ export function App() {
         hybridModules: clusterMode === 'ModuleCount',
         clusterPadding: 50,
         minClusterSize: 3,
+        pinnedModules: ['M14', 'M15', 'M16', 'THER'],
       },
     } : {}),
   }), [direction, layoutMode, clusterMode]);
@@ -163,6 +168,22 @@ export function App() {
   const [activePathway, setActivePathway] = useState<PathwayResult | null>(null);
   const [pathwayFocusMode, setPathwayFocusMode] = useState(false);
 
+  // Build a quick lookup: methodType → confidence level from scheme rules
+  const schemeClassify = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const rule of confidenceScheme.rules) {
+      for (const mt of rule.methodTypes ?? []) {
+        map.set(mt.toLowerCase(), rule.confidence);
+      }
+    }
+    return (edge: MechanisticEdge): string => {
+      if (edge.causalConfidence) return edge.causalConfidence;
+      const mt = (edge.methodType ?? edge.evidence?.methodType ?? '').toLowerCase();
+      if (mt && map.has(mt)) return map.get(mt)!;
+      return confidenceScheme.defaultConfidence ?? 'L7';
+    };
+  }, [confidenceScheme]);
+
   // Pre-filter nodes/edges BEFORE sending to WASM layout engine
   // Only 'on' and 'partial' nodes go into the layout; 'off' nodes are excluded entirely
   const { filteredNodes, filteredEdges } = useMemo(() => {
@@ -176,10 +197,19 @@ export function App() {
     const allowedEvidence = new Set(EVIDENCE_CUTOFFS[evidenceFilter]);
     const fEdges = rawEdges.filter((e) =>
       nodeIdSet.has(e.source) && nodeIdSet.has(e.target) &&
-      (!e.causalConfidence || allowedEvidence.has(e.causalConfidence))
+      allowedEvidence.has(schemeClassify(e))
     );
-    return { filteredNodes: fNodes, filteredEdges: fEdges };
-  }, [moduleFilters, evidenceFilter]);
+
+    // Remove orphan nodes (no edges after filtering)
+    let finalNodes = fNodes;
+    if (hideOrphans) {
+      const connectedIds = new Set<string>();
+      for (const e of fEdges) { connectedIds.add(e.source); connectedIds.add(e.target); }
+      finalNodes = fNodes.filter((n) => connectedIds.has(n.id));
+    }
+
+    return { filteredNodes: finalNodes, filteredEdges: fEdges };
+  }, [moduleFilters, evidenceFilter, schemeClassify, hideOrphans]);
 
   const graphData = useMemo(
     () => convertToGraphData(filteredNodes, filteredEdges, rawModules, {
@@ -412,54 +442,32 @@ export function App() {
 
   // ── Render ───────────────────────────────────────────────────────────────
 
-  // Graph area content — loading/error states are shown INSIDE the graph
-  // container so the sidebar never unmounts (which caused jarring re-animations).
-  const graphAreaContent = (() => {
-    if (error) {
-      return (
-        <div style={{ ...styles.center, height: '100%' }}>
-          <p style={{ color: '#c75146', fontWeight: 500 }}>Failed to load graph engine</p>
-          <p style={{ color: '#7a7a7a', fontSize: 12, marginTop: 8 }}>{error}</p>
-        </div>
-      );
-    }
-    if (loading || !ready || !layout) {
-      return (
-        <div style={{ ...styles.center, height: '100%' }}>
-          <div style={styles.spinner} />
-          <p style={{ color: '#7a7a7a', fontSize: 13, marginTop: 12 }}>Calculating layout...</p>
-        </div>
-      );
-    }
-    return (
-      <ReactFlowProvider>
-        <GraphInner
-          layout={layout}
-          rawNodes={filteredNodes}
-          rawEdges={filteredEdges}
-          flowOptions={flowOptions}
-          onNodeClick={handleNodeClick}
-          onPaneClick={handlePaneClick}
-          zoomToNodeId={zoomToNodeId}
-          evidenceFilter={evidenceFilter}
-          onEvidenceFilterChange={setEvidenceFilter}
-          direction={direction}
-          onDirectionChange={setDirection}
-          layoutMode={layoutMode}
-          onLayoutModeChange={setLayoutMode}
-          clusterMode={clusterMode}
-          onClusterModeChange={setClusterMode}
-          showBackEdges={showBackEdges}
-          onShowBackEdgesChange={setShowBackEdges}
-          hideRedundantEdges={hideRedundantEdges}
-          onHideRedundantEdgesChange={setHideRedundantEdges}
-          redundantEdgeCount={redundantEdgeIds.size}
-          focusLabel={focusLabel}
-          onExitFocus={focusSavedFilters ? exitFocusMode : undefined}
-        />
-      </ReactFlowProvider>
-    );
-  })();
+  const isLoading = loading || !ready || !layout;
+
+  // Toolbar props (always rendered)
+  const toolbarProps = {
+    evidenceFilter,
+    onEvidenceFilterChange: setEvidenceFilter,
+    direction,
+    onDirectionChange: setDirection,
+    layoutMode,
+    onLayoutModeChange: setLayoutMode,
+    clusterMode,
+    onClusterModeChange: setClusterMode,
+    showBackEdges,
+    onShowBackEdgesChange: setShowBackEdges,
+    hideRedundantEdges,
+    onHideRedundantEdgesChange: setHideRedundantEdges,
+    redundantEdgeCount: redundantEdgeIds.size,
+    hideOrphans,
+    onHideOrphansChange: setHideOrphans,
+    nodeCount: filteredNodes.length,
+    edgeCount: filteredEdges.length,
+    layerCount: layout?.stats.layerCount ?? 0,
+    clusterCount: layout?.clusters?.length,
+    focusLabel,
+    onExitFocus: focusSavedFilters ? exitFocusMode : undefined,
+  };
 
   return (
     <div style={styles.root}>
@@ -482,7 +490,51 @@ export function App() {
 
       {/* Graph area */}
       <div style={styles.graphContainer}>
-        {graphAreaContent}
+        {/* Toolbar — always visible */}
+        <div style={styles.toolbarFloat}>
+          <GraphToolbar {...toolbarProps} />
+        </div>
+
+        {/* Loading overlay */}
+        {(isLoading || error) && (
+          <div style={styles.loadingOverlay}>
+            {error ? (
+              <>
+                <p style={{ color: '#c75146', fontWeight: 500 }}>Failed to load graph engine</p>
+                <p style={{ color: '#7a7a7a', fontSize: 12, marginTop: 8 }}>{error}</p>
+              </>
+            ) : (
+              <>
+                <div style={styles.progressContainer}>
+                  <div style={styles.progressBar}>
+                    <div style={styles.progressFill} />
+                  </div>
+                </div>
+                <p style={{ color: '#7a7a7a', fontSize: 12, marginTop: 8 }}>
+                  Laying out {filteredNodes.length} nodes and {filteredEdges.length} edges...
+                </p>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Graph — rendered even while loading (shows previous state) */}
+        {layout && (
+          <ReactFlowProvider>
+            <GraphInner
+              layout={layout}
+              rawNodes={filteredNodes}
+              rawEdges={filteredEdges}
+              flowOptions={flowOptions}
+              onNodeClick={handleNodeClick}
+              onPaneClick={handlePaneClick}
+              zoomToNodeId={zoomToNodeId}
+              showToolbar={false}
+              focusLabel={focusLabel}
+              onExitFocus={focusSavedFilters ? exitFocusMode : undefined}
+            />
+          </ReactFlowProvider>
+        )}
       </div>
 
       {/* Sidebar */}
@@ -644,6 +696,30 @@ const styles: Record<string, React.CSSProperties> = {
   graphContainer: {
     flex: 1, position: 'relative', background: '#faf9f7',
     fontFamily: 'var(--font-sans, sans-serif)',
+    overflow: 'hidden',
+  },
+  toolbarFloat: {
+    position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)',
+    zIndex: 20, pointerEvents: 'auto',
+  },
+  loadingOverlay: {
+    position: 'absolute', inset: 0, zIndex: 10,
+    display: 'flex', flexDirection: 'column' as const,
+    alignItems: 'center', justifyContent: 'center',
+    background: 'rgba(250, 249, 247, 0.85)',
+    backdropFilter: 'blur(2px)',
+  },
+  progressContainer: {
+    width: 200,
+  },
+  progressBar: {
+    width: '100%', height: 3, background: '#e5e2dd', borderRadius: 2,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    width: '100%', height: '100%', background: '#e36216', borderRadius: 2,
+    animation: 'progress-indeterminate 1.5s ease-in-out infinite',
+    transformOrigin: 'left',
   },
   toggleBtn: {
     position: 'fixed', right: 0, top: '50%', transform: 'translateY(-50%)',

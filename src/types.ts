@@ -139,6 +139,8 @@ export interface ClusterOptions {
   clusterPadding?: number;
   /** Minimum nodes per cluster; smaller clusters get merged. Default: 3 */
   minClusterSize?: number;
+  /** Module IDs that always get their own dedicated cluster (e.g. boundary modules) */
+  pinnedModules?: string[];
 }
 
 export interface LayoutOptions {

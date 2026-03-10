@@ -192,11 +192,29 @@ export function buildFlowData(
       }
     }
 
+    // Resolve node labels for tooltip
+    const srcNode = nodeMap.get(src);
+    const tgtNode = nodeMap.get(tgt);
+
     flowEdges.push({
       id: edgeId,
       source: src,
       target: tgt,
-      type: 'default',
+      type: 'tooltip',
+      data: {
+        relation: sourceEdge?.relation,
+        sourceLabel: srcNode?.label ?? src,
+        targetLabel: tgtNode?.label ?? tgt,
+        mechanismDescription: sourceEdge?.mechanismDescription,
+        keyInsight: sourceEdge?.keyInsight,
+        methodType: sourceEdge?.methodType ?? sourceEdge?.evidence?.methodType,
+        pmid: sourceEdge?.pmid ?? sourceEdge?.evidence?.pmid,
+        confidence: sourceEdge?.causalConfidence,
+        strokeColor,
+        strokeWidth,
+        strokeDasharray: isInhibitory ? '4 2' : undefined,
+        opacity,
+      },
       style: {
         stroke: strokeColor,
         strokeWidth,

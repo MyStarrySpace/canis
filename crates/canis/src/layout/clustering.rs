@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use crate::graph::AdGraph;
 use crate::types::{ClusterCountMode, ClusterOptions};
@@ -30,15 +30,103 @@ pub fn spectral_cluster(graph: &AdGraph, opts: &ClusterOptions) -> ClusterAssign
         };
     }
 
+    // Extract pinned module nodes into their own dedicated clusters first
+    let pinned_set: HashSet<&str> = opts.pinned_modules.iter().map(|s| s.as_str()).collect();
+    let mut pinned_clusters: Vec<Vec<String>> = Vec::new();
+    let mut pinned_assignments: HashMap<String, usize> = HashMap::new();
+    let mut remaining_ids: Vec<String> = Vec::new();
+
+    if !pinned_set.is_empty() {
+        // Group pinned nodes by module
+        let mut module_nodes: HashMap<String, Vec<String>> = HashMap::new();
+        for id in &node_ids {
+            if let Some(node) = graph.node(id) {
+                if pinned_set.contains(node.module_id.as_str()) {
+                    module_nodes
+                        .entry(node.module_id.clone())
+                        .or_default()
+                        .push(id.clone());
+                } else {
+                    remaining_ids.push(id.clone());
+                }
+            } else {
+                remaining_ids.push(id.clone());
+            }
+        }
+
+        // Sort pinned modules deterministically
+        let mut pinned_module_order: Vec<String> = module_nodes.keys().cloned().collect();
+        pinned_module_order.sort();
+
+        for module_id in &pinned_module_order {
+            if let Some(nodes) = module_nodes.remove(module_id) {
+                if !nodes.is_empty() {
+                    let idx = pinned_clusters.len();
+                    for nid in &nodes {
+                        pinned_assignments.insert(nid.clone(), idx);
+                    }
+                    pinned_clusters.push(nodes);
+                }
+            }
+        }
+    } else {
+        remaining_ids = node_ids.clone();
+    }
+
+    // If all nodes are pinned, we're done
+    if remaining_ids.is_empty() {
+        let k = pinned_clusters.len();
+        return ClusterAssignment {
+            assignments: pinned_assignments,
+            clusters: pinned_clusters,
+            k,
+        };
+    }
+
+    // Cluster the remaining (non-pinned) nodes
+    let mut sub_result = cluster_subset(graph, &remaining_ids, opts);
+
+    // Merge: offset sub_result cluster indices by the number of pinned clusters
+    let offset = pinned_clusters.len();
+    let mut final_clusters = pinned_clusters;
+    let mut final_assignments = pinned_assignments;
+
+    for (idx, cluster) in sub_result.clusters.drain(..).enumerate() {
+        for nid in &cluster {
+            final_assignments.insert(nid.clone(), idx + offset);
+        }
+        final_clusters.push(cluster);
+    }
+
+    let k = final_clusters.len();
+    ClusterAssignment {
+        assignments: final_assignments,
+        clusters: final_clusters,
+        k,
+    }
+}
+
+/// Cluster a subset of nodes (used after pinned modules are extracted).
+fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -> ClusterAssignment {
+    let n = node_ids.len();
+
+    if n == 0 {
+        return ClusterAssignment {
+            assignments: HashMap::new(),
+            clusters: vec![],
+            k: 0,
+        };
+    }
+
     // Hybrid mode: use modules directly as clusters
     if opts.hybrid_modules {
-        let mut result = module_based_clustering(graph, &node_ids);
+        let mut result = module_based_clustering(graph, node_ids);
         merge_small_clusters(&mut result, opts.min_cluster_size);
         return result;
     }
 
     if n <= 2 {
-        return single_cluster(&node_ids);
+        return single_cluster(node_ids);
     }
 
     // Build id → index mapping

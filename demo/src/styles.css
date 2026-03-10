@@ -14,3 +14,9 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+@keyframes progress-indeterminate {
+  0% { transform: scaleX(0) translateX(0); }
+  40% { transform: scaleX(0.4) translateX(25%); }
+  100% { transform: scaleX(0) translateX(100%); }
+}

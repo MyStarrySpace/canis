@@ -1,4 +1,4 @@
-import { ArrowDownUp, ArrowRightLeft, Filter, Layers, RotateCcw, Scissors, X } from 'lucide-react';
+import { ArrowDownUp, ArrowRightLeft, Circle, Filter, Layers, RotateCcw, Scissors, X } from 'lucide-react';
 
 interface GraphToolbarProps {
   evidenceFilter: 'strong' | 'moderate' | 'all';
@@ -14,6 +14,8 @@ interface GraphToolbarProps {
   hideRedundantEdges: boolean;
   onHideRedundantEdgesChange: (hide: boolean) => void;
   redundantEdgeCount: number;
+  hideOrphans: boolean;
+  onHideOrphansChange: (hide: boolean) => void;
   nodeCount: number;
   edgeCount: number;
   layerCount: number;
@@ -47,6 +49,8 @@ export function GraphToolbar({
   hideRedundantEdges,
   onHideRedundantEdgesChange,
   redundantEdgeCount,
+  hideOrphans,
+  onHideOrphansChange,
   nodeCount,
   edgeCount,
   layerCount,
@@ -193,6 +197,21 @@ export function GraphToolbar({
         <Scissors size={10} color={hideRedundantEdges ? '#5a8a6e' : '#4a4a4a'} />
         <span style={{ fontSize: 9, color: hideRedundantEdges ? '#5a8a6e' : '#4a4a4a' }}>
           {hideRedundantEdges ? `−${redundantEdgeCount}` : 'Prune'}
+        </span>
+      </button>
+
+      {/* Orphan node toggle */}
+      <button
+        onClick={() => onHideOrphansChange(!hideOrphans)}
+        style={{
+          ...styles.dirBtn,
+          background: hideOrphans ? '#f5f3f0' : 'transparent',
+        }}
+        title={hideOrphans ? 'Show disconnected nodes' : 'Hide nodes with no edges'}
+      >
+        <Circle size={10} color={hideOrphans ? '#5a8a6e' : '#4a4a4a'} />
+        <span style={{ fontSize: 9, color: hideOrphans ? '#5a8a6e' : '#4a4a4a' }}>
+          {hideOrphans ? 'Orphans off' : 'Orphans'}
         </span>
       </button>
 

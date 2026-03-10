@@ -435,6 +435,10 @@ pub struct ClusterOptions {
     /// Minimum nodes per cluster; smaller clusters get merged into nearest
     #[serde(default = "default_min_cluster_size")]
     pub min_cluster_size: usize,
+    /// Module IDs that should always be placed in their own dedicated cluster,
+    /// regardless of the clustering algorithm used. Useful for boundary modules.
+    #[serde(default)]
+    pub pinned_modules: Vec<String>,
 }
 
 fn default_cluster_padding() -> f64 {
@@ -453,6 +457,7 @@ impl Default for ClusterOptions {
             hybrid_modules: false,
             cluster_padding: default_cluster_padding(),
             min_cluster_size: default_min_cluster_size(),
+            pinned_modules: Vec::new(),
         }
     }
 }

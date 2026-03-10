@@ -1492,14 +1492,6 @@
       "description": "pSer757 by mTORC1 blocks AMPK binding site, inhibits autophagy initiation"
     },
     {
-      "id": "lysosomal_genes_down",
-      "label": "Lysosomal Genes Down",
-      "category": "PROCESS",
-      "subtype": "BiologicalProcess",
-      "moduleId": "M03",
-      "description": "TFEB targets not transcribed: ATP6V0A1, ATP6V1H, CTSD, CTSB, LAMP1, LAMP2, GBA"
-    },
-    {
       "id": "mitophagy_rate_reduced",
       "label": "Mitophagy Reduced",
       "category": "PROCESS",
@@ -1854,14 +1846,6 @@
       "moduleId": "M12",
       "description": "GSK3beta with Cys sulfhydrated → INACTIVE; counter-mechanism to NLRP3-driven tau phosphorylation",
       "pmid": "33431651"
-    },
-    {
-      "id": "APOE4_genotype",
-      "label": "APOE4 Genotype",
-      "category": "BOUNDARY",
-      "subtype": "GeneticVariant",
-      "moduleId": "M01",
-      "description": "Genetic variant; ε4 allele confers ~3-12x AD risk depending on copy number"
     },
     {
       "id": "TREM2_variants",
@@ -4877,20 +4861,6 @@
       "methodType": null
     },
     {
-      "id": "NE.001",
-      "source": "endfoot_AQP4_polarization",
-      "target": "glymphatic_flow_rate",
-      "relation": "directlyIncreases",
-      "moduleId": "M12",
-      "causalConfidence": "L5",
-      "mechanismDescription": "AQP4 polarized to perivascular endfeet drives water flux for glymphatic clearance. Loss → 60-70% reduced flow.",
-      "keyInsight": "AQP4-/- mice show ~65% reduced glymphatic clearance",
-      "evidence": {
-        "pmid": "22896675"
-      },
-      "methodType": null
-    },
-    {
       "id": "NE.002",
       "source": "glymphatic_flow_rate",
       "target": "total_brain_iron",
@@ -5003,20 +4973,6 @@
       "keyInsight": "Complement reads oxidative damage state of synaptic membranes",
       "evidence": {
         "pmid": "18199988"
-      },
-      "methodType": null
-    },
-    {
-      "id": "TC.004",
-      "source": "c1q",
-      "target": "complement_mediated_pruning",
-      "relation": "directlyIncreases",
-      "moduleId": "M09",
-      "causalConfidence": "L5",
-      "mechanismDescription": "C1q → C3 → C3b opsonization → CR3 microglial engulfment",
-      "keyInsight": "LOAD-BEARING THROUGHLINE EDGE: molecular cascade → synapse loss",
-      "evidence": {
-        "pmid": "27033548"
       },
       "methodType": null
     },
@@ -5235,17 +5191,6 @@
       "causalConfidence": "L5",
       "mechanismDescription": "OPC differentiation produces new mature oligodendrocytes",
       "keyInsight": "OPC → OL differentiation required for myelin repair",
-      "methodType": null
-    },
-    {
-      "id": "MI.003",
-      "source": "oligodendrocyte_count",
-      "target": "myelin_integrity",
-      "relation": "increases",
-      "moduleId": "M11",
-      "causalConfidence": "L5",
-      "mechanismDescription": "Oligodendrocytes produce and maintain myelin",
-      "keyInsight": "OL loss → demyelination",
       "methodType": null
     },
     {
@@ -5620,36 +5565,6 @@
       "firstAuthor": "Steen",
       "year": 2005,
       "methodType": "cohort"
-    },
-    {
-      "id": "IA.003",
-      "source": "TFEB_phosphorylated",
-      "target": "lysosomal_genes_down",
-      "relation": "increases",
-      "moduleId": "M03",
-      "mechanismDescription": "pSer211-TFEB binds 14-3-3 → cytoplasmic retention → CLEAR network genes not transcribed",
-      "keyInsight": "TFEB sequestration silences lysosomal biogenesis program",
-      "evidence": {
-        "pmid": "22343943"
-      },
-      "pmid": "22343943",
-      "firstAuthor": "Settembre",
-      "year": 2012,
-      "methodType": "knockout"
-    },
-    {
-      "id": "IA.004",
-      "source": "lysosomal_genes_down",
-      "target": "lysosomal_dysfunction",
-      "relation": "increases",
-      "moduleId": "M03",
-      "causalConfidence": "L4",
-      "mechanismDescription": "Reduced v-ATPase subunits → pH rises >5.5; reduced cathepsins → proteolysis fails",
-      "keyInsight": "Gene silencing → functional lysosomal failure",
-      "evidence": {
-        "pmid": "35654956"
-      },
-      "methodType": null
     },
     {
       "id": "IA.005",
@@ -7431,19 +7346,6 @@
       "firstAuthor": "Letra",
       "year": 2014,
       "methodType": "cohort"
-    },
-    {
-      "id": "E01.004",
-      "source": "lysosomal_genes_down",
-      "target": "lysosome",
-      "relation": "decreases",
-      "moduleId": "M01",
-      "pmid": "35654956",
-      "firstAuthor": "Lee",
-      "year": 2022,
-      "methodType": "intervention_animal",
-      "mechanismDescription": "↓v-ATPase subunits, ↓LAMP proteins, ↓cathepsins → reduced lysosome biogenesis and functional capacity",
-      "keyInsight": "Lysosome pool depleted when TFEB-driven biogenesis is suppressed"
     },
     {
       "id": "E01.004b",
@@ -9548,7 +9450,7 @@
     },
     {
       "id": "V0471",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "APOE_expression_brain",
       "relation": "regulates",
       "moduleId": "M01",
@@ -9557,28 +9459,8 @@
       "pmid": "36153580"
     },
     {
-      "id": "V0472",
-      "source": "APOE4_genotype",
-      "target": "APOE_lipidated",
-      "relation": "increases",
-      "moduleId": "M01",
-      "methodType": "gwas",
-      "mechanismDescription": "The APOE4 genotype encodes a protein variant that affects how APOE is lipidated and secreted. APOE4 carriers show differential lipidation patterns compared to APOE3, with APOE4 being less efficiently lipidated and having altered lipid binding properties, particularly affecting cholesterol and phospholipid interactions.",
-      "pmid": "36153580"
-    },
-    {
-      "id": "V0473",
-      "source": "APOE4_genotype",
-      "target": "brain_cholesterol",
-      "relation": "disrupts",
-      "moduleId": "M01",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "APOE4 genotype directly disrupts cholesterol and lipid metabolism in the brain by impairing sterol homeostasis in neurons and oligodendrocytes, leading to altered brain cholesterol levels. APOE4 also affects cholesterol handling through impaired lipid transport and metabolism pathways compared to other APOE isoforms.",
-      "pmid": "17888544"
-    },
-    {
       "id": "V0474",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "brain_iron_accumulation",
       "relation": "increases",
       "moduleId": "M01",
@@ -9588,7 +9470,7 @@
     },
     {
       "id": "V0475",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "sleep_disruption",
       "relation": "amplifies",
       "moduleId": "M01",
@@ -9598,7 +9480,7 @@
     },
     {
       "id": "V0476",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "oxidative_stress",
       "relation": "directlyIncreases",
       "moduleId": "M01",
@@ -9608,7 +9490,7 @@
     },
     {
       "id": "V0477",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "neuroinflammation",
       "relation": "amplifies",
       "moduleId": "M01",
@@ -9618,7 +9500,7 @@
     },
     {
       "id": "V0478",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "complement_mediated_pruning",
       "relation": "increases",
       "moduleId": "M01",
@@ -9628,7 +9510,7 @@
     },
     {
       "id": "V0479",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "neuronal_count",
       "relation": "decreases",
       "moduleId": "M01",
@@ -9638,7 +9520,7 @@
     },
     {
       "id": "V0480",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "CSF_biomarkers",
       "relation": "increases",
       "moduleId": "M01",
@@ -9648,7 +9530,7 @@
     },
     {
       "id": "V0481",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "cognitive_function",
       "relation": "decreases",
       "moduleId": "M01",
@@ -9658,7 +9540,7 @@
     },
     {
       "id": "V0482",
-      "source": "APOE4_genotype",
+      "source": "apoe4",
       "target": "mortality",
       "relation": "increases",
       "moduleId": "M01",
@@ -10894,16 +10776,6 @@
       "moduleId": "M01",
       "methodType": "intervention_animal",
       "mechanismDescription": "Depletion of the neural progenitor pool reduces the availability of progenitor cells that can differentiate into oligodendrocyte progenitor cells (OPCs), thereby directly decreasing OPC differentiation capacity. OPCs are derived from neural progenitor populations, and loss of progenitor pool integrity compromises the source population required for OPC specification and differentiation.",
-      "pmid": null
-    },
-    {
-      "id": "V0606",
-      "source": "REST_nuclear",
-      "target": "lysosomal_genes_down",
-      "relation": "regulates",
-      "moduleId": "M01",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "REST (RE1-silencing transcription factor) is a transcriptional repressor that can suppress lysosomal gene expression through binding to RE1/NRSE elements in lysosomal gene promoters. Nuclear REST accumulation has been associated with neuronal stress responses in neurodegeneration, potentially leading to downregulation of lysosomal genes critical for protein clearance in Alzheimer's disease.",
       "pmid": null
     },
     {
@@ -12837,16 +12709,6 @@
       "pmid": null
     },
     {
-      "id": "V0800",
-      "source": "lysosomal_ph",
-      "target": "lysosomal_genes_down",
-      "relation": "regulates",
-      "moduleId": "M02",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Lysosomal pH alterations impair the activation of cathepsin proteases and other pH-dependent hydrolases, leading to transcriptional downregulation of lysosomal genes through impaired lysosomal-nuclear signaling (TFEB/TFE3 pathways). Chronically compromised lysosomal function triggers feedback suppression of lysosomal biogenesis genes.",
-      "pmid": null
-    },
-    {
       "id": "V0801",
       "source": "lysosomal_ph",
       "target": "fenton_reaction",
@@ -13337,16 +13199,6 @@
       "pmid": null
     },
     {
-      "id": "V0850",
-      "source": "AMPK_phosphorylated",
-      "target": "lysosomal_genes_down",
-      "relation": "directlyDecreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "AMPK activation is a key regulator of autophagy and lysosomal biogenesis through TFEB phosphorylation and mTORC1 inhibition; when AMPK is inhibited, these pathways are suppressed, leading to decreased expression of lysosomal genes encoding hydrolases and membrane proteins.",
-      "pmid": null
-    },
-    {
       "id": "V0851",
       "source": "AMPK_phosphorylated",
       "target": "TFEB_phosphorylated",
@@ -13544,16 +13396,6 @@
       "moduleId": "M02",
       "methodType": "in_vitro",
       "mechanismDescription": "V-ATPase functions as the proton pump essential for lysosomal acidification, which is a critical prerequisite for lysosomal proteolysis and selective autophagy pathways including lysophagy. Lysophagy—the autophagic degradation of lysosomes—depends on proper lysosomal pH maintenance and function, processes directly governed by V-ATPase activity.",
-      "pmid": null
-    },
-    {
-      "id": "V0871",
-      "source": "v_atpase",
-      "target": "lysosomal_genes_down",
-      "relation": "regulates",
-      "moduleId": "M02",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "V-ATPase dysfunction impairs lysosomal acidification and autophagy flux, leading to compensatory downregulation of lysosomal genes as part of adaptive cellular stress response in neurodegeneration.",
       "pmid": null
     },
     {
@@ -13827,16 +13669,6 @@
       "pmid": null
     },
     {
-      "id": "V0899",
-      "source": "v_ATPase_activity",
-      "target": "lysosomal_genes_down",
-      "relation": "regulates",
-      "moduleId": "M02",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "v-ATPase activity is essential for lysosomal acidification and function; reduced v-ATPase activity impairs lysosomal degradative capacity, triggering compensatory downregulation of lysosomal genes through negative feedback mechanisms to prevent accumulation of non-functional lysosomes.",
-      "pmid": null
-    },
-    {
       "id": "V0900",
       "source": "v_ATPase_activity",
       "target": "mitophagy_rate_reduced",
@@ -13994,16 +13826,6 @@
       "moduleId": "M03",
       "methodType": "intervention_animal",
       "mechanismDescription": "Cargo accumulation within lysosomes triggers compensatory lysophagy as a cellular clearance mechanism to remove dysfunctional lysosomes and restore lysosomal homeostasis. This is a direct autophagic response where accumulated cargo signals the need for lysosome turnover.",
-      "pmid": null
-    },
-    {
-      "id": "V0916",
-      "source": "cargo_accumulation",
-      "target": "lysosomal_genes_down",
-      "relation": "decreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Cargo accumulation within cells (particularly of misfolded proteins and lipofuscin) triggers cellular stress responses that suppress lysosomal biogenesis and downregulate lysosomal gene expression as part of adaptive metabolic reorganization. This occurs through inhibition of TFEB and other transcriptional regulators that control the coordinated lysosomal expression (CLEAR) network.",
       "pmid": null
     },
     {
@@ -14807,16 +14629,6 @@
       "pmid": null
     },
     {
-      "id": "V0997",
-      "source": "insulin_resistance",
-      "target": "lysosomal_genes_down",
-      "relation": "decreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Insulin resistance impairs mTOR signaling and activates AMPK, leading to reduced autophagy-lysosomal biogenesis through decreased TFEB (Transcription Factor EB) activation and altered CLEAR element-mediated transcription of lysosomal genes. Hyperphosphorylated tau and amyloid accumulation in insulin resistance also impair lysosomal function and suppress lysosomal gene expression through stress response pathways.",
-      "pmid": null
-    },
-    {
       "id": "V0998",
       "source": "insulin_resistance",
       "target": "mitophagy_rate_reduced",
@@ -14914,46 +14726,6 @@
       "moduleId": "M03",
       "methodType": "intervention_animal",
       "mechanismDescription": "Insulin resistance impairs insulin signaling pathways that normally promote mitochondrial biogenesis and oxidative phosphorylation capacity, reducing ATP production. Insulin-PI3K-Akt signaling directly regulates PGC-1α and TFAM expression, which are essential transcription factors for mitochondrial function and ATP synthase expression.",
-      "pmid": null
-    },
-    {
-      "id": "V1008",
-      "source": "lysosomal_genes_down",
-      "target": "lysophagy",
-      "relation": "decreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Lysosomal genes encode proteins essential for lysosomal biogenesis and function, including those required for selective autophagy pathways. Downregulation of lysosomal genes impairs the lysosomal machinery needed to execute lysophagy (selective autophagy of damaged lysosomes), thereby decreasing this quality control pathway.",
-      "pmid": null
-    },
-    {
-      "id": "V1009",
-      "source": "lysosomal_genes_down",
-      "target": "mitophagy_rate_reduced",
-      "relation": "directlyDecreases",
-      "moduleId": "M03",
-      "methodType": "in_vitro",
-      "mechanismDescription": "Lysosomal genes encode hydrolases and membrane proteins essential for autophagosome-lysosome fusion and cargo degradation. Downregulation of lysosomal genes impairs the final degradative capacity of lysosomes, thereby reducing efficient mitophagy completion and mitochondrial clearance.",
-      "pmid": null
-    },
-    {
-      "id": "V1010",
-      "source": "lysosomal_genes_down",
-      "target": "mTORC1_hyperactive",
-      "relation": "directlyDecreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Lysosomes are critical for autophagy-mediated protein degradation and nutrient recycling. When lysosomal genes are downregulated, impaired lysosomal function and autophagy flux lead to reduced amino acid availability and accumulation of autophagic substrates, which directly relieves mTORC1 inhibition through GATOR2/KICSTOR complex signaling and activates mTORC1 hyperactivity.",
-      "pmid": null
-    },
-    {
-      "id": "V1011",
-      "source": "lysosomal_genes_down",
-      "target": "ULK1_phosphorylated",
-      "relation": "directlyDecreases",
-      "moduleId": "M03",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "Lysosomal dysfunction and downregulation of lysosomal genes impairs autophagosome-lysosome fusion and cargo degradation, which directly inhibits ULK1 through loss of feedback activation signals normally generated by successful autophagic flux completion. ULK1 is a master autophagy initiator whose activity is suppressed when lysosomal capacity is compromised, preventing futile autophagy induction.",
       "pmid": null
     },
     {
@@ -25317,16 +25089,6 @@
       "pmid": null
     },
     {
-      "id": "V2048",
-      "source": "DAM_transition",
-      "target": "lysosomal_genes_down",
-      "relation": "decreases",
-      "moduleId": "M07",
-      "methodType": "intervention_animal",
-      "mechanismDescription": "DAM (Disease-Associated Microglia) transition involves microglial activation and phenotypic changes that alter their transcriptional profile, including downregulation of homeostatic genes and lysosomal/catabolic genes as microglia shift from a resting to pro-inflammatory state. This transition directly suppresses the expression of lysosomal genes required for protein degradation and waste clearance.",
-      "pmid": null
-    },
-    {
       "id": "V2049",
       "source": "DAM_transition",
       "target": "microglial_phagocytosis",
@@ -30694,16 +30456,6 @@
       "moduleId": "THER",
       "methodType": "in_vitro",
       "mechanismDescription": "Ambroxol is a glucosylceramidase (GCase) activator that enhances lysosomal hydrolase activity and promotes clearance of autophagic substrates, thereby facilitating lysophagy—the selective autophagy of lysosomes themselves—by improving lysosomal function and reducing lysosomal stress that triggers this process.",
-      "pmid": null
-    },
-    {
-      "id": "V2586",
-      "source": "ambroxol",
-      "target": "lysosomal_genes_down",
-      "relation": "increases",
-      "moduleId": "THER",
-      "methodType": "in_vitro",
-      "mechanismDescription": "Ambroxol is a lysosomal autophagy enhancer that upregulates lysosomal biogenesis and function through activation of transcription factor EB (TFEB), leading to increased expression of lysosomal genes including CLEAR (Coordinated Lysosomal Expression and Regulation) network genes.",
       "pmid": null
     },
     {
@@ -42949,7 +42701,7 @@
     {
       "id": "V3811",
       "source": "ancestry_east_asian",
-      "target": "APOE4_genotype",
+      "target": "apoe4",
       "relation": "increases",
       "moduleId": "M15",
       "methodType": "gwas",
@@ -42974,16 +42726,6 @@
       "moduleId": "M15",
       "methodType": "gwas",
       "mechanismDescription": "APOE local ancestry determines the haplotypic context and allelic composition at the APOE locus, which directly produces the APOE4 allelic variant. Ancestry-specific linkage disequilibrium patterns and haplotype structures shape which APOE alleles (E2, E3, E4) are inherited together in different populations.",
-      "pmid": null
-    },
-    {
-      "id": "V3814",
-      "source": "APOE_local_ancestry",
-      "target": "APOE4_genotype",
-      "relation": "directlyIncreases",
-      "moduleId": "M15",
-      "methodType": "gwas",
-      "mechanismDescription": "APOE local ancestry (the chromosomal origin of APOE alleles from specific populations) directly determines which APOE allelic variants an individual carries, with APOE4 being one of three common isoforms (E2, E3, E4) that vary by population frequency and ancestry. The genetic sequence inherited from ancestral lineages physically encodes the APOE4 genotype at the DNA level.",
       "pmid": null
     },
     {

@@ -10,17 +10,19 @@ import {
   useEdgesState,
   type Node,
   type NodeTypes,
+  type EdgeTypes,
 } from '@xyflow/react';
 import type { CanisNodeData } from '../../../src/lib/convert-to-xyflow';
 import type { LayoutResult } from '../../../src/types';
 import type { MechanisticNode, MechanisticEdge } from '../../../src/index';
 import { DefaultNode } from '../../../src/components/nodes/DefaultNode';
+import { TooltipEdge } from './TooltipEdge';
 import { buildFlowData, type FlowBuildOptions } from './flow-builder';
 // postProcessLayout disabled — pre-filtering keeps layers small enough
 import { modules } from '../data/constants';
-import { GraphToolbar } from './GraphToolbar';
 
 const nodeTypes: NodeTypes = { default: DefaultNode as unknown as NodeTypes['default'] };
+const edgeTypes: EdgeTypes = { tooltip: TooltipEdge as unknown as EdgeTypes['default'] };
 
 interface GraphInnerProps {
   layout: LayoutResult;
@@ -30,20 +32,7 @@ interface GraphInnerProps {
   onNodeClick: (nodeId: string, ctrlKey: boolean) => void;
   onPaneClick?: () => void;
   zoomToNodeId?: string | null;
-  // Toolbar props
-  evidenceFilter: 'strong' | 'moderate' | 'all';
-  onEvidenceFilterChange: (filter: 'strong' | 'moderate' | 'all') => void;
-  direction: 'TopToBottom' | 'LeftToRight';
-  onDirectionChange: (dir: 'TopToBottom' | 'LeftToRight') => void;
-  layoutMode: 'Flat' | 'Hierarchical';
-  onLayoutModeChange: (mode: 'Flat' | 'Hierarchical') => void;
-  clusterMode: 'Auto' | 'ModuleCount';
-  onClusterModeChange: (mode: 'Auto' | 'ModuleCount') => void;
-  showBackEdges: boolean;
-  onShowBackEdgesChange: (show: boolean) => void;
-  hideRedundantEdges: boolean;
-  onHideRedundantEdgesChange: (hide: boolean) => void;
-  redundantEdgeCount: number;
+  showToolbar?: boolean;
   focusLabel?: string | null;
   onExitFocus?: () => void;
 }
@@ -56,19 +45,7 @@ export function GraphInner({
   onNodeClick,
   onPaneClick,
   zoomToNodeId,
-  evidenceFilter,
-  onEvidenceFilterChange,
-  direction,
-  onDirectionChange,
-  layoutMode,
-  onLayoutModeChange,
-  clusterMode,
-  onClusterModeChange,
-  showBackEdges,
-  onShowBackEdgesChange,
-  hideRedundantEdges,
-  onHideRedundantEdgesChange,
-  redundantEdgeCount,
+  showToolbar = true,
   focusLabel,
   onExitFocus,
 }: GraphInnerProps) {
@@ -117,6 +94,7 @@ export function GraphInner({
       onNodeClick={handleNodeClick}
       onPaneClick={onPaneClick}
       nodeTypes={nodeTypes}
+      edgeTypes={edgeTypes}
       fitView
       fitViewOptions={{ padding: 0.2 }}
       minZoom={0.05}
@@ -156,29 +134,7 @@ export function GraphInner({
         </div>
       </Panel>
 
-      <Panel position="top-center">
-        <GraphToolbar
-          evidenceFilter={evidenceFilter}
-          onEvidenceFilterChange={onEvidenceFilterChange}
-          direction={direction}
-          onDirectionChange={onDirectionChange}
-          layoutMode={layoutMode}
-          onLayoutModeChange={onLayoutModeChange}
-          clusterMode={clusterMode}
-          onClusterModeChange={onClusterModeChange}
-          showBackEdges={showBackEdges}
-          onShowBackEdgesChange={onShowBackEdgesChange}
-          hideRedundantEdges={hideRedundantEdges}
-          onHideRedundantEdgesChange={onHideRedundantEdgesChange}
-          redundantEdgeCount={redundantEdgeCount}
-          nodeCount={rawNodes.length}
-          edgeCount={rawEdges.length}
-          layerCount={layout.stats.layerCount}
-          clusterCount={layout.clusters?.length}
-          focusLabel={focusLabel}
-          onExitFocus={onExitFocus}
-        />
-      </Panel>
+{/* Toolbar is rendered by App.tsx above the graph container */}
     </ReactFlow>
   );
 }
