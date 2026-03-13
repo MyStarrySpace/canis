@@ -1,0 +1,166 @@
+=== UNMATCHED OLD NODES (110) ===
+
+age_under_65                             <65 years
+23571587                                 65-74 years
+age_65_74                                75-84 years
+23571587                                 85+ years
+age_75_84                                APOE Genotype
+23571587                                 APOE ε2
+age_85_plus                              APOE ε3
+23571587                                 APOE ε4 (1 copy)
+apoe_genotype                            APOE ε4/ε4
+23571587                                 Common (WT)
+apoe3                                    R47H
+23571587                                 R62H
+apoe4_het                                H157Y
+23150908                                 Synapse Density
+trem2_r47h                               Neuron Count
+25533203                                 sPDGFRβ (Pericyte Injury)
+trem2_h157y                              p-tau217
+27570872                                 p-tau181
+plasma_spdgfrbeta                        plasma_spdgfrbeta
+plasma_ptau181                           plasma_ptau181
+plasma_abeta42_40_ratio                  plasma_abeta42_40_ratio
+plasma_nfl                               plasma_nfl
+retinal_rnfl                             retinal_rnfl
+retinal_amyloid                          retinal_amyloid
+ad_autoantibody_panel                    ad_autoantibody_panel
+glutaminolysis_compensatory              Compensatory Glutaminolysis
+iglon5_autoantibodies                    Anti-IgLON5 Autoantibodies
+creb5_expression                         CREB5 Expression
+apoe4_sulfatide_transport                ApoE4 Sulfatide Transport (Enhanced)
+sulfatide_depleted                       Sulfatide Depletion
+omg_level                                OMG (Oligodendrocyte Myelin Glycoprotein)
+plasma_omg                               Plasma OMG
+csf_sulfatide                            CSF Sulfatide
+arterial_pulsatility                     Arterial Pulsatility
+fcrn_transport                           FcRn Transport (BBB)
+fcrn_recycling                           FcRn Recycling (Periphery)
+peripheral_sink_hypothesis               Peripheral Sink Hypothesis
+intramural_periarterial_drainage         Intramural Periarterial Drainage (IPAD)
+cervical_lymph_nodes                     Cervical Lymph Node Drainage
+splenic_clearance                        Splenic Aβ Clearance
+hepatic_clearance                        Hepatic Aβ Clearance
+aria_edema                               ARIA-E (Edema)
+aria_hemorrhage                          ARIA-H (Hemorrhage)
+opc_nos1_activity                        OPC NOS1 Activity
+ol_cholesterol_synthesis                 OL Cholesterol Synthesis
+opc_tgf_beta1                            OPC-Derived TGF-β1
+opc_vascular_coupling                    OPC-Vascular Coupling
+slit2_neuronal                           Neuronal SLIT2
+robo1_ol                                 OL ROBO1 Receptor
+fyn_kinase_ol                            OL Fyn Kinase Activity
+rhoa_gtp_ol                              OL RhoA-GTP
+ol_process_retraction                    OL Process Retraction
+myelin_sheath_withdrawal                 Myelin Sheath Withdrawal
+dap12_signaling                          DAP12 Signaling
+a7nachr                                  α7 Nicotinic AChR
+ab42_a7nachr_complex                     Aβ42–α7nAChR Complex
+intraneuronal_amyloid                    Intraneuronal Aβ
+microtubule_destabilization              Microtubule Destabilization
+exercise                                 Exercise
+exercise_sedentary                       Sedentary
+28054939                                 Light Activity
+exercise_light                           Moderate Exercise
+28054939                                 Vigorous Exercise
+exercise_moderate                        BBB Penetration
+28054939                                 Target Engagement
+exercise_vigorous                        Biomarker Change
+28054939                                 Clinical Benefit
+bbb_penetration                          bbb_penetration
+target_engagement                        target_engagement
+biomarker_change                         biomarker_change
+clinical_benefit                         clinical_benefit
+apoe4_ancestry_effect                    APOE4 Ancestry Effect
+microglial_reprogramming                 Microglial Reprogramming
+aep_inactive                             AEP (Inactive)
+aep_active                               AEP (Active)
+vimentin_intact                          Vimentin (Intact)
+vimentin_cleaved                         Vimentin (Cleaved)
+gfap_network_intact                      GFAP Network Intact
+gfap_released                            GFAP (Released)
+slc1a2_expression                        GLT-1/EAAT2 (SLC1A2)
+slc1a2_downregulated                     GLT-1 Downregulated
+low_glutamate_diet                       Low-Glutamate Diet
+glutamine_synthetase_active              Glutamine Synthetase (Active)
+glutamine_synthetase_reduced             Glutamine Synthetase (Reduced)
+plasma_gfap                              Plasma GFAP
+dti_alps                                 DTI-ALPS Index
+vimentin_fragments                       Vimentin Fragments
+ebv                                      EBV
+vzv_reactivation                         VZV Reactivation
+neurotoxicant_exposure                   Neurotoxicant Exposure
+organophosphate                          Organophosphates
+nerve_agent                              Nerve Agents (Sarin/Cyclosarin)
+pyridostigmine_bromide                   Pyridostigmine Bromide
+gwi_glymphatic_impairment                GWI Glymphatic Impairment
+chronic_immune_activation                Chronic Immune Activation
+gpcr_autoantibodies                      GPCR Autoantibodies
+plasma_gpcr_aabs                         Plasma GPCR-AABs
+gpcr_signaling_dysregulated              GPCR Signaling Dysregulated
+vasoregulatory_dysfunction               Vasoregulatory Dysfunction
+microcirculatory_impairment              Microcirculatory Impairment
+tissue_hypoperfusion                     Tissue Hypoperfusion
+trained_immunity_protective              Trained Immunity (Protective)
+trained_immunity_maladaptive             Trained Immunity (Maladaptive)
+gaba_shunt_active                        GABA Shunt Active
+nfl_level                                Neurofilament Light (NfL)
+testosterone_neuroprotection             Testosterone Neuroprotection
+hpa_axis_activation                      HPA Axis Activation
+stress_reduction                         Stress Reduction Interventions
+thyroid_function                         Thyroid Function
+hypothyroidism                           Hypothyroidism
+
+=== SKIPPED EDGES (no node mapping, 115) ===
+
+E05.020         tca_disrupted → glutaminolysis_compensatory [1 PMIDs]
+E05.021         glutaminolysis_compensatory → ammonia_accumulation [0 PMIDs]
+E_CM.016        csf_biomarkers → clinical_benefit [1 PMIDs]
+E07.026         iglon5_autoantibodies → neuronal_hyperactivity [0 PMIDs]
+E09.018         creb5_expression → microglial_senescence [0 PMIDs]
+E09.019         aging → creb5_expression [0 PMIDs]
+E10.001         apoe_genotype → apoe4_domain_interaction [1 PMIDs]
+E10.013         apoe4_domain_interaction → apoe4_sulfatide_transport [1 PMIDs]
+E10.014         apoe4_sulfatide_transport → sulfatide_level [1 PMIDs]
+E10.015         sulfatide_level → sulfatide_depleted [1 PMIDs]
+E10.016         sulfatide_depleted → myelin_integrity [1 PMIDs]
+E10.019         oligodendrocyte_dysfunction → omg_level [0 PMIDs]
+E10.020         omg_level → plasma_omg [0 PMIDs]
+E10.021         sulfatide_level → csf_sulfatide [1 PMIDs]
+E10.022         sulfatide_depleted → abeta_clearance [1 PMIDs]
+E10.023         apoe_genotype → sulfatide_level [1 PMIDs]
+E12.001         apoe_genotype → cypa_elevated [1 PMIDs]
+E12.017         arterial_pulsatility → csf_isf_exchange [1 PMIDs]
+E12.018         exercise → aqp4_polarization [2 PMIDs]
+E12.019         exercise → arterial_pulsatility [1 PMIDs]
+E12.028         pericyte_injury → plasma_spdgfrbeta [1 PMIDs]
+E12.032         tau_aggregated → plasma_ptau181 [1 PMIDs]
+E12.033         neuronal_count → plasma_nfl [1 PMIDs]
+E12.034         neuronal_count → retinal_rnfl [1 PMIDs]
+E12.035         isf_abeta_clearance → intramural_periarterial_drainage [1 PMIDs]
+E12.036         intramural_periarterial_drainage → abeta_oligomers [1 PMIDs]
+E12.037         meningeal_lymphatics → cervical_lymph_nodes [1 PMIDs]
+E12.038         cervical_lymph_nodes → splenic_clearance [1 PMIDs]
+E12.039         cervical_lymph_nodes → hepatic_clearance [1 PMIDs]
+E12.040         splenic_clearance → abeta_oligomers [1 PMIDs]
+E12.041         hepatic_clearance → abeta_oligomers [1 PMIDs]
+E12.042         peripheral_sink_hypothesis → abeta_oligomers [1 PMIDs]
+E12.043         fcrn_transport → bbb_integrity [1 PMIDs]
+E12.044         fcrn_recycling → fcrn_transport [1 PMIDs]
+E12.045         abeta_plaques → aria_edema [1 PMIDs]
+E12.046         aria_edema → aria_hemorrhage [1 PMIDs]
+E12.047         abeta_plaques → plasma_abeta42_40_ratio [1 PMIDs]
+E12.048         abeta_oligomers → retinal_amyloid [1 PMIDs]
+E12.049         tau_hyperphosphorylated → ad_autoantibody_panel [1 PMIDs]
+E13.011         ol_cholesterol_synthesis → mature_oligodendrocytes [1 PMIDs]
+E13.013         apoe_genotype → ol_cholesterol_synthesis [1 PMIDs]
+E13.014         opcs → opc_tgf_beta1 [1 PMIDs]
+E13.015         opc_tgf_beta1 → bbb_integrity [1 PMIDs]
+E13.016         opc_vascular_coupling → pericyte_function [1 PMIDs]
+E13.017         opc_nos1_activity → opc_vascular_coupling [0 PMIDs]
+E13.025         tau_aggregated → dap12_signaling [0 PMIDs]
+E13.026         dap12_signaling → slit2_neuronal [0 PMIDs]
+E13.027         slit2_neuronal → robo1_ol [2 PMIDs]
+E13.028         robo1_ol → fyn_kinase_ol [1 PMIDs]
+E13.029         fyn_kinase_ol → rhoa_gtp_ol [1 PMIDs]
+... and 65 more

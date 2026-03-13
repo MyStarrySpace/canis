@@ -1,7 +1,7 @@
 use std::collections::{HashMap, HashSet};
 
 use crate::graph::AdGraph;
-use crate::types::{ClusterCountMode, ClusterOptions};
+use crate::types::{ClusterCountMode, ClusterDiagnostics, ClusterOptions};
 
 /// Result of clustering: node→cluster assignment and cluster membership lists.
 pub struct ClusterAssignment {
@@ -11,6 +11,10 @@ pub struct ClusterAssignment {
     pub clusters: Vec<Vec<String>>,
     /// Number of clusters
     pub k: usize,
+    /// How k was determined
+    pub method: String,
+    /// Eigenvalues from spectral analysis (empty if not used)
+    pub eigenvalues: Vec<f64>,
 }
 
 /// Partition graph nodes into clusters using spectral analysis or module grouping.
@@ -27,6 +31,8 @@ pub fn spectral_cluster(graph: &AdGraph, opts: &ClusterOptions) -> ClusterAssign
             assignments: HashMap::new(),
             clusters: vec![],
             k: 0,
+            method: "empty".to_string(),
+            eigenvalues: vec![],
         };
     }
 
@@ -80,6 +86,8 @@ pub fn spectral_cluster(graph: &AdGraph, opts: &ClusterOptions) -> ClusterAssign
             assignments: pinned_assignments,
             clusters: pinned_clusters,
             k,
+            method: "pinned_only".to_string(),
+            eigenvalues: vec![],
         };
     }
 
@@ -88,6 +96,8 @@ pub fn spectral_cluster(graph: &AdGraph, opts: &ClusterOptions) -> ClusterAssign
 
     // Merge: offset sub_result cluster indices by the number of pinned clusters
     let offset = pinned_clusters.len();
+    let method = sub_result.method.clone();
+    let eigenvalues = sub_result.eigenvalues.clone();
     let mut final_clusters = pinned_clusters;
     let mut final_assignments = pinned_assignments;
 
@@ -103,6 +113,8 @@ pub fn spectral_cluster(graph: &AdGraph, opts: &ClusterOptions) -> ClusterAssign
         assignments: final_assignments,
         clusters: final_clusters,
         k,
+        method,
+        eigenvalues,
     }
 }
 
@@ -115,18 +127,23 @@ fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -
             assignments: HashMap::new(),
             clusters: vec![],
             k: 0,
+            method: "empty".to_string(),
+            eigenvalues: vec![],
         };
     }
 
     // Hybrid mode: use modules directly as clusters
     if opts.hybrid_modules {
         let mut result = module_based_clustering(graph, node_ids);
+        result.method = "module_passthrough".to_string();
         merge_small_clusters(&mut result, opts.min_cluster_size);
         return result;
     }
 
     if n <= 2 {
-        return single_cluster(node_ids);
+        let mut result = single_cluster(node_ids);
+        result.method = "too_small".to_string();
+        return result;
     }
 
     // Build id → index mapping
@@ -171,6 +188,7 @@ fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -
     if lambda_max < 1e-10 {
         // Graph has no edges; fall back to module-based or single cluster
         let mut result = module_based_clustering(graph, &node_ids);
+        result.method = "no_edges_fallback".to_string();
         merge_small_clusters(&mut result, opts.min_cluster_size);
         return result;
     }
@@ -193,10 +211,20 @@ fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -
     let eigenvalues_l: Vec<f64> = eigenpairs.iter().map(|(_, mu)| lambda_max - mu).collect();
 
     // Determine actual k
+    let method_name;
     let k = match opts.count_mode {
-        ClusterCountMode::Auto => eigengap_k(&eigenvalues_l, max_k),
-        ClusterCountMode::Fixed => opts.cluster_count.unwrap_or(max_k).min(n),
-        ClusterCountMode::ModuleCount => max_k.min(n),
+        ClusterCountMode::Auto => {
+            method_name = "eigengap";
+            eigengap_k(&eigenvalues_l, max_k)
+        }
+        ClusterCountMode::Fixed => {
+            method_name = "fixed";
+            opts.cluster_count.unwrap_or(max_k).min(n)
+        }
+        ClusterCountMode::ModuleCount => {
+            method_name = "module_count";
+            max_k.min(n)
+        }
     };
 
     let k = k.max(2).min(n);
@@ -205,7 +233,10 @@ fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -
     // (skip eigenvector 0 which is the trivial constant vector)
     let embed_dim = k.min(eigenpairs.len().saturating_sub(1));
     if embed_dim == 0 {
-        return single_cluster(&node_ids);
+        let mut result = single_cluster(&node_ids);
+        result.method = "no_eigenvectors".to_string();
+        result.eigenvalues = eigenvalues_l;
+        return result;
     }
 
     let embedding: Vec<Vec<f64>> = (0..n)
@@ -246,6 +277,8 @@ fn cluster_subset(graph: &AdGraph, node_ids: &[String], opts: &ClusterOptions) -
         assignments,
         clusters,
         k: k_actual,
+        method: method_name.to_string(),
+        eigenvalues: eigenvalues_l,
     };
     merge_small_clusters(&mut result, opts.min_cluster_size);
     result
@@ -333,6 +366,8 @@ fn module_based_clustering(graph: &AdGraph, node_ids: &[String]) -> ClusterAssig
         assignments,
         clusters,
         k,
+        method: "module_based".to_string(),
+        eigenvalues: vec![],
     }
 }
 
@@ -343,6 +378,89 @@ fn single_cluster(node_ids: &[String]) -> ClusterAssignment {
         assignments,
         clusters: vec![node_ids.to_vec()],
         k: 1,
+        method: "single".to_string(),
+        eigenvalues: vec![],
+    }
+}
+
+/// Compute clustering diagnostics by comparing spectral clusters against module assignments.
+pub fn compute_diagnostics(
+    graph: &AdGraph,
+    assignment: &ClusterAssignment,
+) -> ClusterDiagnostics {
+    // Module agreement: NMI approximation via purity
+    // For each cluster, find its dominant module; agreement = fraction of nodes matching dominant
+    let mut total_matching = 0usize;
+    let mut total_nodes = 0usize;
+    let mut mixed_clusters = 0usize;
+    let mut modules_in_clusters: HashMap<String, HashSet<usize>> = HashMap::new();
+
+    for (cluster_idx, cluster_nodes) in assignment.clusters.iter().enumerate() {
+        let mut module_counts: HashMap<&str, usize> = HashMap::new();
+        for nid in cluster_nodes {
+            if let Some(node) = graph.node(nid) {
+                *module_counts.entry(node.module_id.as_str()).or_insert(0) += 1;
+                modules_in_clusters
+                    .entry(node.module_id.clone())
+                    .or_default()
+                    .insert(cluster_idx);
+            }
+        }
+        let dominant = module_counts.values().copied().max().unwrap_or(0);
+        total_matching += dominant;
+        total_nodes += cluster_nodes.len();
+        if module_counts.len() > 1 {
+            mixed_clusters += 1;
+        }
+    }
+
+    let module_agreement = if total_nodes > 0 {
+        total_matching as f64 / total_nodes as f64
+    } else {
+        1.0
+    };
+
+    // Modules split: how many modules appear in >1 cluster
+    let modules_split = modules_in_clusters
+        .values()
+        .filter(|clusters| clusters.len() > 1)
+        .count();
+
+    // Cross-cluster edge ratio
+    let mut total_edges = 0usize;
+    let mut cross_edges = 0usize;
+    for edge in graph.edges() {
+        let src_c = assignment.assignments.get(&edge.source);
+        let tgt_c = assignment.assignments.get(&edge.target);
+        if let (Some(s), Some(t)) = (src_c, tgt_c) {
+            total_edges += 1;
+            if s != t {
+                cross_edges += 1;
+            }
+        }
+    }
+    let cross_cluster_edge_ratio = if total_edges > 0 {
+        cross_edges as f64 / total_edges as f64
+    } else {
+        0.0
+    };
+
+    // Truncate eigenvalues to first 20 for serialization
+    let eigenvalues: Vec<f64> = assignment
+        .eigenvalues
+        .iter()
+        .take(20)
+        .map(|v| (v * 10000.0).round() / 10000.0)
+        .collect();
+
+    ClusterDiagnostics {
+        method: assignment.method.clone(),
+        k: assignment.k,
+        eigenvalues,
+        module_agreement: (module_agreement * 1000.0).round() / 1000.0,
+        cross_cluster_edge_ratio: (cross_cluster_edge_ratio * 1000.0).round() / 1000.0,
+        modules_split,
+        mixed_clusters,
     }
 }
 
@@ -691,6 +809,8 @@ mod tests {
                 vec!["c".to_string(), "d".to_string()],
             ],
             k: 3,
+            method: "test".to_string(),
+            eigenvalues: vec![],
         };
 
         merge_small_clusters(&mut result, 2);

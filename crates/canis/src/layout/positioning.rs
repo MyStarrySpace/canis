@@ -44,22 +44,48 @@ pub fn assign_coordinates(
     positions
 }
 
-/// Compute the bounding box of the layout
+// Approximate node dimensions (must match React rendering).
+// Nodes are 180px wide; height varies but ~60px is typical.
+pub const NODE_WIDTH: f64 = 180.0;
+pub const NODE_HEIGHT: f64 = 60.0;
+
+/// Compute the bounding box of the layout, accounting for node dimensions.
 pub fn compute_bounds(positions: &[(String, f64, f64)]) -> (f64, f64) {
+    if positions.is_empty() {
+        return (0.0, 0.0);
+    }
+
+    let mut min_x = f64::MAX;
+    let mut min_y = f64::MAX;
     let mut max_x: f64 = 0.0;
     let mut max_y: f64 = 0.0;
 
     for (_, x, y) in positions {
-        if *x > max_x {
-            max_x = *x;
-        }
-        if *y > max_y {
-            max_y = *y;
-        }
+        if *x < min_x { min_x = *x; }
+        if *y < min_y { min_y = *y; }
+        if *x > max_x { max_x = *x; }
+        if *y > max_y { max_y = *y; }
     }
 
-    // Add padding
-    (max_x + 100.0, max_y + 100.0)
+    // Extent = range + node size + small buffer
+    let width = (max_x - min_x) + NODE_WIDTH + 20.0;
+    let height = (max_y - min_y) + NODE_HEIGHT + 20.0;
+    (width, height)
+}
+
+/// Normalize positions so the minimum coordinate is (0, 0).
+/// Returns the (min_x, min_y) that was subtracted.
+pub fn normalize_positions(positions: &mut [(String, f64, f64)]) -> (f64, f64) {
+    if positions.is_empty() {
+        return (0.0, 0.0);
+    }
+    let min_x = positions.iter().map(|(_, x, _)| *x).fold(f64::MAX, f64::min);
+    let min_y = positions.iter().map(|(_, _, y)| *y).fold(f64::MAX, f64::min);
+    for pos in positions.iter_mut() {
+        pos.1 -= min_x;
+        pos.2 -= min_y;
+    }
+    (min_x, min_y)
 }
 
 #[cfg(test)]

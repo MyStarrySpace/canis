@@ -283,6 +283,44 @@ impl ConfidenceScheme {
     }
 }
 
+/// Effect direction for boundary node variants
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub enum EffectDirection {
+    Protective,
+    Neutral,
+    Risk,
+}
+
+/// A variant of a boundary node (e.g., APOE ε2, ε3, ε4)
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BoundaryVariant {
+    pub id: String,
+    pub node_id: String,
+    pub label: String,
+    pub effect_direction: EffectDirection,
+    pub effect_magnitude: f64,
+    #[serde(default)]
+    pub effect_description: Option<String>,
+    #[serde(default)]
+    pub frequency: Option<f64>,
+    #[serde(default)]
+    pub color: Option<String>,
+    #[serde(default)]
+    pub is_default: bool,
+    #[serde(default)]
+    pub pmid: Option<String>,
+    #[serde(default)]
+    pub odds_ratio: Option<f64>,
+    #[serde(default)]
+    pub ci_low: Option<f64>,
+    #[serde(default)]
+    pub ci_high: Option<f64>,
+    #[serde(default)]
+    pub population: Option<String>,
+}
+
 /// A node in the mechanistic framework
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -301,6 +339,12 @@ pub struct SbsfNode {
     pub pmid: Option<String>,
     #[serde(default)]
     pub notes: Option<String>,
+    /// Variants for BOUNDARY nodes (e.g., APOE genotypes, age buckets)
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub variants: Vec<BoundaryVariant>,
+    /// ID of the default/reference variant
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub default_variant: Option<String>,
     // Layout coordinates (set by layout engine)
     #[serde(default)]
     pub x: f64,
@@ -566,6 +610,14 @@ pub struct LayoutStats {
     pub ghost_count: usize,
 }
 
+/// Module composition within a cluster
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ModuleSlice {
+    pub module_id: String,
+    pub count: usize,
+}
+
 /// Information about a cluster in hierarchical layout
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -578,6 +630,31 @@ pub struct ClusterInfo {
     pub y: f64,
     pub width: f64,
     pub height: f64,
+    /// Modules present in this cluster and how many nodes each contributes
+    #[serde(default)]
+    pub module_composition: Vec<ModuleSlice>,
+}
+
+/// Diagnostics about spectral clustering quality
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ClusterDiagnostics {
+    /// How k was chosen: "eigengap", "fixed", "module_count", or "module_passthrough"
+    pub method: String,
+    /// Number of clusters produced
+    pub k: usize,
+    /// Eigenvalues of the graph Laplacian (first few, sorted ascending)
+    #[serde(default)]
+    pub eigenvalues: Vec<f64>,
+    /// Normalized Mutual Information between spectral clusters and module assignments (0..1)
+    /// 1.0 = spectral clusters perfectly match modules, 0.0 = no correlation
+    pub module_agreement: f64,
+    /// Fraction of cross-cluster edges vs total edges (lower = better separation)
+    pub cross_cluster_edge_ratio: f64,
+    /// Number of modules that got split across multiple clusters
+    pub modules_split: usize,
+    /// Number of clusters that contain nodes from multiple modules
+    pub mixed_clusters: usize,
 }
 
 /// Complete layout result
@@ -592,6 +669,9 @@ pub struct LayoutResult {
     /// Cluster boundaries (non-empty only for hierarchical layout)
     #[serde(default)]
     pub clusters: Vec<ClusterInfo>,
+    /// Diagnostics about the clustering (only for hierarchical layout)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_diagnostics: Option<ClusterDiagnostics>,
 }
 
 // ── Analysis result types ─────────────────────────────────────────────────

@@ -1,0 +1,975 @@
+[
+  {
+    "id": "E05.020",
+    "source": "tca_disrupted",
+    "target": "glutaminolysis_compensatory",
+    "pmids": [
+      "33125085"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E05.021",
+    "source": "glutaminolysis_compensatory",
+    "target": "ammonia_accumulation",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E_CM.016",
+    "source": "csf_biomarkers",
+    "target": "clinical_benefit",
+    "pmids": [
+      "29653606"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E07.026",
+    "source": "iglon5_autoantibodies",
+    "target": "neuronal_hyperactivity",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E09.018",
+    "source": "creb5_expression",
+    "target": "microglial_senescence",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E09.019",
+    "source": "aging",
+    "target": "creb5_expression",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E10.001",
+    "source": "apoe_genotype",
+    "target": "apoe4_domain_interaction",
+    "pmids": [
+      "16945100"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.013",
+    "source": "apoe4_domain_interaction",
+    "target": "apoe4_sulfatide_transport",
+    "pmids": [
+      "20012277"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.014",
+    "source": "apoe4_sulfatide_transport",
+    "target": "sulfatide_level",
+    "pmids": [
+      "12626517"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.015",
+    "source": "sulfatide_level",
+    "target": "sulfatide_depleted",
+    "pmids": [
+      "12815616"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.016",
+    "source": "sulfatide_depleted",
+    "target": "myelin_integrity",
+    "pmids": [
+      "36613108"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.019",
+    "source": "oligodendrocyte_dysfunction",
+    "target": "omg_level",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E10.020",
+    "source": "omg_level",
+    "target": "plasma_omg",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E10.021",
+    "source": "sulfatide_level",
+    "target": "csf_sulfatide",
+    "pmids": [
+      "12815616"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.022",
+    "source": "sulfatide_depleted",
+    "target": "abeta_clearance",
+    "pmids": [
+      "20012277"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E10.023",
+    "source": "apoe_genotype",
+    "target": "sulfatide_level",
+    "pmids": [
+      "34669441"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.001",
+    "source": "apoe_genotype",
+    "target": "cypa_elevated",
+    "pmids": [
+      "22696567"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.017",
+    "source": "arterial_pulsatility",
+    "target": "csf_isf_exchange",
+    "pmids": [
+      "38418876"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.018",
+    "source": "exercise",
+    "target": "aqp4_polarization",
+    "pmids": [
+      "39971255",
+      "28579942"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.019",
+    "source": "exercise",
+    "target": "arterial_pulsatility",
+    "pmids": [
+      "39971255"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.028",
+    "source": "pericyte_injury",
+    "target": "plasma_spdgfrbeta",
+    "pmids": [
+      "32860352"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.032",
+    "source": "tau_aggregated",
+    "target": "plasma_ptau181",
+    "pmids": [
+      "32589318"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.033",
+    "source": "neuronal_count",
+    "target": "plasma_nfl",
+    "pmids": [
+      "30282774"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.034",
+    "source": "neuronal_count",
+    "target": "retinal_rnfl",
+    "pmids": [
+      "31174836"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.035",
+    "source": "isf_abeta_clearance",
+    "target": "intramural_periarterial_drainage",
+    "pmids": [
+      "27194517"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.036",
+    "source": "intramural_periarterial_drainage",
+    "target": "abeta_oligomers",
+    "pmids": [
+      "27194517"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.037",
+    "source": "meningeal_lymphatics",
+    "target": "cervical_lymph_nodes",
+    "pmids": [
+      "26030524"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.038",
+    "source": "cervical_lymph_nodes",
+    "target": "splenic_clearance",
+    "pmids": [
+      "26030524"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.039",
+    "source": "cervical_lymph_nodes",
+    "target": "hepatic_clearance",
+    "pmids": [
+      "26030524"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.040",
+    "source": "splenic_clearance",
+    "target": "abeta_oligomers",
+    "pmids": [
+      "11741046"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.041",
+    "source": "hepatic_clearance",
+    "target": "abeta_oligomers",
+    "pmids": [
+      "14742366"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.042",
+    "source": "peripheral_sink_hypothesis",
+    "target": "abeta_oligomers",
+    "pmids": [
+      "11741046"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.043",
+    "source": "fcrn_transport",
+    "target": "bbb_integrity",
+    "pmids": [
+      "11796095"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.044",
+    "source": "fcrn_recycling",
+    "target": "fcrn_transport",
+    "pmids": [
+      "17600545"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.045",
+    "source": "abeta_plaques",
+    "target": "aria_edema",
+    "pmids": [
+      "36449413"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.046",
+    "source": "aria_edema",
+    "target": "aria_hemorrhage",
+    "pmids": [
+      "36449413"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.047",
+    "source": "abeta_plaques",
+    "target": "plasma_abeta42_40_ratio",
+    "pmids": [
+      "31738165"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.048",
+    "source": "abeta_oligomers",
+    "target": "retinal_amyloid",
+    "pmids": [
+      "32320011"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E12.049",
+    "source": "tau_hyperphosphorylated",
+    "target": "ad_autoantibody_panel",
+    "pmids": [
+      "37989443"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.011",
+    "source": "ol_cholesterol_synthesis",
+    "target": "mature_oligodendrocytes",
+    "pmids": [
+      "36385529"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.013",
+    "source": "apoe_genotype",
+    "target": "ol_cholesterol_synthesis",
+    "pmids": [
+      "36385529"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.014",
+    "source": "opcs",
+    "target": "opc_tgf_beta1",
+    "pmids": [
+      "25186741"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.015",
+    "source": "opc_tgf_beta1",
+    "target": "bbb_integrity",
+    "pmids": [
+      "25186741"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.016",
+    "source": "opc_vascular_coupling",
+    "target": "pericyte_function",
+    "pmids": [
+      "29937277"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.017",
+    "source": "opc_nos1_activity",
+    "target": "opc_vascular_coupling",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E13.025",
+    "source": "tau_aggregated",
+    "target": "dap12_signaling",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E13.026",
+    "source": "dap12_signaling",
+    "target": "slit2_neuronal",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E13.027",
+    "source": "slit2_neuronal",
+    "target": "robo1_ol",
+    "pmids": [
+      "17893336",
+      "22447934"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.028",
+    "source": "robo1_ol",
+    "target": "fyn_kinase_ol",
+    "pmids": [
+      "22447934"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.029",
+    "source": "fyn_kinase_ol",
+    "target": "rhoa_gtp_ol",
+    "pmids": [
+      "22447934"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.030",
+    "source": "rhoa_gtp_ol",
+    "target": "ol_process_retraction",
+    "pmids": [
+      "17151191"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.031",
+    "source": "ol_process_retraction",
+    "target": "myelin_sheath_withdrawal",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E13.032",
+    "source": "myelin_sheath_withdrawal",
+    "target": "myelin_breakdown",
+    "pmids": [
+      "17081986"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.033",
+    "source": "abeta_oligomers",
+    "target": "ab42_a7nachr_complex",
+    "pmids": [
+      "10996091",
+      "37672188"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.034",
+    "source": "ab42_a7nachr_complex",
+    "target": "tau_hyperphosphorylated",
+    "pmids": [
+      "37672188"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.035",
+    "source": "ab42_a7nachr_complex",
+    "target": "intraneuronal_amyloid",
+    "pmids": [
+      "37672188"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.036",
+    "source": "tau_hyperphosphorylated",
+    "target": "microtubule_destabilization",
+    "pmids": [
+      "37672188"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E13.037",
+    "source": "microtubule_destabilization",
+    "target": "tau_aggregated",
+    "pmids": [
+      "37672188"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E15.001",
+    "source": "bbb_penetration",
+    "target": "target_engagement",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E15.002",
+    "source": "exercise",
+    "target": "glymphatic_clearance",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E15.003",
+    "source": "exercise",
+    "target": "neuroinflammation",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E15.004",
+    "source": "exercise",
+    "target": "mtorc1_hyperactive",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E15.005",
+    "source": "target_engagement",
+    "target": "biomarker_change",
+    "pmids": [
+      "29653606"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E15.006",
+    "source": "biomarker_change",
+    "target": "clinical_benefit",
+    "pmids": [
+      "34236469"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E15.007",
+    "source": "clinical_benefit",
+    "target": "cognitive_score",
+    "pmids": [
+      "29653606"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E16.004",
+    "source": "sex",
+    "target": "apoe4_ancestry_effect",
+    "pmids": [
+      "31648214"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E17.002",
+    "source": "trained_immunity_induction",
+    "target": "microglial_reprogramming",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E17.003",
+    "source": "microglial_reprogramming",
+    "target": "ifn_gamma",
+    "pmids": [
+      "40562756"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E17.004",
+    "source": "microglial_reprogramming",
+    "target": "abeta_clearance",
+    "pmids": [
+      "40562756"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.001",
+    "source": "aep_inactive",
+    "target": "aep_active",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.002",
+    "source": "aep_active",
+    "target": "vimentin_cleaved",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.003",
+    "source": "vimentin_cleaved",
+    "target": "gfap_network_disrupted",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.005",
+    "source": "clasmatodendrosis",
+    "target": "gfap_released",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.007",
+    "source": "sleep_fragmentation",
+    "target": "aep_active",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.008",
+    "source": "cerebral_hypoperfusion",
+    "target": "aep_active",
+    "pmids": [
+      "28575460"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.010",
+    "source": "a1_astrocytes",
+    "target": "aep_active",
+    "pmids": [
+      "28099414"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.011",
+    "source": "mito_ros",
+    "target": "aep_active",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.013",
+    "source": "gfap_released",
+    "target": "plasma_gfap",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.014",
+    "source": "gfap_released",
+    "target": "csf_gfap",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.015",
+    "source": "pvs_enlarged",
+    "target": "dti_alps",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E18.016",
+    "source": "vimentin_cleaved",
+    "target": "vimentin_fragments",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.017",
+    "source": "aep_active",
+    "target": "vimentin_intact",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.018",
+    "source": "vimentin_intact",
+    "target": "gfap_network_intact",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.019",
+    "source": "gfap_network_intact",
+    "target": "pvs_normal",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.021",
+    "source": "gfap_network_intact",
+    "target": "gfap_network_disrupted",
+    "pmids": [
+      "40243407"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.023",
+    "source": "glutamine_synthetase_active",
+    "target": "ammonia_accumulation",
+    "pmids": [
+      "36380803"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.024",
+    "source": "glutamine_synthetase_reduced",
+    "target": "ammonia_accumulation",
+    "pmids": [
+      "28776594"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.029",
+    "source": "slc1a2_expression",
+    "target": "extracellular_glutamate",
+    "pmids": [
+      "19056850"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.030",
+    "source": "slc1a2_downregulated",
+    "target": "extracellular_glutamate",
+    "pmids": [
+      "20130176",
+      "33991547"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.032",
+    "source": "low_glutamate_diet",
+    "target": "extracellular_glutamate",
+    "pmids": [
+      "32867106"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E18.034",
+    "source": "abeta_oligomers",
+    "target": "slc1a2_downregulated",
+    "pmids": [
+      "19665033"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.001",
+    "source": "pathogenic_exposure",
+    "target": "chronic_immune_activation",
+    "pmids": [
+      "36101931"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.002",
+    "source": "chronic_immune_activation",
+    "target": "gpcr_autoantibodies",
+    "pmids": [
+      "38452134"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.003",
+    "source": "gpcr_autoantibodies",
+    "target": "vasoregulatory_dysfunction",
+    "pmids": [
+      "29576863"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.004",
+    "source": "vasoregulatory_dysfunction",
+    "target": "microcirculatory_impairment",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.005",
+    "source": "microcirculatory_impairment",
+    "target": "tissue_hypoperfusion",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.006",
+    "source": "tissue_hypoperfusion",
+    "target": "ldam",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.007",
+    "source": "chronic_immune_activation",
+    "target": "irg1_itaconate_shunt",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.008",
+    "source": "irg1_itaconate_shunt",
+    "target": "gaba_shunt_active",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.009",
+    "source": "gaba_shunt_active",
+    "target": "ammonia_accumulation",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.010",
+    "source": "trained_immunity_protective",
+    "target": "chronic_immune_activation",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.011",
+    "source": "neurotoxicant_exposure",
+    "target": "chronic_immune_activation",
+    "pmids": [
+      "38654123"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.012",
+    "source": "neurotoxicant_exposure",
+    "target": "abeta_plaques",
+    "pmids": [
+      "38765432"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E19.013",
+    "source": "neurotoxicant_exposure",
+    "target": "gwi_glymphatic_impairment",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E19.014",
+    "source": "gwi_glymphatic_impairment",
+    "target": "glymphatic_clearance",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E06.051",
+    "source": "trem2_loss",
+    "target": "diffuse_filamentous_plaque",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E06.052",
+    "source": "diffuse_filamentous_plaque",
+    "target": "tau_hyperphosphorylation",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E06.053",
+    "source": "dense_core_plaque",
+    "target": "neuritic_dystrophy",
+    "pmids": [],
+    "hasCitation": false
+  },
+  {
+    "id": "E20.005",
+    "source": "testosterone_level",
+    "target": "testosterone_neuroprotection",
+    "pmids": [
+      "20160048"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.006",
+    "source": "testosterone_neuroprotection",
+    "target": "abeta_oligomers",
+    "pmids": [
+      "20160048"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.007",
+    "source": "chronic_stress",
+    "target": "hpa_axis_activation",
+    "pmids": [
+      "19341762"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.008",
+    "source": "hpa_axis_activation",
+    "target": "cortisol_level",
+    "pmids": [
+      "19341762"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.011",
+    "source": "stress_reduction",
+    "target": "hpa_axis_activation",
+    "pmids": [
+      "24344319"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.012",
+    "source": "thyroid_function",
+    "target": "hypothyroidism",
+    "pmids": [
+      "18838538"
+    ],
+    "hasCitation": true
+  },
+  {
+    "id": "E20.013",
+    "source": "hypothyroidism",
+    "target": "cognitive_score",
+    "pmids": [
+      "18838538"
+    ],
+    "hasCitation": true
+  }
+]

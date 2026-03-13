@@ -1,0 +1,2298 @@
+[
+  {
+    "id": "aging",
+    "label": "Aging",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Lifestyle",
+    "description": "Chronological age; drives multiple pathways"
+  },
+  {
+    "id": "apoe_genotype",
+    "label": "APOE Genotype",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "GeneticVariant",
+    "description": "Apolipoprotein E genetic variants"
+  },
+  {
+    "id": "trem2_variants",
+    "label": "TREM2 Variants",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "GeneticVariant",
+    "description": "R47H, R62H, other risk variants"
+  },
+  {
+    "id": "familial_ad_mutations",
+    "label": "Familial AD Mutations",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "GeneticVariant",
+    "description": "APP, PSEN1, PSEN2 mutations"
+  },
+  {
+    "id": "sex",
+    "label": "Biological Sex",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "GeneticVariant",
+    "description": "XX vs XY chromosomes"
+  },
+  {
+    "id": "sleep_disruption",
+    "label": "Sleep Disruption",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Lifestyle",
+    "description": "Chronic sleep disturbance"
+  },
+  {
+    "id": "mortality",
+    "label": "Mortality",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Diagnosis",
+    "description": "Death; ultimate endpoint"
+  },
+  {
+    "id": "cognitive_score",
+    "label": "Cognitive Score",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "CognitiveScore",
+    "description": "Psychometric assessment of cognition - primary clinical endpoint"
+  },
+  {
+    "id": "synapses",
+    "label": "Synapse Density",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Synapse density in cortex/hippocampus - strongest correlate of cognition"
+  },
+  {
+    "id": "neuronal_count",
+    "label": "Neuron Count",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Neuron number in affected regions"
+  },
+  {
+    "id": "brain_volume",
+    "label": "Brain Volume",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Regional brain volumes"
+  },
+  {
+    "id": "csf_biomarkers",
+    "label": "CSF Biomarkers",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Fluid biomarkers"
+  },
+  {
+    "id": "plasma_spdgfrbeta",
+    "label": "sPDGFRβ (Pericyte Injury)",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Soluble PDGFRβ released from injured pericytes - earliest known AD biomarker"
+  },
+  {
+    "id": "plasma_ptau217",
+    "label": "p-tau217",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Plasma phospho-tau at threonine 217 - most accurate blood tau marker for population screening"
+  },
+  {
+    "id": "plasma_ptau181",
+    "label": "p-tau181",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Plasma phospho-tau at threonine 181 - FDA-cleared blood tau marker"
+  },
+  {
+    "id": "plasma_abeta42_40_ratio",
+    "label": "Aβ42/40 Ratio",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Plasma Aβ42/40 ratio - correlates with amyloid PET status"
+  },
+  {
+    "id": "plasma_nfl",
+    "label": "Neurofilament Light (NfL)",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Plasma neurofilament light chain - marker of axonal injury"
+  },
+  {
+    "id": "retinal_rnfl",
+    "label": "Retinal Nerve Fiber Layer",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "RNFL thickness measured by OCT - non-invasive neurodegeneration marker"
+  },
+  {
+    "id": "retinal_amyloid",
+    "label": "Retinal Aβ Deposits",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Curcumin-labeled amyloid deposits in retina - experimental screening tool"
+  },
+  {
+    "id": "ad_autoantibody_panel",
+    "label": "AD Autoantibody Panel",
+    "moduleId": "BOUNDARY",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "7-autoantibody panel for AD detection; may precede pTau217 elevations"
+  },
+  {
+    "id": "insulin_resistance",
+    "label": "Brain Insulin Resistance",
+    "moduleId": "M01",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Brain insulin resistance ± systemic T2DM"
+  },
+  {
+    "id": "mtorc1_hyperactive",
+    "label": "mTORC1 Hyperactive",
+    "moduleId": "M01",
+    "category": "STOCK",
+    "subtype": "Kinase",
+    "description": "Constitutively active mTORC1 complex"
+  },
+  {
+    "id": "tfeb_phosphorylated",
+    "label": "TFEB Phosphorylated",
+    "moduleId": "M01",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "pSer211 + pSer142 creates 14-3-3 binding"
+  },
+  {
+    "id": "ampk_phosphorylated",
+    "label": "AMPK Phosphorylated (Inhibited)",
+    "moduleId": "M01",
+    "category": "STOCK",
+    "subtype": "Kinase",
+    "description": "pSer345 by mTORC1 prevents lysosomal recruitment"
+  },
+  {
+    "id": "sirt1_activity",
+    "label": "SIRT1 (Sirtuin 1)",
+    "moduleId": "M01",
+    "category": "STOCK",
+    "subtype": "Transferase",
+    "description": "NAD+-dependent deacetylase; longevity-associated enzyme"
+  },
+  {
+    "id": "ulk1_phosphorylated",
+    "label": "ULK1 Phosphorylated (Inhibited)",
+    "moduleId": "M01",
+    "category": "STOCK",
+    "subtype": "Kinase",
+    "description": "pSer757 blocks AMPK binding site"
+  },
+  {
+    "id": "lysosomal_genes_down",
+    "label": "Lysosomal Genes Downregulated",
+    "moduleId": "M01",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "TFEB targets: ATP6V0A1, ATP6V1H, CTSD, CTSB, LAMP1, LAMP2, GBA"
+  },
+  {
+    "id": "lysosomal_dysfunction",
+    "label": "Lysosomal Dysfunction",
+    "moduleId": "M02",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "pH >5.5, ↓cathepsin activity, ↓degradation"
+  },
+  {
+    "id": "mitophagy_rate_reduced",
+    "label": "Mitophagy Rate Reduced",
+    "moduleId": "M01",
+    "category": "STATE",
+    "subtype": "Mitophagy",
+    "description": "AMPK/ULK1 pathway impaired; PINK1/Parkin still functional"
+  },
+  {
+    "id": "s6k1_active",
+    "label": "S6K1 Active",
+    "moduleId": "M01",
+    "category": "STOCK",
+    "subtype": "Kinase",
+    "description": "p70 S6 kinase; phosphorylated at Thr389 by mTORC1"
+  },
+  {
+    "id": "irs1_serine_phosphorylated",
+    "label": "IRS-1 Serine Phosphorylated",
+    "moduleId": "M01",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "pS307, pS312, pS527, pS616, pS636/639 = inhibitory"
+  },
+  {
+    "id": "lysosome_pool",
+    "label": "Lysosome Pool",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "OrganellePool",
+    "description": "Functional lysosome organelle pool; depleted by reduced biogenesis"
+  },
+  {
+    "id": "damaged_mito_pool",
+    "label": "Damaged Mitochondria Pool",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "OrganellePool",
+    "description": "Accumulating damaged mitochondria"
+  },
+  {
+    "id": "cargo_accumulation",
+    "label": "Cargo Accumulation",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Aβ, tau, lipids, iron, undegraded organelles"
+  },
+  {
+    "id": "lipofuscin",
+    "label": "Lipofuscin",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Cross-linked proteins + oxidized lipids; undegradable"
+  },
+  {
+    "id": "bmp_lysosomal",
+    "label": "BMP (Bis(monoacylglycero)phosphate)",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Lysosome-specific lipid; biomarker for lysosomal stress/storage disorders"
+  },
+  {
+    "id": "lmp",
+    "label": "Lysosomal Membrane Permeabilization",
+    "moduleId": "M02",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Lysosomal membrane breach"
+  },
+  {
+    "id": "cathepsin_b_cytosolic",
+    "label": "Cytosolic Cathepsin B",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Active cathepsin B escaped from lysosome"
+  },
+  {
+    "id": "mitophagosome",
+    "label": "Mitophagosome",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "OrganellePool",
+    "description": "PINK1/Parkin-tagged mitochondrion in autophagosome"
+  },
+  {
+    "id": "autolysosome",
+    "label": "Autolysosome",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "OrganellePool",
+    "description": "Mitophagosome fused with lysosome"
+  },
+  {
+    "id": "mtdna_undegraded",
+    "label": "Undegraded mtDNA (Lysosomal)",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "DNase II inactive at high pH; mtDNA persists"
+  },
+  {
+    "id": "mtdna_from_lysosome",
+    "label": "mtDNA Escaped from Lysosome",
+    "moduleId": "M02",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "mtDNA escaped through compromised membrane; DAMP"
+  },
+  {
+    "id": "mito_ros",
+    "label": "Mitochondrial ROS",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Superoxide/H₂O₂ from dysfunctional ETC"
+  },
+  {
+    "id": "mtdna_oxidized",
+    "label": "Oxidized mtDNA",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "8-oxo-dG modified mtDNA within mitochondria"
+  },
+  {
+    "id": "ca_overload",
+    "label": "Mitochondrial Ca²⁺ Overload",
+    "moduleId": "M03",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Matrix Ca²⁺ overload"
+  },
+  {
+    "id": "mptp_open",
+    "label": "mPTP Open",
+    "moduleId": "M03",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Mitochondrial permeability transition pore open state"
+  },
+  {
+    "id": "vdac_oligomer",
+    "label": "VDAC Oligomers",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "ComplexPool",
+    "description": "VDAC oligomers forming pores in outer membrane"
+  },
+  {
+    "id": "ox_mtdna_cytosolic",
+    "label": "Cytosolic Oxidized mtDNA",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "500-650 bp oxidized mtDNA fragments in cytosol (FEN1-cleaved)"
+  },
+  {
+    "id": "mtdna_cytosolic",
+    "label": "Cytosolic mtDNA (Non-oxidized)",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Non-oxidized mtDNA in cytosol"
+  },
+  {
+    "id": "pink1_parkin",
+    "label": "PINK1/Parkin Mitophagy",
+    "moduleId": "M03",
+    "category": "STOCK",
+    "subtype": "MasterRegulator",
+    "description": "Mitophagy gatekeepers"
+  },
+  {
+    "id": "nlrp3_active",
+    "label": "NLRP3 Inflammasome Active",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ComplexPool",
+    "description": "Assembled inflammasome complex"
+  },
+  {
+    "id": "caspase1_active",
+    "label": "Active Caspase-1",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Cleaved active caspase-1"
+  },
+  {
+    "id": "il1b",
+    "label": "IL-1β",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "Mature IL-1β (17 kDa cleaved form)"
+  },
+  {
+    "id": "il18",
+    "label": "IL-18",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "Mature IL-18 (also caspase-1 substrate)"
+  },
+  {
+    "id": "cgas_active",
+    "label": "cGAS Active",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Activated cGAS bound to cytosolic DNA"
+  },
+  {
+    "id": "sting_active",
+    "label": "STING Active",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Phosphorylated STING at Golgi"
+  },
+  {
+    "id": "type_i_ifn",
+    "label": "Type I Interferon",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "IFN-α/β secreted"
+  },
+  {
+    "id": "isg_expression",
+    "label": "ISG Expression",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "RNAPool",
+    "description": "Interferon-stimulated gene signature"
+  },
+  {
+    "id": "gsk3b_active",
+    "label": "GSK-3β Active",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Active GSK-3β (tau kinase)"
+  },
+  {
+    "id": "pp2a_activity",
+    "label": "PP2A Activity",
+    "moduleId": "M04",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "PP2A tau phosphatase (inhibited by NLRP3)"
+  },
+  {
+    "id": "neuroinflammation",
+    "label": "Neuroinflammation",
+    "moduleId": "M04",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Chronic CNS inflammatory state"
+  },
+  {
+    "id": "tau_hyperphosphorylated",
+    "label": "Tau Hyperphosphorylated",
+    "moduleId": "M04",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "Cross-module output to Module 7"
+  },
+  {
+    "id": "abeta_oligomers",
+    "label": "Aβ Oligomers",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Soluble Aβ oligomers - most synaptotoxic species"
+  },
+  {
+    "id": "tau_aggregated",
+    "label": "Aggregated Tau",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Aggregated tau (PHF/NFT) - prion-like spreading"
+  },
+  {
+    "id": "microglia_activated",
+    "label": "Activated Microglia",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "PhenotypePool",
+    "description": "Microglia leaving homeostatic state"
+  },
+  {
+    "id": "nf_kb_active",
+    "label": "NF-κB Active",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "Activator",
+    "description": "Nuclear NF-κB transcription factor"
+  },
+  {
+    "id": "hif1a_stabilized",
+    "label": "HIF-1α Stabilized",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "Activator",
+    "description": "Hypoxia-inducible factor stabilized under normoxia"
+  },
+  {
+    "id": "glycolytic_switch",
+    "label": "Glycolytic Switch",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Warburg-like metabolism in microglia"
+  },
+  {
+    "id": "srebp1_active",
+    "label": "SREBP1 Active",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "Activator",
+    "description": "Lipogenic transcription factor"
+  },
+  {
+    "id": "lipid_droplets",
+    "label": "Lipid Droplets",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Intracellular lipid storage organelles"
+  },
+  {
+    "id": "ldam",
+    "label": "LDAM Microglia",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "LDAM",
+    "description": "Lipid-droplet-accumulating microglia"
+  },
+  {
+    "id": "dam_stage1",
+    "label": "DAM Stage 1",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "DAM",
+    "description": "Disease-associated microglia Stage 1 (TREM2-independent)"
+  },
+  {
+    "id": "dam_stage2",
+    "label": "DAM Stage 2",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "DAM",
+    "description": "Disease-associated microglia Stage 2 (TREM2-dependent)"
+  },
+  {
+    "id": "phagocytosis_impaired",
+    "label": "Phagocytosis Impaired",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "Phagocytosis",
+    "description": "LDAM-associated phagocytic failure"
+  },
+  {
+    "id": "il1a",
+    "label": "IL-1α",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "Required for A1 astrocyte induction"
+  },
+  {
+    "id": "tnf",
+    "label": "TNF-α",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "Required for A1 astrocyte induction"
+  },
+  {
+    "id": "c1q",
+    "label": "C1q",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Complement component; required for A1 induction and synapse tagging"
+  },
+  {
+    "id": "a1_astrocytes",
+    "label": "A1 Astrocytes",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "A1_Astrocyte",
+    "description": "Neurotoxic reactive astrocytes"
+  },
+  {
+    "id": "a1_toxic_lipid_secretion",
+    "label": "A1 Toxic Lipid Secretion",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "PhysiologicalState",
+    "description": "Long-chain saturated lipids secreted by A1 astrocytes that kill neurons and OLs"
+  },
+  {
+    "id": "mtor_hif1a_axis",
+    "label": "mTOR-HIF1α Axis",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "SignalingPathway",
+    "description": "mTOR-HIF1α signaling axis drives glycolytic shift in AD microglia"
+  },
+  {
+    "id": "irg1_itaconate_shunt",
+    "label": "IRG1/Itaconate Shunt",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "IRG1 (ACOD1) diverts aconitate from TCA cycle to produce itaconate"
+  },
+  {
+    "id": "sdh_inhibited",
+    "label": "SDH Inhibited",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Succinate dehydrogenase inhibition by itaconate"
+  },
+  {
+    "id": "tca_disrupted",
+    "label": "TCA Cycle Disrupted",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Broken TCA cycle forces compensatory pathways"
+  },
+  {
+    "id": "glutaminolysis_compensatory",
+    "label": "Compensatory Glutaminolysis",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Increased glutamine catabolism to feed broken TCA cycle"
+  },
+  {
+    "id": "ammonia_accumulation",
+    "label": "Ammonia Accumulation",
+    "moduleId": "M05",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Toxic ammonia from glutaminolysis"
+  },
+  {
+    "id": "ldam_super_seeders",
+    "label": "LDAM Super-seeders",
+    "moduleId": "M05",
+    "category": "STATE",
+    "subtype": "LDAM",
+    "description": "PARADIGM SHIFT: Iron-loaded, lipid-laden microglia with dysfunctional lysosomes that SEED amyloid plaques"
+  },
+  {
+    "id": "bace1_upregulated",
+    "label": "BACE1 Upregulated",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "Protease",
+    "description": "β-secretase; rate-limiting for Aβ production"
+  },
+  {
+    "id": "app_betactf",
+    "label": "APP β-CTF (C99)",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "β-secretase cleavage product; membrane-bound C-terminal fragment"
+  },
+  {
+    "id": "abeta_monomers",
+    "label": "Aβ Monomers",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Soluble monomeric Aβ peptides (Aβ40, Aβ42, Aβ43)"
+  },
+  {
+    "id": "app_processing_amyloidogenic",
+    "label": "Amyloidogenic APP Processing",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "BACE1 → C99 → γ-secretase → Aβ"
+  },
+  {
+    "id": "abeta_production",
+    "label": "Aβ Production Rate",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Aβ generation rate; Aβ42 > Aβ40 in aggregation"
+  },
+  {
+    "id": "abeta_plaques",
+    "label": "Aβ Plaques",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Insoluble fibrillar deposits"
+  },
+  {
+    "id": "abeta_clearance",
+    "label": "Aβ Clearance",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "Phagocytosis",
+    "description": "Aβ clearance rate (microglial, glymphatic, BBB-mediated)"
+  },
+  {
+    "id": "plaque_compaction",
+    "label": "Plaque Compaction",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "TREM2/microglia-dependent PROTECTIVE compaction"
+  },
+  {
+    "id": "dense_core_plaque",
+    "label": "Dense-Core Plaque",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Successfully compacted plaque with microglial barrier - PROTECTIVE"
+  },
+  {
+    "id": "diffuse_filamentous_plaque",
+    "label": "Diffuse Filamentous Plaque",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Uncompacted plaque with failed microglial barrier - MORE toxic"
+  },
+  {
+    "id": "plaque_associated_microglia",
+    "label": "Plaque-Associated Microglia",
+    "moduleId": "M06",
+    "category": "STOCK",
+    "subtype": "PhenotypePool",
+    "description": "Microglia forming protective barrier around plaques"
+  },
+  {
+    "id": "synaptic_abeta_binding",
+    "label": "Synaptic Aβ Binding",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Oligomer binding to PrPc, mGluR5, NMDAR"
+  },
+  {
+    "id": "ltp_inhibition",
+    "label": "LTP Inhibition",
+    "moduleId": "M06",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Long-term potentiation blocked by Aβ oligomers"
+  },
+  {
+    "id": "neuronal_hyperactivity",
+    "label": "Neuronal Hyperactivity",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Increased neuronal firing rate; UPSTREAM trigger for tau pathology"
+  },
+  {
+    "id": "tau_missorting",
+    "label": "Tau Somatodendritic Missorting",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Tau redistributes from axonal to somatodendritic compartment; precedes hyperphosphorylation"
+  },
+  {
+    "id": "iglon5_autoantibodies",
+    "label": "Anti-IgLON5 Autoantibodies",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Autoantibody",
+    "description": "Autoantibodies against IgLON5 neuronal adhesion molecule; causes autoimmune tauopathy"
+  },
+  {
+    "id": "tau_misfolded",
+    "label": "Tau Misfolded",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "Conformationally altered tau exposing aggregation-prone regions"
+  },
+  {
+    "id": "neuronal_dysfunction",
+    "label": "Neuronal Dysfunction",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Impaired neuronal function due to tau/Aβ pathology"
+  },
+  {
+    "id": "p38_mapk_active",
+    "label": "p38 MAPK Active",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Kinase",
+    "description": "IL-1β-activated tau kinase"
+  },
+  {
+    "id": "pp2a_inhibited",
+    "label": "PP2A Inhibited",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "Major tau phosphatase; >70% of tau dephosphorylation"
+  },
+  {
+    "id": "tau_aggregated_phf",
+    "label": "Tau PHF Aggregates",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Paired helical filaments"
+  },
+  {
+    "id": "nft_formation",
+    "label": "Neurofibrillary Tangles",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Mature neurofibrillary tangles"
+  },
+  {
+    "id": "tau_exosomal_release",
+    "label": "Tau Exosomal Release",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Exosome-mediated tau secretion"
+  },
+  {
+    "id": "tau_seeding",
+    "label": "Tau Seeding",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Cofactor-dependent templated misfolding (NOT truly prion-like)"
+  },
+  {
+    "id": "aggregation_cofactors",
+    "label": "Aggregation Cofactors",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Polyanions (HSPGs, RNA, nucleic acids) required for tau and Aβ aggregation"
+  },
+  {
+    "id": "permissive_environment",
+    "label": "Permissive Environment",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Cellular dysfunction creates conditions allowing aggregation"
+  },
+  {
+    "id": "secondary_nucleation",
+    "label": "Secondary Nucleation",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Fibril surfaces catalyze new aggregate formation (dominant mechanism)"
+  },
+  {
+    "id": "homocysteine",
+    "label": "Homocysteine",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "From methionine metabolism; elevated in AD risk"
+  },
+  {
+    "id": "cbs_enzyme",
+    "label": "CBS (Cystathionine β-synthase)",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Transferase",
+    "description": "Astrocyte-predominant; produces cystathionine"
+  },
+  {
+    "id": "cystathionine",
+    "label": "Cystathionine",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Intermediate; CBS product, CSE substrate"
+  },
+  {
+    "id": "cse_enzyme",
+    "label": "CSE (Cystathionine γ-lyase)",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "Transferase",
+    "description": "Neuron-predominant; KEY NEUROPROTECTIVE ENZYME"
+  },
+  {
+    "id": "cysteine",
+    "label": "Cysteine",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Rate-limiting for GSH; CSE product"
+  },
+  {
+    "id": "h2s_production",
+    "label": "H₂S Production",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Gasotransmitter; produced by CSE (and CBS)"
+  },
+  {
+    "id": "glutathione_gsh",
+    "label": "Glutathione (GSH)",
+    "moduleId": "M07",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Major antioxidant; cysteine-dependent"
+  },
+  {
+    "id": "sulfhydration",
+    "label": "Protein Sulfhydration",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "S-sulfhydration/persulfidation; PTM by H₂S"
+  },
+  {
+    "id": "gsk3beta_sulfhydrated",
+    "label": "GSK3β Sulfhydrated (Inactive)",
+    "moduleId": "M07",
+    "category": "STATE",
+    "subtype": "Phosphorylated",
+    "description": "GSK3β with Cys sulfhydrated → INACTIVE"
+  },
+  {
+    "id": "c1q_elevated",
+    "label": "C1q Elevated",
+    "moduleId": "M08",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "C1q increases 300-fold with aging"
+  },
+  {
+    "id": "c3_opsonization",
+    "label": "C3 Opsonization",
+    "moduleId": "M08",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "C3 cleavage → C3b deposits on tagged synapses"
+  },
+  {
+    "id": "cr3_mediated_pruning",
+    "label": "CR3-Mediated Synapse Pruning",
+    "moduleId": "M08",
+    "category": "STATE",
+    "subtype": "Phagocytosis",
+    "description": "Microglial CR3 engulfs C3-tagged synapses"
+  },
+  {
+    "id": "synapse_elimination",
+    "label": "Synapse Elimination",
+    "moduleId": "M08",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Complement-mediated synapse loss"
+  },
+  {
+    "id": "synaptic_plasticity",
+    "label": "Synaptic Plasticity",
+    "moduleId": "M08",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Capacity for LTP/LTD and dendritic spine remodeling; correlates with learning/memory"
+  },
+  {
+    "id": "bdnf",
+    "label": "BDNF",
+    "moduleId": "M08",
+    "category": "STOCK",
+    "subtype": "CytokineSignal",
+    "description": "Brain-derived neurotrophic factor; master regulator of synaptic plasticity"
+  },
+  {
+    "id": "dendritic_spine_density",
+    "label": "Dendritic Spine Density",
+    "moduleId": "M08",
+    "category": "STOCK",
+    "subtype": "CompartmentState",
+    "description": "Number of dendritic spines per unit dendrite length; structural basis of plasticity"
+  },
+  {
+    "id": "iron_accumulation",
+    "label": "Brain Iron Accumulation",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Iron accumulates but is SEQUESTERED"
+  },
+  {
+    "id": "hepcidin_elevated",
+    "label": "Hepcidin Elevated",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "HormoneLevel",
+    "description": "IL-6 induces hepcidin → ferroportin degradation"
+  },
+  {
+    "id": "ferroportin_reduced",
+    "label": "Ferroportin Reduced",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Iron export blocked → intracellular iron trap"
+  },
+  {
+    "id": "ferritin_trap",
+    "label": "Ferritin Iron Trap",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Fe³⁺ locked in ferritin cages"
+  },
+  {
+    "id": "lysosomal_iron_trap",
+    "label": "Lysosomal Iron Trap",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Iron in lysosomes (pH too high for release)"
+  },
+  {
+    "id": "labile_iron",
+    "label": "Labile Iron Pool",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Cytosolic free Fe²⁺ available for Fenton chemistry"
+  },
+  {
+    "id": "functional_iron_deficiency",
+    "label": "Functional Iron Deficiency",
+    "moduleId": "M09",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Cytosolic Fe²⁺ depleted despite total iron↑"
+  },
+  {
+    "id": "gpx4_activity",
+    "label": "GPX4 Activity",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "Transferase",
+    "description": "Glutathione peroxidase 4; prevents ferroptosis"
+  },
+  {
+    "id": "lipid_peroxidation",
+    "label": "Lipid Peroxidation",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Oxidized membrane lipids"
+  },
+  {
+    "id": "ferroptosis",
+    "label": "Ferroptosis",
+    "moduleId": "M09",
+    "category": "STATE",
+    "subtype": "Ferroptosis",
+    "description": "Iron-dependent non-apoptotic cell death"
+  },
+  {
+    "id": "senescent_cells",
+    "label": "Senescent Cells",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "PhenotypePool",
+    "description": "SASP-positive cells with high iron/β-gal"
+  },
+  {
+    "id": "microglial_senescence",
+    "label": "Microglial Senescence",
+    "moduleId": "M09",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Senescent microglia - paradoxically associated with LARGER brain volume"
+  },
+  {
+    "id": "excitatory_neuron_senescence",
+    "label": "Excitatory Neuron Senescence",
+    "moduleId": "M09",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Senescent excitatory neurons - associated with brain VOLUME LOSS"
+  },
+  {
+    "id": "creb5_expression",
+    "label": "CREB5 Expression",
+    "moduleId": "M09",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Transcription factor reduced in AD - regulates oxidative stress"
+  },
+  {
+    "id": "senescence_volume_loss",
+    "label": "Senescence-Driven Volume Loss",
+    "moduleId": "M09",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Brain volume reduction from excitatory neuron senescence"
+  },
+  {
+    "id": "apoe4_domain_interaction",
+    "label": "APOE4 Domain Interaction",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "Bound",
+    "description": "Arg112 → domain interaction (Arg61-Glu255)"
+  },
+  {
+    "id": "apoe_lipidation_reduced",
+    "label": "APOE Lipidation Reduced",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "APOE4 poorly lipidated"
+  },
+  {
+    "id": "lysosomal_cholesterol_sequestration",
+    "label": "Lysosomal Cholesterol Sequestration",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Cholesterol trapped in lysosomes"
+  },
+  {
+    "id": "astrocyte_lipid_droplets",
+    "label": "Astrocyte Lipid Droplets",
+    "moduleId": "M10",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "APOE4 astrocytes form larger LDs"
+  },
+  {
+    "id": "rest_nuclear",
+    "label": "REST Nuclear (Protective)",
+    "moduleId": "M10",
+    "category": "STOCK",
+    "subtype": "Repressor",
+    "description": "REST increases in healthy aging but DECREASES in AD"
+  },
+  {
+    "id": "rest_depleted",
+    "label": "REST Depleted (AD)",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "NuclearLocalized",
+    "description": "Nuclear REST lost in AD neurons"
+  },
+  {
+    "id": "nrf2_pathway",
+    "label": "Nrf2 Antioxidant Pathway",
+    "moduleId": "M10",
+    "category": "STOCK",
+    "subtype": "Activator",
+    "description": "Master regulator of antioxidant genes"
+  },
+  {
+    "id": "sulfatide_level",
+    "label": "Myelin Sulfatides",
+    "moduleId": "M10",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Sulfated galactosylceramides in myelin (~5% of myelin lipids)"
+  },
+  {
+    "id": "apoe4_sulfatide_transport",
+    "label": "ApoE4 Sulfatide Transport (Enhanced)",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "ApoE4 > E3 > E2 sulfatide transport efficiency"
+  },
+  {
+    "id": "sulfatide_depleted",
+    "label": "Sulfatide Depletion",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Pathological sulfatide loss (occurs at MCI stage)"
+  },
+  {
+    "id": "myelin_integrity",
+    "label": "Myelin Integrity",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Normal myelin sheath structure and function"
+  },
+  {
+    "id": "myelin_dysfunction",
+    "label": "Myelin Dysfunction",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Myelin sheath instability from sulfatide depletion"
+  },
+  {
+    "id": "oligodendrocyte_dysfunction",
+    "label": "Oligodendrocyte Dysfunction",
+    "moduleId": "M10",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Primary oligodendrocyte pathology in AD"
+  },
+  {
+    "id": "omg_level",
+    "label": "OMG (Oligodendrocyte Myelin Glycoprotein)",
+    "moduleId": "M10",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Oligodendrocyte-derived myelin protein"
+  },
+  {
+    "id": "plasma_omg",
+    "label": "Plasma OMG",
+    "moduleId": "M10",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Blood OMG level - oligodendrocyte function marker"
+  },
+  {
+    "id": "csf_sulfatide",
+    "label": "CSF Sulfatide",
+    "moduleId": "M10",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "CSF sulfatide/PI ratio - early AD biomarker"
+  },
+  {
+    "id": "trem2_surface",
+    "label": "TREM2 Surface Expression",
+    "moduleId": "M11",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "TREM2 on microglial surface"
+  },
+  {
+    "id": "strem2",
+    "label": "Soluble TREM2",
+    "moduleId": "M11",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Shed TREM2 ectodomain in CSF"
+  },
+  {
+    "id": "dam_transition_blocked",
+    "label": "DAM Transition Blocked",
+    "moduleId": "M11",
+    "category": "STATE",
+    "subtype": "DAM",
+    "description": "TREM2-/- or variant: Stage 1 → Stage 2 blocked"
+  },
+  {
+    "id": "plaque_barrier_function",
+    "label": "Microglial Plaque Barrier",
+    "moduleId": "M11",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "TREM2-dependent plaque compaction"
+  },
+  {
+    "id": "senescent_trem2_microglia",
+    "label": "Senescent TREM2+ Microglia",
+    "moduleId": "M11",
+    "category": "STATE",
+    "subtype": "Senescent",
+    "description": "TREM2 promotes senescent microglia (harmful)"
+  },
+  {
+    "id": "bbb_breakdown",
+    "label": "BBB Breakdown",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Blood-brain barrier dysfunction"
+  },
+  {
+    "id": "cypa_elevated",
+    "label": "Cyclophilin A Elevated",
+    "moduleId": "M12",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "APOE4-induced in pericytes"
+  },
+  {
+    "id": "mmp9_elevated",
+    "label": "MMP-9 Elevated",
+    "moduleId": "M12",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Matrix metalloproteinase degrades tight junctions"
+  },
+  {
+    "id": "pericyte_injury",
+    "label": "Pericyte Injury",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "sPDGFRβ in CSF = pericyte injury biomarker - EARLIEST detectable AD pathology"
+  },
+  {
+    "id": "lrp1_apoe4_impaired",
+    "label": "LRP1-ApoE4 Impairment",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "ApoE4 impairs LRP1-mediated Aβ clearance at BBB"
+  },
+  {
+    "id": "glymphatic_clearance",
+    "label": "Glymphatic Clearance",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Sleep-dependent Aβ clearance"
+  },
+  {
+    "id": "meningeal_lymphatics",
+    "label": "Meningeal Lymphatics",
+    "moduleId": "M12",
+    "category": "STOCK",
+    "subtype": "OrganellePool",
+    "description": "CNS lymphatic drainage; declines with aging"
+  },
+  {
+    "id": "isf_abeta_clearance",
+    "label": "ISF Aβ Clearance",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Interstitial fluid Aβ drainage"
+  },
+  {
+    "id": "bbb_integrity",
+    "label": "BBB Integrity",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Blood-brain barrier structural and functional integrity"
+  },
+  {
+    "id": "pericyte_function",
+    "label": "Pericyte Function",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Pericyte-mediated BBB support and capillary dilation"
+  },
+  {
+    "id": "aqp4_polarization",
+    "label": "AQP4 Polarization",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "AQP4 concentrated at astrocyte endfeet (healthy state)"
+  },
+  {
+    "id": "aqp4_depolarization",
+    "label": "AQP4 Depolarization",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "AQP4 redistributed away from endfeet (pathological)"
+  },
+  {
+    "id": "arterial_pulsatility",
+    "label": "Arterial Pulsatility",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Vasomotion amplitude that drives perivascular CSF flow"
+  },
+  {
+    "id": "csf_isf_exchange",
+    "label": "CSF-ISF Exchange",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Bidirectional fluid exchange in brain parenchyma"
+  },
+  {
+    "id": "astrocyte_endfeet",
+    "label": "Astrocyte Endfeet Integrity",
+    "moduleId": "M12",
+    "category": "STOCK",
+    "subtype": "CompartmentState",
+    "description": "Structural integrity of astrocyte endfeet ensheathing blood vessels"
+  },
+  {
+    "id": "fcrn_transport",
+    "label": "FcRn Transport (BBB)",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Neonatal Fc receptor-mediated antibody transcytosis across BBB"
+  },
+  {
+    "id": "fcrn_recycling",
+    "label": "FcRn Recycling (Periphery)",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "FcRn salvage pathway extends IgG half-life in blood"
+  },
+  {
+    "id": "peripheral_sink_hypothesis",
+    "label": "Peripheral Sink Hypothesis",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Theory that peripheral Aβ removal shifts brain→blood equilibrium"
+  },
+  {
+    "id": "intramural_periarterial_drainage",
+    "label": "Intramural Periarterial Drainage (IPAD)",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Aβ drains along basement membranes of cerebral arteries"
+  },
+  {
+    "id": "cervical_lymph_nodes",
+    "label": "Cervical Lymph Node Drainage",
+    "moduleId": "M12",
+    "category": "STOCK",
+    "subtype": "CompartmentState",
+    "description": "CNS antigens drain to deep cervical lymph nodes"
+  },
+  {
+    "id": "splenic_clearance",
+    "label": "Splenic Aβ Clearance",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Spleen filters Aβ-antibody immune complexes from blood"
+  },
+  {
+    "id": "hepatic_clearance",
+    "label": "Hepatic Aβ Clearance",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Liver Kupffer cells clear Aβ from blood"
+  },
+  {
+    "id": "aria_edema",
+    "label": "ARIA-E (Edema)",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Amyloid-related imaging abnormality - edema/effusion"
+  },
+  {
+    "id": "aria_hemorrhage",
+    "label": "ARIA-H (Hemorrhage)",
+    "moduleId": "M12",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Amyloid-related imaging abnormality - microhemorrhage"
+  },
+  {
+    "id": "cholinergic_degeneration",
+    "label": "Cholinergic Degeneration",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Neurodegeneration",
+    "description": "Basal forebrain cholinergic neuron loss"
+  },
+  {
+    "id": "ach_reduced",
+    "label": "Acetylcholine Reduced",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "MetaboliteSignal",
+    "description": "Cholinergic deficit in AD"
+  },
+  {
+    "id": "white_matter_pathology",
+    "label": "White Matter Pathology",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Myelin/oligodendrocyte dysfunction"
+  },
+  {
+    "id": "myelin_breakdown",
+    "label": "Myelin Breakdown",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Neurodegeneration",
+    "description": "Demyelination in AD"
+  },
+  {
+    "id": "opcs",
+    "label": "Oligodendrocyte Precursor Cells",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "CellPopulation",
+    "description": "NG2+ progenitors; maintain remyelination capacity; support BBB"
+  },
+  {
+    "id": "mature_oligodendrocytes",
+    "label": "Mature Oligodendrocytes",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "CellPopulation",
+    "description": "MBP+/MOG+ myelinating cells; vulnerable to APOE4, A1 astrocytes"
+  },
+  {
+    "id": "opc_nos1_activity",
+    "label": "OPC NOS1 Activity",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Nitric oxide synthase 1 expression in OPCs - HUMAN-SPECIFIC"
+  },
+  {
+    "id": "ol_cholesterol_synthesis",
+    "label": "OL Cholesterol Synthesis",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Oligodendrocyte cholesterol production for myelin"
+  },
+  {
+    "id": "opc_tgf_beta1",
+    "label": "OPC-Derived TGF-β1",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "CytokineSignal",
+    "description": "TGF-β1 secreted by OPCs to support BBB integrity"
+  },
+  {
+    "id": "opc_vascular_coupling",
+    "label": "OPC-Vascular Coupling",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "OPC Ca²⁺ signaling drives neurovascular coupling"
+  },
+  {
+    "id": "remyelination_capacity",
+    "label": "Remyelination Capacity",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Ability to regenerate myelin after damage"
+  },
+  {
+    "id": "slit2_neuronal",
+    "label": "Neuronal SLIT2",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "SLIT2 secreted by excitatory neurons; upregulated in tauopathy"
+  },
+  {
+    "id": "robo1_ol",
+    "label": "OL ROBO1 Receptor",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "SurfaceReceptor",
+    "description": "Roundabout guidance receptor 1 on oligodendrocytes"
+  },
+  {
+    "id": "fyn_kinase_ol",
+    "label": "OL Fyn Kinase Activity",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Fyn kinase activity in oligodendrocytes; normally promotes OL maturation"
+  },
+  {
+    "id": "rhoa_gtp_ol",
+    "label": "OL RhoA-GTP",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Active RhoA (GTP-bound) in oligodendrocytes; drives cytoskeletal contraction"
+  },
+  {
+    "id": "ol_process_retraction",
+    "label": "OL Process Retraction",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Oligodendrocyte process retraction from axons; primary mechanism of Class B AD demyelination"
+  },
+  {
+    "id": "myelin_sheath_withdrawal",
+    "label": "Myelin Sheath Withdrawal",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Neurodegeneration",
+    "description": "Active myelin sheath withdrawal/retraction (distinct from degradation)"
+  },
+  {
+    "id": "dap12_signaling",
+    "label": "DAP12 Signaling",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "DAP12/TYROBP signaling in microglia; triggers SLIT2 induction in neurons"
+  },
+  {
+    "id": "a7nachr",
+    "label": "α7 Nicotinic AChR",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "SurfaceReceptor",
+    "description": "Nicotinic acetylcholine receptor with ultra-high affinity for Aβ42"
+  },
+  {
+    "id": "ab42_a7nachr_complex",
+    "label": "Aβ42–α7nAChR Complex",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Bound",
+    "description": "Pathogenic complex that triggers tau phosphorylation and intraneuronal Aβ"
+  },
+  {
+    "id": "intraneuronal_amyloid",
+    "label": "Intraneuronal Aβ",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "Aggregate",
+    "description": "Aβ42–α7nAChR complex internalized → intraneuronal aggregates"
+  },
+  {
+    "id": "microtubule_destabilization",
+    "label": "Microtubule Destabilization",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Hyperphosphorylated tau can no longer stabilize microtubules"
+  },
+  {
+    "id": "ol_iron_content",
+    "label": "OL Iron Content",
+    "moduleId": "M13",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Oligodendrocytes contain MORE iron than any other brain cell type"
+  },
+  {
+    "id": "ol_ferroptosis",
+    "label": "OL Ferroptotic Death",
+    "moduleId": "M13",
+    "category": "STATE",
+    "subtype": "Ferroptosis",
+    "description": "Iron-dependent oligodendrocyte death"
+  },
+  {
+    "id": "mam_hyperconnectivity",
+    "label": "MAM Hyperconnectivity",
+    "moduleId": "M14",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Increased ER-mitochondria contact sites"
+  },
+  {
+    "id": "er_mito_ca_flux",
+    "label": "ER-Mito Ca²⁺ Flux Increased",
+    "moduleId": "M14",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Enhanced Ca²⁺ transfer ER → mitochondria"
+  },
+  {
+    "id": "gamma_secretase_mam",
+    "label": "γ-Secretase at MAM",
+    "moduleId": "M14",
+    "category": "STOCK",
+    "subtype": "Protease",
+    "description": "γ-secretase activity enriched at MAM"
+  },
+  {
+    "id": "er_ca_stores",
+    "label": "ER Ca²⁺ Stores",
+    "moduleId": "M14",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "PS1 mutations → ER Ca²⁺ leak dysfunction"
+  },
+  {
+    "id": "mito_ca_overload_mam",
+    "label": "Mitochondrial Ca²⁺ Overload (MAM)",
+    "moduleId": "M14",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "MAM-mediated Ca²⁺ overload"
+  },
+  {
+    "id": "exercise",
+    "label": "Exercise",
+    "moduleId": "M15",
+    "category": "BOUNDARY",
+    "subtype": "Lifestyle",
+    "description": "Physical activity intervention"
+  },
+  {
+    "id": "bbb_penetration",
+    "label": "BBB Penetration",
+    "moduleId": "M15",
+    "category": "STATE",
+    "subtype": "CompartmentIntegrity",
+    "description": "Drug crosses blood-brain barrier"
+  },
+  {
+    "id": "target_engagement",
+    "label": "Target Engagement",
+    "moduleId": "M15",
+    "category": "STATE",
+    "subtype": "Bound",
+    "description": "Drug binds target with sufficient occupancy"
+  },
+  {
+    "id": "biomarker_change",
+    "label": "Biomarker Change",
+    "moduleId": "M15",
+    "category": "STOCK",
+    "subtype": "MetaboliteSignal",
+    "description": "Target engagement → biomarker movement"
+  },
+  {
+    "id": "clinical_benefit",
+    "label": "Clinical Benefit",
+    "moduleId": "M15",
+    "category": "BOUNDARY",
+    "subtype": "CognitiveScore",
+    "description": "Cognitive/functional improvement"
+  },
+  {
+    "id": "fsh_elevated",
+    "label": "FSH Elevated (Menopause)",
+    "moduleId": "M16",
+    "category": "STOCK",
+    "subtype": "HormoneLevel",
+    "description": "Rising FSH at menopause"
+  },
+  {
+    "id": "x_linked_lysosomal_genes",
+    "label": "X-Linked Lysosomal Genes",
+    "moduleId": "M16",
+    "category": "BOUNDARY",
+    "subtype": "Gene",
+    "description": "ATP6AP2, SLC9A7, ATP6AP1, LAMP2 on X chromosome"
+  },
+  {
+    "id": "visceral_adipose_tissue",
+    "label": "Visceral Adipose Tissue",
+    "moduleId": "M16",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "VAT produces IL-6, TNF-α, leptin"
+  },
+  {
+    "id": "apoe4_ancestry_effect",
+    "label": "APOE4 Ancestry Effect",
+    "moduleId": "M16",
+    "category": "STATE",
+    "subtype": "GeneticVariant",
+    "description": "APOE4 effect varies by ancestry"
+  },
+  {
+    "id": "female_iron_storage_failure",
+    "label": "Female Iron Storage Failure",
+    "moduleId": "M16",
+    "category": "STATE",
+    "subtype": "MetabolicState",
+    "description": "Women with AD show opposite iron-ferritin correlation"
+  },
+  {
+    "id": "vaccination",
+    "label": "Vaccination",
+    "moduleId": "M17",
+    "category": "BOUNDARY",
+    "subtype": "Biologic",
+    "description": "Any vaccine (adjuvanted or live-attenuated)"
+  },
+  {
+    "id": "trained_immunity_induction",
+    "label": "Trained Immunity Induction",
+    "moduleId": "M17",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Long-term innate immune reprogramming"
+  },
+  {
+    "id": "microglial_reprogramming",
+    "label": "Microglial Reprogramming",
+    "moduleId": "M17",
+    "category": "STATE",
+    "subtype": "PhysiologicalState",
+    "description": "Long-lived microglia as trained immunity substrates"
+  },
+  {
+    "id": "ifn_gamma",
+    "label": "IFN-γ",
+    "moduleId": "M17",
+    "category": "STOCK",
+    "subtype": "CytokineLevel",
+    "description": "Interferon gamma; key trained immunity effector"
+  },
+  {
+    "id": "aep_inactive",
+    "label": "AEP (Inactive)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "Protease",
+    "description": "Latent δ-secretase (legumain) in lysosomes"
+  },
+  {
+    "id": "aep_active",
+    "label": "AEP (Active)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "Protease",
+    "description": "pH-activated δ-secretase (legumain)"
+  },
+  {
+    "id": "vimentin_intact",
+    "label": "Vimentin (Intact)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "Full-length vimentin in astrocytes"
+  },
+  {
+    "id": "vimentin_cleaved",
+    "label": "Vimentin (Cleaved)",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "Cleaved",
+    "description": "N283-cleaved vimentin fragments"
+  },
+  {
+    "id": "gfap_network_intact",
+    "label": "GFAP Network Intact",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Functional vimentin-GFAP cytoskeletal network"
+  },
+  {
+    "id": "gfap_network_disrupted",
+    "label": "GFAP Network Disrupted",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Fragmented cytoskeletal network"
+  },
+  {
+    "id": "clasmatodendrosis",
+    "label": "Clasmatodendrosis",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "Neurodegeneration",
+    "description": "Astrocyte endfoot fragmentation and retraction"
+  },
+  {
+    "id": "gfap_released",
+    "label": "GFAP (Released)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "ProteinPool",
+    "description": "GFAP released from damaged astrocytes into CSF/plasma"
+  },
+  {
+    "id": "pvs_normal",
+    "label": "PVS Normal",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "Homeostatic",
+    "description": "Normal perivascular space"
+  },
+  {
+    "id": "pvs_enlarged",
+    "label": "PVS Enlarged",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Enlarged perivascular spaces (MRI-visible) - early structural marker"
+  },
+  {
+    "id": "slc1a2_expression",
+    "label": "GLT-1/EAAT2 (SLC1A2)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Primary glutamate transporter responsible for 90% of synaptic glutamate clearance"
+  },
+  {
+    "id": "slc1a2_downregulated",
+    "label": "GLT-1 Downregulated",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Reduced astrocytic glutamate clearance capacity in AD/GWI"
+  },
+  {
+    "id": "extracellular_glutamate",
+    "label": "Extracellular Glutamate ↑",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Elevated synaptic/extrasynaptic glutamate due to impaired clearance"
+  },
+  {
+    "id": "glutamate_excitotoxicity",
+    "label": "Glutamate Excitotoxicity",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Neuronal damage from excessive glutamate receptor activation"
+  },
+  {
+    "id": "low_glutamate_diet",
+    "label": "Low-Glutamate Diet",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "SmallMolecule",
+    "description": "Dietary intervention reducing free glutamate intake"
+  },
+  {
+    "id": "glutamine_synthetase_active",
+    "label": "Glutamine Synthetase (Active)",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "ActiveProteinPool",
+    "description": "Astrocyte-specific enzyme that detoxifies ammonia"
+  },
+  {
+    "id": "glutamine_synthetase_reduced",
+    "label": "Glutamine Synthetase (Reduced)",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Reduced GS activity in AD astrocytes"
+  },
+  {
+    "id": "ammonia_accumulation",
+    "label": "Brain Ammonia",
+    "moduleId": "M18",
+    "category": "STOCK",
+    "subtype": "MetabolitePool",
+    "description": "Accumulated ammonia in brain parenchyma"
+  },
+  {
+    "id": "astrocyte_swelling",
+    "label": "Astrocyte Swelling",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Ammonia-induced astrocyte edema"
+  },
+  {
+    "id": "app_er_translocation",
+    "label": "APP→ER Translocation",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Ammonia-induced APP internalization to ER"
+  },
+  {
+    "id": "sleep_fragmentation",
+    "label": "Sleep Fragmentation",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "EnvironmentalAgent",
+    "description": "Chronic sleep disruption"
+  },
+  {
+    "id": "cerebral_hypoperfusion",
+    "label": "Cerebral Hypoperfusion",
+    "moduleId": "M18",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Reduced blood flow to brain"
+  },
+  {
+    "id": "plasma_gfap",
+    "label": "Plasma GFAP",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Blood GFAP level - astrocyte damage marker"
+  },
+  {
+    "id": "csf_gfap",
+    "label": "CSF GFAP",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Cerebrospinal fluid GFAP"
+  },
+  {
+    "id": "dti_alps",
+    "label": "DTI-ALPS Index",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "MRI glymphatic function measure"
+  },
+  {
+    "id": "vimentin_fragments",
+    "label": "Vimentin Fragments",
+    "moduleId": "M18",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "N283 cleavage products (novel biomarker)"
+  },
+  {
+    "id": "pathogenic_exposure",
+    "label": "Pathogenic Exposure",
+    "moduleId": "M19",
+    "category": "BOUNDARY",
+    "subtype": "EnvironmentalAgent",
+    "description": "Viral or bacterial infection triggering post-infectious syndrome"
+  },
+  {
+    "id": "neurotoxicant_exposure",
+    "label": "Neurotoxicant Exposure",
+    "moduleId": "M19",
+    "category": "BOUNDARY",
+    "subtype": "EnvironmentalExposure",
+    "description": "Environmental neurotoxicants as AD risk factors (GWI model)"
+  },
+  {
+    "id": "gwi_glymphatic_impairment",
+    "label": "GWI Glymphatic Impairment",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Measured glymphatic dysfunction in Gulf War veterans (Zhang 2026)"
+  },
+  {
+    "id": "chronic_immune_activation",
+    "label": "Chronic Immune Activation",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "Neuroinflammation",
+    "description": "Persistent immune dysregulation following infection (Long COVID/ME/CFS state)"
+  },
+  {
+    "id": "gpcr_autoantibodies",
+    "label": "GPCR Autoantibodies",
+    "moduleId": "M19",
+    "category": "STOCK",
+    "subtype": "Autoantibody",
+    "description": "Autoantibodies against G-protein coupled receptors (β-adrenergic, muscarinic, AT1, ETA)"
+  },
+  {
+    "id": "plasma_gpcr_aabs",
+    "label": "Plasma GPCR-AABs",
+    "moduleId": "M19",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Measurable autoantibodies against GPCRs in plasma"
+  },
+  {
+    "id": "gpcr_signaling_dysregulated",
+    "label": "GPCR Signaling Dysregulated",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "SignalingPathway",
+    "description": "Dysfunctional GPCR signaling due to autoantibody binding"
+  },
+  {
+    "id": "vasoregulatory_dysfunction",
+    "label": "Vasoregulatory Dysfunction",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Impaired blood vessel regulation from GPCR-AAB effects"
+  },
+  {
+    "id": "microcirculatory_impairment",
+    "label": "Microcirculatory Impairment",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Small vessel dysfunction leading to tissue hypoperfusion"
+  },
+  {
+    "id": "tissue_hypoperfusion",
+    "label": "Tissue Hypoperfusion",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Reduced blood flow to tissues including brain"
+  },
+  {
+    "id": "trained_immunity_protective",
+    "label": "Trained Immunity (Protective)",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "PhysiologicalState",
+    "description": "Beneficial epigenetic reprogramming of innate immunity from vaccination"
+  },
+  {
+    "id": "trained_immunity_maladaptive",
+    "label": "Trained Immunity (Maladaptive)",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Harmful epigenetic reprogramming from infection leading to chronic inflammation"
+  },
+  {
+    "id": "irg1_itaconate_shunt",
+    "label": "IRG1/Itaconate Shunt",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Metabolic switch producing itaconate from aconitate"
+  },
+  {
+    "id": "gaba_shunt_active",
+    "label": "GABA Shunt Active",
+    "moduleId": "M19",
+    "category": "STATE",
+    "subtype": "BiologicalProcess",
+    "description": "Alternative glutamate metabolism pathway active during immune activation"
+  },
+  {
+    "id": "nfl_level",
+    "label": "Neurofilament Light (NfL)",
+    "moduleId": "M19",
+    "category": "BOUNDARY",
+    "subtype": "Biomarker",
+    "description": "Marker of axonal damage elevated in post-infectious neurodegeneration"
+  },
+  {
+    "id": "estrogen_level",
+    "label": "Estrogen Level",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "HormoneSignal",
+    "description": "Circulating estrogen (E2) - declines sharply at menopause"
+  },
+  {
+    "id": "hrt_intervention",
+    "label": "Hormone Replacement Therapy",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "DrugIntervention",
+    "description": "Estrogen ± progesterone replacement therapy"
+  },
+  {
+    "id": "estrogen_neuroprotection",
+    "label": "Estrogen Neuroprotection",
+    "moduleId": "M20",
+    "category": "STATE",
+    "subtype": "PhysiologicalState",
+    "description": "Estrogen-mediated neuroprotective mechanisms"
+  },
+  {
+    "id": "testosterone_level",
+    "label": "Testosterone Level",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "HormoneSignal",
+    "description": "Circulating testosterone - gradual decline with age in men"
+  },
+  {
+    "id": "testosterone_neuroprotection",
+    "label": "Testosterone Neuroprotection",
+    "moduleId": "M20",
+    "category": "STATE",
+    "subtype": "PhysiologicalState",
+    "description": "Testosterone-mediated neuroprotective mechanisms"
+  },
+  {
+    "id": "cortisol_level",
+    "label": "Cortisol Level",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "HormoneSignal",
+    "description": "Circulating cortisol - elevated in chronic stress and AD"
+  },
+  {
+    "id": "hpa_axis_activation",
+    "label": "HPA Axis Activation",
+    "moduleId": "M20",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Hypothalamic-pituitary-adrenal axis dysregulation"
+  },
+  {
+    "id": "chronic_stress",
+    "label": "Chronic Psychosocial Stress",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "EnvironmentalExposure",
+    "description": "Chronic psychological/social stress exposure"
+  },
+  {
+    "id": "stress_reduction",
+    "label": "Stress Reduction Interventions",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "LifestyleIntervention",
+    "description": "Mindfulness, meditation, social support, lifestyle interventions"
+  },
+  {
+    "id": "thyroid_function",
+    "label": "Thyroid Function",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "HormoneSignal",
+    "description": "Thyroid hormone levels (T3, T4, TSH)"
+  },
+  {
+    "id": "hypothyroidism",
+    "label": "Hypothyroidism",
+    "moduleId": "M20",
+    "category": "STATE",
+    "subtype": "DiseaseStage",
+    "description": "Clinical or subclinical hypothyroidism"
+  },
+  {
+    "id": "insulin_signaling",
+    "label": "Brain Insulin Signaling",
+    "moduleId": "M20",
+    "category": "STATE",
+    "subtype": "SignalingPathway",
+    "description": "Insulin/IGF-1 signaling in the brain"
+  },
+  {
+    "id": "intranasal_insulin",
+    "label": "Intranasal Insulin",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "DrugIntervention",
+    "description": "Intranasal insulin delivery to brain"
+  },
+  {
+    "id": "melatonin_level",
+    "label": "Melatonin Level",
+    "moduleId": "M20",
+    "category": "BOUNDARY",
+    "subtype": "HormoneSignal",
+    "description": "Pineal melatonin production - declines with age"
+  }
+]

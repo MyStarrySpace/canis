@@ -5,7 +5,7 @@
  * The WASM engine expects a flat JSON structure.
  */
 
-import type { GraphData, SbsfEdge, SbsfNode, ModuleDef, ConfidenceScheme } from './types';
+import type { GraphData, SbsfEdge, SbsfNode, ModuleDef, ConfidenceScheme, BoundaryVariant } from './types';
 
 /**
  * Input types matching alz-market-viz/src/data/mechanisticFramework/types.ts
@@ -27,6 +27,8 @@ export interface MechanisticNode {
   roles?: string[];
   pmid?: string;
   notes?: string;
+  variants?: BoundaryVariant[];
+  defaultVariant?: string;
 }
 
 export interface MechanisticEdge {
@@ -63,7 +65,7 @@ export interface MechanisticModule {
  * Convert MechanisticNode to SBSF node format.
  */
 function convertNode(node: MechanisticNode): SbsfNode {
-  return {
+  const sbsf: SbsfNode = {
     id: node.id,
     label: node.label,
     category: node.category,
@@ -77,6 +79,11 @@ function convertNode(node: MechanisticNode): SbsfNode {
     x: 0,
     y: 0,
   };
+  if (node.variants && node.variants.length > 0) {
+    sbsf.variants = node.variants;
+    sbsf.defaultVariant = node.defaultVariant;
+  }
+  return sbsf;
 }
 
 /**

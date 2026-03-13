@@ -1,4 +1,5 @@
 import type { MechanisticNode, MechanisticEdge, MechanisticModule } from '../../../src/index';
+import type { BoundaryVariant } from '../../../src/types';
 import { getTreatmentsTargetingNode, type TreatmentLibraryEntry } from '../data/drug-library';
 
 interface NodeInspectorProps {
@@ -6,15 +7,31 @@ interface NodeInspectorProps {
   rawNodes: MechanisticNode[];
   rawEdges: MechanisticEdge[];
   rawModules: MechanisticModule[];
+  selectedVariants: Record<string, string>;
+  onSelectVariant: (nodeId: string, variantId: string) => void;
   onSelectNode: (nodeId: string) => void;
   onSelectDrug: (drug: TreatmentLibraryEntry) => void;
 }
+
+const DIRECTION_COLORS: Record<string, string> = {
+  protective: '#34d399',
+  neutral: '#787473',
+  risk: '#c75146',
+};
+
+const DIRECTION_LABELS: Record<string, string> = {
+  protective: 'Protective',
+  neutral: 'Neutral',
+  risk: 'Risk',
+};
 
 export function NodeInspector({
   selectedNode,
   rawNodes,
   rawEdges,
   rawModules,
+  selectedVariants,
+  onSelectVariant,
   onSelectNode,
   onSelectDrug,
 }: NodeInspectorProps) {
@@ -30,6 +47,13 @@ export function NodeInspector({
   const module = rawModules.find((m) => m.id === nodeData.moduleId);
   const edges = rawEdges.filter((e) => e.source === selectedNode || e.target === selectedNode);
   const drugs = getTreatmentsTargetingNode(selectedNode);
+  const variants = (nodeData.variants ?? []) as BoundaryVariant[];
+  const activeVariantId = selectedVariants[selectedNode] ?? (nodeData.defaultVariant as string | undefined);
+
+  // Find max magnitude for bar chart scaling
+  const maxMagnitude = variants.length > 0
+    ? Math.max(...variants.map((v) => v.effectMagnitude))
+    : 1;
 
   return (
     <div>
@@ -49,8 +73,164 @@ export function NodeInspector({
       <InfoRow label="Module" value={module?.name ?? nodeData.moduleId} />
       <InfoRow label="Description" value={nodeData.description} />
       {nodeData.mechanism && <InfoRow label="Mechanism" value={nodeData.mechanism} />}
-      {nodeData.roles && nodeData.roles.length > 0 && (
+      {(nodeData.roles as string[] | undefined)?.length ? (
         <InfoRow label="Roles" value={(nodeData.roles as string[]).join(', ')} />
+      ) : null}
+
+      {/* ── Variant Selector ── */}
+      {variants.length > 0 && (
+        <>
+          <div style={styles.divider} />
+          <h2 style={styles.title}>Variants ({variants.length})</h2>
+
+          {/* Bar chart view */}
+          <div style={{ marginBottom: 12 }}>
+            {variants.map((v) => {
+              const isActive = v.id === activeVariantId;
+              const barWidth = maxMagnitude > 0
+                ? Math.max(4, (v.effectMagnitude / maxMagnitude) * 100)
+                : 4;
+              const dirColor = v.color ?? DIRECTION_COLORS[v.effectDirection] ?? '#787473';
+
+              return (
+                <div
+                  key={v.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '5px 6px',
+                    marginBottom: 2,
+                    borderRadius: 3,
+                    cursor: 'pointer',
+                    background: isActive ? '#f5f3f0' : 'transparent',
+                    border: isActive ? '1px solid #e5e2dd' : '1px solid transparent',
+                    transition: 'all 0.15s ease',
+                  }}
+                  onClick={() => onSelectVariant(selectedNode, v.id)}
+                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = '#faf9f7'; }}
+                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
+                >
+                  {/* Radio dot */}
+                  <div style={{
+                    width: 14, height: 14, borderRadius: '50%', flexShrink: 0,
+                    border: `2px solid ${isActive ? dirColor : '#ccc'}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    {isActive && (
+                      <div style={{
+                        width: 8, height: 8, borderRadius: '50%',
+                        background: dirColor,
+                      }} />
+                    )}
+                  </div>
+
+                  {/* Label + bar */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      marginBottom: 2,
+                    }}>
+                      <span style={{
+                        fontSize: 12, fontWeight: isActive ? 600 : 400,
+                        color: '#2d2d2d',
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      }}>
+                        {v.label}
+                      </span>
+                      <span style={{
+                        fontSize: 10, color: dirColor, fontWeight: 600,
+                        flexShrink: 0, marginLeft: 4,
+                      }}>
+                        {v.effectMagnitude}x
+                      </span>
+                    </div>
+
+                    {/* Magnitude bar */}
+                    <div style={{
+                      height: 4, borderRadius: 2, background: '#f0efed',
+                      overflow: 'hidden',
+                    }}>
+                      <div style={{
+                        width: `${barWidth}%`,
+                        height: '100%',
+                        borderRadius: 2,
+                        background: dirColor,
+                        opacity: isActive ? 1 : 0.4,
+                        transition: 'opacity 0.15s ease',
+                      }} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Active variant details */}
+          {activeVariantId && (() => {
+            const av = variants.find((v) => v.id === activeVariantId);
+            if (!av) return null;
+            return (
+              <div style={{
+                padding: '8px 10px', borderRadius: 3,
+                background: '#faf9f7', border: '1px solid #e5e2dd',
+                fontSize: 12, lineHeight: '18px',
+              }}>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6,
+                }}>
+                  <div style={{
+                    width: 8, height: 8, borderRadius: '50%',
+                    background: av.color ?? DIRECTION_COLORS[av.effectDirection] ?? '#787473',
+                  }} />
+                  <span style={{ fontWeight: 600, color: '#2d2d2d' }}>{av.label}</span>
+                  <span style={{
+                    fontSize: 10, padding: '1px 5px', borderRadius: 2,
+                    background: `${DIRECTION_COLORS[av.effectDirection] ?? '#787473'}20`,
+                    color: DIRECTION_COLORS[av.effectDirection] ?? '#787473',
+                    fontWeight: 600,
+                  }}>
+                    {DIRECTION_LABELS[av.effectDirection] ?? av.effectDirection}
+                  </span>
+                </div>
+
+                {av.effectDescription && (
+                  <div style={{ color: '#4a4a4a', marginBottom: 4 }}>{av.effectDescription}</div>
+                )}
+
+                <div style={{
+                  display: 'flex', flexWrap: 'wrap', gap: 8,
+                  fontSize: 10, color: '#7a7a7a', marginTop: 4,
+                }}>
+                  {av.oddsRatio != null && (
+                    <span>
+                      <strong>OR</strong> {av.oddsRatio}
+                      {av.ciLow != null && av.ciHigh != null && (
+                        <> ({av.ciLow}–{av.ciHigh})</>
+                      )}
+                    </span>
+                  )}
+                  {av.frequency != null && (
+                    <span><strong>Freq</strong> {(av.frequency * 100).toFixed(1)}%</span>
+                  )}
+                  {av.population && (
+                    <span><strong>Pop</strong> {av.population}</span>
+                  )}
+                  {av.pmid && (
+                    <a
+                      href={`https://pubmed.ncbi.nlm.nih.gov/${av.pmid}/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#486393', textDecoration: 'none' }}
+                    >
+                      PMID:{av.pmid}
+                    </a>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
+        </>
       )}
 
       {edges.length > 0 && (

@@ -1,0 +1,5582 @@
+{
+  "nodes": [
+    {
+      "id": "node_0000",
+      "label": "Hub 0",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T01",
+      "description": "Synthetic node 0 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0001",
+      "label": "Hub 1",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T01",
+      "description": "Synthetic node 1 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0002",
+      "label": "Hub 2",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T01",
+      "description": "Synthetic node 2 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0003",
+      "label": "Hub 3",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T01",
+      "description": "Synthetic node 3 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0004",
+      "label": "Hub 4",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T01",
+      "description": "Synthetic node 4 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0005",
+      "label": "Hub 5",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T01",
+      "description": "Synthetic node 5 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0006",
+      "label": "Hub 6",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T01",
+      "description": "Synthetic node 6 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0007",
+      "label": "Hub 7",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T01",
+      "description": "Synthetic node 7 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0008",
+      "label": "Hub 8",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T01",
+      "description": "Synthetic node 8 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0009",
+      "label": "Hub 9",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T01",
+      "description": "Synthetic node 9 in Alpha",
+      "mechanism": "Central hub node with high connectivity",
+      "roles": [
+        "LEVERAGE_POINT"
+      ]
+    },
+    {
+      "id": "node_0010",
+      "label": "Node 10",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T01",
+      "description": "Synthetic node 10 in Alpha"
+    },
+    {
+      "id": "node_0011",
+      "label": "Node 11",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T01",
+      "description": "Synthetic node 11 in Alpha"
+    },
+    {
+      "id": "node_0012",
+      "label": "Node 12",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T01",
+      "description": "Synthetic node 12 in Alpha"
+    },
+    {
+      "id": "node_0013",
+      "label": "Node 13",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T01",
+      "description": "Synthetic node 13 in Alpha"
+    },
+    {
+      "id": "node_0014",
+      "label": "Node 14",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T01",
+      "description": "Synthetic node 14 in Alpha"
+    },
+    {
+      "id": "node_0015",
+      "label": "Node 15",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T01",
+      "description": "Synthetic node 15 in Alpha"
+    },
+    {
+      "id": "node_0016",
+      "label": "Node 16",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T01",
+      "description": "Synthetic node 16 in Alpha"
+    },
+    {
+      "id": "node_0017",
+      "label": "Node 17",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T01",
+      "description": "Synthetic node 17 in Alpha"
+    },
+    {
+      "id": "node_0018",
+      "label": "Node 18",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T01",
+      "description": "Synthetic node 18 in Alpha"
+    },
+    {
+      "id": "node_0019",
+      "label": "Node 19",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T01",
+      "description": "Synthetic node 19 in Alpha"
+    },
+    {
+      "id": "node_0020",
+      "label": "Node 20",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T01",
+      "description": "Synthetic node 20 in Alpha"
+    },
+    {
+      "id": "node_0021",
+      "label": "Node 21",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T01",
+      "description": "Synthetic node 21 in Alpha"
+    },
+    {
+      "id": "node_0022",
+      "label": "Node 22",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T01",
+      "description": "Synthetic node 22 in Alpha"
+    },
+    {
+      "id": "node_0023",
+      "label": "Node 23",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T01",
+      "description": "Synthetic node 23 in Alpha"
+    },
+    {
+      "id": "node_0024",
+      "label": "Node 24",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T01",
+      "description": "Synthetic node 24 in Alpha"
+    },
+    {
+      "id": "node_0025",
+      "label": "Node 25",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T01",
+      "description": "Synthetic node 25 in Alpha"
+    },
+    {
+      "id": "node_0026",
+      "label": "Node 26",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T01",
+      "description": "Synthetic node 26 in Alpha"
+    },
+    {
+      "id": "node_0027",
+      "label": "Node 27",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T01",
+      "description": "Synthetic node 27 in Alpha"
+    },
+    {
+      "id": "node_0028",
+      "label": "Node 28",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T01",
+      "description": "Synthetic node 28 in Alpha"
+    },
+    {
+      "id": "node_0029",
+      "label": "Node 29",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T01",
+      "description": "Synthetic node 29 in Alpha"
+    },
+    {
+      "id": "node_0030",
+      "label": "Node 30",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T01",
+      "description": "Synthetic node 30 in Alpha"
+    },
+    {
+      "id": "node_0031",
+      "label": "Node 31",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T01",
+      "description": "Synthetic node 31 in Alpha"
+    },
+    {
+      "id": "node_0032",
+      "label": "Node 32",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T01",
+      "description": "Synthetic node 32 in Alpha"
+    },
+    {
+      "id": "node_0033",
+      "label": "Node 33",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T01",
+      "description": "Synthetic node 33 in Alpha"
+    },
+    {
+      "id": "node_0034",
+      "label": "Node 34",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T02",
+      "description": "Synthetic node 34 in Beta"
+    },
+    {
+      "id": "node_0035",
+      "label": "Node 35",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T02",
+      "description": "Synthetic node 35 in Beta"
+    },
+    {
+      "id": "node_0036",
+      "label": "Node 36",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T02",
+      "description": "Synthetic node 36 in Beta"
+    },
+    {
+      "id": "node_0037",
+      "label": "Node 37",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T02",
+      "description": "Synthetic node 37 in Beta"
+    },
+    {
+      "id": "node_0038",
+      "label": "Node 38",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T02",
+      "description": "Synthetic node 38 in Beta"
+    },
+    {
+      "id": "node_0039",
+      "label": "Node 39",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T02",
+      "description": "Synthetic node 39 in Beta"
+    },
+    {
+      "id": "node_0040",
+      "label": "Node 40",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T02",
+      "description": "Synthetic node 40 in Beta"
+    },
+    {
+      "id": "node_0041",
+      "label": "Node 41",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T02",
+      "description": "Synthetic node 41 in Beta"
+    },
+    {
+      "id": "node_0042",
+      "label": "Node 42",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T02",
+      "description": "Synthetic node 42 in Beta"
+    },
+    {
+      "id": "node_0043",
+      "label": "Node 43",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T02",
+      "description": "Synthetic node 43 in Beta"
+    },
+    {
+      "id": "node_0044",
+      "label": "Node 44",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T02",
+      "description": "Synthetic node 44 in Beta"
+    },
+    {
+      "id": "node_0045",
+      "label": "Node 45",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T02",
+      "description": "Synthetic node 45 in Beta"
+    },
+    {
+      "id": "node_0046",
+      "label": "Node 46",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T02",
+      "description": "Synthetic node 46 in Beta"
+    },
+    {
+      "id": "node_0047",
+      "label": "Node 47",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T02",
+      "description": "Synthetic node 47 in Beta"
+    },
+    {
+      "id": "node_0048",
+      "label": "Node 48",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T02",
+      "description": "Synthetic node 48 in Beta"
+    },
+    {
+      "id": "node_0049",
+      "label": "Node 49",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T02",
+      "description": "Synthetic node 49 in Beta"
+    },
+    {
+      "id": "node_0050",
+      "label": "Node 50",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T02",
+      "description": "Synthetic node 50 in Beta"
+    },
+    {
+      "id": "node_0051",
+      "label": "Node 51",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T02",
+      "description": "Synthetic node 51 in Beta"
+    },
+    {
+      "id": "node_0052",
+      "label": "Node 52",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T02",
+      "description": "Synthetic node 52 in Beta"
+    },
+    {
+      "id": "node_0053",
+      "label": "Node 53",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T02",
+      "description": "Synthetic node 53 in Beta"
+    },
+    {
+      "id": "node_0054",
+      "label": "Node 54",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T02",
+      "description": "Synthetic node 54 in Beta"
+    },
+    {
+      "id": "node_0055",
+      "label": "Node 55",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T02",
+      "description": "Synthetic node 55 in Beta"
+    },
+    {
+      "id": "node_0056",
+      "label": "Node 56",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T02",
+      "description": "Synthetic node 56 in Beta"
+    },
+    {
+      "id": "node_0057",
+      "label": "Node 57",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T02",
+      "description": "Synthetic node 57 in Beta"
+    },
+    {
+      "id": "node_0058",
+      "label": "Node 58",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T02",
+      "description": "Synthetic node 58 in Beta"
+    },
+    {
+      "id": "node_0059",
+      "label": "Node 59",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T02",
+      "description": "Synthetic node 59 in Beta"
+    },
+    {
+      "id": "node_0060",
+      "label": "Node 60",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T02",
+      "description": "Synthetic node 60 in Beta"
+    },
+    {
+      "id": "node_0061",
+      "label": "Node 61",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T02",
+      "description": "Synthetic node 61 in Beta"
+    },
+    {
+      "id": "node_0062",
+      "label": "Node 62",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T02",
+      "description": "Synthetic node 62 in Beta"
+    },
+    {
+      "id": "node_0063",
+      "label": "Node 63",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T02",
+      "description": "Synthetic node 63 in Beta"
+    },
+    {
+      "id": "node_0064",
+      "label": "Node 64",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T02",
+      "description": "Synthetic node 64 in Beta"
+    },
+    {
+      "id": "node_0065",
+      "label": "Node 65",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T02",
+      "description": "Synthetic node 65 in Beta"
+    },
+    {
+      "id": "node_0066",
+      "label": "Node 66",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T02",
+      "description": "Synthetic node 66 in Beta"
+    },
+    {
+      "id": "node_0067",
+      "label": "Node 67",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T03",
+      "description": "Synthetic node 67 in Gamma"
+    },
+    {
+      "id": "node_0068",
+      "label": "Node 68",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T03",
+      "description": "Synthetic node 68 in Gamma"
+    },
+    {
+      "id": "node_0069",
+      "label": "Node 69",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T03",
+      "description": "Synthetic node 69 in Gamma"
+    },
+    {
+      "id": "node_0070",
+      "label": "Node 70",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T03",
+      "description": "Synthetic node 70 in Gamma"
+    },
+    {
+      "id": "node_0071",
+      "label": "Node 71",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T03",
+      "description": "Synthetic node 71 in Gamma"
+    },
+    {
+      "id": "node_0072",
+      "label": "Node 72",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T03",
+      "description": "Synthetic node 72 in Gamma"
+    },
+    {
+      "id": "node_0073",
+      "label": "Node 73",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T03",
+      "description": "Synthetic node 73 in Gamma"
+    },
+    {
+      "id": "node_0074",
+      "label": "Node 74",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T03",
+      "description": "Synthetic node 74 in Gamma"
+    },
+    {
+      "id": "node_0075",
+      "label": "Node 75",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T03",
+      "description": "Synthetic node 75 in Gamma"
+    },
+    {
+      "id": "node_0076",
+      "label": "Node 76",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T03",
+      "description": "Synthetic node 76 in Gamma"
+    },
+    {
+      "id": "node_0077",
+      "label": "Node 77",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T03",
+      "description": "Synthetic node 77 in Gamma"
+    },
+    {
+      "id": "node_0078",
+      "label": "Node 78",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T03",
+      "description": "Synthetic node 78 in Gamma"
+    },
+    {
+      "id": "node_0079",
+      "label": "Node 79",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T03",
+      "description": "Synthetic node 79 in Gamma"
+    },
+    {
+      "id": "node_0080",
+      "label": "Node 80",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T03",
+      "description": "Synthetic node 80 in Gamma"
+    },
+    {
+      "id": "node_0081",
+      "label": "Node 81",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T03",
+      "description": "Synthetic node 81 in Gamma"
+    },
+    {
+      "id": "node_0082",
+      "label": "Node 82",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T03",
+      "description": "Synthetic node 82 in Gamma"
+    },
+    {
+      "id": "node_0083",
+      "label": "Node 83",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T03",
+      "description": "Synthetic node 83 in Gamma"
+    },
+    {
+      "id": "node_0084",
+      "label": "Node 84",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T03",
+      "description": "Synthetic node 84 in Gamma"
+    },
+    {
+      "id": "node_0085",
+      "label": "Node 85",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T03",
+      "description": "Synthetic node 85 in Gamma"
+    },
+    {
+      "id": "node_0086",
+      "label": "Node 86",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T03",
+      "description": "Synthetic node 86 in Gamma"
+    },
+    {
+      "id": "node_0087",
+      "label": "Node 87",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T03",
+      "description": "Synthetic node 87 in Gamma"
+    },
+    {
+      "id": "node_0088",
+      "label": "Node 88",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T03",
+      "description": "Synthetic node 88 in Gamma"
+    },
+    {
+      "id": "node_0089",
+      "label": "Node 89",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T03",
+      "description": "Synthetic node 89 in Gamma"
+    },
+    {
+      "id": "node_0090",
+      "label": "Node 90",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T03",
+      "description": "Synthetic node 90 in Gamma"
+    },
+    {
+      "id": "node_0091",
+      "label": "Node 91",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T03",
+      "description": "Synthetic node 91 in Gamma"
+    },
+    {
+      "id": "node_0092",
+      "label": "Node 92",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T03",
+      "description": "Synthetic node 92 in Gamma"
+    },
+    {
+      "id": "node_0093",
+      "label": "Node 93",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T03",
+      "description": "Synthetic node 93 in Gamma"
+    },
+    {
+      "id": "node_0094",
+      "label": "Node 94",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T03",
+      "description": "Synthetic node 94 in Gamma"
+    },
+    {
+      "id": "node_0095",
+      "label": "Node 95",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T03",
+      "description": "Synthetic node 95 in Gamma"
+    },
+    {
+      "id": "node_0096",
+      "label": "Node 96",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T03",
+      "description": "Synthetic node 96 in Gamma"
+    },
+    {
+      "id": "node_0097",
+      "label": "Node 97",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T03",
+      "description": "Synthetic node 97 in Gamma"
+    },
+    {
+      "id": "node_0098",
+      "label": "Node 98",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T03",
+      "description": "Synthetic node 98 in Gamma"
+    },
+    {
+      "id": "node_0099",
+      "label": "Node 99",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T03",
+      "description": "Synthetic node 99 in Gamma"
+    },
+    {
+      "id": "node_0100",
+      "label": "Node 100",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T04",
+      "description": "Synthetic node 100 in Delta"
+    },
+    {
+      "id": "node_0101",
+      "label": "Node 101",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T04",
+      "description": "Synthetic node 101 in Delta"
+    },
+    {
+      "id": "node_0102",
+      "label": "Node 102",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 102 in Delta"
+    },
+    {
+      "id": "node_0103",
+      "label": "Node 103",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T04",
+      "description": "Synthetic node 103 in Delta"
+    },
+    {
+      "id": "node_0104",
+      "label": "Node 104",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T04",
+      "description": "Synthetic node 104 in Delta"
+    },
+    {
+      "id": "node_0105",
+      "label": "Node 105",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T04",
+      "description": "Synthetic node 105 in Delta"
+    },
+    {
+      "id": "node_0106",
+      "label": "Node 106",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T04",
+      "description": "Synthetic node 106 in Delta"
+    },
+    {
+      "id": "node_0107",
+      "label": "Node 107",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 107 in Delta"
+    },
+    {
+      "id": "node_0108",
+      "label": "Node 108",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T04",
+      "description": "Synthetic node 108 in Delta"
+    },
+    {
+      "id": "node_0109",
+      "label": "Node 109",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T04",
+      "description": "Synthetic node 109 in Delta"
+    },
+    {
+      "id": "node_0110",
+      "label": "Node 110",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T04",
+      "description": "Synthetic node 110 in Delta"
+    },
+    {
+      "id": "node_0111",
+      "label": "Node 111",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T04",
+      "description": "Synthetic node 111 in Delta"
+    },
+    {
+      "id": "node_0112",
+      "label": "Node 112",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T04",
+      "description": "Synthetic node 112 in Delta"
+    },
+    {
+      "id": "node_0113",
+      "label": "Node 113",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T04",
+      "description": "Synthetic node 113 in Delta"
+    },
+    {
+      "id": "node_0114",
+      "label": "Node 114",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T04",
+      "description": "Synthetic node 114 in Delta"
+    },
+    {
+      "id": "node_0115",
+      "label": "Node 115",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T04",
+      "description": "Synthetic node 115 in Delta"
+    },
+    {
+      "id": "node_0116",
+      "label": "Node 116",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T04",
+      "description": "Synthetic node 116 in Delta"
+    },
+    {
+      "id": "node_0117",
+      "label": "Node 117",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T04",
+      "description": "Synthetic node 117 in Delta"
+    },
+    {
+      "id": "node_0118",
+      "label": "Node 118",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 118 in Delta"
+    },
+    {
+      "id": "node_0119",
+      "label": "Node 119",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T04",
+      "description": "Synthetic node 119 in Delta"
+    },
+    {
+      "id": "node_0120",
+      "label": "Node 120",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 120 in Delta"
+    },
+    {
+      "id": "node_0121",
+      "label": "Node 121",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 121 in Delta"
+    },
+    {
+      "id": "node_0122",
+      "label": "Node 122",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 122 in Delta"
+    },
+    {
+      "id": "node_0123",
+      "label": "Node 123",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T04",
+      "description": "Synthetic node 123 in Delta"
+    },
+    {
+      "id": "node_0124",
+      "label": "Node 124",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T04",
+      "description": "Synthetic node 124 in Delta"
+    },
+    {
+      "id": "node_0125",
+      "label": "Node 125",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T04",
+      "description": "Synthetic node 125 in Delta"
+    },
+    {
+      "id": "node_0126",
+      "label": "Node 126",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T04",
+      "description": "Synthetic node 126 in Delta"
+    },
+    {
+      "id": "node_0127",
+      "label": "Node 127",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T04",
+      "description": "Synthetic node 127 in Delta"
+    },
+    {
+      "id": "node_0128",
+      "label": "Node 128",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T04",
+      "description": "Synthetic node 128 in Delta"
+    },
+    {
+      "id": "node_0129",
+      "label": "Node 129",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T04",
+      "description": "Synthetic node 129 in Delta"
+    },
+    {
+      "id": "node_0130",
+      "label": "Node 130",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T04",
+      "description": "Synthetic node 130 in Delta"
+    },
+    {
+      "id": "node_0131",
+      "label": "Node 131",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T04",
+      "description": "Synthetic node 131 in Delta"
+    },
+    {
+      "id": "node_0132",
+      "label": "Node 132",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T04",
+      "description": "Synthetic node 132 in Delta"
+    },
+    {
+      "id": "node_0133",
+      "label": "Node 133",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T04",
+      "description": "Synthetic node 133 in Delta"
+    },
+    {
+      "id": "node_0134",
+      "label": "Node 134",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T05",
+      "description": "Synthetic node 134 in Epsilon"
+    },
+    {
+      "id": "node_0135",
+      "label": "Node 135",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T05",
+      "description": "Synthetic node 135 in Epsilon"
+    },
+    {
+      "id": "node_0136",
+      "label": "Node 136",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T05",
+      "description": "Synthetic node 136 in Epsilon"
+    },
+    {
+      "id": "node_0137",
+      "label": "Node 137",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T05",
+      "description": "Synthetic node 137 in Epsilon"
+    },
+    {
+      "id": "node_0138",
+      "label": "Node 138",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T05",
+      "description": "Synthetic node 138 in Epsilon"
+    },
+    {
+      "id": "node_0139",
+      "label": "Node 139",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T05",
+      "description": "Synthetic node 139 in Epsilon"
+    },
+    {
+      "id": "node_0140",
+      "label": "Node 140",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T05",
+      "description": "Synthetic node 140 in Epsilon"
+    },
+    {
+      "id": "node_0141",
+      "label": "Node 141",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T05",
+      "description": "Synthetic node 141 in Epsilon"
+    },
+    {
+      "id": "node_0142",
+      "label": "Node 142",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T05",
+      "description": "Synthetic node 142 in Epsilon"
+    },
+    {
+      "id": "node_0143",
+      "label": "Node 143",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T05",
+      "description": "Synthetic node 143 in Epsilon"
+    },
+    {
+      "id": "node_0144",
+      "label": "Node 144",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T05",
+      "description": "Synthetic node 144 in Epsilon"
+    },
+    {
+      "id": "node_0145",
+      "label": "Node 145",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T05",
+      "description": "Synthetic node 145 in Epsilon"
+    },
+    {
+      "id": "node_0146",
+      "label": "Node 146",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T05",
+      "description": "Synthetic node 146 in Epsilon"
+    },
+    {
+      "id": "node_0147",
+      "label": "Node 147",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T05",
+      "description": "Synthetic node 147 in Epsilon"
+    },
+    {
+      "id": "node_0148",
+      "label": "Node 148",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T05",
+      "description": "Synthetic node 148 in Epsilon"
+    },
+    {
+      "id": "node_0149",
+      "label": "Node 149",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T05",
+      "description": "Synthetic node 149 in Epsilon"
+    },
+    {
+      "id": "node_0150",
+      "label": "Node 150",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T05",
+      "description": "Synthetic node 150 in Epsilon"
+    },
+    {
+      "id": "node_0151",
+      "label": "Node 151",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T05",
+      "description": "Synthetic node 151 in Epsilon"
+    },
+    {
+      "id": "node_0152",
+      "label": "Node 152",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T05",
+      "description": "Synthetic node 152 in Epsilon"
+    },
+    {
+      "id": "node_0153",
+      "label": "Node 153",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T05",
+      "description": "Synthetic node 153 in Epsilon"
+    },
+    {
+      "id": "node_0154",
+      "label": "Node 154",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T05",
+      "description": "Synthetic node 154 in Epsilon"
+    },
+    {
+      "id": "node_0155",
+      "label": "Node 155",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T05",
+      "description": "Synthetic node 155 in Epsilon"
+    },
+    {
+      "id": "node_0156",
+      "label": "Node 156",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T05",
+      "description": "Synthetic node 156 in Epsilon"
+    },
+    {
+      "id": "node_0157",
+      "label": "Node 157",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T05",
+      "description": "Synthetic node 157 in Epsilon"
+    },
+    {
+      "id": "node_0158",
+      "label": "Node 158",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T05",
+      "description": "Synthetic node 158 in Epsilon"
+    },
+    {
+      "id": "node_0159",
+      "label": "Node 159",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T05",
+      "description": "Synthetic node 159 in Epsilon"
+    },
+    {
+      "id": "node_0160",
+      "label": "Node 160",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T05",
+      "description": "Synthetic node 160 in Epsilon"
+    },
+    {
+      "id": "node_0161",
+      "label": "Node 161",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T05",
+      "description": "Synthetic node 161 in Epsilon"
+    },
+    {
+      "id": "node_0162",
+      "label": "Node 162",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T05",
+      "description": "Synthetic node 162 in Epsilon"
+    },
+    {
+      "id": "node_0163",
+      "label": "Node 163",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T05",
+      "description": "Synthetic node 163 in Epsilon"
+    },
+    {
+      "id": "node_0164",
+      "label": "Node 164",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T05",
+      "description": "Synthetic node 164 in Epsilon"
+    },
+    {
+      "id": "node_0165",
+      "label": "Node 165",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T05",
+      "description": "Synthetic node 165 in Epsilon"
+    },
+    {
+      "id": "node_0166",
+      "label": "Node 166",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T05",
+      "description": "Synthetic node 166 in Epsilon"
+    },
+    {
+      "id": "node_0167",
+      "label": "Node 167",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T06",
+      "description": "Synthetic node 167 in Zeta"
+    },
+    {
+      "id": "node_0168",
+      "label": "Node 168",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T06",
+      "description": "Synthetic node 168 in Zeta"
+    },
+    {
+      "id": "node_0169",
+      "label": "Node 169",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 169 in Zeta"
+    },
+    {
+      "id": "node_0170",
+      "label": "Node 170",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T06",
+      "description": "Synthetic node 170 in Zeta"
+    },
+    {
+      "id": "node_0171",
+      "label": "Node 171",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T06",
+      "description": "Synthetic node 171 in Zeta"
+    },
+    {
+      "id": "node_0172",
+      "label": "Node 172",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T06",
+      "description": "Synthetic node 172 in Zeta"
+    },
+    {
+      "id": "node_0173",
+      "label": "Node 173",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 173 in Zeta"
+    },
+    {
+      "id": "node_0174",
+      "label": "Node 174",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T06",
+      "description": "Synthetic node 174 in Zeta"
+    },
+    {
+      "id": "node_0175",
+      "label": "Node 175",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T06",
+      "description": "Synthetic node 175 in Zeta"
+    },
+    {
+      "id": "node_0176",
+      "label": "Node 176",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T06",
+      "description": "Synthetic node 176 in Zeta"
+    },
+    {
+      "id": "node_0177",
+      "label": "Node 177",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 177 in Zeta"
+    },
+    {
+      "id": "node_0178",
+      "label": "Node 178",
+      "category": "STOCK",
+      "subtype": "Aggregate",
+      "moduleId": "T06",
+      "description": "Synthetic node 178 in Zeta"
+    },
+    {
+      "id": "node_0179",
+      "label": "Node 179",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 179 in Zeta"
+    },
+    {
+      "id": "node_0180",
+      "label": "Node 180",
+      "category": "BOUNDARY",
+      "subtype": "CognitiveScore",
+      "moduleId": "T06",
+      "description": "Synthetic node 180 in Zeta"
+    },
+    {
+      "id": "node_0181",
+      "label": "Node 181",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T06",
+      "description": "Synthetic node 181 in Zeta"
+    },
+    {
+      "id": "node_0182",
+      "label": "Node 182",
+      "category": "STATE",
+      "subtype": "BiologicalProcess",
+      "moduleId": "T06",
+      "description": "Synthetic node 182 in Zeta"
+    },
+    {
+      "id": "node_0183",
+      "label": "Node 183",
+      "category": "STOCK",
+      "subtype": "CellPopulation",
+      "moduleId": "T06",
+      "description": "Synthetic node 183 in Zeta"
+    },
+    {
+      "id": "node_0184",
+      "label": "Node 184",
+      "category": "STOCK",
+      "subtype": "OrganellePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 184 in Zeta"
+    },
+    {
+      "id": "node_0185",
+      "label": "Node 185",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 185 in Zeta"
+    },
+    {
+      "id": "node_0186",
+      "label": "Node 186",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T06",
+      "description": "Synthetic node 186 in Zeta"
+    },
+    {
+      "id": "node_0187",
+      "label": "Node 187",
+      "category": "STATE",
+      "subtype": "Homeostatic",
+      "moduleId": "T06",
+      "description": "Synthetic node 187 in Zeta"
+    },
+    {
+      "id": "node_0188",
+      "label": "Node 188",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T06",
+      "description": "Synthetic node 188 in Zeta"
+    },
+    {
+      "id": "node_0189",
+      "label": "Node 189",
+      "category": "STOCK",
+      "subtype": "MetabolitePool",
+      "moduleId": "T06",
+      "description": "Synthetic node 189 in Zeta"
+    },
+    {
+      "id": "node_0190",
+      "label": "Node 190",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T06",
+      "description": "Synthetic node 190 in Zeta"
+    },
+    {
+      "id": "node_0191",
+      "label": "Node 191",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T06",
+      "description": "Synthetic node 191 in Zeta"
+    },
+    {
+      "id": "node_0192",
+      "label": "Node 192",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T06",
+      "description": "Synthetic node 192 in Zeta"
+    },
+    {
+      "id": "node_0193",
+      "label": "Node 193",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T06",
+      "description": "Synthetic node 193 in Zeta"
+    },
+    {
+      "id": "node_0194",
+      "label": "Node 194",
+      "category": "STATE",
+      "subtype": "Phosphorylated",
+      "moduleId": "T06",
+      "description": "Synthetic node 194 in Zeta"
+    },
+    {
+      "id": "node_0195",
+      "label": "Node 195",
+      "category": "BOUNDARY",
+      "subtype": "Lifestyle",
+      "moduleId": "T06",
+      "description": "Synthetic node 195 in Zeta"
+    },
+    {
+      "id": "node_0196",
+      "label": "Node 196",
+      "category": "STATE",
+      "subtype": "MetabolicState",
+      "moduleId": "T06",
+      "description": "Synthetic node 196 in Zeta"
+    },
+    {
+      "id": "node_0197",
+      "label": "Node 197",
+      "category": "BOUNDARY",
+      "subtype": "GeneticVariant",
+      "moduleId": "T06",
+      "description": "Synthetic node 197 in Zeta"
+    },
+    {
+      "id": "node_0198",
+      "label": "Node 198",
+      "category": "BOUNDARY",
+      "subtype": "SmallMolecule",
+      "moduleId": "T06",
+      "description": "Synthetic node 198 in Zeta"
+    },
+    {
+      "id": "node_0199",
+      "label": "Node 199",
+      "category": "STOCK",
+      "subtype": "ProteinPool",
+      "moduleId": "T06",
+      "description": "Synthetic node 199 in Zeta"
+    }
+  ],
+  "edges": [
+    {
+      "id": "TE0001",
+      "source": "node_0000",
+      "target": "node_0001",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0001"
+    },
+    {
+      "id": "TE0002",
+      "source": "node_0000",
+      "target": "node_0002",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0002",
+      "pmid": "19794449",
+      "firstAuthor": "Mueller",
+      "year": 2019
+    },
+    {
+      "id": "TE0003",
+      "source": "node_0001",
+      "target": "node_0003",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0003",
+      "firstAuthor": "Kim",
+      "year": 2012
+    },
+    {
+      "id": "TE0004",
+      "source": "node_0002",
+      "target": "node_0004",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0004",
+      "pmid": "14846813",
+      "firstAuthor": "Garcia",
+      "year": 2011
+    },
+    {
+      "id": "TE0005",
+      "source": "node_0004",
+      "target": "node_0005",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0005",
+      "year": 2021
+    },
+    {
+      "id": "TE0006",
+      "source": "node_0001",
+      "target": "node_0006",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0006",
+      "pmid": "18083749",
+      "year": 2012
+    },
+    {
+      "id": "TE0007",
+      "source": "node_0004",
+      "target": "node_0007",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0007",
+      "pmid": "26760627"
+    },
+    {
+      "id": "TE0008",
+      "source": "node_0001",
+      "target": "node_0008",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0008",
+      "pmid": "20332812",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0009",
+      "source": "node_0007",
+      "target": "node_0009",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0009",
+      "pmid": "24436214",
+      "firstAuthor": "Kim",
+      "year": 2010
+    },
+    {
+      "id": "TE0010",
+      "source": "node_0007",
+      "target": "node_0010",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0010",
+      "pmid": "12772404"
+    },
+    {
+      "id": "TE0011",
+      "source": "node_0005",
+      "target": "node_0011",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0005 affects node_0011",
+      "pmid": "36441560",
+      "firstAuthor": "Zhang",
+      "year": 2013
+    },
+    {
+      "id": "TE0012",
+      "source": "node_0010",
+      "target": "node_0012",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0010 affects node_0012",
+      "year": 2022
+    },
+    {
+      "id": "TE0013",
+      "source": "node_0004",
+      "target": "node_0013",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0013"
+    },
+    {
+      "id": "TE0014",
+      "source": "node_0003",
+      "target": "node_0014",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0003 affects node_0014",
+      "pmid": "38839886",
+      "firstAuthor": "Mueller",
+      "year": 2014
+    },
+    {
+      "id": "TE0015",
+      "source": "node_0006",
+      "target": "node_0015",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0015",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0016",
+      "source": "node_0013",
+      "target": "node_0016",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0013 affects node_0016",
+      "firstAuthor": "Kim",
+      "year": 2003
+    },
+    {
+      "id": "TE0017",
+      "source": "node_0013",
+      "target": "node_0017",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0013 affects node_0017",
+      "pmid": "18430039",
+      "firstAuthor": "Garcia",
+      "year": 2020
+    },
+    {
+      "id": "TE0018",
+      "source": "node_0009",
+      "target": "node_0018",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0018",
+      "pmid": "34594334",
+      "firstAuthor": "Smith",
+      "year": 2009
+    },
+    {
+      "id": "TE0019",
+      "source": "node_0007",
+      "target": "node_0019",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0019",
+      "pmid": "39391636",
+      "year": 2001
+    },
+    {
+      "id": "TE0020",
+      "source": "node_0011",
+      "target": "node_0020",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0011 affects node_0020",
+      "pmid": "27920058",
+      "year": 2013
+    },
+    {
+      "id": "TE0021",
+      "source": "node_0008",
+      "target": "node_0021",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0021"
+    },
+    {
+      "id": "TE0022",
+      "source": "node_0020",
+      "target": "node_0022",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0020 affects node_0022",
+      "pmid": "36023301",
+      "year": 2025
+    },
+    {
+      "id": "TE0023",
+      "source": "node_0009",
+      "target": "node_0023",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0023",
+      "pmid": "21149514",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0024",
+      "source": "node_0022",
+      "target": "node_0024",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0022 affects node_0024",
+      "pmid": "19275096",
+      "year": 2020
+    },
+    {
+      "id": "TE0025",
+      "source": "node_0024",
+      "target": "node_0025",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0024 affects node_0025"
+    },
+    {
+      "id": "TE0026",
+      "source": "node_0023",
+      "target": "node_0026",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0023 affects node_0026",
+      "pmid": "26779838",
+      "year": 2021
+    },
+    {
+      "id": "TE0027",
+      "source": "node_0023",
+      "target": "node_0027",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0023 affects node_0027",
+      "pmid": "20333846",
+      "year": 2009
+    },
+    {
+      "id": "TE0028",
+      "source": "node_0020",
+      "target": "node_0028",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0020 affects node_0028",
+      "firstAuthor": "Mueller",
+      "year": 2023
+    },
+    {
+      "id": "TE0029",
+      "source": "node_0028",
+      "target": "node_0029",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0028 affects node_0029"
+    },
+    {
+      "id": "TE0030",
+      "source": "node_0016",
+      "target": "node_0030",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0016 affects node_0030",
+      "pmid": "25369744",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0031",
+      "source": "node_0023",
+      "target": "node_0031",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0023 affects node_0031",
+      "firstAuthor": "Mueller",
+      "year": 2005
+    },
+    {
+      "id": "TE0032",
+      "source": "node_0028",
+      "target": "node_0032",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0028 affects node_0032",
+      "year": 2001
+    },
+    {
+      "id": "TE0033",
+      "source": "node_0026",
+      "target": "node_0033",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0026 affects node_0033",
+      "year": 2003
+    },
+    {
+      "id": "TE0034",
+      "source": "node_0029",
+      "target": "node_0034",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0029 affects node_0034",
+      "pmid": "35870833",
+      "firstAuthor": "Zhang",
+      "year": 2014
+    },
+    {
+      "id": "TE0035",
+      "source": "node_0017",
+      "target": "node_0035",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0017 affects node_0035",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0036",
+      "source": "node_0017",
+      "target": "node_0036",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0017 affects node_0036",
+      "pmid": "29969933",
+      "year": 2001
+    },
+    {
+      "id": "TE0037",
+      "source": "node_0030",
+      "target": "node_0037",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0030 affects node_0037",
+      "pmid": "13701193",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0038",
+      "source": "node_0033",
+      "target": "node_0038",
+      "relation": "directlyIncreases",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0033 affects node_0038",
+      "pmid": "34701448"
+    },
+    {
+      "id": "TE0039",
+      "source": "node_0036",
+      "target": "node_0039",
+      "relation": "protects",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0036 affects node_0039",
+      "pmid": "23206743",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0040",
+      "source": "node_0025",
+      "target": "node_0040",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0025 affects node_0040"
+    },
+    {
+      "id": "TE0041",
+      "source": "node_0030",
+      "target": "node_0041",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0030 affects node_0041",
+      "pmid": "14254598",
+      "year": 2024
+    },
+    {
+      "id": "TE0042",
+      "source": "node_0037",
+      "target": "node_0042",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0037 affects node_0042",
+      "pmid": "38845720",
+      "year": 2012
+    },
+    {
+      "id": "TE0043",
+      "source": "node_0042",
+      "target": "node_0043",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0042 affects node_0043",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0044",
+      "source": "node_0027",
+      "target": "node_0044",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0027 affects node_0044",
+      "pmid": "32421480"
+    },
+    {
+      "id": "TE0045",
+      "source": "node_0027",
+      "target": "node_0045",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0027 affects node_0045",
+      "pmid": "39240003",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0046",
+      "source": "node_0030",
+      "target": "node_0046",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0030 affects node_0046",
+      "pmid": "26598926"
+    },
+    {
+      "id": "TE0047",
+      "source": "node_0036",
+      "target": "node_0047",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0036 affects node_0047",
+      "pmid": "37044863",
+      "firstAuthor": "Patel",
+      "year": 2015
+    },
+    {
+      "id": "TE0048",
+      "source": "node_0044",
+      "target": "node_0048",
+      "relation": "degrades",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0044 affects node_0048",
+      "year": 2008
+    },
+    {
+      "id": "TE0049",
+      "source": "node_0034",
+      "target": "node_0049",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0034 affects node_0049",
+      "pmid": "26288835",
+      "year": 2015
+    },
+    {
+      "id": "TE0050",
+      "source": "node_0040",
+      "target": "node_0050",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0040 affects node_0050",
+      "pmid": "34036125",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0051",
+      "source": "node_0035",
+      "target": "node_0051",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0035 affects node_0051",
+      "pmid": "20921594",
+      "firstAuthor": "Patel",
+      "year": 2015
+    },
+    {
+      "id": "TE0052",
+      "source": "node_0033",
+      "target": "node_0052",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0033 affects node_0052",
+      "pmid": "22220709",
+      "year": 2011
+    },
+    {
+      "id": "TE0053",
+      "source": "node_0043",
+      "target": "node_0053",
+      "relation": "degrades",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0043 affects node_0053",
+      "pmid": "18243669",
+      "firstAuthor": "Kim",
+      "year": 2001
+    },
+    {
+      "id": "TE0054",
+      "source": "node_0041",
+      "target": "node_0054",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0041 affects node_0054",
+      "pmid": "38693022"
+    },
+    {
+      "id": "TE0055",
+      "source": "node_0041",
+      "target": "node_0055",
+      "relation": "modulates",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0041 affects node_0055",
+      "pmid": "23634897"
+    },
+    {
+      "id": "TE0056",
+      "source": "node_0049",
+      "target": "node_0056",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0049 affects node_0056",
+      "pmid": "20551044"
+    },
+    {
+      "id": "TE0057",
+      "source": "node_0039",
+      "target": "node_0057",
+      "relation": "degrades",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0039 affects node_0057",
+      "pmid": "37231530"
+    },
+    {
+      "id": "TE0058",
+      "source": "node_0041",
+      "target": "node_0058",
+      "relation": "catalyzes",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0041 affects node_0058",
+      "pmid": "24885392",
+      "firstAuthor": "Kim",
+      "year": 2012
+    },
+    {
+      "id": "TE0059",
+      "source": "node_0045",
+      "target": "node_0059",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0045 affects node_0059"
+    },
+    {
+      "id": "TE0060",
+      "source": "node_0043",
+      "target": "node_0060",
+      "relation": "catalyzes",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0043 affects node_0060",
+      "firstAuthor": "Patel",
+      "year": 2008
+    },
+    {
+      "id": "TE0061",
+      "source": "node_0047",
+      "target": "node_0061",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0047 affects node_0061",
+      "pmid": "31441870",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0062",
+      "source": "node_0055",
+      "target": "node_0062",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0055 affects node_0062",
+      "pmid": "16599158",
+      "year": 2018
+    },
+    {
+      "id": "TE0063",
+      "source": "node_0061",
+      "target": "node_0063",
+      "relation": "directlyDecreases",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0061 affects node_0063",
+      "pmid": "11114905",
+      "firstAuthor": "Smith",
+      "year": 2013
+    },
+    {
+      "id": "TE0064",
+      "source": "node_0052",
+      "target": "node_0064",
+      "relation": "directlyDecreases",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0052 affects node_0064",
+      "pmid": "29251964",
+      "year": 2009
+    },
+    {
+      "id": "TE0065",
+      "source": "node_0052",
+      "target": "node_0065",
+      "relation": "modulates",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0052 affects node_0065"
+    },
+    {
+      "id": "TE0066",
+      "source": "node_0052",
+      "target": "node_0066",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0052 affects node_0066",
+      "pmid": "21288482",
+      "firstAuthor": "Kim",
+      "year": 2020
+    },
+    {
+      "id": "TE0067",
+      "source": "node_0064",
+      "target": "node_0067",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0064 affects node_0067",
+      "year": 2013
+    },
+    {
+      "id": "TE0068",
+      "source": "node_0064",
+      "target": "node_0068",
+      "relation": "catalyzes",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0064 affects node_0068",
+      "year": 2008
+    },
+    {
+      "id": "TE0069",
+      "source": "node_0065",
+      "target": "node_0069",
+      "relation": "modulates",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0065 affects node_0069",
+      "pmid": "24276739",
+      "firstAuthor": "Zhang",
+      "year": 2005
+    },
+    {
+      "id": "TE0070",
+      "source": "node_0053",
+      "target": "node_0070",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0053 affects node_0070"
+    },
+    {
+      "id": "TE0071",
+      "source": "node_0054",
+      "target": "node_0071",
+      "relation": "modulates",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0054 affects node_0071",
+      "firstAuthor": "Garcia",
+      "year": 2019
+    },
+    {
+      "id": "TE0072",
+      "source": "node_0057",
+      "target": "node_0072",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0057 affects node_0072",
+      "pmid": "12351776",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0073",
+      "source": "node_0067",
+      "target": "node_0073",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0067 affects node_0073",
+      "pmid": "31774952",
+      "firstAuthor": "Patel",
+      "year": 2019
+    },
+    {
+      "id": "TE0074",
+      "source": "node_0068",
+      "target": "node_0074",
+      "relation": "directlyIncreases",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0068 affects node_0074",
+      "pmid": "14219348",
+      "firstAuthor": "Patel",
+      "year": 2023
+    },
+    {
+      "id": "TE0075",
+      "source": "node_0065",
+      "target": "node_0075",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0065 affects node_0075",
+      "year": 2015
+    },
+    {
+      "id": "TE0076",
+      "source": "node_0069",
+      "target": "node_0076",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0069 affects node_0076",
+      "pmid": "13243659",
+      "year": 2013
+    },
+    {
+      "id": "TE0077",
+      "source": "node_0073",
+      "target": "node_0077",
+      "relation": "catalyzes",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0073 affects node_0077",
+      "pmid": "32238662",
+      "firstAuthor": "Kim",
+      "year": 2003
+    },
+    {
+      "id": "TE0078",
+      "source": "node_0074",
+      "target": "node_0078",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0074 affects node_0078",
+      "pmid": "12847848"
+    },
+    {
+      "id": "TE0079",
+      "source": "node_0065",
+      "target": "node_0079",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0065 affects node_0079",
+      "pmid": "34655909",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0080",
+      "source": "node_0066",
+      "target": "node_0080",
+      "relation": "protects",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0066 affects node_0080",
+      "pmid": "13763135",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0081",
+      "source": "node_0069",
+      "target": "node_0081",
+      "relation": "directlyDecreases",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0069 affects node_0081",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0082",
+      "source": "node_0064",
+      "target": "node_0082",
+      "relation": "directlyDecreases",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0064 affects node_0082",
+      "firstAuthor": "Kim",
+      "year": 2003
+    },
+    {
+      "id": "TE0083",
+      "source": "node_0073",
+      "target": "node_0083",
+      "relation": "catalyzes",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0073 affects node_0083",
+      "pmid": "29882203",
+      "firstAuthor": "Garcia",
+      "year": 2003
+    },
+    {
+      "id": "TE0084",
+      "source": "node_0072",
+      "target": "node_0084",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0072 affects node_0084",
+      "pmid": "36223584",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0085",
+      "source": "node_0075",
+      "target": "node_0085",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0075 affects node_0085",
+      "pmid": "39095375",
+      "year": 2002
+    },
+    {
+      "id": "TE0086",
+      "source": "node_0066",
+      "target": "node_0086",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0066 affects node_0086",
+      "pmid": "32912116",
+      "year": 2025
+    },
+    {
+      "id": "TE0087",
+      "source": "node_0073",
+      "target": "node_0087",
+      "relation": "catalyzes",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0073 affects node_0087",
+      "year": 2006
+    },
+    {
+      "id": "TE0088",
+      "source": "node_0073",
+      "target": "node_0088",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0073 affects node_0088",
+      "pmid": "19138036",
+      "firstAuthor": "Garcia",
+      "year": 2011
+    },
+    {
+      "id": "TE0089",
+      "source": "node_0072",
+      "target": "node_0089",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0072 affects node_0089",
+      "pmid": "32085961",
+      "firstAuthor": "Zhang",
+      "year": 2017
+    },
+    {
+      "id": "TE0090",
+      "source": "node_0071",
+      "target": "node_0090",
+      "relation": "produces",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0071 affects node_0090"
+    },
+    {
+      "id": "TE0091",
+      "source": "node_0081",
+      "target": "node_0091",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0081 affects node_0091",
+      "pmid": "15141829",
+      "firstAuthor": "Garcia",
+      "year": 2016
+    },
+    {
+      "id": "TE0092",
+      "source": "node_0082",
+      "target": "node_0092",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0082 affects node_0092",
+      "pmid": "20170852",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0093",
+      "source": "node_0082",
+      "target": "node_0093",
+      "relation": "produces",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0082 affects node_0093",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0094",
+      "source": "node_0091",
+      "target": "node_0094",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0091 affects node_0094",
+      "pmid": "20798983",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0095",
+      "source": "node_0084",
+      "target": "node_0095",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0084 affects node_0095",
+      "pmid": "16695542",
+      "firstAuthor": "Mueller",
+      "year": 2009
+    },
+    {
+      "id": "TE0096",
+      "source": "node_0083",
+      "target": "node_0096",
+      "relation": "directlyDecreases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0083 affects node_0096",
+      "year": 2025
+    },
+    {
+      "id": "TE0097",
+      "source": "node_0093",
+      "target": "node_0097",
+      "relation": "catalyzes",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0093 affects node_0097",
+      "pmid": "31555243",
+      "firstAuthor": "Kim",
+      "year": 2020
+    },
+    {
+      "id": "TE0098",
+      "source": "node_0081",
+      "target": "node_0098",
+      "relation": "directlyIncreases",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0081 affects node_0098",
+      "firstAuthor": "Kim",
+      "year": 2017
+    },
+    {
+      "id": "TE0099",
+      "source": "node_0094",
+      "target": "node_0099",
+      "relation": "directlyIncreases",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0094 affects node_0099",
+      "firstAuthor": "Patel",
+      "year": 2008
+    },
+    {
+      "id": "TE0100",
+      "source": "node_0086",
+      "target": "node_0100",
+      "relation": "increases",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0086 affects node_0100",
+      "pmid": "28975375"
+    },
+    {
+      "id": "TE0101",
+      "source": "node_0097",
+      "target": "node_0101",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0097 affects node_0101",
+      "pmid": "26976215"
+    },
+    {
+      "id": "TE0102",
+      "source": "node_0087",
+      "target": "node_0102",
+      "relation": "produces",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0087 affects node_0102",
+      "firstAuthor": "Patel",
+      "year": 2017
+    },
+    {
+      "id": "TE0103",
+      "source": "node_0085",
+      "target": "node_0103",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0085 affects node_0103",
+      "pmid": "38447248",
+      "firstAuthor": "Zhang",
+      "year": 2022
+    },
+    {
+      "id": "TE0104",
+      "source": "node_0091",
+      "target": "node_0104",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0091 affects node_0104",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0105",
+      "source": "node_0097",
+      "target": "node_0105",
+      "relation": "increases",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0097 affects node_0105",
+      "pmid": "36387562"
+    },
+    {
+      "id": "TE0106",
+      "source": "node_0093",
+      "target": "node_0106",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0093 affects node_0106",
+      "pmid": "16300808"
+    },
+    {
+      "id": "TE0107",
+      "source": "node_0096",
+      "target": "node_0107",
+      "relation": "increases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0096 affects node_0107",
+      "firstAuthor": "Kim",
+      "year": 2024
+    },
+    {
+      "id": "TE0108",
+      "source": "node_0099",
+      "target": "node_0108",
+      "relation": "directlyIncreases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0099 affects node_0108",
+      "pmid": "34547689"
+    },
+    {
+      "id": "TE0109",
+      "source": "node_0092",
+      "target": "node_0109",
+      "relation": "regulates",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0092 affects node_0109",
+      "pmid": "31334832"
+    },
+    {
+      "id": "TE0110",
+      "source": "node_0094",
+      "target": "node_0110",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0094 affects node_0110",
+      "pmid": "25246731",
+      "year": 2006
+    },
+    {
+      "id": "TE0111",
+      "source": "node_0104",
+      "target": "node_0111",
+      "relation": "protects",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0104 affects node_0111"
+    },
+    {
+      "id": "TE0112",
+      "source": "node_0106",
+      "target": "node_0112",
+      "relation": "protects",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0106 affects node_0112",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0113",
+      "source": "node_0100",
+      "target": "node_0113",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0100 affects node_0113",
+      "pmid": "21240620",
+      "firstAuthor": "Zhang",
+      "year": 2020
+    },
+    {
+      "id": "TE0114",
+      "source": "node_0101",
+      "target": "node_0114",
+      "relation": "produces",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0101 affects node_0114",
+      "pmid": "35420334",
+      "firstAuthor": "Kim",
+      "year": 2017
+    },
+    {
+      "id": "TE0115",
+      "source": "node_0106",
+      "target": "node_0115",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0106 affects node_0115",
+      "pmid": "12922420",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0116",
+      "source": "node_0108",
+      "target": "node_0116",
+      "relation": "produces",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0108 affects node_0116",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0117",
+      "source": "node_0106",
+      "target": "node_0117",
+      "relation": "modulates",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0106 affects node_0117",
+      "pmid": "23016311",
+      "firstAuthor": "Mueller",
+      "year": 2007
+    },
+    {
+      "id": "TE0118",
+      "source": "node_0117",
+      "target": "node_0118",
+      "relation": "directlyDecreases",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0117 affects node_0118",
+      "firstAuthor": "Patel",
+      "year": 2014
+    },
+    {
+      "id": "TE0119",
+      "source": "node_0107",
+      "target": "node_0119",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0107 affects node_0119",
+      "pmid": "29077695",
+      "firstAuthor": "Zhang",
+      "year": 2025
+    },
+    {
+      "id": "TE0120",
+      "source": "node_0116",
+      "target": "node_0120",
+      "relation": "regulates",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0116 affects node_0120",
+      "pmid": "22985932"
+    },
+    {
+      "id": "TE0121",
+      "source": "node_0110",
+      "target": "node_0121",
+      "relation": "regulates",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0110 affects node_0121",
+      "year": 2014
+    },
+    {
+      "id": "TE0122",
+      "source": "node_0110",
+      "target": "node_0122",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0110 affects node_0122",
+      "pmid": "36439103",
+      "year": 2008
+    },
+    {
+      "id": "TE0123",
+      "source": "node_0107",
+      "target": "node_0123",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0107 affects node_0123",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0124",
+      "source": "node_0112",
+      "target": "node_0124",
+      "relation": "protects",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0112 affects node_0124",
+      "pmid": "30053485",
+      "year": 2005
+    },
+    {
+      "id": "TE0125",
+      "source": "node_0119",
+      "target": "node_0125",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0119 affects node_0125",
+      "pmid": "35140263",
+      "year": 2011
+    },
+    {
+      "id": "TE0126",
+      "source": "node_0122",
+      "target": "node_0126",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0122 affects node_0126",
+      "pmid": "11758835",
+      "year": 2015
+    },
+    {
+      "id": "TE0127",
+      "source": "node_0124",
+      "target": "node_0127",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0124 affects node_0127",
+      "year": 2005
+    },
+    {
+      "id": "TE0128",
+      "source": "node_0112",
+      "target": "node_0128",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0112 affects node_0128",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0129",
+      "source": "node_0125",
+      "target": "node_0129",
+      "relation": "produces",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0125 affects node_0129",
+      "firstAuthor": "Kim",
+      "year": 2005
+    },
+    {
+      "id": "TE0130",
+      "source": "node_0129",
+      "target": "node_0130",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0129 affects node_0130",
+      "pmid": "28249023",
+      "firstAuthor": "Mueller",
+      "year": 2006
+    },
+    {
+      "id": "TE0131",
+      "source": "node_0118",
+      "target": "node_0131",
+      "relation": "degrades",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0118 affects node_0131",
+      "pmid": "23137679",
+      "firstAuthor": "Mueller",
+      "year": 2011
+    },
+    {
+      "id": "TE0132",
+      "source": "node_0113",
+      "target": "node_0132",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0113 affects node_0132",
+      "pmid": "24432560",
+      "firstAuthor": "Smith",
+      "year": 2006
+    },
+    {
+      "id": "TE0133",
+      "source": "node_0113",
+      "target": "node_0133",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0113 affects node_0133",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0134",
+      "source": "node_0124",
+      "target": "node_0134",
+      "relation": "increases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0124 affects node_0134",
+      "pmid": "24332543",
+      "year": 2003
+    },
+    {
+      "id": "TE0135",
+      "source": "node_0127",
+      "target": "node_0135",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0127 affects node_0135",
+      "pmid": "33851632"
+    },
+    {
+      "id": "TE0136",
+      "source": "node_0122",
+      "target": "node_0136",
+      "relation": "directlyDecreases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0122 affects node_0136",
+      "pmid": "34481644",
+      "year": 2015
+    },
+    {
+      "id": "TE0137",
+      "source": "node_0128",
+      "target": "node_0137",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0128 affects node_0137"
+    },
+    {
+      "id": "TE0138",
+      "source": "node_0126",
+      "target": "node_0138",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0126 affects node_0138",
+      "pmid": "12359520",
+      "year": 2011
+    },
+    {
+      "id": "TE0139",
+      "source": "node_0127",
+      "target": "node_0139",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0127 affects node_0139",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0140",
+      "source": "node_0129",
+      "target": "node_0140",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0129 affects node_0140",
+      "pmid": "11399095"
+    },
+    {
+      "id": "TE0141",
+      "source": "node_0134",
+      "target": "node_0141",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0134 affects node_0141",
+      "pmid": "15562782",
+      "firstAuthor": "Smith",
+      "year": 2002
+    },
+    {
+      "id": "TE0142",
+      "source": "node_0136",
+      "target": "node_0142",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0136 affects node_0142",
+      "pmid": "27912841"
+    },
+    {
+      "id": "TE0143",
+      "source": "node_0128",
+      "target": "node_0143",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0128 affects node_0143",
+      "pmid": "17336672"
+    },
+    {
+      "id": "TE0144",
+      "source": "node_0139",
+      "target": "node_0144",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0139 affects node_0144",
+      "pmid": "36896399",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0145",
+      "source": "node_0135",
+      "target": "node_0145",
+      "relation": "directlyDecreases",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0135 affects node_0145",
+      "pmid": "23845164",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0146",
+      "source": "node_0135",
+      "target": "node_0146",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0135 affects node_0146",
+      "year": 2020
+    },
+    {
+      "id": "TE0147",
+      "source": "node_0133",
+      "target": "node_0147",
+      "relation": "modulates",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0133 affects node_0147",
+      "pmid": "36592074",
+      "firstAuthor": "Zhang",
+      "year": 2011
+    },
+    {
+      "id": "TE0148",
+      "source": "node_0144",
+      "target": "node_0148",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0144 affects node_0148"
+    },
+    {
+      "id": "TE0149",
+      "source": "node_0142",
+      "target": "node_0149",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0142 affects node_0149",
+      "pmid": "39147595"
+    },
+    {
+      "id": "TE0150",
+      "source": "node_0148",
+      "target": "node_0150",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0148 affects node_0150",
+      "year": 2025
+    },
+    {
+      "id": "TE0151",
+      "source": "node_0132",
+      "target": "node_0151",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0132 affects node_0151",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0152",
+      "source": "node_0137",
+      "target": "node_0152",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0137 affects node_0152",
+      "pmid": "25196293",
+      "year": 2007
+    },
+    {
+      "id": "TE0153",
+      "source": "node_0143",
+      "target": "node_0153",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0143 affects node_0153",
+      "pmid": "28991205",
+      "firstAuthor": "Garcia",
+      "year": 2020
+    },
+    {
+      "id": "TE0154",
+      "source": "node_0146",
+      "target": "node_0154",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0146 affects node_0154",
+      "pmid": "15409917"
+    },
+    {
+      "id": "TE0155",
+      "source": "node_0147",
+      "target": "node_0155",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0147 affects node_0155",
+      "pmid": "25262546",
+      "year": 2011
+    },
+    {
+      "id": "TE0156",
+      "source": "node_0152",
+      "target": "node_0156",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0152 affects node_0156",
+      "firstAuthor": "Garcia",
+      "year": 2004
+    },
+    {
+      "id": "TE0157",
+      "source": "node_0156",
+      "target": "node_0157",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0156 affects node_0157",
+      "pmid": "36592711",
+      "firstAuthor": "Zhang",
+      "year": 2015
+    },
+    {
+      "id": "TE0158",
+      "source": "node_0150",
+      "target": "node_0158",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0150 affects node_0158",
+      "firstAuthor": "Garcia",
+      "year": 2021
+    },
+    {
+      "id": "TE0159",
+      "source": "node_0150",
+      "target": "node_0159",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0150 affects node_0159",
+      "pmid": "17069969",
+      "firstAuthor": "Mueller",
+      "year": 2003
+    },
+    {
+      "id": "TE0160",
+      "source": "node_0154",
+      "target": "node_0160",
+      "relation": "directlyDecreases",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0154 affects node_0160",
+      "pmid": "21985899",
+      "year": 2009
+    },
+    {
+      "id": "TE0161",
+      "source": "node_0152",
+      "target": "node_0161",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0152 affects node_0161",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0162",
+      "source": "node_0151",
+      "target": "node_0162",
+      "relation": "modulates",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0151 affects node_0162",
+      "pmid": "38544552"
+    },
+    {
+      "id": "TE0163",
+      "source": "node_0150",
+      "target": "node_0163",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0150 affects node_0163",
+      "pmid": "16142026",
+      "year": 2005
+    },
+    {
+      "id": "TE0164",
+      "source": "node_0163",
+      "target": "node_0164",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0163 affects node_0164",
+      "pmid": "11847496"
+    },
+    {
+      "id": "TE0165",
+      "source": "node_0149",
+      "target": "node_0165",
+      "relation": "directlyIncreases",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0149 affects node_0165",
+      "year": 2019
+    },
+    {
+      "id": "TE0166",
+      "source": "node_0158",
+      "target": "node_0166",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0158 affects node_0166",
+      "pmid": "16876174"
+    },
+    {
+      "id": "TE0167",
+      "source": "node_0148",
+      "target": "node_0167",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0148 affects node_0167",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0168",
+      "source": "node_0156",
+      "target": "node_0168",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0156 affects node_0168",
+      "pmid": "31961696",
+      "firstAuthor": "Patel",
+      "year": 2009
+    },
+    {
+      "id": "TE0169",
+      "source": "node_0160",
+      "target": "node_0169",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0160 affects node_0169",
+      "pmid": "28044760"
+    },
+    {
+      "id": "TE0170",
+      "source": "node_0167",
+      "target": "node_0170",
+      "relation": "directlyIncreases",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0167 affects node_0170",
+      "pmid": "31869101",
+      "year": 2017
+    },
+    {
+      "id": "TE0171",
+      "source": "node_0156",
+      "target": "node_0171",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0156 affects node_0171",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0172",
+      "source": "node_0166",
+      "target": "node_0172",
+      "relation": "directlyDecreases",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0166 affects node_0172",
+      "pmid": "18908130"
+    },
+    {
+      "id": "TE0173",
+      "source": "node_0164",
+      "target": "node_0173",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0164 affects node_0173",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0174",
+      "source": "node_0168",
+      "target": "node_0174",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0168 affects node_0174",
+      "pmid": "10731121",
+      "firstAuthor": "Mueller",
+      "year": 2002
+    },
+    {
+      "id": "TE0175",
+      "source": "node_0165",
+      "target": "node_0175",
+      "relation": "modulates",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0165 affects node_0175",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0176",
+      "source": "node_0162",
+      "target": "node_0176",
+      "relation": "directlyIncreases",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0162 affects node_0176",
+      "pmid": "31485162",
+      "firstAuthor": "Mueller",
+      "year": 2019
+    },
+    {
+      "id": "TE0177",
+      "source": "node_0169",
+      "target": "node_0177",
+      "relation": "decreases",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0169 affects node_0177",
+      "pmid": "31935276",
+      "year": 2015
+    },
+    {
+      "id": "TE0178",
+      "source": "node_0159",
+      "target": "node_0178",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0159 affects node_0178"
+    },
+    {
+      "id": "TE0179",
+      "source": "node_0176",
+      "target": "node_0179",
+      "relation": "catalyzes",
+      "moduleId": "T06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0176 affects node_0179",
+      "year": 2024
+    },
+    {
+      "id": "TE0180",
+      "source": "node_0162",
+      "target": "node_0180",
+      "relation": "directlyDecreases",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0162 affects node_0180",
+      "year": 2002
+    },
+    {
+      "id": "TE0181",
+      "source": "node_0174",
+      "target": "node_0181",
+      "relation": "produces",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0174 affects node_0181",
+      "pmid": "38630678",
+      "firstAuthor": "Smith",
+      "year": 2021
+    },
+    {
+      "id": "TE0182",
+      "source": "node_0167",
+      "target": "node_0182",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0167 affects node_0182",
+      "pmid": "14856820",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0183",
+      "source": "node_0180",
+      "target": "node_0183",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0180 affects node_0183",
+      "pmid": "26156909"
+    },
+    {
+      "id": "TE0184",
+      "source": "node_0168",
+      "target": "node_0184",
+      "relation": "produces",
+      "moduleId": "T06",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0168 affects node_0184",
+      "pmid": "10273908",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0185",
+      "source": "node_0177",
+      "target": "node_0185",
+      "relation": "increases",
+      "moduleId": "T06",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0177 affects node_0185",
+      "pmid": "23396614",
+      "firstAuthor": "Mueller",
+      "year": 2000
+    },
+    {
+      "id": "TE0186",
+      "source": "node_0170",
+      "target": "node_0186",
+      "relation": "regulates",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0170 affects node_0186"
+    },
+    {
+      "id": "TE0187",
+      "source": "node_0170",
+      "target": "node_0187",
+      "relation": "catalyzes",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0170 affects node_0187",
+      "pmid": "32074387"
+    },
+    {
+      "id": "TE0188",
+      "source": "node_0172",
+      "target": "node_0188",
+      "relation": "directlyIncreases",
+      "moduleId": "T06",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0172 affects node_0188",
+      "pmid": "34646102",
+      "firstAuthor": "Patel",
+      "year": 2021
+    },
+    {
+      "id": "TE0189",
+      "source": "node_0186",
+      "target": "node_0189",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0186 affects node_0189",
+      "pmid": "31956074",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0190",
+      "source": "node_0186",
+      "target": "node_0190",
+      "relation": "protects",
+      "moduleId": "T06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0186 affects node_0190",
+      "pmid": "31423476",
+      "year": 2013
+    },
+    {
+      "id": "TE0191",
+      "source": "node_0181",
+      "target": "node_0191",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0181 affects node_0191",
+      "year": 2012
+    },
+    {
+      "id": "TE0192",
+      "source": "node_0191",
+      "target": "node_0192",
+      "relation": "produces",
+      "moduleId": "T06",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0191 affects node_0192",
+      "pmid": "13431554",
+      "firstAuthor": "Garcia",
+      "year": 2009
+    },
+    {
+      "id": "TE0193",
+      "source": "node_0189",
+      "target": "node_0193",
+      "relation": "increases",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0189 affects node_0193",
+      "firstAuthor": "Kim",
+      "year": 2014
+    },
+    {
+      "id": "TE0194",
+      "source": "node_0179",
+      "target": "node_0194",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0179 affects node_0194",
+      "pmid": "23469878",
+      "firstAuthor": "Patel",
+      "year": 2007
+    },
+    {
+      "id": "TE0195",
+      "source": "node_0179",
+      "target": "node_0195",
+      "relation": "catalyzes",
+      "moduleId": "T06",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0179 affects node_0195",
+      "firstAuthor": "Mueller",
+      "year": 2004
+    },
+    {
+      "id": "TE0196",
+      "source": "node_0177",
+      "target": "node_0196",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0177 affects node_0196",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0197",
+      "source": "node_0191",
+      "target": "node_0197",
+      "relation": "regulates",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0191 affects node_0197",
+      "pmid": "16065828",
+      "year": 2013
+    },
+    {
+      "id": "TE0198",
+      "source": "node_0197",
+      "target": "node_0198",
+      "relation": "directlyIncreases",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0197 affects node_0198",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0199",
+      "source": "node_0184",
+      "target": "node_0199",
+      "relation": "protects",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0184 affects node_0199",
+      "pmid": "21640824",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0200",
+      "source": "node_0000",
+      "target": "node_0047",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0047"
+    },
+    {
+      "id": "TE0201",
+      "source": "node_0000",
+      "target": "node_0078",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0078",
+      "pmid": "39774920",
+      "firstAuthor": "Kim",
+      "year": 2001
+    },
+    {
+      "id": "TE0202",
+      "source": "node_0124",
+      "target": "node_0000",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0124 affects node_0000",
+      "pmid": "20914358",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0203",
+      "source": "node_0000",
+      "target": "node_0006",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0006",
+      "pmid": "19799713",
+      "firstAuthor": "Zhang",
+      "year": 2014
+    },
+    {
+      "id": "TE0204",
+      "source": "node_0116",
+      "target": "node_0000",
+      "relation": "modulates",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0116 affects node_0000",
+      "pmid": "23348302",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0205",
+      "source": "node_0196",
+      "target": "node_0000",
+      "relation": "regulates",
+      "moduleId": "T06",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0196 affects node_0000",
+      "pmid": "10597353",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0206",
+      "source": "node_0084",
+      "target": "node_0000",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0084 affects node_0000",
+      "firstAuthor": "Garcia",
+      "year": 2017
+    },
+    {
+      "id": "TE0207",
+      "source": "node_0000",
+      "target": "node_0192",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0000 affects node_0192",
+      "pmid": "21004479",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0208",
+      "source": "node_0001",
+      "target": "node_0154",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0154",
+      "pmid": "20011833",
+      "firstAuthor": "Kim",
+      "year": 2003
+    },
+    {
+      "id": "TE0209",
+      "source": "node_0155",
+      "target": "node_0001",
+      "relation": "catalyzes",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0155 affects node_0001",
+      "year": 2016
+    },
+    {
+      "id": "TE0210",
+      "source": "node_0001",
+      "target": "node_0058",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0058",
+      "pmid": "26053433"
+    },
+    {
+      "id": "TE0211",
+      "source": "node_0027",
+      "target": "node_0001",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0027 affects node_0001",
+      "pmid": "36238600",
+      "firstAuthor": "Mueller",
+      "year": 2024
+    },
+    {
+      "id": "TE0212",
+      "source": "node_0001",
+      "target": "node_0104",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0104",
+      "pmid": "22476709",
+      "firstAuthor": "Zhang",
+      "year": 2005
+    },
+    {
+      "id": "TE0213",
+      "source": "node_0115",
+      "target": "node_0001",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0115 affects node_0001",
+      "firstAuthor": "Kim",
+      "year": 2010
+    },
+    {
+      "id": "TE0214",
+      "source": "node_0050",
+      "target": "node_0001",
+      "relation": "catalyzes",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0050 affects node_0001"
+    },
+    {
+      "id": "TE0215",
+      "source": "node_0028",
+      "target": "node_0001",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0028 affects node_0001",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0216",
+      "source": "node_0001",
+      "target": "node_0084",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0084",
+      "pmid": "16347790",
+      "firstAuthor": "Patel",
+      "year": 2013
+    },
+    {
+      "id": "TE0217",
+      "source": "node_0002",
+      "target": "node_0053",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0053",
+      "pmid": "38653778",
+      "firstAuthor": "Kim",
+      "year": 2011
+    },
+    {
+      "id": "TE0218",
+      "source": "node_0002",
+      "target": "node_0057",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0057",
+      "pmid": "32573332"
+    },
+    {
+      "id": "TE0219",
+      "source": "node_0002",
+      "target": "node_0122",
+      "relation": "directlyIncreases",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0122",
+      "pmid": "26676084"
+    },
+    {
+      "id": "TE0220",
+      "source": "node_0002",
+      "target": "node_0173",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0173",
+      "year": 2017
+    },
+    {
+      "id": "TE0221",
+      "source": "node_0111",
+      "target": "node_0002",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0111 affects node_0002",
+      "pmid": "11117368",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0222",
+      "source": "node_0002",
+      "target": "node_0196",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0196",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0223",
+      "source": "node_0002",
+      "target": "node_0102",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0102",
+      "pmid": "22540925",
+      "firstAuthor": "Garcia",
+      "year": 2010
+    },
+    {
+      "id": "TE0224",
+      "source": "node_0027",
+      "target": "node_0002",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0027 affects node_0002",
+      "pmid": "24237124"
+    },
+    {
+      "id": "TE0225",
+      "source": "node_0002",
+      "target": "node_0189",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0189",
+      "pmid": "20054652",
+      "firstAuthor": "Mueller",
+      "year": 2024
+    },
+    {
+      "id": "TE0226",
+      "source": "node_0002",
+      "target": "node_0131",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0131",
+      "firstAuthor": "Mueller",
+      "year": 2017
+    },
+    {
+      "id": "TE0227",
+      "source": "node_0138",
+      "target": "node_0002",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0138 affects node_0002",
+      "firstAuthor": "Smith",
+      "year": 2012
+    },
+    {
+      "id": "TE0228",
+      "source": "node_0002",
+      "target": "node_0040",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0040",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0229",
+      "source": "node_0084",
+      "target": "node_0002",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0084 affects node_0002",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0230",
+      "source": "node_0059",
+      "target": "node_0002",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0059 affects node_0002",
+      "pmid": "35008318",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0231",
+      "source": "node_0003",
+      "target": "node_0050",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0003 affects node_0050",
+      "pmid": "14474930",
+      "firstAuthor": "Smith",
+      "year": 2008
+    },
+    {
+      "id": "TE0232",
+      "source": "node_0036",
+      "target": "node_0003",
+      "relation": "decreases",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0036 affects node_0003",
+      "pmid": "23536578",
+      "year": 2004
+    },
+    {
+      "id": "TE0233",
+      "source": "node_0109",
+      "target": "node_0003",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0109 affects node_0003",
+      "pmid": "19080189",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0234",
+      "source": "node_0003",
+      "target": "node_0136",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0003 affects node_0136",
+      "pmid": "19721386",
+      "year": 2022
+    },
+    {
+      "id": "TE0235",
+      "source": "node_0183",
+      "target": "node_0003",
+      "relation": "directlyDecreases",
+      "moduleId": "T06",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0183 affects node_0003",
+      "pmid": "11223915",
+      "firstAuthor": "Smith",
+      "year": 2020
+    },
+    {
+      "id": "TE0236",
+      "source": "node_0003",
+      "target": "node_0116",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0003 affects node_0116",
+      "pmid": "35385494",
+      "firstAuthor": "Garcia",
+      "year": 2011
+    },
+    {
+      "id": "TE0237",
+      "source": "node_0004",
+      "target": "node_0104",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0104",
+      "pmid": "12031424",
+      "year": 2023
+    },
+    {
+      "id": "TE0238",
+      "source": "node_0004",
+      "target": "node_0042",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0042",
+      "pmid": "22282130",
+      "year": 2013
+    },
+    {
+      "id": "TE0239",
+      "source": "node_0004",
+      "target": "node_0141",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0141",
+      "firstAuthor": "Zhang",
+      "year": 2004
+    },
+    {
+      "id": "TE0240",
+      "source": "node_0118",
+      "target": "node_0004",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0118 affects node_0004",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0241",
+      "source": "node_0004",
+      "target": "node_0143",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0143",
+      "pmid": "12804359",
+      "firstAuthor": "Kim",
+      "year": 2016
+    },
+    {
+      "id": "TE0242",
+      "source": "node_0146",
+      "target": "node_0004",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0146 affects node_0004",
+      "firstAuthor": "Zhang",
+      "year": 2002
+    },
+    {
+      "id": "TE0243",
+      "source": "node_0004",
+      "target": "node_0023",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0023",
+      "pmid": "17355692",
+      "firstAuthor": "Garcia",
+      "year": 2017
+    },
+    {
+      "id": "TE0244",
+      "source": "node_0004",
+      "target": "node_0168",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0168",
+      "pmid": "13777518",
+      "firstAuthor": "Garcia",
+      "year": 2001
+    },
+    {
+      "id": "TE0245",
+      "source": "node_0076",
+      "target": "node_0004",
+      "relation": "produces",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0076 affects node_0004",
+      "pmid": "17892876"
+    },
+    {
+      "id": "TE0246",
+      "source": "node_0037",
+      "target": "node_0004",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0037 affects node_0004",
+      "firstAuthor": "Garcia",
+      "year": 2022
+    },
+    {
+      "id": "TE0247",
+      "source": "node_0138",
+      "target": "node_0004",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0138 affects node_0004",
+      "firstAuthor": "Patel",
+      "year": 2025
+    },
+    {
+      "id": "TE0248",
+      "source": "node_0004",
+      "target": "node_0079",
+      "relation": "directlyIncreases",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0004 affects node_0079",
+      "pmid": "10008690",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0249",
+      "source": "node_0199",
+      "target": "node_0004",
+      "relation": "directlyDecreases",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0199 affects node_0004",
+      "pmid": "35096755",
+      "firstAuthor": "Garcia",
+      "year": 2024
+    },
+    {
+      "id": "TE0250",
+      "source": "node_0058",
+      "target": "node_0005",
+      "relation": "protects",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0058 affects node_0005",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0251",
+      "source": "node_0005",
+      "target": "node_0161",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0005 affects node_0161",
+      "pmid": "10855038",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0252",
+      "source": "node_0163",
+      "target": "node_0005",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0163 affects node_0005",
+      "pmid": "10651174",
+      "firstAuthor": "Mueller",
+      "year": 2001
+    },
+    {
+      "id": "TE0253",
+      "source": "node_0005",
+      "target": "node_0025",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0005 affects node_0025",
+      "pmid": "25656019",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0254",
+      "source": "node_0153",
+      "target": "node_0005",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0153 affects node_0005",
+      "firstAuthor": "Garcia",
+      "year": 2022
+    },
+    {
+      "id": "TE0255",
+      "source": "node_0092",
+      "target": "node_0006",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0092 affects node_0006",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0256",
+      "source": "node_0121",
+      "target": "node_0006",
+      "relation": "degrades",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0121 affects node_0006",
+      "firstAuthor": "Mueller",
+      "year": 2004
+    },
+    {
+      "id": "TE0257",
+      "source": "node_0094",
+      "target": "node_0006",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0094 affects node_0006",
+      "pmid": "31394781",
+      "year": 2020
+    },
+    {
+      "id": "TE0258",
+      "source": "node_0006",
+      "target": "node_0131",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0131",
+      "pmid": "24083602",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0259",
+      "source": "node_0006",
+      "target": "node_0128",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0128",
+      "pmid": "37154203",
+      "firstAuthor": "Patel",
+      "year": 2006
+    },
+    {
+      "id": "TE0260",
+      "source": "node_0111",
+      "target": "node_0006",
+      "relation": "regulates",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0111 affects node_0006",
+      "year": 2018
+    },
+    {
+      "id": "TE0261",
+      "source": "node_0136",
+      "target": "node_0006",
+      "relation": "produces",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0136 affects node_0006",
+      "pmid": "25446294",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0262",
+      "source": "node_0006",
+      "target": "node_0158",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0158",
+      "pmid": "37458869",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0263",
+      "source": "node_0008",
+      "target": "node_0006",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0006",
+      "pmid": "24117694"
+    },
+    {
+      "id": "TE0264",
+      "source": "node_0057",
+      "target": "node_0006",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0057 affects node_0006",
+      "year": 2007
+    },
+    {
+      "id": "TE0265",
+      "source": "node_0017",
+      "target": "node_0006",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0017 affects node_0006",
+      "pmid": "28401198",
+      "firstAuthor": "Garcia",
+      "year": 2008
+    },
+    {
+      "id": "TE0266",
+      "source": "node_0006",
+      "target": "node_0044",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0044",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0267",
+      "source": "node_0006",
+      "target": "node_0087",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0006 affects node_0087",
+      "pmid": "34367676"
+    },
+    {
+      "id": "TE0268",
+      "source": "node_0132",
+      "target": "node_0006",
+      "relation": "regulates",
+      "moduleId": "T04",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0132 affects node_0006",
+      "pmid": "21097296"
+    },
+    {
+      "id": "TE0269",
+      "source": "node_0031",
+      "target": "node_0007",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0031 affects node_0007",
+      "pmid": "33824626",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0270",
+      "source": "node_0156",
+      "target": "node_0007",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0156 affects node_0007",
+      "pmid": "26827372"
+    },
+    {
+      "id": "TE0271",
+      "source": "node_0007",
+      "target": "node_0037",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0037",
+      "pmid": "21110786",
+      "firstAuthor": "Zhang",
+      "year": 2017
+    },
+    {
+      "id": "TE0272",
+      "source": "node_0053",
+      "target": "node_0007",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0053 affects node_0007",
+      "pmid": "38519542",
+      "firstAuthor": "Smith",
+      "year": 2016
+    },
+    {
+      "id": "TE0273",
+      "source": "node_0007",
+      "target": "node_0169",
+      "relation": "decreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0169",
+      "pmid": "21358422",
+      "firstAuthor": "Patel",
+      "year": 2025
+    },
+    {
+      "id": "TE0274",
+      "source": "node_0098",
+      "target": "node_0007",
+      "relation": "catalyzes",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0098 affects node_0007"
+    },
+    {
+      "id": "TE0275",
+      "source": "node_0007",
+      "target": "node_0022",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0007 affects node_0022",
+      "pmid": "35104285",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0276",
+      "source": "node_0060",
+      "target": "node_0007",
+      "relation": "protects",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0060 affects node_0007",
+      "firstAuthor": "Mueller",
+      "year": 2001
+    },
+    {
+      "id": "TE0277",
+      "source": "node_0008",
+      "target": "node_0190",
+      "relation": "modulates",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0190",
+      "firstAuthor": "Mueller",
+      "year": 2000
+    },
+    {
+      "id": "TE0278",
+      "source": "node_0008",
+      "target": "node_0063",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0063",
+      "pmid": "33888457"
+    },
+    {
+      "id": "TE0279",
+      "source": "node_0158",
+      "target": "node_0008",
+      "relation": "modulates",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0158 affects node_0008",
+      "pmid": "18663146",
+      "year": 2009
+    },
+    {
+      "id": "TE0280",
+      "source": "node_0087",
+      "target": "node_0008",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0087 affects node_0008",
+      "year": 2006
+    },
+    {
+      "id": "TE0281",
+      "source": "node_0008",
+      "target": "node_0093",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0093",
+      "pmid": "29008535",
+      "year": 2015
+    },
+    {
+      "id": "TE0282",
+      "source": "node_0008",
+      "target": "node_0135",
+      "relation": "directlyIncreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0135",
+      "pmid": "27144946",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0283",
+      "source": "node_0008",
+      "target": "node_0056",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0056",
+      "pmid": "31157007",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0284",
+      "source": "node_0090",
+      "target": "node_0008",
+      "relation": "directlyIncreases",
+      "moduleId": "T03",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0090 affects node_0008",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0285",
+      "source": "node_0080",
+      "target": "node_0008",
+      "relation": "directlyDecreases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0080 affects node_0008",
+      "firstAuthor": "Garcia",
+      "year": 2008
+    },
+    {
+      "id": "TE0286",
+      "source": "node_0008",
+      "target": "node_0179",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0179",
+      "pmid": "37152950",
+      "firstAuthor": "Kim",
+      "year": 2021
+    },
+    {
+      "id": "TE0287",
+      "source": "node_0110",
+      "target": "node_0009",
+      "relation": "increases",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0110 affects node_0009",
+      "pmid": "31085606",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0288",
+      "source": "node_0084",
+      "target": "node_0009",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0084 affects node_0009",
+      "pmid": "30353998"
+    },
+    {
+      "id": "TE0289",
+      "source": "node_0009",
+      "target": "node_0137",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0137",
+      "firstAuthor": "Mueller",
+      "year": 2021
+    },
+    {
+      "id": "TE0290",
+      "source": "node_0009",
+      "target": "node_0045",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0045",
+      "pmid": "34134690",
+      "year": 2012
+    },
+    {
+      "id": "TE0291",
+      "source": "node_0122",
+      "target": "node_0009",
+      "relation": "modulates",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0122 affects node_0009",
+      "firstAuthor": "Kim",
+      "year": 2003
+    },
+    {
+      "id": "TE0292",
+      "source": "node_0009",
+      "target": "node_0193",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0193",
+      "pmid": "30892295",
+      "firstAuthor": "Garcia"
+    },
+    {
+      "id": "TE0293",
+      "source": "node_0189",
+      "target": "node_0084",
+      "relation": "directlyDecreases",
+      "moduleId": "T06",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0189 affects node_0084"
+    },
+    {
+      "id": "TE0294",
+      "source": "node_0097",
+      "target": "node_0010",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0097 affects node_0010",
+      "pmid": "32730688",
+      "firstAuthor": "Mueller",
+      "year": 2010
+    },
+    {
+      "id": "TE0295",
+      "source": "node_0027",
+      "target": "node_0182",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0027 affects node_0182",
+      "pmid": "24003896",
+      "firstAuthor": "Smith",
+      "year": 2018
+    },
+    {
+      "id": "TE0296",
+      "source": "node_0060",
+      "target": "node_0160",
+      "relation": "protects",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0060 affects node_0160",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0297",
+      "source": "node_0022",
+      "target": "node_0058",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0022 affects node_0058",
+      "pmid": "20285197"
+    },
+    {
+      "id": "TE0298",
+      "source": "node_0039",
+      "target": "node_0081",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0039 affects node_0081",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0299",
+      "source": "node_0002",
+      "target": "node_0129",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0002 affects node_0129",
+      "firstAuthor": "Garcia",
+      "year": 2006
+    },
+    {
+      "id": "TE0300",
+      "source": "node_0123",
+      "target": "node_0061",
+      "relation": "degrades",
+      "moduleId": "T04",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0123 affects node_0061",
+      "firstAuthor": "Kim",
+      "year": 2015
+    },
+    {
+      "id": "TE0301",
+      "source": "node_0099",
+      "target": "node_0148",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0099 affects node_0148",
+      "pmid": "34796550",
+      "year": 2002
+    },
+    {
+      "id": "TE0302",
+      "source": "node_0149",
+      "target": "node_0188",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0149 affects node_0188",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0303",
+      "source": "node_0142",
+      "target": "node_0167",
+      "relation": "modulates",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0142 affects node_0167",
+      "pmid": "28303166",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0304",
+      "source": "node_0154",
+      "target": "node_0016",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0154 affects node_0016",
+      "pmid": "12748465"
+    },
+    {
+      "id": "TE0305",
+      "source": "node_0008",
+      "target": "node_0154",
+      "relation": "increases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0008 affects node_0154",
+      "year": 2025
+    },
+    {
+      "id": "TE0306",
+      "source": "node_0064",
+      "target": "node_0175",
+      "relation": "catalyzes",
+      "moduleId": "T02",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0064 affects node_0175",
+      "pmid": "24743985",
+      "year": 2012
+    },
+    {
+      "id": "TE0307",
+      "source": "node_0181",
+      "target": "node_0199",
+      "relation": "degrades",
+      "moduleId": "T06",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0181 affects node_0199",
+      "pmid": "14947430",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0308",
+      "source": "node_0099",
+      "target": "node_0111",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0099 affects node_0111",
+      "pmid": "16268765",
+      "year": 2010
+    },
+    {
+      "id": "TE0309",
+      "source": "node_0013",
+      "target": "node_0030",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0013 affects node_0030",
+      "pmid": "34380876",
+      "year": 2024
+    },
+    {
+      "id": "TE0310",
+      "source": "node_0144",
+      "target": "node_0162",
+      "relation": "decreases",
+      "moduleId": "T05",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0144 affects node_0162",
+      "pmid": "35871977",
+      "year": 2004
+    },
+    {
+      "id": "TE0311",
+      "source": "node_0127",
+      "target": "node_0157",
+      "relation": "protects",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0127 affects node_0157",
+      "pmid": "22474282",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0312",
+      "source": "node_0055",
+      "target": "node_0059",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0055 affects node_0059",
+      "pmid": "12111781",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0313",
+      "source": "node_0010",
+      "target": "node_0011",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0010 affects node_0011",
+      "pmid": "12348929",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0314",
+      "source": "node_0121",
+      "target": "node_0128",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0121 affects node_0128",
+      "firstAuthor": "Patel",
+      "year": 2017
+    },
+    {
+      "id": "TE0315",
+      "source": "node_0098",
+      "target": "node_0107",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0098 affects node_0107",
+      "year": 2008
+    },
+    {
+      "id": "TE0316",
+      "source": "node_0068",
+      "target": "node_0076",
+      "relation": "protects",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0068 affects node_0076",
+      "pmid": "33061261",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0317",
+      "source": "node_0009",
+      "target": "node_0010",
+      "relation": "produces",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0009 affects node_0010",
+      "pmid": "20311652",
+      "firstAuthor": "Mueller",
+      "year": 2010
+    },
+    {
+      "id": "TE0318",
+      "source": "node_0135",
+      "target": "node_0136",
+      "relation": "increases",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0135 affects node_0136",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0319",
+      "source": "node_0100",
+      "target": "node_0101",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0100 affects node_0101",
+      "year": 2010
+    },
+    {
+      "id": "TE0320",
+      "source": "node_0085",
+      "target": "node_0101",
+      "relation": "decreases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0085 affects node_0101",
+      "pmid": "21406578",
+      "firstAuthor": "Garcia",
+      "year": 2013
+    },
+    {
+      "id": "TE0321",
+      "source": "node_0057",
+      "target": "node_0078",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0057 affects node_0078",
+      "pmid": "37223270",
+      "firstAuthor": "Patel",
+      "year": 2014
+    },
+    {
+      "id": "TE0322",
+      "source": "node_0015",
+      "target": "node_0036",
+      "relation": "catalyzes",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0015 affects node_0036"
+    },
+    {
+      "id": "TE0323",
+      "source": "node_0162",
+      "target": "node_0189",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0162 affects node_0189",
+      "pmid": "18404179",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0324",
+      "source": "node_0117",
+      "target": "node_0122",
+      "relation": "protects",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0117 affects node_0122",
+      "pmid": "13844482",
+      "firstAuthor": "Garcia",
+      "year": 2023
+    },
+    {
+      "id": "TE0325",
+      "source": "node_0126",
+      "target": "node_0152",
+      "relation": "catalyzes",
+      "moduleId": "T04",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0126 affects node_0152",
+      "pmid": "37711466",
+      "year": 2016
+    },
+    {
+      "id": "TE0326",
+      "source": "node_0047",
+      "target": "node_0070",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0047 affects node_0070",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0327",
+      "source": "node_0111",
+      "target": "node_0113",
+      "relation": "increases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0111 affects node_0113",
+      "pmid": "13684929",
+      "firstAuthor": "Mueller"
+    },
+    {
+      "id": "TE0328",
+      "source": "node_0148",
+      "target": "node_0153",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0148 affects node_0153",
+      "pmid": "11786643",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0329",
+      "source": "node_0057",
+      "target": "node_0067",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0057 affects node_0067",
+      "pmid": "16321797",
+      "firstAuthor": "Mueller",
+      "year": 2023
+    },
+    {
+      "id": "TE0330",
+      "source": "node_0197",
+      "target": "node_0199",
+      "relation": "modulates",
+      "moduleId": "T06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0197 affects node_0199",
+      "pmid": "18608292",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0331",
+      "source": "node_0001",
+      "target": "node_0031",
+      "relation": "protects",
+      "moduleId": "T01",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0001 affects node_0031",
+      "pmid": "33943957",
+      "firstAuthor": "Mueller",
+      "year": 2021
+    },
+    {
+      "id": "TE0332",
+      "source": "node_0063",
+      "target": "node_0080",
+      "relation": "increases",
+      "moduleId": "T02",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0063 affects node_0080",
+      "pmid": "32143063",
+      "firstAuthor": "Mueller",
+      "year": 2007
+    },
+    {
+      "id": "TE0333",
+      "source": "node_0023",
+      "target": "node_0049",
+      "relation": "directlyDecreases",
+      "moduleId": "T01",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0023 affects node_0049",
+      "pmid": "20488130",
+      "year": 2008
+    },
+    {
+      "id": "TE0334",
+      "source": "node_0005",
+      "target": "node_0028",
+      "relation": "directlyIncreases",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0005 affects node_0028",
+      "firstAuthor": "Kim",
+      "year": 2014
+    },
+    {
+      "id": "TE0335",
+      "source": "node_0100",
+      "target": "node_0103",
+      "relation": "decreases",
+      "moduleId": "T04",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0100 affects node_0103",
+      "firstAuthor": "Patel",
+      "year": 2006
+    },
+    {
+      "id": "TE0336",
+      "source": "node_0171",
+      "target": "node_0186",
+      "relation": "catalyzes",
+      "moduleId": "T06",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0171 affects node_0186",
+      "firstAuthor": "Garcia",
+      "year": 2016
+    },
+    {
+      "id": "TE0337",
+      "source": "node_0154",
+      "target": "node_0182",
+      "relation": "directlyIncreases",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0154 affects node_0182",
+      "firstAuthor": "Patel",
+      "year": 2022
+    },
+    {
+      "id": "TE0338",
+      "source": "node_0188",
+      "target": "node_0199",
+      "relation": "decreases",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0188 affects node_0199",
+      "firstAuthor": "Mueller",
+      "year": 2010
+    },
+    {
+      "id": "TE0339",
+      "source": "node_0060",
+      "target": "node_0076",
+      "relation": "directlyDecreases",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0060 affects node_0076",
+      "pmid": "33715356",
+      "firstAuthor": "Garcia",
+      "year": 2023
+    },
+    {
+      "id": "TE0340",
+      "source": "node_0122",
+      "target": "node_0146",
+      "relation": "regulates",
+      "moduleId": "T04",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0122 affects node_0146",
+      "pmid": "20299113",
+      "firstAuthor": "Kim",
+      "year": 2002
+    },
+    {
+      "id": "TE0341",
+      "source": "node_0140",
+      "target": "node_0150",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0140 affects node_0150",
+      "pmid": "21673280",
+      "year": 2019
+    },
+    {
+      "id": "TE0342",
+      "source": "node_0010",
+      "target": "node_0026",
+      "relation": "degrades",
+      "moduleId": "T01",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0010 affects node_0026",
+      "year": 2018
+    },
+    {
+      "id": "TE0343",
+      "source": "node_0129",
+      "target": "node_0133",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0129 affects node_0133",
+      "pmid": "38694194",
+      "firstAuthor": "Garcia",
+      "year": 2010
+    },
+    {
+      "id": "TE0344",
+      "source": "node_0180",
+      "target": "node_0199",
+      "relation": "protects",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0180 affects node_0199",
+      "year": 2000
+    },
+    {
+      "id": "TE0345",
+      "source": "node_0099",
+      "target": "node_0122",
+      "relation": "directlyDecreases",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0099 affects node_0122",
+      "pmid": "21799251"
+    },
+    {
+      "id": "TE0346",
+      "source": "node_0090",
+      "target": "node_0113",
+      "relation": "modulates",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0090 affects node_0113",
+      "firstAuthor": "Smith",
+      "year": 2015
+    },
+    {
+      "id": "TE0347",
+      "source": "node_0072",
+      "target": "node_0099",
+      "relation": "degrades",
+      "moduleId": "T03",
+      "causalConfidence": "L4",
+      "mechanismDescription": "Synthetic edge: node_0072 affects node_0099",
+      "pmid": "34054965",
+      "firstAuthor": "Zhang"
+    },
+    {
+      "id": "TE0348",
+      "source": "node_0056",
+      "target": "node_0080",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0056 affects node_0080",
+      "firstAuthor": "Kim"
+    },
+    {
+      "id": "TE0349",
+      "source": "node_0184",
+      "target": "node_0195",
+      "relation": "catalyzes",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0184 affects node_0195",
+      "pmid": "38851682",
+      "firstAuthor": "Kim",
+      "year": 2009
+    },
+    {
+      "id": "TE0350",
+      "source": "node_0037",
+      "target": "node_0039",
+      "relation": "regulates",
+      "moduleId": "T02",
+      "causalConfidence": "L3",
+      "mechanismDescription": "Synthetic edge: node_0037 affects node_0039",
+      "pmid": "17061581",
+      "firstAuthor": "Garcia",
+      "year": 2008
+    },
+    {
+      "id": "TE0351",
+      "source": "node_0142",
+      "target": "node_0148",
+      "relation": "protects",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0142 affects node_0148",
+      "pmid": "21148597",
+      "year": 2019
+    },
+    {
+      "id": "TE0352",
+      "source": "node_0072",
+      "target": "node_0097",
+      "relation": "increases",
+      "moduleId": "T03",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0072 affects node_0097"
+    },
+    {
+      "id": "TE0353",
+      "source": "node_0160",
+      "target": "node_0173",
+      "relation": "regulates",
+      "moduleId": "T05",
+      "causalConfidence": "L6",
+      "mechanismDescription": "Synthetic edge: node_0160 affects node_0173",
+      "pmid": "26372565",
+      "firstAuthor": "Garcia",
+      "year": 2017
+    },
+    {
+      "id": "TE0354",
+      "source": "node_0159",
+      "target": "node_0163",
+      "relation": "degrades",
+      "moduleId": "T05",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0159 affects node_0163",
+      "pmid": "14942721",
+      "firstAuthor": "Smith"
+    },
+    {
+      "id": "TE0355",
+      "source": "node_0014",
+      "target": "node_0024",
+      "relation": "regulates",
+      "moduleId": "T01",
+      "causalConfidence": "L2",
+      "mechanismDescription": "Synthetic edge: node_0014 affects node_0024",
+      "pmid": "16702816",
+      "year": 2007
+    },
+    {
+      "id": "TE0356",
+      "source": "node_0143",
+      "target": "node_0151",
+      "relation": "catalyzes",
+      "moduleId": "T05",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0143 affects node_0151",
+      "pmid": "36465657"
+    },
+    {
+      "id": "TE0357",
+      "source": "node_0104",
+      "target": "node_0106",
+      "relation": "directlyIncreases",
+      "moduleId": "T04",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0104 affects node_0106",
+      "pmid": "38248292"
+    },
+    {
+      "id": "TE0358",
+      "source": "node_0154",
+      "target": "node_0169",
+      "relation": "directlyIncreases",
+      "moduleId": "T05",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0154 affects node_0169",
+      "year": 2024
+    },
+    {
+      "id": "TE0359",
+      "source": "node_0051",
+      "target": "node_0077",
+      "relation": "produces",
+      "moduleId": "T02",
+      "causalConfidence": "L5",
+      "mechanismDescription": "Synthetic edge: node_0051 affects node_0077",
+      "pmid": "36992628",
+      "firstAuthor": "Patel"
+    },
+    {
+      "id": "TE0360",
+      "source": "node_0167",
+      "target": "node_0185",
+      "relation": "decreases",
+      "moduleId": "T06",
+      "causalConfidence": "L1",
+      "mechanismDescription": "Synthetic edge: node_0167 affects node_0185",
+      "pmid": "14851801",
+      "firstAuthor": "Zhang",
+      "year": 2015
+    }
+  ],
+  "modules": [
+    {
+      "id": "T01",
+      "name": "Alpha Pathway",
+      "shortName": "Alpha",
+      "description": "Synthetic test module 1",
+      "color": "#486393"
+    },
+    {
+      "id": "T02",
+      "name": "Beta Cascade",
+      "shortName": "Beta",
+      "description": "Synthetic test module 2",
+      "color": "#007385"
+    },
+    {
+      "id": "T03",
+      "name": "Gamma Loop",
+      "shortName": "Gamma",
+      "description": "Synthetic test module 3",
+      "color": "#60a5fa"
+    },
+    {
+      "id": "T04",
+      "name": "Delta Hub",
+      "shortName": "Delta",
+      "description": "Synthetic test module 4",
+      "color": "#C9461D"
+    },
+    {
+      "id": "T05",
+      "name": "Epsilon Chain",
+      "shortName": "Epsilon",
+      "description": "Synthetic test module 5",
+      "color": "#f472b6"
+    },
+    {
+      "id": "T06",
+      "name": "Zeta Network",
+      "shortName": "Zeta",
+      "description": "Synthetic test module 6",
+      "color": "#8ecae6"
+    }
+  ]
+}

@@ -168,6 +168,13 @@ export function App() {
   const [activePathway, setActivePathway] = useState<PathwayResult | null>(null);
   const [pathwayFocusMode, setPathwayFocusMode] = useState(false);
 
+  // Boundary variant selections: nodeId → variantId
+  const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>({});
+
+  const handleSelectVariant = useCallback((nodeId: string, variantId: string) => {
+    setSelectedVariants((prev) => ({ ...prev, [nodeId]: variantId }));
+  }, []);
+
   // Build a quick lookup: methodType → confidence level from scheme rules
   const schemeClassify = useMemo(() => {
     const map = new Map<string, string>();
@@ -438,7 +445,8 @@ export function App() {
     focusMode: pathwayFocusMode,
     showBackEdges,
     hiddenEdgeIds: hideRedundantEdges ? redundantEdgeIds : undefined,
-  }), [moduleFilters, highlightedNodes, activePathway, pathwayFocusMode, showBackEdges, hideRedundantEdges, redundantEdgeIds]);
+    selectedVariants,
+  }), [moduleFilters, highlightedNodes, activePathway, pathwayFocusMode, showBackEdges, hideRedundantEdges, redundantEdgeIds, selectedVariants]);
 
   // ── Render ───────────────────────────────────────────────────────────────
 
@@ -465,6 +473,8 @@ export function App() {
     edgeCount: filteredEdges.length,
     layerCount: layout?.stats.layerCount ?? 0,
     clusterCount: layout?.clusters?.length,
+    clusterDiagnostics: layout?.clusterDiagnostics,
+    clusters: layout?.clusters,
     focusLabel,
     onExitFocus: focusSavedFilters ? exitFocusMode : undefined,
   };
@@ -663,6 +673,8 @@ export function App() {
                   rawNodes={rawNodes}
                   rawEdges={rawEdges}
                   rawModules={rawModules}
+                  selectedVariants={selectedVariants}
+                  onSelectVariant={handleSelectVariant}
                   onSelectNode={(id) => {
                     setSelectedNode(id);
                     setZoomToNodeId(id);

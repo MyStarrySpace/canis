@@ -170,6 +170,212 @@ const FIXES = [
     edgeIds: ['E12.029'],
     reason: 'Castellano 2011: Hypoxia stimulates LRP1 expression through HIF-1α',
   },
+
+  // === BATCH 2: LOW CONFIDENCE, verified via mechanism comparison ===
+  {
+    oldPmid: '20516212', newPmid: '37797582', newAuthor: 'Bell RD', newYear: 2023,
+    edgeIds: ['E04.001'],
+    reason: 'Bell 2023: Pericytes control neurovascular functions (BBB permeability)',
+  },
+  {
+    oldPmid: '18227278', newPmid: '39358449', newAuthor: 'Narendra DP', newYear: 2024,
+    edgeIds: ['LR.001'],
+    reason: 'Narendra 2024: PINK1-Parkin in mitochondrial quality control',
+  },
+  {
+    oldPmid: '16838177', newPmid: '25375761', newAuthor: 'Lesne SE', newYear: 2014,
+    edgeIds: ['AB.004'],
+    reason: 'Lesne 2014: Toxic oligomer species of Aβ in AD, a timing issue',
+  },
+  {
+    oldPmid: '10866716', newPmid: '10737616', newAuthor: 'Reynolds CH', newYear: 2000,
+    edgeIds: ['TP.002'],
+    reason: 'Reynolds 2000: Phosphorylation sites on tau identified by nanoelectrospray MS',
+  },
+  {
+    oldPmid: '26390242', newPmid: '26436904', newAuthor: 'Asai H', newYear: 2015,
+    edgeIds: ['TP.009'],
+    reason: 'Asai 2015: Microglia depletion and exosome inhibition halt tau propagation',
+  },
+  {
+    oldPmid: '19703986', newPmid: '19302047', newAuthor: 'Dinarello CA', newYear: 2009,
+    edgeIds: ['E04.011'],
+    reason: 'Dinarello 2009: IL-1 family immunological and inflammatory functions',
+  },
+  {
+    oldPmid: '19121329', newPmid: '17658666', newAuthor: 'Ojala J', newYear: 2009,
+    edgeIds: ['E04.012'],
+    reason: 'Ojala 2009: IL-18 increased in AD brains',
+  },
+  {
+    oldPmid: '31497960', newPmid: '31585093', newAuthor: 'Neumann B', newYear: 2019,
+    edgeIds: ['E13.010', 'E13.019'],
+    reason: 'Neumann 2019: Metformin restores CNS remyelination by rejuvenating aged stem cells',
+  },
+  {
+    oldPmid: '27723745', newPmid: '28738171', newAuthor: 'Brady OA', newYear: 2018,
+    edgeIds: ['E02.021'],
+    reason: 'Brady/Martina 2018: Emerging roles for TFEB in immune response and inflammation',
+  },
+  {
+    oldPmid: '21982726', newPmid: '19428144', newAuthor: 'Rosario ER', newYear: 2009,
+    edgeIds: ['E16.006'],
+    reason: 'Rosario 2009: Brain levels of sex steroid hormones during aging and in AD',
+  },
+  {
+    oldPmid: '16893461', newPmid: '16918589', newAuthor: 'Salpeter SR', newYear: 2006,
+    edgeIds: ['E16.009'],
+    reason: 'Salpeter 2006: HRT and metabolic syndrome components meta-analysis',
+  },
+  {
+    oldPmid: '27801979', newPmid: '23535595', newAuthor: 'Tannahill GM', newYear: 2013,
+    edgeIds: ['REC.022'],
+    reason: 'Tannahill 2013: Succinate is inflammatory signal, induces IL-1β through HIF-1α',
+  },
+  {
+    oldPmid: '21725313', newPmid: '41388821', newAuthor: 'Castellano T', newYear: 2025,
+    edgeIds: ['E_CM.010'],
+    reason: 'Castellano 2025: APOE, ABCA7 associated with earlier amyloid deposition',
+  },
+  {
+    oldPmid: '23898162', newPmid: '24857020', newAuthor: 'Sanders DW', newYear: 2014,
+    edgeIds: ['REC.046'],
+    reason: 'Sanders 2014: Distinct tau prion strains propagate in cells and mice',
+  },
+  {
+    oldPmid: '25065588', newPmid: '33431651', newAuthor: 'Giovinazzo D', newYear: 2021,
+    edgeIds: ['REC.048'],
+    reason: 'Giovinazzo 2021: H2S neuroprotective in AD by sulfhydrating GSK3β',
+  },
+  {
+    oldPmid: '30455430', newPmid: '29317536', newAuthor: 'Sbodio JI', newYear: 2018,
+    edgeIds: ['REC.049'],
+    reason: 'Sbodio 2018: Golgi stress response reprograms cysteine metabolism for cytoprotection',
+  },
+  {
+    oldPmid: '39420891', newPmid: '41452980', newAuthor: 'Chakraborty S', newYear: 2025,
+    edgeIds: ['REC.050'],
+    reason: 'Chakraborty 2025: Cystathionine γ-lyase regulates cognitive function via neurotrophins',
+  },
+  {
+    oldPmid: '28611084', newPmid: '39796064', newAuthor: 'Arosio P', newYear: 2024,
+    edgeIds: ['E09.010'],
+    reason: 'Arosio 2024: A brief history of ferritin, an ancient and versatile protein',
+  },
+  {
+    oldPmid: '16945100', newPmid: '27277824', newAuthor: 'Mahley RW', newYear: 2016,
+    edgeIds: ['REC.069'],
+    reason: 'Mahley 2016: ApoE from cardiovascular disease to neurodegenerative disorders',
+  },
+  {
+    oldPmid: '29518356', newPmid: '27196974', newAuthor: 'Yuan P', newYear: 2016,
+    edgeIds: ['E11.003'],
+    reason: 'Yuan 2016: TREM2 haplodeficiency impairs microglia barrier function',
+  },
+  {
+    oldPmid: '32860352', newPmid: '35291561', newAuthor: 'Montagne A', newYear: 2021,
+    edgeIds: ['E12.030', 'E12.050'],
+    reason: 'Montagne 2021: APOE4 accelerates vascular and neurodegenerative disorder in old AD mice',
+  },
+  {
+    oldPmid: '22334919', newPmid: '27235807', newAuthor: 'Area-Gomez E', newYear: 2016,
+    edgeIds: ['E14.001', 'E14.002', 'E14.003', 'E14.004', 'E14.006'],
+    reason: 'Area-Gomez 2016: Mitochondria-associated ER membranes and Alzheimer disease',
+  },
+  {
+    oldPmid: '20818845', newPmid: '20836898', newAuthor: 'Jones RW', newYear: 2010,
+    edgeIds: ['E-THER.002'],
+    reason: 'Jones 2010: Dimebon disappointment',
+  },
+  {
+    oldPmid: '19341762', newPmid: '35573809', newAuthor: 'Lupien SJ', newYear: 2022,
+    edgeIds: ['E20.010'],
+    reason: 'Lupien 2022: Chronic stress, cortisol and brain effects',
+  },
+
+  // === BATCH 3: PubMed-verified targeted searches ===
+  {
+    oldPmid: '32768567', newPmid: '18794901', newAuthor: 'Dong XP', newYear: 2008,
+    edgeIds: ['FL.001'],
+    reason: 'Dong 2008: TRPML1 is an endolysosomal iron release channel',
+  },
+  {
+    oldPmid: '22729161', newPmid: '33431651', newAuthor: 'Giovinazzo D', newYear: 2021,
+    edgeIds: ['E07.025'],
+    reason: 'Giovinazzo 2021: H2S neuroprotective by sulfhydrating GSK3β',
+  },
+  {
+    oldPmid: '14986299', newPmid: '15535135', newAuthor: 'Sontag E', newYear: 2004,
+    edgeIds: ['E07.011'],
+    reason: 'Sontag 2004: PP2A carboxyl methylation downregulation in AD',
+  },
+  {
+    oldPmid: '30177779', newPmid: '29865061', newAuthor: 'Lane DJR', newYear: 2018,
+    edgeIds: ['E09.014'],
+    reason: 'Lane 2018: Iron and AD, emerging mechanisms',
+  },
+  {
+    oldPmid: '34433656', newPmid: '38637622', newAuthor: 'Rachmian N', newYear: 2024,
+    edgeIds: ['E11.008', 'E11.009'],
+    reason: 'Rachmian 2024: Senescent TREM2-expressing microglia in aging and AD',
+  },
+  {
+    oldPmid: '32333900', newPmid: '32722745', newAuthor: 'Palmqvist S', newYear: 2020,
+    edgeIds: ['E12.031'],
+    reason: 'Palmqvist 2020: Plasma phospho-tau217 discriminates AD',
+  },
+  {
+    oldPmid: '25599404', newPmid: '24670762', newAuthor: 'Lu T', newYear: 2014,
+    edgeIds: ['E10.004', 'E10.005', 'E10.011', 'E10.012'],
+    reason: 'Lu 2014: REST and stress resistance in ageing and AD',
+  },
+  {
+    oldPmid: '16675393', newPmid: '16732273', newAuthor: 'Cardona AE', newYear: 2006,
+    edgeIds: ['E05.016'],
+    reason: 'Cardona 2006: CX3CR1 fractalkine receptor controls microglial neurotoxicity',
+  },
+  {
+    oldPmid: '18923512', newPmid: '25078775', newAuthor: 'Seo JH', newYear: 2014,
+    edgeIds: ['E13.024'],
+    reason: 'Seo 2014: OPCs support BBB integrity via TGF-β signaling',
+  },
+  {
+    oldPmid: '23463366', newPmid: '18837051', newAuthor: 'Todorich B', newYear: 2009,
+    edgeIds: ['E13.040'],
+    reason: 'Todorich 2009: Oligodendrocytes and myelination — role of iron',
+  },
+  {
+    oldPmid: '15117386', newPmid: '14745052', newAuthor: 'Moffat SD', newYear: 2004,
+    edgeIds: ['E16.005'],
+    reason: 'Moffat 2004: Free testosterone and risk for AD in older men',
+  },
+  {
+    oldPmid: '24524930', newPmid: '24553879', newAuthor: 'Letra L', newYear: 2014,
+    edgeIds: ['E16.010'],
+    reason: 'Letra 2014: Obesity as AD risk factor, role of adipocytokines',
+  },
+  {
+    oldPmid: '32589960', newPmid: '31917687', newAuthor: 'Roy ER', newYear: 2020,
+    edgeIds: ['E04.013'],
+    reason: 'Roy 2020: Type I IFN response drives neuroinflammation in AD',
+  },
+
+  // === Year-only corrections (PMID is correct, year off by epub/print) ===
+  {
+    oldPmid: '19428144', newPmid: '19428144', newAuthor: 'Rosario ER', newYear: 2011,
+    edgeIds: ['E16.006'],
+    reason: 'Year correction: PubMed returns 2011 (print date vs 2009 epub)',
+  },
+  {
+    oldPmid: '33068891', newPmid: '33068891', newAuthor: 'Chandra A', newYear: 2021,
+    edgeIds: ['E12.015'],
+    reason: 'Year+author correction: PubMed returns Chandra A 2021',
+  },
+  {
+    oldPmid: '36613677', newPmid: '36613677', newAuthor: 'Palavicini JP', newYear: 2022,
+    edgeIds: ['E10.018'],
+    reason: 'Year correction: PubMed returns 2022 (print date vs 2023 epub)',
+  },
 ];
 
 // ── Main ───────────────────────────────────────────────────────────

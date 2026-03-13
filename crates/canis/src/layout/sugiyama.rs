@@ -10,7 +10,7 @@ use super::crossing::{count_all_crossings, minimize_crossings, strength_reorder}
 use super::ghost::insert_ghost_nodes;
 use super::hierarchical::hierarchical_layout;
 use super::layering::assign_layers;
-use super::positioning::{assign_coordinates, compute_bounds};
+use super::positioning::{assign_coordinates, compute_bounds, normalize_positions};
 
 /// Run layout on the graph, dispatching to flat or hierarchical based on options.
 pub fn layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
@@ -65,7 +65,9 @@ pub fn flat_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
     }
 
     // Step 6: Assign coordinates (neighbor-aware, expanding from largest layer)
-    let coord_list = assign_coordinates(&layer_order, &all_segments, opts);
+    let mut coord_list = assign_coordinates(&layer_order, &all_segments, opts);
+    // Normalize so minimum coordinate is (0, 0) — important for hierarchical composition
+    normalize_positions(&mut coord_list);
     let coord_map: HashMap<String, (f64, f64)> = coord_list
         .iter()
         .map(|(id, x, y)| (id.clone(), (*x, *y)))
@@ -148,6 +150,7 @@ pub fn flat_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResult {
             ghost_count: ghost_nodes.len(),
         },
         clusters: vec![],
+        cluster_diagnostics: None,
     }
 }
 

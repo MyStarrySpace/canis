@@ -21,6 +21,8 @@ export interface FlowBuildOptions {
   focusMode?: boolean;
   showBackEdges?: boolean;
   hiddenEdgeIds?: Set<string>;
+  /** Currently selected variant per boundary node (nodeId → variantId) */
+  selectedVariants?: Record<string, string>;
 }
 
 const INHIBITORY_RELATIONS = new Set([
@@ -29,7 +31,7 @@ const INHIBITORY_RELATIONS = new Set([
 
 /** Convert MechanisticNode to SbsfNode shape for library node components */
 function toSbsfNode(n: MechanisticNode): SbsfNode {
-  return {
+  const sbsf: SbsfNode = {
     id: n.id,
     label: n.label ?? n.id,
     category: (n.category as SbsfNode['category']) ?? 'STATE',
@@ -43,6 +45,12 @@ function toSbsfNode(n: MechanisticNode): SbsfNode {
     x: 0,
     y: 0,
   };
+  // Pass through variant data if present
+  if (n.variants && (n.variants as unknown[]).length > 0) {
+    sbsf.variants = n.variants as SbsfNode['variants'];
+    sbsf.defaultVariant = n.defaultVariant as string | undefined;
+  }
+  return sbsf;
 }
 
 export function buildFlowData(
@@ -61,6 +69,7 @@ export function buildFlowData(
     focusMode,
     showBackEdges = true,
     hiddenEdgeIds,
+    selectedVariants = {},
   } = options;
 
   const nodeMap = new Map(rawNodes.map((n) => [n.id, n]));
@@ -108,12 +117,16 @@ export function buildFlowData(
     else if (isPwUpstream) drugRole = 'upstream';
     else if (isPwDownstream) drugRole = 'downstream';
 
+    const sbsfNode = toSbsfNode(source);
+    // Resolve selected variant for this node
+    const selectedVariantId = selectedVariants[pos.id] ?? sbsfNode.defaultVariant;
+
     flowNodes.push({
       id: pos.id,
       type: 'default',
       position: { x: pos.x, y: pos.y },
       data: {
-        sbsfNode: toSbsfNode(source),
+        sbsfNode,
         moduleColor: moduleColors[source.moduleId ?? ''] ?? '#787473',
         moduleName: moduleNameMap.get(source.moduleId ?? '') ?? '',
         displayOptions: {
@@ -128,8 +141,21 @@ export function buildFlowData(
         highlighted: isHighlighted,
         dimmed,
         drugRole,
+        selectedVariantId,
       },
     });
+  }
+
+  // Build variant magnitude lookup: for each node with a selected variant,
+  // store the effectMagnitude so outgoing edges can be scaled
+  const variantMagnitude = new Map<string, number>();
+  for (const node of rawNodes) {
+    const variants = node.variants as Array<{ id: string; effectMagnitude: number }> | undefined;
+    if (!variants || variants.length === 0) continue;
+    const selId = selectedVariants[node.id] ?? (node.defaultVariant as string | undefined);
+    if (!selId) continue;
+    const variant = variants.find((v) => v.id === selId);
+    if (variant) variantMagnitude.set(node.id, variant.effectMagnitude);
   }
 
   // Build flow edges
@@ -179,8 +205,13 @@ export function buildFlowData(
       confidence === 'L2' ? 2 :
       confidence === 'L3' ? 1.5 : 1;
 
+    // Scale by variant effectMagnitude if the source node has a selected variant
+    const magnitude = variantMagnitude.get(src);
+    // Clamp visual scaling to 0.3x–4x to keep edges visible but distinct
+    const magnitudeScale = magnitude != null ? Math.max(0.3, Math.min(4, Math.sqrt(magnitude))) : 1;
+
     let strokeColor = isInhibitory ? '#c75146' : '#007385';
-    let strokeWidth = baseWidth;
+    let strokeWidth = baseWidth * magnitudeScale;
     let opacity = 1;
 
     if (hasPathway && focusMode) {

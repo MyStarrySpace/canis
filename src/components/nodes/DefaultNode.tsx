@@ -6,11 +6,18 @@ import { NodeHandle } from './shared/NodeHandle';
 import { getTheme } from './shared/theme';
 
 export const DefaultNode = memo(function DefaultNode({ data, selected }: CanisNodeProps) {
-  const { sbsfNode, moduleColor, displayOptions, highlighted, dimmed, drugRole } = data;
+  const { sbsfNode, moduleColor, displayOptions, highlighted, dimmed, drugRole, selectedVariantId } = data;
   const t = getTheme(displayOptions.theme);
   const isLight = displayOptions.theme === 'light';
   const category = sbsfNode.category;
   const roles = sbsfNode.roles ?? [];
+  const variants = sbsfNode.variants;
+  const hasVariants = variants && variants.length > 0;
+
+  // Find selected variant for display
+  const activeVariant = hasVariants
+    ? variants.find((v) => v.id === selectedVariantId) ?? variants.find((v) => v.isDefault) ?? variants[0]
+    : null;
 
   const isTherapeuticTarget = roles.includes('THERAPEUTIC_TARGET');
   const isBiomarker = roles.includes('BIOMARKER');
@@ -84,6 +91,42 @@ export const DefaultNode = memo(function DefaultNode({ data, selected }: CanisNo
       >
         {sbsfNode.label}
       </div>
+
+      {/* Variant indicator pill for boundary nodes with variants */}
+      {hasVariants && activeVariant && !dimmed && (
+        <div
+          style={{
+            marginTop: 4,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 3,
+          }}
+        >
+          <div
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              backgroundColor: activeVariant.color ?? '#787473',
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: 9,
+              color: isLight ? '#4a4a4a' : '#aaa',
+              fontWeight: 500,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              maxWidth: 130,
+            }}
+          >
+            {activeVariant.label}
+          </span>
+        </div>
+      )}
 
       <NodeHandle type="target" color={moduleColor} direction={displayOptions.direction} visible={false} />
       <NodeHandle type="source" color={moduleColor} direction={displayOptions.direction} visible={false} />

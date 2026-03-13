@@ -3,10 +3,11 @@ use std::collections::HashMap;
 use crate::graph::AdGraph;
 use crate::types::{
     Bounds, ClusterInfo, Direction, EdgeRelation, EdgeRoute, GhostNode, GraphData, LayoutMode,
-    LayoutOptions, LayoutResult, LayoutStats, NodeCategory, NodePosition, SbsfEdge, SbsfNode,
+    LayoutOptions, LayoutResult, LayoutStats, ModuleSlice, NodeCategory, NodePosition, SbsfEdge,
+    SbsfNode,
 };
 
-use super::clustering::{spectral_cluster, ClusterAssignment};
+use super::clustering::{compute_diagnostics, spectral_cluster, ClusterAssignment};
 use super::sugiyama::flat_layout;
 
 /// Two-level hierarchical Sugiyama layout:
@@ -23,7 +24,9 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
 
     // Degenerate: ≤1 cluster means clustering didn't help, fall back to flat
     if assignment.k <= 1 {
-        return flat_layout(graph, opts);
+        let mut result = flat_layout(graph, opts);
+        result.cluster_diagnostics = Some(compute_diagnostics(graph, &assignment));
+        return result;
     }
 
     // 2. Run Sugiyama on each cluster independently
@@ -66,6 +69,7 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
                     ghost_count: 0,
                 },
                 clusters: vec![],
+                cluster_diagnostics: None,
             });
             cluster_bounds.push((100.0, 100.0));
             continue;
@@ -201,6 +205,19 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
             .unwrap_or((0.0, 0.0));
         let (cw, ch) = cluster_bounds[cluster_idx];
 
+        // Compute module composition for this cluster
+        let mut mod_counts: HashMap<String, usize> = HashMap::new();
+        for nid in cluster_node_ids {
+            if let Some(node) = graph.node(nid) {
+                *mod_counts.entry(node.module_id.clone()).or_insert(0) += 1;
+            }
+        }
+        let mut module_composition: Vec<ModuleSlice> = mod_counts
+            .into_iter()
+            .map(|(module_id, count)| ModuleSlice { module_id, count })
+            .collect();
+        module_composition.sort_by(|a, b| b.count.cmp(&a.count));
+
         all_clusters.push(ClusterInfo {
             id: cluster_idx,
             node_ids: cluster_node_ids.clone(),
@@ -208,6 +225,7 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
             y: offset_y,
             width: cw,
             height: ch,
+            module_composition,
         });
 
         for node in &cluster_layout.nodes {
@@ -267,6 +285,8 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
         .map(|cl| cl.stats.crossing_count)
         .sum();
 
+    let diagnostics = compute_diagnostics(graph, &assignment);
+
     LayoutResult {
         nodes: all_nodes,
         ghost_nodes: all_ghosts.clone(),
@@ -281,6 +301,7 @@ pub fn hierarchical_layout(graph: &AdGraph, opts: &LayoutOptions) -> LayoutResul
             ghost_count: all_ghosts.len(),
         },
         clusters: all_clusters,
+        cluster_diagnostics: Some(diagnostics),
     }
 }
 
@@ -303,6 +324,8 @@ fn build_meta_graph(graph: &AdGraph, assignment: &ClusterAssignment) -> AdGraph 
             roles: vec![],
             pmid: None,
             notes: None,
+            variants: vec![],
+            default_variant: None,
             x: 0.0,
             y: 0.0,
         })
@@ -364,6 +387,7 @@ fn empty_layout() -> LayoutResult {
             ghost_count: 0,
         },
         clusters: vec![],
+        cluster_diagnostics: None,
     }
 }
 

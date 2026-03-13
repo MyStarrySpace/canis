@@ -33,6 +33,25 @@ export type EdgeRelation =
 
 export type CausalConfidence = 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6' | 'L7';
 
+export type EffectDirection = 'protective' | 'neutral' | 'risk';
+
+export interface BoundaryVariant {
+  id: string;
+  nodeId: string;
+  label: string;
+  effectDirection: EffectDirection;
+  effectMagnitude: number;
+  effectDescription?: string;
+  frequency?: number;
+  color?: string;
+  isDefault?: boolean;
+  pmid?: string;
+  oddsRatio?: number;
+  ciLow?: number;
+  ciHigh?: number;
+  population?: string;
+}
+
 export interface SbsfNode {
   id: string;
   label: string;
@@ -44,6 +63,8 @@ export interface SbsfNode {
   roles: string[];
   pmid?: string;
   notes?: string;
+  variants?: BoundaryVariant[];
+  defaultVariant?: string;
   x: number;
   y: number;
 }
@@ -192,6 +213,11 @@ export interface LayoutStats {
   ghostCount: number;
 }
 
+export interface ModuleSlice {
+  moduleId: string;
+  count: number;
+}
+
 export interface ClusterInfo {
   id: number;
   nodeIds: string[];
@@ -199,6 +225,24 @@ export interface ClusterInfo {
   y: number;
   width: number;
   height: number;
+  moduleComposition: ModuleSlice[];
+}
+
+export interface ClusterDiagnostics {
+  /** How k was chosen: "eigengap", "fixed", "module_count", "module_passthrough", etc. */
+  method: string;
+  /** Number of clusters produced */
+  k: number;
+  /** First eigenvalues of the graph Laplacian (ascending) */
+  eigenvalues: number[];
+  /** Purity score: fraction of nodes in dominant module per cluster (0..1) */
+  moduleAgreement: number;
+  /** Fraction of edges that cross cluster boundaries (lower = better) */
+  crossClusterEdgeRatio: number;
+  /** Number of modules split across multiple clusters */
+  modulesSplit: number;
+  /** Number of clusters containing nodes from >1 module */
+  mixedClusters: number;
 }
 
 export interface LayoutResult {
@@ -208,6 +252,7 @@ export interface LayoutResult {
   bounds: Bounds;
   stats: LayoutStats;
   clusters?: ClusterInfo[];
+  clusterDiagnostics?: ClusterDiagnostics;
 }
 
 // ── Analysis types ────────────────────────────────────────────────────────

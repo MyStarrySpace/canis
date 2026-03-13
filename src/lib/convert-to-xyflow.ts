@@ -32,6 +32,8 @@ export interface CanisNodeData extends Record<string, unknown> {
   dimmed?: boolean;
   /** Drug pathway role for coloring */
   drugRole?: DrugRole;
+  /** Currently selected variant ID (for boundary nodes with variants) */
+  selectedVariantId?: string;
 }
 
 /** Data payload attached to each xyflow edge */

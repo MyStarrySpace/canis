@@ -1,0 +1,6721 @@
+[
+  {
+    "id": "E01.001",
+    "source": "insulin_resistance",
+    "target": "mtorc1_hyperactive",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Chronic hyperinsulinemia → sustained PI3K-AKT → TSC1/2 phosphorylation (inhibited) → Rheb-GTP accumulates → mTORC1 disinhibited on lysosomal membrane",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "15750215"
+    ],
+    "authors": [
+      "Steen"
+    ],
+    "years": [
+      2005
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "insulin_resistance",
+    "newTarget": "mTORC1_hyperactive",
+    "type": "citation_only",
+    "existingEdgeId": "IA.002"
+  },
+  {
+    "id": "E01.002",
+    "source": "mtorc1_hyperactive",
+    "target": "tfeb_phosphorylated",
+    "relation": "directlyIncreases",
+    "moduleId": "M01",
+    "causalConfidence": "L5",
+    "mechanismDescription": "mTORC1 directly phosphorylates TFEB at Ser211 and Ser142. pSer211 creates 14-3-3 binding site → cytoplasmic retention. Rapamycin/rapalogs inhibit mTORC1 allosterically via FKBP12.",
+    "keyInsight": "Direct biochemical + intervention reversal establishes causality. Rapamycin IC50 ≈ 0.1 nM.",
+    "crossModule": "",
+    "pmids": [
+      "22343943"
+    ],
+    "authors": [
+      "Settembre"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "TFEB_phosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "E03.005"
+  },
+  {
+    "id": "E01.003",
+    "source": "tfeb_phosphorylated",
+    "target": "lysosomal_genes_down",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L3",
+    "mechanismDescription": "pSer211-TFEB binds 14-3-3 → cytoplasmic retention → cannot enter nucleus → CLEAR network genes not transcribed",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22343943"
+    ],
+    "authors": [
+      "Settembre"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "TFEB_phosphorylated",
+    "newTarget": "lysosomal_genes_down",
+    "type": "citation_only",
+    "existingEdgeId": "IA.003"
+  },
+  {
+    "id": "E01.004",
+    "source": "lysosomal_genes_down",
+    "target": "lysosome_pool",
+    "relation": "decreases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "↓v-ATPase subunits, ↓LAMP proteins, ↓cathepsins → reduced lysosome biogenesis and functional capacity",
+    "keyInsight": "Lysosome pool depleted when TFEB-driven biogenesis is suppressed",
+    "crossModule": "M01 → M02",
+    "pmids": [
+      "35654956"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "lysosomal_genes_down",
+    "newTarget": "lysosome",
+    "type": "new_edge"
+  },
+  {
+    "id": "E01.004b",
+    "source": "lysosome_pool",
+    "target": "lysosomal_dysfunction",
+    "relation": "decreases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Depleted lysosome pool → insufficient degradation capacity → pH rises >5.5, ↓cathepsin activity, cargo accumulation. NOTE: This is an inverse relationship - low lysosome stock increases dysfunction",
+    "keyInsight": "PANTHOS pattern - autolysosomes fail to acidify, becoming Aβ storage depots",
+    "crossModule": "",
+    "pmids": [
+      "35654956"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "lysosome",
+    "newTarget": "lysosomal_dysfunction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E01.005",
+    "source": "mtorc1_hyperactive",
+    "target": "ulk1_phosphorylated",
+    "relation": "directlyIncreases",
+    "moduleId": "M01",
+    "causalConfidence": "L5",
+    "mechanismDescription": "mTORC1 phosphorylates ULK1 at Ser757, which blocks the AMPK binding site on ULK1",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "21258367"
+    ],
+    "authors": [
+      "Kim"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "ULK1_phosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "IA.005"
+  },
+  {
+    "id": "E01.006",
+    "source": "ulk1_phosphorylated",
+    "target": "mitophagy_rate_reduced",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "ULK1 pSer757 blocks AMPK binding → AMPK cannot phosphorylate/activate ULK1 at Ser317/Ser777 → autophagy/mitophagy initiation blocked",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "21258367"
+    ],
+    "authors": [
+      "Kim"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "ULK1_phosphorylated",
+    "newTarget": "mitophagy_rate_reduced",
+    "type": "citation_only",
+    "existingEdgeId": "IA.007"
+  },
+  {
+    "id": "E01.007",
+    "source": "mitophagy_rate_reduced",
+    "target": "damaged_mito_pool",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Damage rate exceeds clearance rate → damaged mitochondria accumulate. Stock-flow relationship",
+    "keyInsight": "Mass balance logic: when clearance < damage rate, stock accumulates",
+    "crossModule": "",
+    "pmids": [
+      "30742114",
+      "38280852"
+    ],
+    "authors": [
+      "Fang",
+      "Jimenez-Loygorri"
+    ],
+    "years": [
+      2019,
+      2024
+    ],
+    "methods": [
+      "intervention_animal",
+      "intervention_animal"
+    ],
+    "newSource": "mitophagy_rate_reduced",
+    "newTarget": "damaged_mito_pool",
+    "type": "citation_only",
+    "existingEdgeId": "IA.012"
+  },
+  {
+    "id": "E01.008",
+    "source": "mtorc1_hyperactive",
+    "target": "s6k1_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M01",
+    "causalConfidence": "L5",
+    "mechanismDescription": "mTORC1 phosphorylates S6K1 at Thr389 (hydrophobic motif), enabling full activation",
+    "keyInsight": "S6K1-pThr389 is standard readout for mTORC1 activity",
+    "crossModule": "",
+    "pmids": [
+      "19461840"
+    ],
+    "authors": [
+      "Laplante"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "S6K1_active",
+    "type": "citation_only",
+    "existingEdgeId": "IA.009"
+  },
+  {
+    "id": "E01.009",
+    "source": "s6k1_active",
+    "target": "irs1_serine_phosphorylated",
+    "relation": "directlyIncreases",
+    "moduleId": "M01",
+    "causalConfidence": "L5",
+    "mechanismDescription": "S6K1 phosphorylates IRS-1 at multiple serine residues: S307, S312, S527, S616, S636/639. Creates 14-3-3 binding sites, promotes degradation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "16914728"
+    ],
+    "authors": [
+      "Shah"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "S6K1_active",
+    "newTarget": "IRS1_serine_phosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "IA.010"
+  },
+  {
+    "id": "E01.010",
+    "source": "irs1_serine_phosphorylated",
+    "target": "insulin_resistance",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "IRS-1 serine phosphorylation: (1) reduces tyrosine phosphorylation by insulin receptor, (2) promotes IRS-1 degradation, (3) creates 14-3-3 binding → sequestration",
+    "keyInsight": "This edge closes the feedback loop: mTORC1→S6K1→IRS1→insulin_resistance→mTORC1",
+    "crossModule": "",
+    "pmids": [
+      "28550243",
+      "30463045"
+    ],
+    "authors": [
+      "Nakamura",
+      "Rahman"
+    ],
+    "years": [
+      2017,
+      2018
+    ],
+    "methods": [
+      "intervention_animal",
+      "intervention_animal"
+    ],
+    "newSource": "IRS1_serine_phosphorylated",
+    "newTarget": "insulin_resistance",
+    "type": "citation_only",
+    "existingEdgeId": "IA.011"
+  },
+  {
+    "id": "E01.020",
+    "source": "mtorc1_hyperactive",
+    "target": "ampk_phosphorylated",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "mTORC1 via S6K1 phosphorylates AMPK at Ser345, preventing its lysosomal recruitment and full activation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28446607"
+    ],
+    "authors": [
+      "Dite"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "AMPK_phosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "IA.006"
+  },
+  {
+    "id": "E01.021",
+    "source": "ampk_phosphorylated",
+    "target": "ulk1_phosphorylated",
+    "relation": "increases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Phospho-inhibited AMPK cannot activate ULK1; ULK1 remains phosphorylated/inhibited by mTORC1",
+    "keyInsight": "AMPK-ULK1 axis is critical for autophagy initiation",
+    "crossModule": "M01 → M02",
+    "pmids": [
+      "21205641"
+    ],
+    "authors": [
+      "Kim"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "AMPK_phosphorylated",
+    "newTarget": "ULK1_phosphorylated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E01.023",
+    "source": "sirt1_activity",
+    "target": "ulk1_phosphorylated",
+    "relation": "decreases",
+    "moduleId": "M01",
+    "causalConfidence": "L4",
+    "mechanismDescription": "SIRT1 promotes autophagy by deacetylating autophagy proteins and activating AMPK-ULK1 axis",
+    "keyInsight": "SIRT1 promotes autophagy via multiple mechanisms",
+    "crossModule": "",
+    "pmids": [
+      "18187620"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2008
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "ULK1_phosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "IA.005"
+  },
+  {
+    "id": "E02.001",
+    "source": "lysosomal_dysfunction",
+    "target": "cargo_accumulation",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Reduced degradation capacity (↓cathepsins, ↓v-ATPase, high pH) → cargo builds up. Stock-flow: inflow unchanged, outflow reduced",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35654956"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "lysosomal_dysfunction",
+    "newTarget": "cargo_accumulation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.002",
+    "source": "cargo_accumulation",
+    "target": "lipofuscin",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Incomplete degradation of proteins/lipids → oxidation → cross-linking → lipofuscin granules (irreversible)",
+    "keyInsight": "Lipofuscin formation is IRREVERSIBLE - no known degradation pathway",
+    "crossModule": "",
+    "pmids": [
+      "34782457"
+    ],
+    "authors": [
+      "Pan"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "cargo_accumulation",
+    "newTarget": "lipofuscin",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.003",
+    "source": "lipofuscin",
+    "target": "lmp",
+    "relation": "directlyIncreases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Lipofuscin directly destabilizes lysosomal membrane through physical/oxidative damage → permeabilization",
+    "keyInsight": "Also triggers atypical necroptosis (RIPK1/RIPK3/MLKL independent)",
+    "crossModule": "",
+    "pmids": [
+      "34782457"
+    ],
+    "authors": [
+      "Pan"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "lipofuscin",
+    "newTarget": "LMP",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.004",
+    "source": "lmp",
+    "target": "cathepsin_b_cytosolic",
+    "relation": "directlyIncreases",
+    "moduleId": "M02",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Lysosomal membrane permeabilization → cathepsins (including active cathepsin B) leak into cytosol",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "23720375"
+    ],
+    "authors": [
+      "Aits"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "LMP",
+    "newTarget": "cathepsin_B_cytosolic",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.005",
+    "source": "cathepsin_b_cytosolic",
+    "target": "nlrp3_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M02",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Cytosolic cathepsin B promotes NLRP3-ASC complex assembly",
+    "keyInsight": "Establishes LMP → cathepsin B → NLRP3 as general danger-sensing mechanism",
+    "crossModule": "Output to Module 4 (Inflammasome)",
+    "pmids": [
+      "18604214"
+    ],
+    "authors": [
+      "Hornung"
+    ],
+    "years": [
+      2008
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "cathepsin_B_cytosolic",
+    "newTarget": "NLRP3_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.006",
+    "source": "damaged_mito_pool",
+    "target": "mitophagosome",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L3",
+    "mechanismDescription": "PINK1 stabilizes on depolarized mitochondria → Parkin recruited → ubiquitin chains → autophagy receptors → autophagosome formation",
+    "keyInsight": "This step works normally in AD; the problem is downstream degradation",
+    "crossModule": "",
+    "pmids": [
+      "18227278"
+    ],
+    "authors": [
+      "Narendra"
+    ],
+    "years": [
+      2008
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "damaged_mito_pool",
+    "newTarget": "mitophagosome",
+    "type": "citation_only",
+    "existingEdgeId": "LR.001"
+  },
+  {
+    "id": "E02.007",
+    "source": "mitophagosome",
+    "target": "autolysosome",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Autophagosome fuses with lysosome via SNARE proteins (STX17, SNAP29, VAMP8)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31682838"
+    ],
+    "authors": [
+      "Zhao"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "mitophagosome",
+    "newTarget": "autolysosome",
+    "type": "citation_only",
+    "existingEdgeId": "LR.002"
+  },
+  {
+    "id": "E02.008",
+    "source": "lysosomal_dysfunction",
+    "target": "mtdna_undegraded",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L3",
+    "mechanismDescription": "DNase II requires pH <5 for activity. Lysosomal pH >5.5 → DNase II inactive → mtDNA persists undegraded in autolysosome",
+    "keyInsight": "LANDMARK PAPER - established mtDNA escape as inflammatory trigger",
+    "crossModule": "",
+    "pmids": [
+      "22535248"
+    ],
+    "authors": [
+      "Oka"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "lysosomal_dysfunction",
+    "newTarget": "mtDNA_undegraded",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.009",
+    "source": "mtdna_undegraded",
+    "target": "mtdna_from_lysosome",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Undegraded mtDNA exits through compromised autolysosomal membrane (LMP affects autolysosomes too)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22535248"
+    ],
+    "authors": [
+      "Oka"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "mtDNA_undegraded",
+    "newTarget": "mtDNA_from_lysosome",
+    "type": "citation_only",
+    "existingEdgeId": "LR.005"
+  },
+  {
+    "id": "E02.010",
+    "source": "mtdna_from_lysosome",
+    "target": "cgas_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M02",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Cytosolic mtDNA (CpG-rich, bacterial-like) sensed by cGAS → 2\\",
+    "keyInsight": "Brain-specific: STING activation triggers reactive microglial transcriptional states",
+    "crossModule": "Output to Module 4 (Inflammasome)",
+    "pmids": [
+      "37532932"
+    ],
+    "authors": [
+      "Gulen"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "mtDNA_from_lysosome",
+    "newTarget": "cGAS_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E03.001",
+    "source": "damaged_mito_pool",
+    "target": "mito_ros",
+    "relation": "increases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Damaged mitochondria have dysfunctional ETC → electron leak at Complex I/III → superoxide production",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "30742114"
+    ],
+    "authors": [
+      "Fang"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "damaged_mito_pool",
+    "newTarget": "mito_ROS",
+    "type": "citation_only",
+    "existingEdgeId": "MR.001"
+  },
+  {
+    "id": "E03.002",
+    "source": "mito_ros",
+    "target": "mtdna_oxidized",
+    "relation": "directlyIncreases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "ROS oxidizes guanine bases in mtDNA → 8-oxo-deoxyguanosine. mtDNA vulnerable due to proximity to ETC and lack of histones",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mito_ROS",
+    "newTarget": "mtDNA_oxidized",
+    "type": "citation_only",
+    "existingEdgeId": "MR.002"
+  },
+  {
+    "id": "E03.003",
+    "source": "mito_ros",
+    "target": "ca_overload",
+    "relation": "increases",
+    "moduleId": "M03",
+    "causalConfidence": "L4",
+    "mechanismDescription": "ROS damages Ca²⁺ handling proteins (MCU, NCLX) → impaired Ca²⁺ efflux + sustained MCU-mediated uptake → matrix Ca²⁺ accumulation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "mito_ROS",
+    "newTarget": "Ca_overload",
+    "type": "citation_only",
+    "existingEdgeId": "MR.003"
+  },
+  {
+    "id": "E03.004",
+    "source": "ca_overload",
+    "target": "mptp_open",
+    "relation": "directlyIncreases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Ca²⁺ binds to mPTP regulatory site (likely CypD) → conformational change → pore opening in inner mitochondrial membrane",
+    "keyInsight": "Ca²⁺ is the canonical trigger for mPTP; CsA (CypD inhibitor) blocks it",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "Ca_overload",
+    "newTarget": "mPTP_open",
+    "type": "citation_only",
+    "existingEdgeId": "MR.004"
+  },
+  {
+    "id": "E03.005",
+    "source": "mptp_open",
+    "target": "vdac_oligomer",
+    "relation": "increases",
+    "moduleId": "M03",
+    "causalConfidence": "L4",
+    "mechanismDescription": "mPTP opening causes inner membrane stress + mtDNA interaction with VDAC → triggers VDAC oligomerization in outer membrane",
+    "keyInsight": "mPTP and VDAC coordinate but are mechanistically independent of mtDNA/ROS per se",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "mPTP_open",
+    "newTarget": "VDAC_oligomer",
+    "type": "citation_only",
+    "existingEdgeId": "MR.005"
+  },
+  {
+    "id": "E03.006",
+    "source": "mtdna_oxidized",
+    "target": "ox_mtdna_cytosolic",
+    "relation": "increases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "FEN1 endonuclease cleaves ox-mtDNA into 500-650 bp fragments; these fragments exit via mPTP/VDAC pores",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "mtDNA_oxidized",
+    "newTarget": "ox_mtDNA_cytosolic",
+    "type": "citation_only",
+    "existingEdgeId": "MR.006"
+  },
+  {
+    "id": "E03.007",
+    "source": "vdac_oligomer",
+    "target": "ox_mtdna_cytosolic",
+    "relation": "directlyIncreases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "VDAC oligomers form large pores in outer membrane → allow 500-650 bp ox-mtDNA fragments to exit",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "VDAC_oligomer",
+    "newTarget": "ox_mtDNA_cytosolic",
+    "type": "citation_only",
+    "existingEdgeId": "MR.007"
+  },
+  {
+    "id": "E03.008",
+    "source": "ox_mtdna_cytosolic",
+    "target": "nlrp3_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M03",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Oxidized mtDNA (8-oxo-dG containing) specifically binds NLRP3 LRR domain and triggers inflammasome assembly. Non-oxidized mtDNA does NOT activate NLRP3",
+    "keyInsight": "CRITICAL: Oxidation state is the molecular switch - ox-mtDNA→NLRP3, non-ox-mtDNA→cGAS",
+    "crossModule": "Output to Module 4 (Inflammasome)",
+    "pmids": [
+      "35835107"
+    ],
+    "authors": [
+      "Xian"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "ox_mtDNA_cytosolic",
+    "newTarget": "NLRP3_active",
+    "type": "citation_only",
+    "existingEdgeId": "E03.008"
+  },
+  {
+    "id": "E03.009",
+    "source": "mtdna_cytosolic",
+    "target": "cgas_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M03",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Cytosolic dsDNA (including non-oxidized mtDNA) is sensed by cGAS → 2\\",
+    "keyInsight": "",
+    "crossModule": "Output to Module 4 (Inflammasome)",
+    "pmids": [
+      "37532932"
+    ],
+    "authors": [
+      "Gulen"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "mtDNA_cytosolic",
+    "newTarget": "cGAS_active",
+    "type": "citation_only",
+    "existingEdgeId": "E03.009"
+  },
+  {
+    "id": "E03.010",
+    "source": "pink1_parkin",
+    "target": "mtdna_cytosolic",
+    "relation": "decreases",
+    "moduleId": "M03",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Functional PINK1/Parkin mitophagy clears damaged mitochondria BEFORE mtDNA can escape → prevents mtDNA release",
+    "keyInsight": "PINK1/Parkin are gatekeepers preventing inflammatory mtDNA release",
+    "crossModule": "",
+    "pmids": [
+      "33029617",
+      "38280852"
+    ],
+    "authors": [
+      "Borsche",
+      "Jimenez-Loygorri"
+    ],
+    "years": [
+      2020,
+      2024
+    ],
+    "methods": [
+      "cohort",
+      "intervention_animal"
+    ],
+    "newSource": "pink1_parkin",
+    "newTarget": "mtDNA_cytosolic",
+    "type": "citation_only",
+    "existingEdgeId": "E03.010"
+  },
+  {
+    "id": "E04.001",
+    "source": "nlrp3_active",
+    "target": "caspase1_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M04",
+    "causalConfidence": "L3",
+    "mechanismDescription": "NLRP3 recruits ASC → ASC oligomerizes → recruits pro-caspase-1 → caspase-1 auto-activates",
+    "keyInsight": "LANDMARK PAPER - First demonstration that NLRP3-/- protects from AD pathology",
+    "crossModule": "",
+    "pmids": [
+      "23254930"
+    ],
+    "authors": [
+      "Heneka"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "NLRP3_active",
+    "newTarget": "caspase1_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.002",
+    "source": "caspase1_active",
+    "target": "il1b",
+    "relation": "directlyIncreases",
+    "moduleId": "M04",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Caspase-1 cleaves pro-IL-1β (31 kDa) to mature IL-1β (17 kDa)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31036653"
+    ],
+    "authors": [
+      "Swanson"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "caspase1_active",
+    "newTarget": "IL1B",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.003",
+    "source": "cgas_active",
+    "target": "sting_active",
+    "relation": "directlyIncreases",
+    "moduleId": "M04",
+    "causalConfidence": "L5",
+    "mechanismDescription": "cGAS produces 2\\",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "37532932"
+    ],
+    "authors": [
+      "Gulen"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "cGAS_active",
+    "newTarget": "STING_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.004",
+    "source": "sting_active",
+    "target": "type_i_ifn",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L3",
+    "mechanismDescription": "STING → TBK1 → IRF3 phosphorylation → IRF3 dimerization → nuclear translocation → IFN-α/β transcription",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "37532932"
+    ],
+    "authors": [
+      "Gulen"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "STING_active",
+    "newTarget": "type_I_IFN",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.005",
+    "source": "nlrp3_active",
+    "target": "gsk3b_active",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L3",
+    "mechanismDescription": "NLRP3 signaling activates GSK-3β (tau kinase)",
+    "keyInsight": "LANDMARK PAPER - NLRP3 → tau hyperphosphorylation",
+    "crossModule": "",
+    "pmids": [
+      "31748742"
+    ],
+    "authors": [
+      "Ising"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "NLRP3_active",
+    "newTarget": "GSK3B_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.006",
+    "source": "nlrp3_active",
+    "target": "pp2a_activity",
+    "relation": "decreases",
+    "moduleId": "M04",
+    "causalConfidence": "L3",
+    "mechanismDescription": "NLRP3 signaling inhibits PP2A (major tau phosphatase)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31748742"
+    ],
+    "authors": [
+      "Ising"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "NLRP3_active",
+    "newTarget": "PP2A_activity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.007",
+    "source": "gsk3b_active",
+    "target": "tau_hyperphosphorylated",
+    "relation": "directlyIncreases",
+    "moduleId": "M04",
+    "causalConfidence": "L5",
+    "mechanismDescription": "GSK-3β phosphorylates tau at multiple pathological sites: pSer199, pSer202/Thr205 (AT8), pThr231, pSer396/Ser404 (PHF-1). Priming at Ser-404 enables phosphorylation cascade. Lithium inhibits GSK-3β competitively vs Mg²⁺.",
+    "keyInsight": "GSK-3β is the principal tau kinase; lithium IC50 ≈ 1-2 mM overlaps therapeutic range",
+    "crossModule": "Output to Module 7 (Tau)",
+    "pmids": [
+      "26631930"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "GSK3B_active",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.008",
+    "source": "pp2a_activity",
+    "target": "tau_hyperphosphorylated",
+    "relation": "decreases",
+    "moduleId": "M04",
+    "causalConfidence": "L5",
+    "mechanismDescription": "PP2A is the major tau phosphatase; reduced activity → phospho-tau accumulates",
+    "keyInsight": "",
+    "crossModule": "Output to Module 7 (Tau)",
+    "pmids": [
+      "26631930"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "PP2A_activity",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.009",
+    "source": "abeta_oligomers",
+    "target": "nlrp3_active",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers are phagocytosed by microglia → lysosomal rupture → NLRP3 activation",
+    "keyInsight": "",
+    "crossModule": "Input from Module 6 (Amyloid)",
+    "pmids": [
+      "23254930"
+    ],
+    "authors": [
+      "Heneka"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "NLRP3_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E04.010",
+    "source": "tau_aggregated",
+    "target": "nlrp3_active",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Tau aggregates also activate NLRP3 (creates feedforward loop)",
+    "keyInsight": "Creates self-amplifying tau pathology loop",
+    "crossModule": "Input from Module 7 (Tau) - creates feedback loop",
+    "pmids": [
+      "31748742"
+    ],
+    "authors": [
+      "Ising"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "NLRP3_active",
+    "type": "citation_only",
+    "existingEdgeId": "E04.010"
+  },
+  {
+    "id": "E04.011",
+    "source": "caspase1_active",
+    "target": "il18",
+    "relation": "directlyIncreases",
+    "moduleId": "M04",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Caspase-1 cleaves pro-IL-18 to mature IL-18; IL-18 promotes IFN-γ and enhances neuroinflammation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19703986"
+    ],
+    "authors": [
+      "Dinarello"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "caspase1_active",
+    "newTarget": "IL18",
+    "type": "citation_only",
+    "existingEdgeId": "E04.011"
+  },
+  {
+    "id": "E04.012",
+    "source": "il18",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "IL-18 induces IFN-γ production and amplifies inflammatory cascades; elevated in AD brain and CSF",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19121329"
+    ],
+    "authors": [
+      "Ojala"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "IL18",
+    "newTarget": "neuroinflammation",
+    "type": "citation_only",
+    "existingEdgeId": "E04.012"
+  },
+  {
+    "id": "E04.013",
+    "source": "neuroinflammation",
+    "target": "isg_expression",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Type I interferon signaling (from STING, mtDNA) induces interferon-stimulated genes; ISG signature elevated in AD microglia",
+    "keyInsight": "Type I IFN signature links mtDNA release to microglial dysfunction",
+    "crossModule": "",
+    "pmids": [
+      "32589960"
+    ],
+    "authors": [
+      "Roy"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "ISG_expression",
+    "type": "citation_only",
+    "existingEdgeId": "E04.013"
+  },
+  {
+    "id": "E04.014",
+    "source": "isg_expression",
+    "target": "microglia_activated",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "ISGs drive microglial activation and proinflammatory phenotype; IRM (interferon-responsive microglia) are distinct subtype",
+    "keyInsight": "",
+    "crossModule": "M04 → M05",
+    "pmids": [
+      "31118249"
+    ],
+    "authors": [
+      "Sala Frigerio"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "transcriptomics"
+    ],
+    "newSource": "ISG_expression",
+    "newTarget": "microglia_activated",
+    "type": "citation_only",
+    "existingEdgeId": "E04.014"
+  },
+  {
+    "id": "E05.001",
+    "source": "neuroinflammation",
+    "target": "microglia_activated",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Cytokines and DAMPs activate microglia from homeostatic state",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "33318676"
+    ],
+    "authors": [
+      "Leng"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "microglia_activated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.002",
+    "source": "microglia_activated",
+    "target": "nf_kb_active",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Microglial activation triggers NF-κB nuclear translocation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "36875627"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "microglia_activated",
+    "newTarget": "NLRP3",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.003",
+    "source": "nf_kb_active",
+    "target": "hif1a_stabilized",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "NF-κB signaling stabilizes HIF-1α under normoxia",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "27801979"
+    ],
+    "authors": [
+      "Tannahill"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "NLRP3",
+    "newTarget": "HIF1a_stabilized",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.004",
+    "source": "hif1a_stabilized",
+    "target": "glycolytic_switch",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L5",
+    "mechanismDescription": "HIF-1α → PKM2 dimer → aerobic glycolysis (Warburg effect)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "39302180"
+    ],
+    "authors": [
+      "Gopalkrishna"
+    ],
+    "years": [
+      2024
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "HIF1a_stabilized",
+    "newTarget": "glycolytic_switch",
+    "type": "citation_only",
+    "existingEdgeId": "MG.003"
+  },
+  {
+    "id": "E05.005",
+    "source": "glycolytic_switch",
+    "target": "srebp1_active",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Glycolytic intermediates activate SREBP1 lipogenic program",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "glycolytic_switch",
+    "newTarget": "SREBP1_activated",
+    "type": "citation_only",
+    "existingEdgeId": "MG.006"
+  },
+  {
+    "id": "E05.006",
+    "source": "srebp1_active",
+    "target": "lipid_droplets",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "SREBP1 drives lipid synthesis → lipid droplet formation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "SREBP1_activated",
+    "newTarget": "lipid_droplets",
+    "type": "citation_only",
+    "existingEdgeId": "MG.007"
+  },
+  {
+    "id": "E05.007",
+    "source": "lipid_droplets",
+    "target": "ldam",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Lipid droplet accumulation defines LDAM phenotype",
+    "keyInsight": "LANDMARK PAPER - Discovery of LDAM phenotype",
+    "crossModule": "",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "lipid_droplets",
+    "newTarget": "LDAM",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.008",
+    "source": "ldam",
+    "target": "phagocytosis_impaired",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "LDAM phenotype characterized by defective phagocytosis",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "LDAM",
+    "newTarget": "phagocytosis_impaired",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.009",
+    "source": "ldam",
+    "target": "c1q",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "LDAM microglia produce C1q",
+    "keyInsight": "",
+    "crossModule": "Output to Module 8 (Complement)",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "LDAM",
+    "newTarget": "c1q",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.010",
+    "source": "microglia_activated",
+    "target": "il1a",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Activated microglia produce IL-1α",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "microglia_activated",
+    "newTarget": "IL1B",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.012",
+    "source": "il1a",
+    "target": "a1_astrocytes",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "IL-1α required for A1 astrocyte induction (with TNF + C1q)",
+    "keyInsight": "LANDMARK PAPER - IL-1α + TNF + C1q are NECESSARY and SUFFICIENT for A1 induction",
+    "crossModule": "",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "IL1B",
+    "newTarget": "A1_astrocytes",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.013",
+    "source": "tnf",
+    "target": "a1_astrocytes",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "TNF required for A1 astrocyte induction (with IL-1α + C1q)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "NLRP3",
+    "newTarget": "A1_astrocytes",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.014",
+    "source": "c1q",
+    "target": "a1_astrocytes",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "C1q required for A1 astrocyte induction (with IL-1α + TNF)",
+    "keyInsight": "A1 astrocytes abundant in AD, PD, HD, ALS, MS",
+    "crossModule": "",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "c1q",
+    "newTarget": "A1_astrocytes",
+    "type": "citation_only",
+    "existingEdgeId": "E05.014"
+  },
+  {
+    "id": "E05.015",
+    "source": "mtorc1_hyperactive",
+    "target": "mtor_hif1a_axis",
+    "relation": "directlyIncreases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "mTORC1 stabilizes HIF-1α via increased translation (4E-BP1 phosphorylation) and decreased degradation (reduced PHD activity). This occurs INDEPENDENT of hypoxia in inflammatory microglia.",
+    "keyInsight": "mTOR-HIF1α axis validated in human AD tissue. Old female microglia show STRONGER shift.",
+    "crossModule": "",
+    "pmids": [
+      "39302180"
+    ],
+    "authors": [
+      "Gopalkrishna"
+    ],
+    "years": [
+      2024
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "mTORC1_hyperactive",
+    "newTarget": "HIF1a_stabilized",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.016",
+    "source": "mtor_hif1a_axis",
+    "target": "glycolytic_switch",
+    "relation": "directlyIncreases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "mTOR-HIF1α axis drives glycolytic program: HIF-1α → LDHA↑, HK2↑, PDK1↑ → pyruvate → lactate instead of TCA cycle. PKM2 dimerization favors biosynthesis over energy.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "39302180"
+    ],
+    "authors": [
+      "Gopalkrishna"
+    ],
+    "years": [
+      2024
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "HIF1a_stabilized",
+    "newTarget": "glycolytic_switch",
+    "type": "citation_only",
+    "existingEdgeId": "MG.003"
+  },
+  {
+    "id": "E05.017",
+    "source": "nf_kb_active",
+    "target": "irg1_itaconate_shunt",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L5",
+    "mechanismDescription": "NF-κB → IRG1 (ACOD1) transcription. IRG1 diverts aconitate from TCA cycle to produce itaconate. Key metabolic adaptation to chronic inflammation.",
+    "keyInsight": "Mills 2018 Nature: IRG1 is master regulator of inflammatory metabolic reprogramming",
+    "crossModule": "",
+    "pmids": [
+      "29576945"
+    ],
+    "authors": [
+      "Mills"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "NLRP3",
+    "newTarget": "glycolytic_switch",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.023",
+    "source": "ldam",
+    "target": "ldam_super_seeders",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "LDAM phenotype + iron loading + lysosomal dysfunction = \"super-seeder\" state. Iron impairs lysosomal function, worsening Aβ aggregation instead of clearance.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "LDAM",
+    "newTarget": "microglia_ldam",
+    "type": "new_edge"
+  },
+  {
+    "id": "E05.024",
+    "source": "ldam_super_seeders",
+    "target": "abeta_plaques",
+    "relation": "directlyIncreases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "",
+    "keyInsight": "PARADIGM REVERSAL: Microglia seed plaques, not clear them. Explains why TREM2 agonists may be counterproductive.",
+    "crossModule": "M05 → M06",
+    "pmids": [
+      "29190671"
+    ],
+    "authors": [
+      "Baligács",
+      "Venegas"
+    ],
+    "years": [
+      2024,
+      2017
+    ],
+    "methods": [
+      "intervention_animal",
+      "intervention_animal"
+    ],
+    "newSource": "microglia_ldam",
+    "newTarget": "Abeta_plaques",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.001",
+    "source": "il1b",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L4",
+    "mechanismDescription": "IL-1β is a major driver of neuroinflammation; activates microglia and astrocytes",
+    "keyInsight": "",
+    "crossModule": "M04 → M05",
+    "pmids": [
+      "33318676"
+    ],
+    "authors": [
+      "Leng"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "IL1B",
+    "newTarget": "neuroinflammation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.002",
+    "source": "type_i_ifn",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M04",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Type I interferons drive ISG expression and neuroinflammatory state",
+    "keyInsight": "",
+    "crossModule": "M04 → M05",
+    "pmids": [
+      "37532932"
+    ],
+    "authors": [
+      "Gulen"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "type_I_IFN",
+    "newTarget": "neuroinflammation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.003b",
+    "source": "a1_toxic_lipid_secretion",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Long-chain saturated fatty acids in APOE/APOJ lipoparticles induce neuronal death. Mechanism likely involves membrane disruption or lipotoxicity.",
+    "keyInsight": "",
+    "crossModule": "M05 → M07",
+    "pmids": [
+      "34616039"
+    ],
+    "authors": [
+      "Guttenplan"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "A1_astrocytes",
+    "newTarget": "cell_death",
+    "type": "citation_only",
+    "existingEdgeId": "MG.012"
+  },
+  {
+    "id": "E_CM.003",
+    "source": "a1_astrocytes",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L3",
+    "mechanismDescription": "A1 astrocytes induce neuronal death via ELOVL1-synthesized saturated lipids carried in APOE/APOJ particles (Guttenplan 2021). See E_CM.003a/b for detailed pathway.",
+    "keyInsight": "Toxic factor identified: ELOVL1-synthesized saturated lipids in APOE/APOJ particles",
+    "crossModule": "M05 → M07",
+    "pmids": [
+      "28099414",
+      "34616039"
+    ],
+    "authors": [
+      "Liddelow",
+      "Guttenplan"
+    ],
+    "years": [
+      2017,
+      2021
+    ],
+    "methods": [
+      "knockout",
+      "knockout"
+    ],
+    "newSource": "A1_astrocytes",
+    "newTarget": "cell_death",
+    "type": "citation_only",
+    "existingEdgeId": "MG.012"
+  },
+  {
+    "id": "E_CM.004",
+    "source": "nf_kb_active",
+    "target": "bace1_upregulated",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "NF-κB binds BACE1 promoter → transcriptional upregulation → increased Aβ production",
+    "keyInsight": "Links neuroinflammation to amyloid production",
+    "crossModule": "M05 → M06",
+    "pmids": [
+      "36875627"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "NLRP3",
+    "newTarget": "BACE1_upregulated",
+    "type": "citation_only",
+    "existingEdgeId": "AB.001"
+  },
+  {
+    "id": "E_CM.005",
+    "source": "ferroptosis",
+    "target": "neuronal_count",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Ferroptotic cell death reduces neuronal population",
+    "keyInsight": "",
+    "crossModule": "M09 → BOUNDARY",
+    "pmids": [
+      "22632970"
+    ],
+    "authors": [
+      "Dixon"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "ferroptosis",
+    "newTarget": "neuronal_count",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.006",
+    "source": "neuronal_dysfunction",
+    "target": "cognitive_score",
+    "relation": "decreases",
+    "moduleId": "M07",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Neuronal dysfunction impairs synaptic transmission and cognitive function",
+    "keyInsight": "",
+    "crossModule": "M07 → BOUNDARY",
+    "pmids": [],
+    "authors": [
+      "Various"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "cell_death",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.007",
+    "source": "tau_misfolded",
+    "target": "tau_aggregated",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Misfolded tau forms PHF seeds that template further aggregation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "26631930"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "tau_aggregated_PHF",
+    "newTarget": "tau_aggregated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.008",
+    "source": "ltp_inhibition",
+    "target": "cognitive_score",
+    "relation": "decreases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "LTP is cellular substrate for learning/memory; inhibition directly impairs cognition",
+    "keyInsight": "",
+    "crossModule": "M06 → BOUNDARY",
+    "pmids": [
+      "19029886"
+    ],
+    "authors": [
+      "Lauren"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "synapses",
+    "newTarget": "cognitive_score",
+    "type": "citation_only",
+    "existingEdgeId": "E08.006"
+  },
+  {
+    "id": "E_CM.009",
+    "source": "bbb_breakdown",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "BBB breakdown allows peripheral immune cell infiltration and plasma protein leakage → neuroinflammation",
+    "keyInsight": "",
+    "crossModule": "M12 → M05",
+    "pmids": [
+      "22696567"
+    ],
+    "authors": [
+      "Bell"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "BBB_integrity",
+    "newTarget": "neuroinflammation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.010",
+    "source": "apoe_lipidation_reduced",
+    "target": "abeta_clearance",
+    "relation": "decreases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Hypolipidated APOE4 is less effective at promoting Aβ clearance via LRP1 and BBB transport",
+    "keyInsight": "",
+    "crossModule": "M10 → M06",
+    "pmids": [
+      "21725313"
+    ],
+    "authors": [
+      "Castellano"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "APOE_lipidated",
+    "newTarget": "abeta_clearance",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.011",
+    "source": "neuronal_dysfunction",
+    "target": "mortality",
+    "relation": "increases",
+    "moduleId": "BOUNDARY",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Progressive neuronal dysfunction leads to death; AD reduces life expectancy by 4-8 years after diagnosis",
+    "keyInsight": "",
+    "crossModule": "M07 → BOUNDARY",
+    "pmids": [
+      "23574434"
+    ],
+    "authors": [
+      "Todd"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "cell_death",
+    "newTarget": "mortality",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.012",
+    "source": "tau_aggregated",
+    "target": "brain_volume",
+    "relation": "decreases",
+    "moduleId": "BOUNDARY",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Tau pathology correlates with regional brain atrophy better than amyloid; neuronal loss → volume loss",
+    "keyInsight": "Brain volume loss correlates with tau, not amyloid",
+    "crossModule": "M07 → BOUNDARY",
+    "pmids": [
+      "30617323"
+    ],
+    "authors": [
+      "Jack"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "brain_volume",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.013",
+    "source": "brain_volume",
+    "target": "cognitive_score",
+    "relation": "increases",
+    "moduleId": "BOUNDARY",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Regional brain volumes correlate with cognitive function; hippocampal volume predicts memory",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "20399717"
+    ],
+    "authors": [
+      "Jack"
+    ],
+    "years": [
+      2010
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "brain_volume",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.014",
+    "source": "abeta_oligomers",
+    "target": "csf_biomarkers",
+    "relation": "regulates",
+    "moduleId": "BOUNDARY",
+    "causalConfidence": "L6",
+    "mechanismDescription": "CSF Aβ42 decreases as brain Aβ accumulates (sequestered into plaques); CSF Aβ42/40 ratio is diagnostic",
+    "keyInsight": "",
+    "crossModule": "M06 → BOUNDARY",
+    "pmids": [
+      "31127821"
+    ],
+    "authors": [
+      "Hansson"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "CSF_biomarkers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E_CM.015",
+    "source": "tau_hyperphosphorylated",
+    "target": "csf_biomarkers",
+    "relation": "increases",
+    "moduleId": "BOUNDARY",
+    "causalConfidence": "L6",
+    "mechanismDescription": "CSF p-tau181, p-tau217, p-tau231 are elevated in AD; reflect neuronal tau pathology",
+    "keyInsight": "p-tau is most specific CSF biomarker for AD",
+    "crossModule": "M07 → BOUNDARY",
+    "pmids": [
+      "31127821"
+    ],
+    "authors": [
+      "Hansson"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "tau_hyperphosphorylated",
+    "newTarget": "CSF_biomarkers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E06.001",
+    "source": "bace1_upregulated",
+    "target": "app_betactf",
+    "relation": "directlyIncreases",
+    "moduleId": "M06",
+    "causalConfidence": "L5",
+    "mechanismDescription": "BACE1 cleaves APP at β-site → releases sAPPβ and membrane-bound β-CTF (C99)",
+    "keyInsight": "BACE1 is rate-limiting for Aβ production; validated therapeutic target",
+    "crossModule": "",
+    "pmids": [
+      "10531052"
+    ],
+    "authors": [
+      "Vassar"
+    ],
+    "years": [
+      1999
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "BACE1_upregulated",
+    "newTarget": "APP_processing_amyloidogenic",
+    "type": "citation_only",
+    "existingEdgeId": "AB.002"
+  },
+  {
+    "id": "E06.002",
+    "source": "app_betactf",
+    "target": "abeta_monomers",
+    "relation": "directlyIncreases",
+    "moduleId": "M06",
+    "causalConfidence": "L5",
+    "mechanismDescription": "γ-secretase cleaves β-CTF → releases Aβ peptides (Aβ40, Aβ42, Aβ43)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "9461215"
+    ],
+    "authors": [
+      "De Strooper"
+    ],
+    "years": [
+      1998
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "APP_processing_amyloidogenic",
+    "newTarget": "abeta_production",
+    "type": "citation_only",
+    "existingEdgeId": "AB.003"
+  },
+  {
+    "id": "E06.003",
+    "source": "abeta_monomers",
+    "target": "abeta_oligomers",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ monomers aggregate into soluble oligomers (dimers, trimers, Aβ*56). Oligomers are the TOXIC species. Aβ CNS half-life ~9h (age 30: 3.8h → age 80: 9.4h), synthesis 7.6%/h, clearance 8.3%/h.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "16838177",
+      "26221020"
+    ],
+    "authors": [
+      "Lesne",
+      "Patterson"
+    ],
+    "years": [
+      2006,
+      2015
+    ],
+    "methods": [
+      "intervention_animal",
+      "cohort"
+    ],
+    "newSource": "abeta_production",
+    "newTarget": "Abeta_oligomers",
+    "type": "citation_only",
+    "existingEdgeId": "AB.004"
+  },
+  {
+    "id": "E06.005",
+    "source": "abeta_oligomers",
+    "target": "ltp_inhibition",
+    "relation": "directlyIncreases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers bind PrPc/mGluR5 → block LTP, enhance LTD → synaptic dysfunction",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19029886"
+    ],
+    "authors": [
+      "Lauren"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "E06.016"
+  },
+  {
+    "id": "E06.006",
+    "source": "phagocytosis_impaired",
+    "target": "abeta_clearance",
+    "relation": "decreases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Impaired microglial phagocytosis (from LDAM phenotype) reduces Aβ clearance rate",
+    "keyInsight": "LDAM impairs microglial Aβ clearance capacity",
+    "crossModule": "Input from Module 5 (LDAM)",
+    "pmids": [
+      "31959936"
+    ],
+    "authors": [
+      "Marschallinger"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "phagocytosis_impaired",
+    "newTarget": "abeta_clearance",
+    "type": "citation_only",
+    "existingEdgeId": "MG.013"
+  },
+  {
+    "id": "E06.007",
+    "source": "lysosomal_dysfunction",
+    "target": "abeta_monomers",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Lysosomal de-acidification → autolysosomes become Aβ production sites (PANTHOS). Aβ produced INSIDE neurons, not just secreted",
+    "keyInsight": "PARADIGM SHIFT: Aβ is produced in dysfunctional autolysosomes, not just at plasma membrane",
+    "crossModule": "Input from Module 2 (Lysosomal)",
+    "pmids": [
+      "35654956"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "lysosomal_dysfunction",
+    "newTarget": "abeta_production",
+    "type": "new_edge"
+  },
+  {
+    "id": "E06.009",
+    "source": "bace1_upregulated",
+    "target": "app_processing_amyloidogenic",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L5",
+    "mechanismDescription": "BACE1 upregulation shifts APP processing toward amyloidogenic pathway vs. non-amyloidogenic α-secretase cleavage",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25009269"
+    ],
+    "authors": [
+      "Vassar"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "BACE1_upregulated",
+    "newTarget": "APP_processing_amyloidogenic",
+    "type": "citation_only",
+    "existingEdgeId": "AB.002"
+  },
+  {
+    "id": "E06.010",
+    "source": "app_processing_amyloidogenic",
+    "target": "abeta_production",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Amyloidogenic processing pathway generates Aβ peptides through sequential BACE1 and γ-secretase cleavage",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "11588246"
+    ],
+    "authors": [
+      "Selkoe"
+    ],
+    "years": [
+      2001
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "APP_processing_amyloidogenic",
+    "newTarget": "abeta_production",
+    "type": "citation_only",
+    "existingEdgeId": "AB.003"
+  },
+  {
+    "id": "E06.012",
+    "source": "trem2_surface",
+    "target": "plaque_compaction",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "TREM2-positive microglia compact plaques into dense cores, reducing toxicity by sequestering oligomers",
+    "keyInsight": "Plaque compaction is PROTECTIVE; loss of TREM2 leads to diffuse, more toxic plaques",
+    "crossModule": "M11 → M06",
+    "pmids": [
+      "27613435"
+    ],
+    "authors": [
+      "Yuan"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "TREM2_surface",
+    "newTarget": "plaque_compaction",
+    "type": "citation_only",
+    "existingEdgeId": "E06.012"
+  },
+  {
+    "id": "E06.014",
+    "source": "abeta_oligomers",
+    "target": "synaptic_abeta_binding",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers bind synaptic receptors (PrPc, mGluR5, NMDAR) triggering excitotoxicity and LTP inhibition",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19029886"
+    ],
+    "authors": [
+      "Lauren"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "synaptic_Abeta_binding",
+    "type": "citation_only",
+    "existingEdgeId": "AB.005"
+  },
+  {
+    "id": "E06.015",
+    "source": "synaptic_abeta_binding",
+    "target": "ltp_inhibition",
+    "relation": "increases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ binding to PrPc/mGluR5 complex activates Fyn kinase → NMDAR overactivation → LTP blocked, LTD enhanced",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22622579"
+    ],
+    "authors": [
+      "Um"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "synaptic_Abeta_binding",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "AB.006"
+  },
+  {
+    "id": "E06.016",
+    "source": "abeta_oligomers",
+    "target": "synapses",
+    "relation": "decreases",
+    "moduleId": "M06",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Aβ oligomers activate classical complement cascade → C1q/C3 tag synapses → microglia CR3-mediated pruning. Synapse loss occurs BEFORE plaques form.",
+    "keyInsight": "LANDMARK: Synapse loss occurs BEFORE plaques via complement (Hong 2016)",
+    "crossModule": "",
+    "pmids": [
+      "27033548"
+    ],
+    "authors": [
+      "Hong"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "E06.016"
+  },
+  {
+    "id": "E07.001",
+    "source": "tau_hyperphosphorylated",
+    "target": "tau_misfolded",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Hyperphosphorylation promotes tau detachment from microtubules and conformational changes exposing aggregation-prone regions. Wild-type tau t½ ~16h; phosphomimetic tau t½ >24h; autophagy is primary clearance pathway.",
+    "keyInsight": "Phosphorylation extends tau half-life; autophagy is primary clearance route",
+    "crossModule": "",
+    "pmids": [
+      "26631930",
+      "32586946"
+    ],
+    "authors": [
+      "Wang",
+      "Silva"
+    ],
+    "years": [
+      2016,
+      2020
+    ],
+    "methods": [
+      "in_vitro",
+      "intervention_cells"
+    ],
+    "newSource": "tau_hyperphosphorylated",
+    "newTarget": "tau_aggregated_PHF",
+    "type": "citation_only",
+    "existingEdgeId": "TP.006"
+  },
+  {
+    "id": "E07.003",
+    "source": "tau_aggregated",
+    "target": "tau_seeding",
+    "relation": "directlyIncreases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aggregated tau acts as seed, templating misfolding of normal tau in connected neurons",
+    "keyInsight": "Tau spreading follows neural connectivity (Braak staging)",
+    "crossModule": "",
+    "pmids": [
+      "23898162"
+    ],
+    "authors": [
+      "Sanders"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "tau_seeding",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.004",
+    "source": "tau_aggregated",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Tau aggregates disrupt axonal transport, impair proteostasis, cause synaptic dysfunction",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Various"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.005",
+    "source": "cse_enzyme",
+    "target": "h2s_production",
+    "relation": "directlyIncreases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "CSE catalyzes cysteine → H₂S + pyruvate. CSE is the primary H₂S synthase in brain",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19027017"
+    ],
+    "authors": [
+      "Abe"
+    ],
+    "years": [
+      2008
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "CSE_enzyme",
+    "newTarget": "H2S_production",
+    "type": "citation_only",
+    "existingEdgeId": "ME.003"
+  },
+  {
+    "id": "E07.006",
+    "source": "h2s_production",
+    "target": "gsk3b_active",
+    "relation": "decreases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "H₂S sulfhydrates GSK3β at Cys218 → inhibits kinase activity → reduces tau phosphorylation",
+    "keyInsight": "CSE loss → ↓H₂S → GSK3β hyperactive → tau pathology",
+    "crossModule": "",
+    "pmids": [
+      "25065588"
+    ],
+    "authors": [
+      "Giovinazzo"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "H2S_production",
+    "newTarget": "GSK3B_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.007",
+    "source": "cse_enzyme",
+    "target": "glutathione_gsh",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "CSE provides cysteine via transsulfuration; cysteine is rate-limiting for glutathione (GSH) synthesis",
+    "keyInsight": "Links transsulfuration to ferroptosis protection",
+    "crossModule": "Output to Module 9 (Ferroptosis - GPX4 requires GSH)",
+    "pmids": [
+      "30455430"
+    ],
+    "authors": [
+      "Sbodio"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "CSE_enzyme",
+    "newTarget": "glutathione_GSH",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.008",
+    "source": "aging",
+    "target": "cse_enzyme",
+    "relation": "decreases",
+    "moduleId": "M07",
+    "causalConfidence": "L6",
+    "mechanismDescription": "CSE expression/activity declines with age → H₂S and cysteine depletion",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "39420891"
+    ],
+    "authors": [
+      "Chakraborty"
+    ],
+    "years": [
+      2025
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "CSE_enzyme",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.009",
+    "source": "neuroinflammation",
+    "target": "p38_mapk_active",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "IL-1β and TNF-α from neuroinflammation activate p38 MAPK, a tau kinase",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "12524457"
+    ],
+    "authors": [
+      "Sun"
+    ],
+    "years": [
+      2003
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "p38_MAPK_active",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.010",
+    "source": "p38_mapk_active",
+    "target": "tau_hyperphosphorylated",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "p38 MAPK directly phosphorylates tau at multiple AD-relevant epitopes (Ser396, Ser404)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "10866716"
+    ],
+    "authors": [
+      "Reynolds"
+    ],
+    "years": [
+      2000
+    ],
+    "methods": [
+      "biochemistry"
+    ],
+    "newSource": "p38_MAPK_active",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "TP.002"
+  },
+  {
+    "id": "E07.011",
+    "source": "abeta_oligomers",
+    "target": "pp2a_inhibited",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers inhibit PP2A via SET/I2PP2A upregulation; PP2A is the major tau phosphatase (>70%)",
+    "keyInsight": "",
+    "crossModule": "M06 → M07",
+    "pmids": [
+      "14986299"
+    ],
+    "authors": [
+      "Sontag"
+    ],
+    "years": [
+      2004
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "PP2A_inhibited",
+    "type": "citation_only",
+    "existingEdgeId": "E07.011"
+  },
+  {
+    "id": "E07.012",
+    "source": "pp2a_inhibited",
+    "target": "tau_hyperphosphorylated",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Reduced PP2A activity allows hyperphosphorylated tau to accumulate",
+    "keyInsight": "PP2A activity reduced ~50% in AD brain",
+    "crossModule": "",
+    "pmids": [
+      "16219789"
+    ],
+    "authors": [
+      "Liu"
+    ],
+    "years": [
+      2005
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "PP2A_inhibited",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "citation_only",
+    "existingEdgeId": "TP.003"
+  },
+  {
+    "id": "E07.013",
+    "source": "tau_aggregated",
+    "target": "tau_aggregated_phf",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Aggregated tau assembles into paired helical filaments (PHF) as canonical aggregation product",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28678778"
+    ],
+    "authors": [
+      "Fitzpatrick"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "cryo_em"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "tau_aggregated_PHF",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.014",
+    "source": "tau_aggregated_phf",
+    "target": "nft_formation",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L6",
+    "mechanismDescription": "PHF bundles accumulate into neurofibrillary tangles (NFT); Braak staging correlates with cognitive decline",
+    "keyInsight": "NFT burden correlates with cognitive decline better than Aβ",
+    "crossModule": "",
+    "pmids": [
+      "1759558"
+    ],
+    "authors": [
+      "Braak"
+    ],
+    "years": [
+      1991
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "tau_aggregated_PHF",
+    "newTarget": "NFT_formation",
+    "type": "citation_only",
+    "existingEdgeId": "TP.007"
+  },
+  {
+    "id": "E07.015",
+    "source": "nft_formation",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L6",
+    "mechanismDescription": "NFT-bearing neurons show impaired function; tau pathology more closely correlates with dementia than amyloid",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22539990"
+    ],
+    "authors": [
+      "Nelson"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "NFT_formation",
+    "newTarget": "cell_death",
+    "type": "citation_only",
+    "existingEdgeId": "TP.013"
+  },
+  {
+    "id": "E07.016",
+    "source": "tau_aggregated",
+    "target": "tau_exosomal_release",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Tau is released via exosomes; exosomal tau is more aggregation-prone and seeds misfolding in recipient cells",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28800352"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "tau_exosomal_release",
+    "type": "citation_only",
+    "existingEdgeId": "E07.016"
+  },
+  {
+    "id": "E07.017",
+    "source": "tau_exosomal_release",
+    "target": "tau_seeding",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Exosome-delivered tau seeds misfolding in connected neurons; mediates Braak-like spreading",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "26390242"
+    ],
+    "authors": [
+      "Asai"
+    ],
+    "years": [
+      2015
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "tau_exosomal_release",
+    "newTarget": "tau_seeding",
+    "type": "citation_only",
+    "existingEdgeId": "TP.009"
+  },
+  {
+    "id": "E07.018",
+    "source": "homocysteine",
+    "target": "cbs_enzyme",
+    "relation": "substrateof",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Homocysteine is substrate for CBS (cystathionine β-synthase); elevated homocysteine is AD risk factor",
+    "keyInsight": "Hyperhomocysteinemia nearly doubles AD risk",
+    "crossModule": "",
+    "pmids": [
+      "11844848"
+    ],
+    "authors": [
+      "Seshadri"
+    ],
+    "years": [
+      2002
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "homocysteine",
+    "newTarget": "CBS_enzyme",
+    "type": "citation_only",
+    "existingEdgeId": "E07.018"
+  },
+  {
+    "id": "E07.023",
+    "source": "h2s_production",
+    "target": "sulfhydration",
+    "relation": "directlyIncreases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "H₂S mediates protein S-sulfhydration (persulfidation), a post-translational modification affecting ~20% of proteins",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19864462"
+    ],
+    "authors": [
+      "Mustafa"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "biochemistry"
+    ],
+    "newSource": "H2S_production",
+    "newTarget": "sulfhydration",
+    "type": "citation_only",
+    "existingEdgeId": "TSF.005"
+  },
+  {
+    "id": "E07.024",
+    "source": "sulfhydration",
+    "target": "gsk3beta_sulfhydrated",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Sulfhydration of GSK3β at Cys218 inhibits its kinase activity",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22729161"
+    ],
+    "authors": [
+      "Sen"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "biochemistry"
+    ],
+    "newSource": "sulfhydration",
+    "newTarget": "GSK3beta_sulfhydrated",
+    "type": "citation_only",
+    "existingEdgeId": "TSF.006"
+  },
+  {
+    "id": "E07.025",
+    "source": "gsk3beta_sulfhydrated",
+    "target": "gsk3b_active",
+    "relation": "decreases",
+    "moduleId": "M07",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Sulfhydrated GSK3β is inactive → reduced tau phosphorylation at Ser396, Ser404",
+    "keyInsight": "Links H₂S decline to tau hyperphosphorylation in aging",
+    "crossModule": "",
+    "pmids": [
+      "22729161"
+    ],
+    "authors": [
+      "Sen"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "biochemistry"
+    ],
+    "newSource": "GSK3beta_sulfhydrated",
+    "newTarget": "GSK3B_active",
+    "type": "citation_only",
+    "existingEdgeId": "E07.025"
+  },
+  {
+    "id": "E07.027",
+    "source": "neuronal_hyperactivity",
+    "target": "tau_missorting",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Neuronal hyperactivity causes tau to mislocalize from axon to somatodendritic compartment. CRITICAL: Dampening activity with TTX or CNQX PREVENTED tau missorting, proving hyperactivity is UPSTREAM, not downstream, of tau pathology. Mechanism: Activity-dependent Ca influx may trigger tau release from microtubules.",
+    "keyInsight": "CAUSAL PROOF: Activity precedes tau changes; blocking activity prevents tau pathology",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Askin"
+    ],
+    "years": [
+      2024
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "synaptic_Abeta_binding",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E08.001",
+    "source": "aging",
+    "target": "c1q",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L6",
+    "mechanismDescription": "C1q increases ~300-fold in aged brain (primarily from microglia). MECHANISM UNKNOWN per Stephan 2013. Likely intermediates: microglial senescence, oxidative stress, or myelin debris accumulation. Reactivation of developmental pruning pathway.",
+    "keyInsight": "LANDMARK: C1q upregulation is universal feature of brain aging",
+    "crossModule": "",
+    "pmids": [
+      "23946404"
+    ],
+    "authors": [
+      "Stephan"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "c1q",
+    "type": "citation_only",
+    "existingEdgeId": "E08.001"
+  },
+  {
+    "id": "E08.002",
+    "source": "c1q",
+    "target": "c3_opsonization",
+    "relation": "directlyIncreases",
+    "moduleId": "M08",
+    "causalConfidence": "L5",
+    "mechanismDescription": "C1q binds synapses → activates C1r/C1s → cleaves C4 → cleaves C2 → cleaves C3 → deposits iC3b",
+    "keyInsight": "DISCOVERY: Complement cascade mediates developmental synapse elimination (Stevens 2007)",
+    "crossModule": "",
+    "pmids": [
+      "18083105"
+    ],
+    "authors": [
+      "Stevens"
+    ],
+    "years": [
+      2007
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "c1q",
+    "newTarget": "complement_activation",
+    "type": "citation_only",
+    "existingEdgeId": "E09.001"
+  },
+  {
+    "id": "E08.003",
+    "source": "c3_opsonization",
+    "target": "cr3_mediated_pruning",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L3",
+    "mechanismDescription": "C3 cleavage deposits iC3b on synapses → recognized by microglial CR3 (CD11b/CD18)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22632727"
+    ],
+    "authors": [
+      "Schafer"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "complement_activation",
+    "newTarget": "complement_mediated_pruning",
+    "type": "new_edge"
+  },
+  {
+    "id": "E08.004",
+    "source": "cr3_mediated_pruning",
+    "target": "synapse_elimination",
+    "relation": "directlyIncreases",
+    "moduleId": "M08",
+    "causalConfidence": "L3",
+    "mechanismDescription": "CR3 binding to iC3b-tagged synapses triggers microglial phagocytosis → synapse elimination",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22632727"
+    ],
+    "authors": [
+      "Schafer"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "complement_mediated_pruning",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "TC.004b"
+  },
+  {
+    "id": "E08.006",
+    "source": "synapses",
+    "target": "cognitive_score",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Synapse density is STRONGEST anatomical correlate of cognitive function - better than plaques or tangles",
+    "keyInsight": "C1q-/- mice protected from age-related cognitive decline",
+    "crossModule": "",
+    "pmids": [
+      "23946404"
+    ],
+    "authors": [
+      "Stephan"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "synapses",
+    "newTarget": "cognitive_score",
+    "type": "citation_only",
+    "existingEdgeId": "E08.006"
+  },
+  {
+    "id": "E08.007",
+    "source": "abeta_oligomers",
+    "target": "c1q",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers induce C1q expression/deposition on synapses",
+    "keyInsight": "",
+    "crossModule": "Input from Module 6 (Amyloid)",
+    "pmids": [
+      "27033548"
+    ],
+    "authors": [
+      "Hong"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "c1q",
+    "type": "new_edge"
+  },
+  {
+    "id": "E08.008",
+    "source": "aging",
+    "target": "c1q_elevated",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Aging causes dramatic C1q elevation (~300-fold); c1q_elevated captures sustained high levels beyond normal aging. MECHANISM UNKNOWN - likely involves microglial senescence or debris accumulation.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "23946404"
+    ],
+    "authors": [
+      "Stephan"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "c1q",
+    "type": "citation_only",
+    "existingEdgeId": "E08.001"
+  },
+  {
+    "id": "E08.009",
+    "source": "c1q_elevated",
+    "target": "c3_opsonization",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Sustained elevated C1q drives excessive complement cascade activation and synapse tagging",
+    "keyInsight": "C1q elevation is therapeutic target for synapse preservation",
+    "crossModule": "",
+    "pmids": [
+      "27033548"
+    ],
+    "authors": [
+      "Hong"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "c1q",
+    "newTarget": "complement_activation",
+    "type": "citation_only",
+    "existingEdgeId": "E09.001"
+  },
+  {
+    "id": "E08.010",
+    "source": "abeta_oligomers",
+    "target": "bdnf",
+    "relation": "decreases",
+    "moduleId": "M08",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers reduce BDNF expression and secretion. Involves CREB inhibition and impaired TrkB signaling. Contributes to synaptic dysfunction.",
+    "keyInsight": "",
+    "crossModule": "M06 → M08",
+    "pmids": [
+      "19403830"
+    ],
+    "authors": [
+      "Peng"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "E06.016"
+  },
+  {
+    "id": "E08.012",
+    "source": "bdnf",
+    "target": "dendritic_spine_density",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L4",
+    "mechanismDescription": "BDNF promotes spine formation and stabilization. TrkB signaling activates Rac1/Cdc42 → actin polymerization → spine morphogenesis. Critical for learning-related structural plasticity.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19571805"
+    ],
+    "authors": [
+      "Tanaka"
+    ],
+    "years": [
+      2008
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "synapses",
+    "newTarget": "dendritic_retraction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E08.013",
+    "source": "abeta_oligomers",
+    "target": "dendritic_spine_density",
+    "relation": "decreases",
+    "moduleId": "M08",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers cause rapid spine retraction within hours. Involves calcineurin activation, AMPA receptor internalization, and cofilin-mediated actin depolymerization. Early event in AD pathology.",
+    "keyInsight": "",
+    "crossModule": "M06 → M08",
+    "pmids": [
+      "16141271"
+    ],
+    "authors": [
+      "Shankar"
+    ],
+    "years": [
+      2007
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "dendritic_retraction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E08.014",
+    "source": "dendritic_spine_density",
+    "target": "synaptic_plasticity",
+    "relation": "increases",
+    "moduleId": "M08",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Higher spine density provides more substrate for synaptic plasticity. Mushroom spines represent stable, functional synapses; thin spines are immature and plastic.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "19812815"
+    ],
+    "authors": [
+      "Bourne"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "dendritic_retraction",
+    "newTarget": "synapses",
+    "type": "citation_only",
+    "existingEdgeId": "TS.002"
+  },
+  {
+    "id": "E09.001",
+    "source": "il1b",
+    "target": "hepcidin_elevated",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "IL-6/IL-1β → JAK2 → STAT3 → HAMP promoter → hepcidin transcription. Links neuroinflammation to iron maldistribution",
+    "keyInsight": "",
+    "crossModule": "Input from Module 4 (Inflammation)",
+    "pmids": [
+      "17148587"
+    ],
+    "authors": [
+      "Nemeth"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "intervention_human"
+    ],
+    "newSource": "IL1B",
+    "newTarget": "hepcidin",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.002",
+    "source": "hepcidin_elevated",
+    "target": "ferroportin_reduced",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Hepcidin binds ferroportin → internalization → ubiquitination → degradation. Ferroportin is ONLY cellular iron exporter",
+    "keyInsight": "Master regulatory edge for iron distribution",
+    "crossModule": "",
+    "pmids": [
+      "15514116"
+    ],
+    "authors": [
+      "Nemeth"
+    ],
+    "years": [
+      2004
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "hepcidin",
+    "newTarget": "ferroportin",
+    "type": "citation_only",
+    "existingEdgeId": "FE.001"
+  },
+  {
+    "id": "E09.003",
+    "source": "ferroportin_reduced",
+    "target": "labile_iron",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Ferroportin exports Fe²⁺ from cells. When degraded, iron accumulates intracellularly",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "15514116"
+    ],
+    "authors": [
+      "Nemeth"
+    ],
+    "years": [
+      2004
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "ferroportin",
+    "newTarget": "labile_iron_pool",
+    "type": "citation_only",
+    "existingEdgeId": "E05.011"
+  },
+  {
+    "id": "E09.004",
+    "source": "labile_iron",
+    "target": "lipid_peroxidation",
+    "relation": "directlyIncreases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Fe²⁺ + H₂O₂ → Fe³⁺ + OH• + OH⁻ (Fenton reaction). Hydroxyl radicals attack membrane PUFA → lipid peroxides",
+    "keyInsight": "DISCOVERY paper for ferroptosis (Dixon 2012)",
+    "crossModule": "",
+    "pmids": [
+      "22632970"
+    ],
+    "authors": [
+      "Dixon"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "labile_iron_pool",
+    "newTarget": "lipid_peroxides",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.005",
+    "source": "gpx4_activity",
+    "target": "lipid_peroxidation",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L3",
+    "mechanismDescription": "GPX4 reduces lipid peroxides (LOOH → LOH) using GSH. GPX4 is the ONLY enzyme that detoxifies membrane lipid peroxides",
+    "keyInsight": "GPX4 is MASTER ferroptosis brake; requires GSH (CSE-dependent)",
+    "crossModule": "",
+    "pmids": [
+      "24439385"
+    ],
+    "authors": [
+      "Yang"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "GPX4_activity",
+    "newTarget": "lipid_peroxides",
+    "type": "citation_only",
+    "existingEdgeId": "E05.004"
+  },
+  {
+    "id": "E09.006",
+    "source": "lipid_peroxidation",
+    "target": "ferroptosis",
+    "relation": "directlyIncreases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Accumulated lipid peroxides → membrane rupture → ferroptotic cell death",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22632970"
+    ],
+    "authors": [
+      "Dixon"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "lipid_peroxides",
+    "newTarget": "ferroptosis",
+    "type": "citation_only",
+    "existingEdgeId": "E05.003"
+  },
+  {
+    "id": "E09.007",
+    "source": "glutathione_gsh",
+    "target": "gpx4_activity",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "GSH is essential cofactor for GPX4. GSH depletion → GPX4 inactive → ferroptosis",
+    "keyInsight": "",
+    "crossModule": "Input from Module 7B (CSE provides cysteine for GSH)",
+    "pmids": [
+      "36894028"
+    ],
+    "authors": [
+      "Costa"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "glutathione_GSH",
+    "newTarget": "GPX4_activity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.008",
+    "source": "aging",
+    "target": "senescent_cells",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Chronological aging drives accumulation of senescent cells through replicative exhaustion, oxidative damage, and iron accumulation",
+    "keyInsight": "Age is the primary driver of cellular senescence",
+    "crossModule": "BOUNDARY → M09",
+    "pmids": [
+      "38036770"
+    ],
+    "authors": [
+      "Maus"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "aging",
+    "newTarget": "senescent_cell_iron",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.008b",
+    "source": "senescent_cells",
+    "target": "il1b",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Senescent cells secrete pro-inflammatory cytokines (IL-6, IL-8, IL-1β, TNF-α) as part of SASP phenotype",
+    "keyInsight": "Targeted ferroptosis in senescent cells is therapeutic strategy",
+    "crossModule": "M09 → M04",
+    "pmids": [
+      "38036770"
+    ],
+    "authors": [
+      "Maus"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "senescent_cell_iron",
+    "newTarget": "IL1B",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.009",
+    "source": "ferroportin_reduced",
+    "target": "iron_accumulation",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Ferroportin degradation blocks iron export → total brain iron increases despite cytosolic iron deficiency",
+    "keyInsight": "Brain iron accumulates with age; accelerated in AD",
+    "crossModule": "",
+    "pmids": [
+      "24371304"
+    ],
+    "authors": [
+      "Ward"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "ferroportin",
+    "newTarget": "brain_iron_accumulation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.010",
+    "source": "iron_accumulation",
+    "target": "ferritin_trap",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Accumulated iron is stored in ferritin cages (Fe³⁺); ferritin increases to detoxify iron but TRAPS it",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28611084"
+    ],
+    "authors": [
+      "Arosio"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "brain_iron_accumulation",
+    "newTarget": "ferritin_iron",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.011",
+    "source": "lysosomal_dysfunction",
+    "target": "lysosomal_iron_trap",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "De-acidified lysosomes cannot release iron from ferritin (requires low pH); iron becomes trapped in lysosomes",
+    "keyInsight": "Lysosomal dysfunction links to iron maldistribution",
+    "crossModule": "M02 → M09",
+    "pmids": [
+      "32768567"
+    ],
+    "authors": [
+      "Ashraf"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "lysosomal_dysfunction",
+    "newTarget": "lysosomal_iron",
+    "type": "citation_only",
+    "existingEdgeId": "FL.001"
+  },
+  {
+    "id": "E09.012",
+    "source": "ferritin_trap",
+    "target": "functional_iron_deficiency",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Iron locked in ferritin → cytosolic labile iron pool depleted → functional iron deficiency despite total iron increase",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "23615282"
+    ],
+    "authors": [
+      "Rouault"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "ferritin_iron",
+    "newTarget": "functional_iron_deficiency",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.013",
+    "source": "lysosomal_iron_trap",
+    "target": "functional_iron_deficiency",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Iron trapped in lysosomes cannot be released → functional iron deficiency in cytosol",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "32768567"
+    ],
+    "authors": [
+      "Ashraf"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "lysosomal_iron",
+    "newTarget": "functional_iron_deficiency",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.014",
+    "source": "functional_iron_deficiency",
+    "target": "ferroptosis",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Counterintuitively, functional iron deficiency (low labile Fe²⁺) may initially PROTECT from ferroptosis, but impairs mitochondrial function",
+    "keyInsight": "Iron paradox: high total iron but low available iron; neither extreme is good",
+    "crossModule": "",
+    "pmids": [
+      "30177779"
+    ],
+    "authors": [
+      "Lane"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "functional_iron_deficiency",
+    "newTarget": "ferroptosis",
+    "type": "citation_only",
+    "existingEdgeId": "E09.014"
+  },
+  {
+    "id": "E09.015",
+    "source": "iron_accumulation",
+    "target": "senescent_cells",
+    "relation": "increases",
+    "moduleId": "M09",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Iron accumulation directly drives cellular senescence; iron chelation reverses senescent phenotype",
+    "keyInsight": "Iron chelation or ferroptosis induction in senescent cells is therapeutic",
+    "crossModule": "",
+    "pmids": [
+      "38036770"
+    ],
+    "authors": [
+      "Maus"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "brain_iron_accumulation",
+    "newTarget": "senescent_cell_iron",
+    "type": "new_edge"
+  },
+  {
+    "id": "E09.020",
+    "source": "microglial_senescence",
+    "target": "senescence_volume_loss",
+    "relation": "decreases",
+    "moduleId": "M09",
+    "causalConfidence": "L6",
+    "mechanismDescription": "PARADOX: Microglial senescence shows OPPOSITE volume relationship.\r\n      Lund 2026: 23/25 correlations POSITIVE (more senescence → larger volume).\r\n\r\n      Interpretation: Senescent microglia may help maintain brain structure,\r\n      possibly through reduced inflammatory activity or support functions.\r\n\r\n      This contrasts sharply with excitatory neurons where senescence → atrophy.",
+    "keyInsight": "Cell-type matters: microglia senescence may be protective",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Lund"
+    ],
+    "years": [
+      2026
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "senescent_microglia_TREM2",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.002",
+    "source": "apoe4_domain_interaction",
+    "target": "apoe_lipidation_reduced",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Domain interaction impairs ABCA1-mediated lipidation → hypolipidated APOE4",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "16945100"
+    ],
+    "authors": [
+      "Mahley"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "apoe4",
+    "newTarget": "APOE_lipidated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.004",
+    "source": "aging",
+    "target": "rest_nuclear",
+    "relation": "decreases",
+    "moduleId": "M10",
+    "causalConfidence": "L6",
+    "mechanismDescription": "REST nuclear localization declines with age in vulnerable neurons",
+    "keyInsight": "LANDMARK: REST nuclear loss correlates with AD vulnerability",
+    "crossModule": "",
+    "pmids": [
+      "25599404"
+    ],
+    "authors": [
+      "Lu"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "REST_nuclear",
+    "type": "citation_only",
+    "existingEdgeId": "E10.004"
+  },
+  {
+    "id": "E10.005",
+    "source": "rest_nuclear",
+    "target": "nrf2_pathway",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "REST coordinates with Nrf2 in stress resistance program",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25599404"
+    ],
+    "authors": [
+      "Lu"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "REST_nuclear",
+    "newTarget": "Nrf2_activity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.006",
+    "source": "nrf2_pathway",
+    "target": "gpx4_activity",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Nrf2 induces GPX4 and other ferroptosis-protective genes",
+    "keyInsight": "",
+    "crossModule": "Output to Module 9 (Ferroptosis)",
+    "pmids": [
+      "35342364"
+    ],
+    "authors": [
+      "Wang"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "Nrf2_activity",
+    "newTarget": "GPX4_activity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.007",
+    "source": "apoe4_domain_interaction",
+    "target": "lysosomal_cholesterol_sequestration",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "APOE4 impairs cholesterol trafficking → cholesterol trapped in endo-lysosomes (NPC-like phenotype)",
+    "keyInsight": "APOE4 mimics Niemann-Pick disease phenotype",
+    "crossModule": "",
+    "pmids": [
+      "29566793"
+    ],
+    "authors": [
+      "Lin"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "apoe4",
+    "newTarget": "lysosomal_cholesterol",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.008",
+    "source": "lysosomal_cholesterol_sequestration",
+    "target": "lysosomal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Cholesterol accumulation in lysosomes impairs lysosomal function and autophagy",
+    "keyInsight": "",
+    "crossModule": "M10 → M02",
+    "pmids": [
+      "33402403"
+    ],
+    "authors": [
+      "Lee"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "lysosomal_cholesterol",
+    "newTarget": "lysosomal_dysfunction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.009",
+    "source": "apoe_lipidation_reduced",
+    "target": "astrocyte_lipid_droplets",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "APOE4 impairs lipid transport → lipid droplet accumulation in astrocytes",
+    "keyInsight": "APOE4 astrocytes show lipid metabolism dysfunction",
+    "crossModule": "",
+    "pmids": [
+      "35236985"
+    ],
+    "authors": [
+      "Tcw"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "APOE_lipidated",
+    "newTarget": "astrocyte_lipid_droplets",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.010",
+    "source": "astrocyte_lipid_droplets",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Lipid-laden astrocytes contribute to neuroinflammation via altered lipid signaling",
+    "keyInsight": "",
+    "crossModule": "M10 → M04",
+    "pmids": [
+      "35236985"
+    ],
+    "authors": [
+      "Tcw"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "astrocyte_lipid_droplets",
+    "newTarget": "neuroinflammation",
+    "type": "citation_only",
+    "existingEdgeId": "E10.010"
+  },
+  {
+    "id": "E10.011",
+    "source": "aging",
+    "target": "rest_depleted",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Aging leads to nuclear REST depletion in vulnerable neurons; more severe in AD",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25599404"
+    ],
+    "authors": [
+      "Lu"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "REST_cytoplasmic",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.012",
+    "source": "rest_depleted",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L4",
+    "mechanismDescription": "REST depletion de-represses apoptotic/neurodegenerative genes; neurons lose stress resistance",
+    "keyInsight": "REST preservation is potential therapeutic target",
+    "crossModule": "",
+    "pmids": [
+      "25599404"
+    ],
+    "authors": [
+      "Lu"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "REST_cytoplasmic",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E10.018",
+    "source": "myelin_dysfunction",
+    "target": "oligodendrocyte_dysfunction",
+    "relation": "increases",
+    "moduleId": "M10",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Myelin breakdown stresses oligodendrocytes; compensatory remyelination attempts fail under chronic sulfatide depletion",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "36613108"
+    ],
+    "authors": [
+      "Palavicini"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "transgenic"
+    ],
+    "newSource": "myelin_integrity",
+    "newTarget": "oligodendrocyte_count",
+    "type": "new_edge"
+  },
+  {
+    "id": "E11.001",
+    "source": "trem2_surface",
+    "target": "dam_stage1",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L3",
+    "mechanismDescription": "TREM2 signaling required for transition from homeostatic to DAM phenotype",
+    "keyInsight": "LANDMARK: Discovery of DAM phenotype (Keren-Shaul 2017)",
+    "crossModule": "",
+    "pmids": [
+      "28602351"
+    ],
+    "authors": [
+      "Keren-Shaul"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "TREM2_surface",
+    "newTarget": "DAM_stage1",
+    "type": "citation_only",
+    "existingEdgeId": "E11.001"
+  },
+  {
+    "id": "E11.002",
+    "source": "dam_stage1",
+    "target": "dam_stage2",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Stage 1 DAM → Stage 2 DAM requires TREM2 signaling",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28602351"
+    ],
+    "authors": [
+      "Keren-Shaul"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "DAM_stage1",
+    "newTarget": "DAM_stage2",
+    "type": "citation_only",
+    "existingEdgeId": "E11.002"
+  },
+  {
+    "id": "E11.003",
+    "source": "dam_stage2",
+    "target": "plaque_barrier_function",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L4",
+    "mechanismDescription": "DAM microglia form protective barrier around plaques, compacting them to reduce toxicity",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "29518356"
+    ],
+    "authors": [
+      "Yuan"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "DAM_stage2",
+    "newTarget": "plaque_compaction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E11.004",
+    "source": "trem2_variants",
+    "target": "trem2_surface",
+    "relation": "decreases",
+    "moduleId": "M11",
+    "causalConfidence": "L4",
+    "mechanismDescription": "R47H and other AD-risk variants reduce TREM2 surface expression/signaling",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "23150934"
+    ],
+    "authors": [
+      "Jonsson"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "TREM2_variants",
+    "newTarget": "TREM2_surface",
+    "type": "new_edge"
+  },
+  {
+    "id": "E11.005",
+    "source": "trem2_surface",
+    "target": "strem2",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L5",
+    "mechanismDescription": "ADAM10/17 cleave TREM2 ectodomain → soluble TREM2 (sTREM2) in CSF",
+    "keyInsight": "sTREM2 is CSF biomarker for microglial activation",
+    "crossModule": "",
+    "pmids": [
+      "28885578"
+    ],
+    "authors": [
+      "Schlepckow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "TREM2_surface",
+    "newTarget": "sTREM2",
+    "type": "citation_only",
+    "existingEdgeId": "E11.005"
+  },
+  {
+    "id": "E11.006",
+    "source": "trem2_variants",
+    "target": "dam_transition_blocked",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L3",
+    "mechanismDescription": "TREM2 loss-of-function variants block Stage 1 → Stage 2 DAM transition, locking microglia in dysfunctional state",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "28602351"
+    ],
+    "authors": [
+      "Keren-Shaul"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "TREM2_variants",
+    "newTarget": "trem2_variant",
+    "type": "new_edge"
+  },
+  {
+    "id": "E11.007",
+    "source": "dam_transition_blocked",
+    "target": "abeta_clearance",
+    "relation": "decreases",
+    "moduleId": "M11",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Blocked DAM transition prevents microglia from acquiring phagocytic phenotype needed for Aβ clearance",
+    "keyInsight": "TREM2 variants impair protective microglial responses",
+    "crossModule": "M11 → M06",
+    "pmids": [
+      "28602351"
+    ],
+    "authors": [
+      "Keren-Shaul"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "trem2_variant",
+    "newTarget": "abeta_clearance",
+    "type": "new_edge"
+  },
+  {
+    "id": "E11.008",
+    "source": "aging",
+    "target": "senescent_trem2_microglia",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aging promotes senescent TREM2+ microglia with SASP-like phenotype; these may be harmful",
+    "keyInsight": "TREM2 context-dependent: protective early, harmful in senescence",
+    "crossModule": "",
+    "pmids": [
+      "34433656"
+    ],
+    "authors": [
+      "Hu"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "transcriptomics"
+    ],
+    "newSource": "aging",
+    "newTarget": "senescent_microglia_TREM2",
+    "type": "citation_only",
+    "existingEdgeId": "E11.008"
+  },
+  {
+    "id": "E11.009",
+    "source": "senescent_trem2_microglia",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M11",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Senescent TREM2+ microglia secrete inflammatory factors and fail to maintain tissue homeostasis",
+    "keyInsight": "",
+    "crossModule": "M11 → M04",
+    "pmids": [
+      "34433656"
+    ],
+    "authors": [
+      "Hu"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "transcriptomics"
+    ],
+    "newSource": "senescent_microglia_TREM2",
+    "newTarget": "neuroinflammation",
+    "type": "citation_only",
+    "existingEdgeId": "E11.009"
+  },
+  {
+    "id": "E11.010",
+    "source": "dam_stage2",
+    "target": "phagocytosis_impaired",
+    "relation": "decreases",
+    "moduleId": "M11",
+    "causalConfidence": "L3",
+    "mechanismDescription": "DAM Stage 2 microglia have enhanced phagocytic capacity (TREM2-dependent). DAM upregulate lipid metabolism genes (APOE, LIPA, LPL) and phagocytic receptors to clear debris.",
+    "keyInsight": "DAM Stage 2 = enhanced phagocytic capacity (TREM2-dependent)",
+    "crossModule": "",
+    "pmids": [
+      "28602351"
+    ],
+    "authors": [
+      "Keren-Shaul"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "DAM_stage2",
+    "newTarget": "phagocytosis_impaired",
+    "type": "citation_only",
+    "existingEdgeId": "E11.010"
+  },
+  {
+    "id": "E12.002",
+    "source": "cypa_elevated",
+    "target": "mmp9_elevated",
+    "relation": "directlyIncreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "CypA → NF-κB → MMP9 transcription and activation",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22696567"
+    ],
+    "authors": [
+      "Bell"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "CypA",
+    "newTarget": "MMP9",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.003",
+    "source": "mmp9_elevated",
+    "target": "bbb_breakdown",
+    "relation": "directlyIncreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "MMP9 degrades basement membrane and tight junction proteins → BBB leakage",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22696567"
+    ],
+    "authors": [
+      "Bell"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "MMP9",
+    "newTarget": "BBB_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.004",
+    "source": "sleep_disruption",
+    "target": "glymphatic_clearance",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Glymphatic clearance is 60% higher during sleep. Sleep disruption impairs Aβ clearance",
+    "keyInsight": "LANDMARK: Sleep-glymphatic-Aβ clearance connection",
+    "crossModule": "",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "sleep_disruption",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "citation_only",
+    "existingEdgeId": "E01.006"
+  },
+  {
+    "id": "E12.005",
+    "source": "glymphatic_clearance",
+    "target": "abeta_oligomers",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Glymphatic system clears Aβ and other waste; impairment → Aβ accumulation",
+    "keyInsight": "",
+    "crossModule": "Output to Module 6 (Amyloid)",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "glymphatic_flow_rate",
+    "newTarget": "Abeta_oligomers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.006",
+    "source": "aging",
+    "target": "glymphatic_clearance",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Glymphatic function declines 80-90% with age (AQP4 redistribution, arterial stiffening)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25190365"
+    ],
+    "authors": [
+      "Kress"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "aging",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "citation_only",
+    "existingEdgeId": "E01.012"
+  },
+  {
+    "id": "E12.007",
+    "source": "mmp9_elevated",
+    "target": "pericyte_injury",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "MMP9 damages pericytes; sPDGFRβ in CSF is biomarker of pericyte injury",
+    "keyInsight": "CSF sPDGFRβ predicts cognitive decline in APOE4 carriers",
+    "crossModule": "",
+    "pmids": [
+      "32078042"
+    ],
+    "authors": [
+      "Montagne"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "MMP9",
+    "newTarget": "pericyte_count",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.008",
+    "source": "pericyte_injury",
+    "target": "bbb_breakdown",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Pericyte loss disrupts BBB integrity; pericytes essential for BBB maintenance",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "20516212"
+    ],
+    "authors": [
+      "Bell"
+    ],
+    "years": [
+      2010
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "pericyte_count",
+    "newTarget": "BBB_integrity",
+    "type": "citation_only",
+    "existingEdgeId": "E04.001"
+  },
+  {
+    "id": "E12.009",
+    "source": "aging",
+    "target": "meningeal_lymphatics",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Meningeal lymphatic function declines with age; impairs CNS waste drainage",
+    "keyInsight": "Lymphatic rejuvenation may be therapeutic target",
+    "crossModule": "",
+    "pmids": [
+      "30046111"
+    ],
+    "authors": [
+      "Da Mesquita"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "aging",
+    "newTarget": "meningeal_lymphatic_drainage",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.010",
+    "source": "meningeal_lymphatics",
+    "target": "glymphatic_clearance",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Meningeal lymphatics drain glymphatic efflux; lymphatic dysfunction impairs overall clearance",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "30046111"
+    ],
+    "authors": [
+      "Da Mesquita"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "meningeal_lymphatic_drainage",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.011",
+    "source": "glymphatic_clearance",
+    "target": "isf_abeta_clearance",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Glymphatic flow drives ISF Aβ clearance via perivascular drainage",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "glymphatic_flow_rate",
+    "newTarget": "abeta_clearance",
+    "type": "citation_only",
+    "existingEdgeId": "E04.006"
+  },
+  {
+    "id": "E12.012",
+    "source": "isf_abeta_clearance",
+    "target": "abeta_oligomers",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Efficient ISF Aβ clearance reduces oligomer accumulation",
+    "keyInsight": "",
+    "crossModule": "M12 → M06",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "abeta_clearance",
+    "newTarget": "Abeta_oligomers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.013",
+    "source": "aqp4_polarization",
+    "target": "csf_isf_exchange",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "AQP4 water channels at astrocyte endfeet enable CSF-ISF exchange. TGN-020 (AQP4 inhibitor) blocks 40Hz-mediated amyloid clearance. AQP4 knockout eliminates exercise benefits",
+    "keyInsight": "AQP4 is REQUIRED for both exercise and 40Hz stimulation benefits",
+    "crossModule": "",
+    "pmids": [
+      "38418876",
+      "35142700"
+    ],
+    "authors": [
+      "Murdock",
+      "Liu"
+    ],
+    "years": [
+      2024,
+      2022
+    ],
+    "methods": [
+      "intervention_animal",
+      "intervention_animal"
+    ],
+    "newSource": "endfoot_AQP4_polarization",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "citation_only",
+    "existingEdgeId": "E04.005"
+  },
+  {
+    "id": "E12.015",
+    "source": "aging",
+    "target": "aqp4_depolarization",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aging disrupts DAPC anchoring → AQP4 redistributes from endfeet to parenchymal membrane. AQP4 polarization ratio declines with age, contributing to 80-90% glymphatic decline",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "33068891"
+    ],
+    "authors": [
+      "Chandra"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "endfoot_AQP4_polarization",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.016",
+    "source": "aqp4_depolarization",
+    "target": "glymphatic_clearance",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "AQP4 depolarization impairs CSF-ISF exchange → reduced glymphatic clearance. DTNB (β-dystrobrevin) is an AD risk gene that encodes AQP4 anchoring complex component",
+    "keyInsight": "GENETIC EVIDENCE: DTNB (AQP4 anchor) is an AD risk gene (p=4.74×10⁻⁸)",
+    "crossModule": "",
+    "pmids": [
+      "35256747"
+    ],
+    "authors": [
+      "Prokopenko"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "case_control"
+    ],
+    "newSource": "endfoot_AQP4_polarization",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "citation_only",
+    "existingEdgeId": "E04.005"
+  },
+  {
+    "id": "E12.020",
+    "source": "sleep_disruption",
+    "target": "aqp4_depolarization",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Sleep deprivation impairs AQP4 polarization maintenance. AQP4 SNPs moderate the relationship between sleep and brain Aβ burden in humans",
+    "keyInsight": "HUMAN EVIDENCE: 1 night sleep deprivation → increased Aβ in hippocampus/thalamus",
+    "crossModule": "",
+    "pmids": [
+      "29479071",
+      "29632177"
+    ],
+    "authors": [
+      "Rainey-Smith",
+      "Shokri-Kojori"
+    ],
+    "years": [
+      2018,
+      2018
+    ],
+    "methods": [
+      "cohort",
+      "intervention_human"
+    ],
+    "newSource": "sleep_disruption",
+    "newTarget": "endfoot_AQP4_polarization",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.021",
+    "source": "astrocyte_endfeet",
+    "target": "aqp4_polarization",
+    "relation": "directlyIncreases",
+    "moduleId": "M12",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Astrocyte endfeet provide the structural scaffold for AQP4 polarization via the DAPC complex (Laminin → Dystroglycan → Dystrophin → Syntrophin → AQP4). Endfoot retraction or damage causes AQP4 depolarization",
+    "keyInsight": "Endfoot structure is prerequisite for AQP4 polarization",
+    "crossModule": "",
+    "pmids": [
+      "25186741"
+    ],
+    "authors": [
+      "Seo"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "astrocyte_endfoot_integrity",
+    "newTarget": "endfoot_AQP4_polarization",
+    "type": "citation_only",
+    "existingEdgeId": "E04.004"
+  },
+  {
+    "id": "E12.022",
+    "source": "astrocyte_endfeet",
+    "target": "bbb_integrity",
+    "relation": "directlyIncreases",
+    "moduleId": "M12",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Astrocyte endfeet ensheath >99% of cerebral blood vessels and support BBB integrity via: (1) Laminin/dystroglycan signaling to pericytes; (2) Release of sonic hedgehog (SHH) supporting tight junctions; (3) Physical barrier limiting perivascular infiltration",
+    "keyInsight": "Endfoot coverage essential for BBB maintenance",
+    "crossModule": "",
+    "pmids": [
+      "19339620"
+    ],
+    "authors": [
+      "Bentsen"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "astrocyte_endfoot_integrity",
+    "newTarget": "BBB_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.023",
+    "source": "astrocyte_endfeet",
+    "target": "csf_isf_exchange",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Astrocyte endfeet form the glymphatic \"gate\" enabling CSF-ISF exchange at the perivascular space. AQP4 on endfeet mediates water flux; endfoot swelling/retraction alters perivascular space geometry",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "astrocyte_endfoot_integrity",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.024",
+    "source": "a1_astrocytes",
+    "target": "astrocyte_endfeet",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "A1 reactive astrocyte conversion causes endfoot retraction and structural damage. A1 astrocytes lose normal astrocyte functions including endfoot maintenance, AQP4 polarization, and BBB support. C3 complement released by A1s may damage endfeet",
+    "keyInsight": "A1 astrocyte conversion damages the endfoot-BBB-glymphatic interface",
+    "crossModule": "Input from M05 (Microglial Phenotypes)",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "A1_astrocytes",
+    "newTarget": "astrocyte_endfoot_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.025",
+    "source": "astrocyte_endfeet",
+    "target": "lysosomal_dysfunction",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Astrocyte endfeet contain lysosomes that process perivascular debris and Aβ. Endfoot damage impairs local lysosomal clearance capacity. Astrocyte lysosomes also process material cleared via glymphatic system",
+    "keyInsight": "Endfoot lysosomes are part of the brain waste clearance system",
+    "crossModule": "Output to M02 (Lysosomal)",
+    "pmids": [
+      "31186209"
+    ],
+    "authors": [
+      "Xiao"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "astrocyte_endfoot_integrity",
+    "newTarget": "lysosomal_dysfunction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.026",
+    "source": "ach_reduced",
+    "target": "astrocyte_endfeet",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Astrocyte endfeet express α7 nicotinic acetylcholine receptors (nAChRs). Cholinergic signaling via α7 nAChRs supports endfoot function and BBB integrity through the splenic anti-inflammatory pathway (reduced systemic TNF-α/IL-1β → preserved tight junctions)",
+    "keyInsight": "Cholinergic system supports BBB via α7 nAChR on astrocyte endfeet",
+    "crossModule": "Input from M13 (Cholinergic)",
+    "pmids": [
+      "29088998"
+    ],
+    "authors": [
+      "Dash"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "acetylcholine",
+    "newTarget": "astrocyte_endfoot_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.027",
+    "source": "aging",
+    "target": "astrocyte_endfeet",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aging causes astrocyte endfoot retraction from blood vessels, contributing to BBB breakdown and AQP4 depolarization. DAPC components decline with age, loosening AQP4 anchoring",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25190365"
+    ],
+    "authors": [
+      "Kress"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "aging",
+    "newTarget": "astrocyte_endfoot_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.029",
+    "source": "lrp1_apoe4_impaired",
+    "target": "abeta_monomers",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L3",
+    "mechanismDescription": "LRP1 is the primary receptor for Aβ clearance at the BBB. ApoE4 reduces LRP1 expression and function, leading to impaired Aβ transcytosis from brain to blood. This establishes BBB dysfunction as UPSTREAM of amyloid accumulation.",
+    "keyInsight": "BBB clearance failure PRECEDES amyloid accumulation",
+    "crossModule": "Output to Module 6 (Amyloid)",
+    "pmids": [
+      "21576468"
+    ],
+    "authors": [
+      "Castellano"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "transgenic"
+    ],
+    "newSource": "lrp1",
+    "newTarget": "abeta_production",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.030",
+    "source": "bbb_breakdown",
+    "target": "abeta_monomers",
+    "relation": "increases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "BBB breakdown reduces Aβ clearance via two mechanisms: (1) reduced LRP1-mediated efflux, (2) peripheral proteins entering brain can nucleate Aβ aggregation. BBB dysfunction is detectable before amyloid PET positivity.",
+    "keyInsight": "Vascular dysfunction is UPSTREAM of amyloid pathology",
+    "crossModule": "Output to Module 6 (Amyloid)",
+    "pmids": [
+      "32860352"
+    ],
+    "authors": [
+      "Montagne"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "BBB_integrity",
+    "newTarget": "abeta_production",
+    "type": "new_edge"
+  },
+  {
+    "id": "E12.031",
+    "source": "tau_aggregated",
+    "target": "plasma_ptau217",
+    "relation": "directlyIncreases",
+    "moduleId": "M12",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Hyperphosphorylated tau at T217 is actively secreted from neurons and released upon neuronal damage. pTau217 in plasma closely tracks tau PET signal and predicts progression.",
+    "keyInsight": "Best-performing blood tau biomarker (AUC 0.96)",
+    "crossModule": "Input from Module 7 (Tau)",
+    "pmids": [
+      "32333900"
+    ],
+    "authors": [
+      "Palmqvist"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "plasma_pTau217",
+    "type": "citation_only",
+    "existingEdgeId": "E12.031"
+  },
+  {
+    "id": "E12.050",
+    "source": "bbb_breakdown",
+    "target": "abeta_clearance",
+    "relation": "decreases",
+    "moduleId": "M12",
+    "causalConfidence": "L3",
+    "mechanismDescription": "BBB breakdown impairs LRP1-mediated Aβ transcytosis from brain to blood. Pericyte loss → reduced Aβ clearance across endothelium.",
+    "keyInsight": "BBB dysfunction impairs Aβ clearance and predicts cognitive decline",
+    "crossModule": "",
+    "pmids": [
+      "32860352"
+    ],
+    "authors": [
+      "Montagne"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "BBB_integrity",
+    "newTarget": "abeta_clearance",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.001",
+    "source": "tau_aggregated",
+    "target": "cholinergic_degeneration",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Basal forebrain cholinergic neurons (nbM) are selectively vulnerable to tau pathology",
+    "keyInsight": "",
+    "crossModule": "Input from Module 7 (Tau)",
+    "pmids": [],
+    "authors": [
+      "Various"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "tau_aggregated",
+    "newTarget": "BFCNs",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.002",
+    "source": "cholinergic_degeneration",
+    "target": "ach_reduced",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Loss of cholinergic neurons → reduced ACh synthesis and release",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Various"
+    ],
+    "years": [
+      1980
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "BFCNs",
+    "newTarget": "acetylcholine",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.003",
+    "source": "ach_reduced",
+    "target": "cognitive_score",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "ACh is essential for attention, learning, memory. Basis for AChEI therapy",
+    "keyInsight": "AChEIs (donepezil, rivastigmine) provide symptomatic benefit",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Various"
+    ],
+    "years": [
+      1990
+    ],
+    "methods": [
+      "rct"
+    ],
+    "newSource": "acetylcholine",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.004",
+    "source": "neuroinflammation",
+    "target": "white_matter_pathology",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Neuroinflammation damages oligodendrocytes and myelin → white matter hyperintensities on MRI",
+    "keyInsight": "White matter pathology is early AD feature",
+    "crossModule": "",
+    "pmids": [
+      "30256824"
+    ],
+    "authors": [
+      "Nasrabady"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "WM_compromised",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.005",
+    "source": "white_matter_pathology",
+    "target": "myelin_breakdown",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "White matter pathology leads to myelin breakdown and oligodendrocyte loss",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "30256824"
+    ],
+    "authors": [
+      "Nasrabady"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "WM_compromised",
+    "newTarget": "myelin_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.006",
+    "source": "myelin_breakdown",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Myelin breakdown slows conduction velocity and disrupts neural circuits",
+    "keyInsight": "Myelin-focused AD hypothesis: late-myelinating regions most vulnerable",
+    "crossModule": "M13 → M07",
+    "pmids": [
+      "14993904"
+    ],
+    "authors": [
+      "Bartzokis"
+    ],
+    "years": [
+      2004
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "myelin_integrity",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.010",
+    "source": "opcs",
+    "target": "mature_oligodendrocytes",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "OPCs differentiate into mature myelinating oligodendrocytes. Process requires: (1) exit from cell cycle, (2) expression of MBP/MOG/PLP1, (3) cholesterol availability for myelin synthesis. Declines with age due to OPC senescence, LINGO1↑, Nogo receptor activation.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "31497960"
+    ],
+    "authors": [
+      "Neumann"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "OPCs",
+    "newTarget": "mature_oligodendrocytes",
+    "type": "citation_only",
+    "existingEdgeId": "E13.010"
+  },
+  {
+    "id": "E13.012",
+    "source": "mature_oligodendrocytes",
+    "target": "myelin_breakdown",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Mature oligodendrocytes maintain myelin sheaths. When OLs die (A1 astrocyte toxicity, APOE4 cholesterol failure), myelin degenerates. Loss of mature OLs → myelin breakdown → axonal dysfunction.",
+    "keyInsight": "OL death precedes myelin loss; myelin is stable short-term even without OLs",
+    "crossModule": "",
+    "pmids": [
+      "36385529"
+    ],
+    "authors": [
+      "Blanchard"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mature_oligodendrocytes",
+    "newTarget": "myelin_integrity",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.018",
+    "source": "a1_astrocytes",
+    "target": "mature_oligodendrocytes",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "A1 reactive astrocytes secrete saturated lipids that are toxic to oligodendrocytes. This is one mechanism of white matter pathology in AD. A1 astrocytes are induced by C1q + IL-1α + TNF-α from activated microglia.",
+    "keyInsight": "Microglial activation → A1 astrocytes → OL death → demyelination cascade",
+    "crossModule": "Input from M05 (Microglial Phenotypes)",
+    "pmids": [
+      "28099414"
+    ],
+    "authors": [
+      "Liddelow"
+    ],
+    "years": [
+      2017
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "A1_astrocytes",
+    "newTarget": "mature_oligodendrocytes",
+    "type": "citation_only",
+    "existingEdgeId": "E13.018"
+  },
+  {
+    "id": "E13.019",
+    "source": "aging",
+    "target": "opcs",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "OPCs become exhausted and senescent with age. Mechanisms include: (1) replicative senescence, (2) epigenetic changes reducing differentiation capacity, (3) accumulation of myelin debris inhibiting OPC function. Results in declining remyelination capacity.",
+    "keyInsight": "OPC exhaustion may explain why remyelination fails in aging brain",
+    "crossModule": "",
+    "pmids": [
+      "31497960"
+    ],
+    "authors": [
+      "Neumann"
+    ],
+    "years": [
+      2019
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "OPCs",
+    "type": "citation_only",
+    "existingEdgeId": "E13.019"
+  },
+  {
+    "id": "E13.020",
+    "source": "aging",
+    "target": "remyelination_capacity",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Remyelination capacity declines with age due to: (1) OPC exhaustion/senescence, (2) ↑LINGO1 inhibiting OPC differentiation, (3) altered macrophage/microglia clearance of myelin debris, (4) cholesterol metabolism changes. This creates a window where demyelination becomes irreversible.",
+    "keyInsight": "The 22-year prodrome suggests white matter pathology is an early, potentially modifiable target",
+    "crossModule": "",
+    "pmids": [
+      "29499767"
+    ],
+    "authors": [
+      "Nasrabady"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "aging",
+    "newTarget": "OPC_differentiation_rate",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.021",
+    "source": "myelin_breakdown",
+    "target": "white_matter_pathology",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Myelin breakdown leads to detectable white matter pathology on MRI (↓fractional anisotropy, ↑mean diffusivity, white matter hyperintensities). This occurs BEFORE gray matter changes and predicts cognitive decline.",
+    "keyInsight": "WM pathology is an early biomarker and potential intervention target",
+    "crossModule": "",
+    "pmids": [
+      "29499767"
+    ],
+    "authors": [
+      "Nasrabady"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "myelin_integrity",
+    "newTarget": "WM_compromised",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.022",
+    "source": "white_matter_pathology",
+    "target": "cholinergic_degeneration",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "White matter pathology disrupts long-range projections from basal forebrain cholinergic neurons to cortex and hippocampus. The cholinergic system has the longest axons in the brain and is particularly vulnerable to WM damage. This may explain why cholinergic deficits appear early in AD.",
+    "keyInsight": "WM damage may cause cholinergic dysfunction by disconnection, not just BFCN death",
+    "crossModule": "",
+    "pmids": [
+      "6309134"
+    ],
+    "authors": [
+      "Coyle"
+    ],
+    "years": [
+      1983
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "WM_compromised",
+    "newTarget": "BFCNs",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.020",
+    "source": "lysosomal_dysfunction",
+    "target": "bmp_lysosomal",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L5",
+    "mechanismDescription": "BMP (bis(monoacylglycero)phosphate) is a lysosome-specific lipid that facilitates lipid degradation by activating acid sphingomyelinase. ↑BMP is a compensatory response to lysosomal stress - the cell attempts to enhance lipid catabolism. BMP elevation is seen in lysosomal storage disorders and in AD brains.",
+    "keyInsight": "BMP is a biomarker for lysosomal stress; elevation may be compensatory",
+    "crossModule": "",
+    "pmids": [
+      "23670896"
+    ],
+    "authors": [
+      "Nguyen",
+      "Raben"
+    ],
+    "years": [
+      2024,
+      2013
+    ],
+    "methods": [
+      "biochemistry",
+      "cohort"
+    ],
+    "newSource": "lysosomal_dysfunction",
+    "newTarget": "BMP_levels",
+    "type": "new_edge"
+  },
+  {
+    "id": "E02.021",
+    "source": "il1b",
+    "target": "lysosomal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M02",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Pro-inflammatory cytokines including IL-1β increase cellular stress on lysosomes. NF-κB activation downstream of IL-1R impairs TFEB nuclear translocation, reducing lysosomal biogenesis. Chronic inflammation creates a vicious cycle of lysosomal dysfunction.",
+    "keyInsight": "Inflammation impairs lysosomal biogenesis, completing the lysosome-inflammasome vicious cycle",
+    "crossModule": "M04 → M02 (completes loop_lysosome_inflammasome)",
+    "pmids": [
+      "27723745",
+      "30442760"
+    ],
+    "authors": [
+      "Martina",
+      "Lim"
+    ],
+    "years": [
+      2016,
+      2018
+    ],
+    "methods": [
+      "in_vitro",
+      "in_vitro"
+    ],
+    "newSource": "IL1B",
+    "newTarget": "lysosomal_dysfunction",
+    "type": "citation_only",
+    "existingEdgeId": "E02.021"
+  },
+  {
+    "id": "E03.011",
+    "source": "type_i_ifn",
+    "target": "damaged_mito_pool",
+    "relation": "increases",
+    "moduleId": "M03",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Type I IFN signaling impairs mitochondrial quality control. ISG expression alters cellular metabolism and reduces PINK1/Parkin-mediated mitophagy efficiency. This completes the mtDNA-STING inflammation loop.",
+    "keyInsight": "Type I IFN impairs mitochondrial quality control, creating self-sustaining inflammation loop",
+    "crossModule": "M04 → M03 (completes loop_mtDNA_STING)",
+    "pmids": [
+      "38280852"
+    ],
+    "authors": [
+      "Jimenez-Loygorri"
+    ],
+    "years": [
+      2024
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "type_I_IFN",
+    "newTarget": "damaged_mito_pool",
+    "type": "citation_only",
+    "existingEdgeId": "E03.011"
+  },
+  {
+    "id": "E05.015",
+    "source": "abeta_oligomers",
+    "target": "microglia_activated",
+    "relation": "increases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Aβ oligomers trigger microglial activation through multiple receptors including TLR4, RAGE, and scavenger receptors. This completes the LDAM-Aβ clearance failure loop.",
+    "keyInsight": "Aβ activates microglia, which then fail to clear it due to LDAM phenotype",
+    "crossModule": "M06 → M05 (completes loop_LDAM_Abeta)",
+    "pmids": [
+      "23254930",
+      "24142475"
+    ],
+    "authors": [
+      "Heneka",
+      "Hickman"
+    ],
+    "years": [
+      2013,
+      2008
+    ],
+    "methods": [
+      "in_vitro",
+      "in_vitro"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "microglia_activated",
+    "type": "citation_only",
+    "existingEdgeId": "AB.010"
+  },
+  {
+    "id": "E05.016",
+    "source": "synapses",
+    "target": "microglia_activated",
+    "relation": "decreases",
+    "moduleId": "M05",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Synapse loss releases tonic microglial inhibition. Neurons express CX3CL1 (fractalkine) which binds microglial CX3CR1 to maintain quiescence. Synapse loss reduces this inhibitory signal, promoting microglial activation.",
+    "keyInsight": "Synapse loss removes tonic inhibition of microglia via fractalkine signaling",
+    "crossModule": "M08 → M05 (completes loop_A1_synapse)",
+    "pmids": [
+      "16675393"
+    ],
+    "authors": [
+      "Cardona"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "synapses",
+    "newTarget": "microglia_activated",
+    "type": "citation_only",
+    "existingEdgeId": "E05.016"
+  },
+  {
+    "id": "E13.023",
+    "source": "myelin_breakdown",
+    "target": "opcs",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Myelin debris inhibits OPC differentiation through Nogo receptor activation. Chronic demyelination exhausts the OPC pool. This completes the OPC-myelin-white matter degeneration loop.",
+    "keyInsight": "Myelin debris inhibits OPC differentiation, perpetuating demyelination",
+    "crossModule": "M13 (completes loop_OPC_myelin_WM)",
+    "pmids": [
+      "15322546",
+      "11756509"
+    ],
+    "authors": [
+      "Kotter",
+      "Wang"
+    ],
+    "years": [
+      2006,
+      2002
+    ],
+    "methods": [
+      "intervention_animal",
+      "in_vitro"
+    ],
+    "newSource": "myelin_integrity",
+    "newTarget": "OPCs",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.024",
+    "source": "bbb_integrity",
+    "target": "opcs",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Intact BBB protects OPCs from peripheral insults. BBB breakdown exposes OPCs to serum factors (fibrinogen, albumin, IgG) that inhibit OPC differentiation and survival.",
+    "keyInsight": "BBB protects OPCs; breakdown exposes them to toxic serum factors",
+    "crossModule": "M12 → M13 (completes loop_OPC_BBB)",
+    "pmids": [
+      "18923512",
+      "25471554"
+    ],
+    "authors": [
+      "Ryu",
+      "Montagne"
+    ],
+    "years": [
+      2015,
+      2015
+    ],
+    "methods": [
+      "intervention_animal",
+      "cohort"
+    ],
+    "newSource": "BBB_integrity",
+    "newTarget": "OPCs",
+    "type": "citation_only",
+    "existingEdgeId": "E13.024"
+  },
+  {
+    "id": "E13.040",
+    "source": "iron_accumulation",
+    "target": "ol_iron_content",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L5",
+    "mechanismDescription": "OLs preferentially accumulate iron due to high metabolic demand for myelination. Iron required for cholesterol synthesis, cytochrome oxidase, and fatty acid desaturation.",
+    "keyInsight": "OLs are the iron-richest cells in the brain",
+    "crossModule": "",
+    "pmids": [
+      "23463366"
+    ],
+    "authors": [
+      "Todorich"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "brain_iron_accumulation",
+    "newTarget": "OL_iron_content",
+    "type": "citation_only",
+    "existingEdgeId": "E13.040"
+  },
+  {
+    "id": "E13.041",
+    "source": "gpx4_activity",
+    "target": "ol_ferroptosis",
+    "relation": "decreases",
+    "moduleId": "M13",
+    "causalConfidence": "L3",
+    "mechanismDescription": "GPX4 is the master brake on OL ferroptosis. GPX4 reduces lipid peroxides in OL membranes; when GPX4 is depleted, high-iron OLs undergo ferroptotic death.",
+    "keyInsight": "GPX4 is THE master brake on OL ferroptosis",
+    "crossModule": "",
+    "pmids": [
+      "24439385"
+    ],
+    "authors": [
+      "Yang"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "GPX4_activity",
+    "newTarget": "oligodendrocyte_count",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.042",
+    "source": "ol_iron_content",
+    "target": "ol_ferroptosis",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "High OL iron content + declining GPX4 with age → Fenton chemistry → lipid peroxidation in PUFA-rich myelin membranes → ferroptotic OL death.",
+    "keyInsight": "OL ferroptosis is a direct mechanism of demyelination",
+    "crossModule": "",
+    "pmids": [
+      "35139533"
+    ],
+    "authors": [
+      "Jhelum"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "OL_iron_content",
+    "newTarget": "oligodendrocyte_count",
+    "type": "new_edge"
+  },
+  {
+    "id": "E13.043",
+    "source": "ol_ferroptosis",
+    "target": "myelin_breakdown",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "OL ferroptotic death → myelin sheath collapse → white matter pathology. This may occur in PARALLEL to or BEFORE A1 astrocyte-mediated OL killing.",
+    "keyInsight": "OL death → myelin sheath collapse → white matter pathology",
+    "crossModule": "",
+    "pmids": [
+      "35139533"
+    ],
+    "authors": [
+      "Jhelum"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "oligodendrocyte_count",
+    "newTarget": "myelin_integrity",
+    "type": "citation_only",
+    "existingEdgeId": "E07.009"
+  },
+  {
+    "id": "E13.045",
+    "source": "myelin_breakdown",
+    "target": "a1_astrocytes",
+    "relation": "increases",
+    "moduleId": "M13",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Myelin debris activates astrocytes toward A1 phenotype via TLR2/4 signaling. Creates bidirectional amplification loop: A1 astrocytes kill OLs → myelin breakdown → more A1 activation.",
+    "keyInsight": "Myelin debris activates astrocytes → bidirectional amplification loop",
+    "crossModule": "",
+    "pmids": [
+      "33692547",
+      "18309045"
+    ],
+    "authors": [
+      "Guttenplan",
+      "Liu"
+    ],
+    "years": [
+      2021,
+      2006
+    ],
+    "methods": [
+      "intervention_animal",
+      "in_vitro"
+    ],
+    "newSource": "myelin_integrity",
+    "newTarget": "A1_astrocytes",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.001",
+    "source": "familial_ad_mutations",
+    "target": "mam_hyperconnectivity",
+    "relation": "increases",
+    "moduleId": "M14",
+    "causalConfidence": "L4",
+    "mechanismDescription": "PS1/PS2 mutations increase ER-mitochondria contacts (MAM) → enhanced Ca²⁺ transfer",
+    "keyInsight": "LANDMARK: MAM hypothesis of AD (Area-Gomez)",
+    "crossModule": "",
+    "pmids": [
+      "22334919"
+    ],
+    "authors": [
+      "Area-Gomez"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "familial_AD_mutations",
+    "newTarget": "MAM_hyperconnected",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.002",
+    "source": "mam_hyperconnectivity",
+    "target": "er_mito_ca_flux",
+    "relation": "increases",
+    "moduleId": "M14",
+    "causalConfidence": "L4",
+    "mechanismDescription": "MAM hyperconnectivity → excessive Ca²⁺ transfer from ER to mitochondria via IP3R-VDAC-MCU",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22334919"
+    ],
+    "authors": [
+      "Area-Gomez"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "MAM_hyperconnected",
+    "newTarget": "mitochondrial_Ca_overload",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.003",
+    "source": "er_mito_ca_flux",
+    "target": "ca_overload",
+    "relation": "increases",
+    "moduleId": "M14",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Excessive Ca²⁺ transfer → mitochondrial Ca²⁺ overload → mPTP opening",
+    "keyInsight": "",
+    "crossModule": "Output to Module 3 (Mitochondrial)",
+    "pmids": [
+      "22334919"
+    ],
+    "authors": [
+      "Area-Gomez"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "mitochondrial_Ca_overload",
+    "newTarget": "Ca_overload",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.004",
+    "source": "mam_hyperconnectivity",
+    "target": "gamma_secretase_mam",
+    "relation": "increases",
+    "moduleId": "M14",
+    "causalConfidence": "L4",
+    "mechanismDescription": "γ-secretase is enriched at MAM; MAM expansion increases Aβ production",
+    "keyInsight": "",
+    "crossModule": "Output to Module 6 (Amyloid)",
+    "pmids": [
+      "22334919"
+    ],
+    "authors": [
+      "Area-Gomez"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "MAM_hyperconnected",
+    "newTarget": "gamma_secretase_MAM",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.005",
+    "source": "familial_ad_mutations",
+    "target": "er_ca_stores",
+    "relation": "regulates",
+    "moduleId": "M14",
+    "causalConfidence": "L4",
+    "mechanismDescription": "PS1 mutations cause ER Ca²⁺ leak dysfunction; may cause ER Ca²⁺ overfilling or depletion",
+    "keyInsight": "ER calcium dysregulation precedes Aβ pathology in fAD",
+    "crossModule": "",
+    "pmids": [
+      "33653935"
+    ],
+    "authors": [
+      "Bhattacharyya"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "intervention_cells"
+    ],
+    "newSource": "familial_AD_mutations",
+    "newTarget": "ER_Ca_overload",
+    "type": "new_edge"
+  },
+  {
+    "id": "E14.006",
+    "source": "er_ca_stores",
+    "target": "er_mito_ca_flux",
+    "relation": "increases",
+    "moduleId": "M14",
+    "causalConfidence": "L5",
+    "mechanismDescription": "ER Ca²⁺ stores drive Ca²⁺ flux to mitochondria via MAM",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "22334919"
+    ],
+    "authors": [
+      "Area-Gomez"
+    ],
+    "years": [
+      2012
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "ER_Ca_overload",
+    "newTarget": "mitochondrial_Ca_overload",
+    "type": "new_edge"
+  },
+  {
+    "id": "E16.003",
+    "source": "fsh_elevated",
+    "target": "neuronal_dysfunction",
+    "relation": "increases",
+    "moduleId": "M16",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Elevated FSH (post-menopausal) may directly contribute to neurodegeneration via C/EBPβ-δ-secretase pathway",
+    "keyInsight": "FSH blockade is potential therapeutic target for women",
+    "crossModule": "",
+    "pmids": [
+      "35995993"
+    ],
+    "authors": [
+      "Xiong"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "menopause",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E16.005",
+    "source": "sex",
+    "target": "testosterone_level",
+    "relation": "regulates",
+    "moduleId": "M16",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Biological sex determines testosterone levels; higher in males; testosterone may have neuroprotective effects",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "15117386"
+    ],
+    "authors": [
+      "Moffat"
+    ],
+    "years": [
+      2004
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "sex",
+    "newTarget": "testosterone_level",
+    "type": "citation_only",
+    "existingEdgeId": "E16.005"
+  },
+  {
+    "id": "E16.006",
+    "source": "testosterone_level",
+    "target": "neuroinflammation",
+    "relation": "decreases",
+    "moduleId": "M16",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Testosterone reduces neuroinflammation and Aβ accumulation; low testosterone associated with AD risk in men",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "21982726"
+    ],
+    "authors": [
+      "Rosario"
+    ],
+    "years": [
+      2011
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "testosterone_level",
+    "newTarget": "neuroinflammation",
+    "type": "citation_only",
+    "existingEdgeId": "E16.006"
+  },
+  {
+    "id": "E16.007",
+    "source": "sex",
+    "target": "x_linked_lysosomal_genes",
+    "relation": "regulates",
+    "moduleId": "M16",
+    "causalConfidence": "L4",
+    "mechanismDescription": "X chromosome carries lysosomal genes (ATP6AP2, SLC9A7, ATP6AP1, LAMP2); XX females have dosage compensation but may have advantage",
+    "keyInsight": "X-linked escape may protect females via enhanced lysosomal function",
+    "crossModule": "M16 → M02 (Lysosomal)",
+    "pmids": [
+      "32284014"
+    ],
+    "authors": [
+      "Davis"
+    ],
+    "years": [
+      2020
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "sex",
+    "newTarget": "lysosomal_dysfunction",
+    "type": "new_edge"
+  },
+  {
+    "id": "E16.009",
+    "source": "estrogen_level",
+    "target": "visceral_adipose_tissue",
+    "relation": "decreases",
+    "moduleId": "M16",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Estrogen loss in menopause → increased visceral adipose tissue (VAT); VAT produces inflammatory cytokines",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "16893461"
+    ],
+    "authors": [
+      "Salpeter"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "meta_analysis"
+    ],
+    "newSource": "estrogen_level",
+    "newTarget": "visceral_adipose_tissue",
+    "type": "citation_only",
+    "existingEdgeId": "E16.009"
+  },
+  {
+    "id": "E16.010",
+    "source": "visceral_adipose_tissue",
+    "target": "neuroinflammation",
+    "relation": "increases",
+    "moduleId": "M16",
+    "causalConfidence": "L4",
+    "mechanismDescription": "VAT secretes IL-6, TNF-α, leptin → systemic and neuroinflammation; links metabolic syndrome to AD risk",
+    "keyInsight": "Adipose tissue links metabolic and inflammatory AD pathways",
+    "crossModule": "M16 → M04",
+    "pmids": [
+      "24524930"
+    ],
+    "authors": [
+      "Letra"
+    ],
+    "years": [
+      2014
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "visceral_adipose_tissue",
+    "newTarget": "neuroinflammation",
+    "type": "citation_only",
+    "existingEdgeId": "E16.010"
+  },
+  {
+    "id": "E16.011",
+    "source": "sex",
+    "target": "female_iron_storage_failure",
+    "relation": "regulates",
+    "moduleId": "M16",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Women with AD show paradoxical negative iron-ferritin correlation (opposite of normal); suggests iron storage mechanism failure",
+    "keyInsight": "Female-specific iron dysregulation may explain higher AD prevalence",
+    "crossModule": "M16 → M09",
+    "pmids": [
+      "33757485"
+    ],
+    "authors": [
+      "Ashraf"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "sex",
+    "newTarget": "labile_iron_pool",
+    "type": "new_edge"
+  },
+  {
+    "id": "E16.012",
+    "source": "female_iron_storage_failure",
+    "target": "ferroptosis",
+    "relation": "increases",
+    "moduleId": "M16",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Iron storage failure → increased labile iron → ferroptosis vulnerability; female-specific pathway",
+    "keyInsight": "",
+    "crossModule": "M16 → M09",
+    "pmids": [
+      "33757485"
+    ],
+    "authors": [
+      "Ashraf"
+    ],
+    "years": [
+      2021
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "labile_iron_pool",
+    "newTarget": "ferroptosis",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.006",
+    "source": "clasmatodendrosis",
+    "target": "pvs_enlarged",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Endfoot retraction creates gap between blood vessel and glia limitans → perivascular space enlarges → visible on MRI as white matter hyperintensities around vessels.",
+    "keyInsight": "Earliest MRI biomarker of endfoot dysfunction - 18 years before symptoms",
+    "crossModule": "",
+    "pmids": [
+      "40826401"
+    ],
+    "authors": [
+      "Leone"
+    ],
+    "years": [
+      2025
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "astrocyte_reactive",
+    "newTarget": "perivascular_space",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.009",
+    "source": "clasmatodendrosis",
+    "target": "aqp4_depolarization",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Endfoot fragmentation disrupts DAPC anchoring complex → AQP4 redistributes from endfeet to parenchymal membrane → loss of polarized water transport.",
+    "keyInsight": "Connects structural endfoot damage to glymphatic dysfunction",
+    "crossModule": "M18 → M12",
+    "pmids": [
+      "26667280"
+    ],
+    "authors": [
+      "Chen"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "astrocyte_reactive",
+    "newTarget": "endfoot_AQP4_polarization",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.012",
+    "source": "clasmatodendrosis",
+    "target": "glymphatic_clearance",
+    "relation": "decreases",
+    "moduleId": "M18",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Endfoot damage → AQP4 depolarization → loss of polarized CSF-ISF exchange → impaired glymphatic clearance of Aβ and tau.",
+    "keyInsight": "Endfoot damage creates vicious cycle: impaired clearance → more Aβ → more damage",
+    "crossModule": "M18 → M12",
+    "pmids": [
+      "26667280"
+    ],
+    "authors": [
+      "Chen"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "astrocyte_reactive",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.020",
+    "source": "pvs_normal",
+    "target": "glymphatic_clearance",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L6",
+    "mechanismDescription": "Normal narrow perivascular spaces enable efficient CSF-ISF exchange for glymphatic clearance. Enlarged PVS disrupts flow dynamics.",
+    "keyInsight": "",
+    "crossModule": "M18 → M12",
+    "pmids": [
+      "40826401"
+    ],
+    "authors": [
+      "Leone"
+    ],
+    "years": [
+      2025
+    ],
+    "methods": [
+      "imaging"
+    ],
+    "newSource": "perivascular_space",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "citation_only",
+    "existingEdgeId": "MN.004"
+  },
+  {
+    "id": "E18.026",
+    "source": "ammonia_accumulation",
+    "target": "app_er_translocation",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L3",
+    "mechanismDescription": "Ammonia causes endocytosis of mature APP from astrocyte plasma membrane and targets it to the endoplasmic reticulum (not lysosome). This is a novel amyloidogenic pathway distinct from neuronal APP processing.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "35367412"
+    ],
+    "authors": [
+      "Komatsu"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "astrocyte_reactive",
+    "newTarget": "APP_processing_amyloidogenic",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.027",
+    "source": "app_er_translocation",
+    "target": "abeta_oligomers",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L3",
+    "mechanismDescription": "APP in astrocyte ER is cleaved by resident BACE1 (β-secretase) and presenilin-1 (γ-secretase) to produce Aβ42 specifically — the principal component of senile plaques. First evidence that ammonia directly induces AD pathogenesis.",
+    "keyInsight": "",
+    "crossModule": "M18 → M06",
+    "pmids": [
+      "35367412"
+    ],
+    "authors": [
+      "Komatsu"
+    ],
+    "years": [
+      2022
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "APP_processing_amyloidogenic",
+    "newTarget": "Abeta_oligomers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E18.031",
+    "source": "extracellular_glutamate",
+    "target": "glutamate_excitotoxicity",
+    "relation": "directlyIncreases",
+    "moduleId": "M18",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Excess extracellular glutamate triggers excitotoxic cascade:\r\n      1. NMDAR overactivation → Ca²⁺ influx\r\n      2. Mitochondrial calcium overload → ROS production\r\n      3. Calpain activation → cytoskeletal damage\r\n      4. Neuronal death (necrotic or delayed apoptotic)",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "10471273"
+    ],
+    "authors": [
+      "Bhutani"
+    ],
+    "years": [
+      1999
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "cell_death",
+    "type": "new_edge"
+  },
+  {
+    "id": "E-THER.001",
+    "source": "abeta_plaques",
+    "target": "cognitive_score",
+    "relation": "decreases",
+    "moduleId": "M15",
+    "causalConfidence": "L1",
+    "mechanismDescription": "Gantenerumab reduced amyloid by 66 Centiloids but only 28% reached amyloid-negative status (vs 68-80% for approved drugs). Subcutaneous dosing limited brain exposure.",
+    "keyInsight": "Target engagement threshold matters more than direction - 28% amyloid-negative was insufficient",
+    "crossModule": "",
+    "pmids": [
+      "37966285"
+    ],
+    "authors": [
+      "Bateman"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "rct"
+    ],
+    "newSource": "Abeta_plaques",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E-THER.002",
+    "source": "abeta_oligomers",
+    "target": "cognitive_score",
+    "relation": "causesNoChange",
+    "moduleId": "M15",
+    "causalConfidence": "L1",
+    "mechanismDescription": "Latrepirdine claimed mitochondrial, NMDA, 5-HT6, and H1 mechanisms from in vitro data, but none were validated in humans. $725M Phase 3 showed zero efficacy.",
+    "keyInsight": "Multiple weak mechanisms ≠ one strong effect; polypharmacology without target validation fails",
+    "crossModule": "",
+    "pmids": [
+      "20818845"
+    ],
+    "authors": [
+      "Jones"
+    ],
+    "years": [
+      2010
+    ],
+    "methods": [
+      "rct"
+    ],
+    "newSource": "Abeta_oligomers",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E-THER.003",
+    "source": "synapses",
+    "target": "cognitive_score",
+    "relation": "increases",
+    "moduleId": "M15",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Velnacrine (1-hydroxytacrine) caused 29% hepatotoxicity via CYP1A2-mediated quinonemethide formation - a structural feature of the aminoacridine scaffold, not AChE inhibition.",
+    "keyInsight": "Same target (AChE), different scaffold = different safety. Donepezil has no hepatotoxicity.",
+    "crossModule": "",
+    "pmids": [
+      "9013398",
+      "8347124"
+    ],
+    "authors": [
+      "Gracon",
+      "Madden"
+    ],
+    "years": [
+      1997,
+      1993
+    ],
+    "methods": [
+      "rct",
+      "biochemistry"
+    ],
+    "newSource": "synapses",
+    "newTarget": "cognitive_score",
+    "type": "citation_only",
+    "existingEdgeId": "E08.006"
+  },
+  {
+    "id": "E-THER.005",
+    "source": "neuroinflammation",
+    "target": "cognitive_score",
+    "relation": "causesNoChange",
+    "moduleId": "M15",
+    "causalConfidence": "L1",
+    "mechanismDescription": "FAILED HYPOTHESIS: Anti-inflammatory → cognition. Propentofylline APPROVED for canine cognitive dysfunction but FAILED human AD trials at 18 months. This documents a NEGATIVE result - targeting neuroinflammation directly did NOT improve cognition in humans, possibly because intermediates (synaptic loss, neuronal death) were already established.",
+    "keyInsight": "NEGATIVE RESULT: Targeting neuroinflammation alone is insufficient once downstream damage (synaptic loss, neuronal death) is established",
+    "crossModule": "",
+    "pmids": [
+      "9298634"
+    ],
+    "authors": [
+      "Rother"
+    ],
+    "years": [
+      1998
+    ],
+    "methods": [
+      "rct"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "cognitive_score",
+    "type": "new_edge"
+  },
+  {
+    "id": "E-THER.006",
+    "source": "synaptic_plasticity",
+    "target": "cognitive_score",
+    "relation": "causesNoChange",
+    "moduleId": "M15",
+    "causalConfidence": "L1",
+    "mechanismDescription": "PDE9 inhibitor PF-04447943 elevated CSF cGMP (confirmed target engagement) but showed no cognitive benefit in Phase 2. Prevented spine loss in young Tg2576 mice, but couldn\\",
+    "keyInsight": "Target engagement (CSF cGMP ↑) ≠ clinical benefit; biomarker must causally link to phenotype",
+    "crossModule": "",
+    "pmids": [
+      "24801218",
+      "21619887"
+    ],
+    "authors": [
+      "Schwam",
+      "Hutson"
+    ],
+    "years": [
+      2014,
+      2011
+    ],
+    "methods": [
+      "rct",
+      "intervention_animal"
+    ],
+    "newSource": "synapses",
+    "newTarget": "cognitive_score",
+    "type": "citation_only",
+    "existingEdgeId": "E08.006"
+  },
+  {
+    "id": "E07.050",
+    "source": "ferroptosis",
+    "target": "aggregation_cofactors",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Ferroptotic cell death releases polyanion cofactors:\r\n      - RNA released from dying cells\r\n      - DNA fragments\r\n      - HSPGs from disrupted membranes\r\n      These stabilize tau and Aβ aggregation.",
+    "keyInsight": "Cell death creates permissive environment for aggregation",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [],
+    "years": [],
+    "methods": [],
+    "newSource": "ferroptosis",
+    "newTarget": "abeta_aggregation",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.051",
+    "source": "aggregation_cofactors",
+    "target": "tau_seeding",
+    "relation": "directlyIncreases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Fichou 2018 (PNAS): Tau seeds are \"exhausted after one generation\" without cofactor supplementation.\r\n      Polyanion cofactors (HSPGs, RNA) are REQUIRED for sustained tau aggregation.\r\n      NOT truly prion-like self-templating.",
+    "keyInsight": "Cofactors are REQUIRED, not optional - tau does not self-template",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Fichou"
+    ],
+    "years": [
+      2018
+    ],
+    "methods": [
+      "in_vitro"
+    ],
+    "newSource": "abeta_aggregation",
+    "newTarget": "tau_seeding",
+    "type": "new_edge"
+  },
+  {
+    "id": "E07.052",
+    "source": "aggregation_cofactors",
+    "target": "abeta_production",
+    "relation": "increases",
+    "moduleId": "M07",
+    "causalConfidence": "L5",
+    "mechanismDescription": "Polyanions also promote Aβ fibril formation and stability.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [],
+    "years": [],
+    "methods": [],
+    "newSource": "abeta_aggregation",
+    "newTarget": "abeta_production",
+    "type": "new_edge"
+  },
+  {
+    "id": "E06.050",
+    "source": "plaque_associated_microglia",
+    "target": "dense_core_plaque",
+    "relation": "directlyIncreases",
+    "moduleId": "M06",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Yuan 2016: Microglia form protective barriers around plaques.\r\n      TREM2-dependent recruitment → compact fibrillar core → sequester toxic oligomers.\r\n      Dense-core plaques are PROTECTIVE, not harmful.",
+    "keyInsight": "Dense-core plaques = successful containment",
+    "crossModule": "",
+    "pmids": [],
+    "authors": [
+      "Yuan"
+    ],
+    "years": [
+      2016
+    ],
+    "methods": [
+      "knockout"
+    ],
+    "newSource": "microglia_dam",
+    "newTarget": "Abeta_plaques",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.001",
+    "source": "estrogen_level",
+    "target": "estrogen_neuroprotection",
+    "relation": "directlyIncreases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Estrogen acts via ERα/ERβ receptors to increase BDNF, promote spine formation, reduce APP processing, and enhance mitochondrial function.",
+    "keyInsight": "",
+    "crossModule": "",
+    "pmids": [
+      "25724781"
+    ],
+    "authors": [
+      "Hara"
+    ],
+    "years": [
+      2015
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "estrogen_level",
+    "newTarget": "estrogen",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.002",
+    "source": "hrt_intervention",
+    "target": "estrogen_level",
+    "relation": "directlyIncreases",
+    "moduleId": "M20",
+    "causalConfidence": "L1",
+    "mechanismDescription": "Hormone replacement therapy restores estrogen levels. Critical window hypothesis: HRT within 5 years of menopause may be neuroprotective; later may be harmful.",
+    "keyInsight": "Timing matters: early HRT may protect, late HRT may harm",
+    "crossModule": "",
+    "pmids": [
+      "36424867"
+    ],
+    "authors": [
+      "Saleh"
+    ],
+    "years": [
+      2023
+    ],
+    "methods": [
+      "cohort"
+    ],
+    "newSource": "estrogen",
+    "newTarget": "estrogen_level",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.003",
+    "source": "estrogen_neuroprotection",
+    "target": "synaptic_plasticity",
+    "relation": "increases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Estrogen increases BDNF expression and promotes dendritic spine formation, enhancing synaptic plasticity.",
+    "keyInsight": "",
+    "crossModule": "M20 → M08",
+    "pmids": [
+      "25724781"
+    ],
+    "authors": [
+      "Hara"
+    ],
+    "years": [
+      2015
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "estrogen",
+    "newTarget": "synapses",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.004",
+    "source": "estrogen_neuroprotection",
+    "target": "abeta_oligomers",
+    "relation": "decreases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Estrogen reduces amyloidogenic APP processing, decreasing Aβ production.",
+    "keyInsight": "",
+    "crossModule": "M20 → M06",
+    "pmids": [
+      "25724781"
+    ],
+    "authors": [
+      "Hara"
+    ],
+    "years": [
+      2015
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "estrogen",
+    "newTarget": "Abeta_oligomers",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.009",
+    "source": "cortisol_level",
+    "target": "tau_hyperphosphorylated",
+    "relation": "increases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Chronic cortisol elevation enhances tau hyperphosphorylation and promotes tau pathology.",
+    "keyInsight": "",
+    "crossModule": "M20 → M07",
+    "pmids": [
+      "16551324"
+    ],
+    "authors": [
+      "Green"
+    ],
+    "years": [
+      2006
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "tau_hyperphosphorylated",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.010",
+    "source": "cortisol_level",
+    "target": "synaptic_plasticity",
+    "relation": "decreases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Chronic cortisol causes hippocampal atrophy and synaptic dysfunction, impairing plasticity.",
+    "keyInsight": "",
+    "crossModule": "M20 → M08",
+    "pmids": [
+      "19341762"
+    ],
+    "authors": [
+      "Lupien"
+    ],
+    "years": [
+      2009
+    ],
+    "methods": [
+      "review"
+    ],
+    "newSource": "neuroinflammation",
+    "newTarget": "synapses",
+    "type": "new_edge"
+  },
+  {
+    "id": "E20.016",
+    "source": "melatonin_level",
+    "target": "glymphatic_clearance",
+    "relation": "increases",
+    "moduleId": "M20",
+    "causalConfidence": "L4",
+    "mechanismDescription": "Melatonin regulates circadian rhythm, which controls sleep-dependent glymphatic clearance. Also has direct antioxidant and anti-inflammatory properties.",
+    "keyInsight": "",
+    "crossModule": "M20 → M12",
+    "pmids": [
+      "24136970"
+    ],
+    "authors": [
+      "Xie"
+    ],
+    "years": [
+      2013
+    ],
+    "methods": [
+      "intervention_animal"
+    ],
+    "newSource": "sleep_state",
+    "newTarget": "glymphatic_flow_rate",
+    "type": "new_edge"
+  }
+]
